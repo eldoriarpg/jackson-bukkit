@@ -11,11 +11,6 @@ public class ColorDeserializer extends JsonDeserializer<Color> {
 
     @Override
     public Color deserialize(JsonParser p, DeserializationContext ctxt) throws IOException {
-        var type = ctxt.getTypeFactory().constructArrayType(Integer.class);
-        int[] colors = ctxt.readValue(p,type);
-        if(colors.length == 4){
-            return Color.fromARGB(colors[3], colors[0], colors[1], colors[2]);
-        }
-        return null;
+        return ctxt.readValue(p, de.eldoria.jacksonbukkit.entities.Color.class).toBukkitColor();
     }
 }

@@ -10,6 +10,6 @@ import java.io.IOException;
 public class ColorSerializer extends JsonSerializer<Color> {
     @Override
     public void serialize(Color value, JsonGenerator gen, SerializerProvider serializers) throws IOException {
-        gen.writeArray(new int[]{value.getRed(), value.getGreen(), value.getBlue(), value.getAlpha()}, 0, 4);
+        gen.writeObject(de.eldoria.jacksonbukkit.entities.Color.of(value));
     }
 }
