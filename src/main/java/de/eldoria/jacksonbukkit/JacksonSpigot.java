@@ -9,10 +9,32 @@ import com.fasterxml.jackson.core.Version;
 import com.fasterxml.jackson.databind.Module;
 import com.fasterxml.jackson.databind.module.SimpleDeserializers;
 import com.fasterxml.jackson.databind.module.SimpleSerializers;
+<<<<<<< HEAD
 import de.eldoria.jacksonbukkit.deserializer.*;
 import de.eldoria.jacksonbukkit.serializer.*;
+=======
+import de.eldoria.jacksonbukkit.deserializer.BlockVectorDeserializer;
+import de.eldoria.jacksonbukkit.deserializer.ColorDeserializer;
+import de.eldoria.jacksonbukkit.deserializer.FireworkEffectDeserializer;
+import de.eldoria.jacksonbukkit.deserializer.ItemStackDeserializer;
+import de.eldoria.jacksonbukkit.deserializer.LocationDeserializer;
+import de.eldoria.jacksonbukkit.deserializer.NamespacedKeyDeserializer;
+import de.eldoria.jacksonbukkit.deserializer.PatternDeserializer;
+import de.eldoria.jacksonbukkit.deserializer.PotionEffectDeserializer;
+import de.eldoria.jacksonbukkit.deserializer.VectorDeserializer;
+import de.eldoria.jacksonbukkit.serializer.BlockVectorSerializer;
+import de.eldoria.jacksonbukkit.serializer.ColorSerializer;
+import de.eldoria.jacksonbukkit.serializer.FireworkEffectSerializer;
+import de.eldoria.jacksonbukkit.serializer.ItemStackSerializer;
+import de.eldoria.jacksonbukkit.serializer.LocationSerializer;
+import de.eldoria.jacksonbukkit.serializer.NamespacedKeySerializer;
+import de.eldoria.jacksonbukkit.serializer.PatternSerializer;
+import de.eldoria.jacksonbukkit.serializer.PotionEffectSerializer;
+import de.eldoria.jacksonbukkit.serializer.VectorSerializer;
+>>>>>>> c622bdf (Add unit tests for location)
 import org.bukkit.Color;
 import org.bukkit.FireworkEffect;
+import org.bukkit.Location;
 import org.bukkit.NamespacedKey;
 import org.bukkit.attribute.AttributeModifier;
 import org.bukkit.block.banner.Pattern;
@@ -47,6 +69,7 @@ public class JacksonSpigot extends Module {
         serializers.addSerializer(Pattern.class, new PatternSerializer());
         serializers.addSerializer(BoundingBox.class, new BoundingBoxSerializer());
         serializers.addSerializer(AttributeModifier.class, new AttributeModifierSerializer());
+        serializers.addSerializer(Location.class, new LocationSerializer());
 
         SimpleDeserializers deserializers = new SimpleDeserializers();
         deserializers.addDeserializer(Vector.class, new VectorDeserializer());
@@ -59,6 +82,7 @@ public class JacksonSpigot extends Module {
         deserializers.addDeserializer(Pattern.class, new PatternDeserializer());
         deserializers.addDeserializer(BoundingBox.class, new BoundingBoxDeserializer());
         deserializers.addDeserializer(AttributeModifier.class, new AttributeModifierDeserializer());
+        deserializers.addDeserializer(Location.class, new LocationDeserializer());
 
         context.addSerializers(serializers);
         context.addDeserializers(deserializers);

@@ -14,7 +14,7 @@ import org.junit.jupiter.api.Test;
 class PotionEffectSerializerTest implements TestUtil {
     @BeforeAll
     static void setup() {
-        MockServer.startServer();
+        MockBukkit.mock();
     }
 
     @Test

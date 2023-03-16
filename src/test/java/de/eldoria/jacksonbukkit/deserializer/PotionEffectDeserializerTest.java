@@ -19,7 +19,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class PotionEffectDeserializerTest implements TestUtil {
     @BeforeAll
     static void setup() {
-        MockServer.startServer();
+        MockBukkit.mock();
     }
 
     @Test
@@ -37,5 +37,10 @@ class PotionEffectDeserializerTest implements TestUtil {
     @Test
     void deserializeToToml() throws JsonProcessingException {
         Assertions.assertEquals(PotionEffectTemplate.SINGLE, fromToml("potion_effect", PotionEffect.class));
+    }
+
+    @AfterAll
+    static void tearDown(){
+        MockBukkit.unmock();
     }
 }

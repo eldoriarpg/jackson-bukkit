@@ -37,6 +37,7 @@ dependencies {
     testImplementation("org.junit.jupiter:junit-jupiter-api:5.9.2")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.9.2")
     testImplementation("org.skyscreamer:jsonassert:1.5.1")
+    testImplementation("org.mockito:mockito-core:3.+")
 }
 
 spotless {
