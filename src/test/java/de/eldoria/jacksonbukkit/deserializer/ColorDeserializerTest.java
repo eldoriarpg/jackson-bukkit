@@ -10,19 +10,19 @@ import org.junit.jupiter.api.Test;
 class ColorDeserializerTest  implements TestUtil {
 
     @Test
-    void deserializeToJson() throws JsonProcessingException {
+    void deserializeFromJson() throws JsonProcessingException {
         Assertions.assertEquals(ColorTemplate.COLOR, fromJson("color", Color.class));
         Assertions.assertEquals(ColorTemplate.COLORS, fromJsonList("color_list", Color.class));
     }
 
     @Test
-    void deserializeToYaml() throws JsonProcessingException {
+    void deserializeFromYaml() throws JsonProcessingException {
         Assertions.assertEquals(ColorTemplate.COLOR, fromYaml("color", Color.class));
         Assertions.assertEquals(ColorTemplate.COLORS, fromYamlList("color_list", Color.class));
     }
 
     @Test
-    void deserializeToToml() throws JsonProcessingException {
+    void deserializeFromToml() throws JsonProcessingException {
         Assertions.assertEquals(ColorTemplate.COLOR, fromToml("color", Color.class));
     }
 }
