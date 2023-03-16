@@ -9,8 +9,11 @@ import com.fasterxml.jackson.core.Version;
 import com.fasterxml.jackson.databind.Module;
 import com.fasterxml.jackson.databind.module.SimpleDeserializers;
 import com.fasterxml.jackson.databind.module.SimpleSerializers;
+import de.eldoria.jacksonbukkit.deserializer.BlockVectorDeserializer;
 import de.eldoria.jacksonbukkit.deserializer.VectorDeserializer;
+import de.eldoria.jacksonbukkit.serializer.BlockVectorSerializer;
 import de.eldoria.jacksonbukkit.serializer.VectorSerializer;
+import org.bukkit.util.BlockVector;
 import org.bukkit.util.Vector;
 
 public class JacksonSpigot extends Module {
@@ -28,8 +31,10 @@ public class JacksonSpigot extends Module {
     public void setupModule(SetupContext context) {
         SimpleSerializers serializers = new SimpleSerializers();
         serializers.addSerializer(Vector.class, new VectorSerializer());
+        serializers.addSerializer(BlockVector.class, new BlockVectorSerializer());
         SimpleDeserializers deserializers = new SimpleDeserializers();
         deserializers.addDeserializer(Vector.class, new VectorDeserializer());
+        deserializers.addDeserializer(BlockVector.class, new BlockVectorDeserializer());
         context.addSerializers(serializers);
         context.addDeserializers(deserializers);
     }
