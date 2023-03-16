@@ -9,11 +9,9 @@ import com.fasterxml.jackson.core.Version;
 import com.fasterxml.jackson.databind.Module;
 import com.fasterxml.jackson.databind.module.SimpleDeserializers;
 import com.fasterxml.jackson.databind.module.SimpleSerializers;
-<<<<<<< HEAD
-import de.eldoria.jacksonbukkit.deserializer.*;
-import de.eldoria.jacksonbukkit.serializer.*;
-=======
+import de.eldoria.jacksonbukkit.deserializer.AttributeModifierDeserializer;
 import de.eldoria.jacksonbukkit.deserializer.BlockVectorDeserializer;
+import de.eldoria.jacksonbukkit.deserializer.BoundingBoxDeserializer;
 import de.eldoria.jacksonbukkit.deserializer.ColorDeserializer;
 import de.eldoria.jacksonbukkit.deserializer.FireworkEffectDeserializer;
 import de.eldoria.jacksonbukkit.deserializer.ItemStackDeserializer;
@@ -22,7 +20,9 @@ import de.eldoria.jacksonbukkit.deserializer.NamespacedKeyDeserializer;
 import de.eldoria.jacksonbukkit.deserializer.PatternDeserializer;
 import de.eldoria.jacksonbukkit.deserializer.PotionEffectDeserializer;
 import de.eldoria.jacksonbukkit.deserializer.VectorDeserializer;
+import de.eldoria.jacksonbukkit.serializer.AttributeModifierSerializer;
 import de.eldoria.jacksonbukkit.serializer.BlockVectorSerializer;
+import de.eldoria.jacksonbukkit.serializer.BoundingBoxSerializer;
 import de.eldoria.jacksonbukkit.serializer.ColorSerializer;
 import de.eldoria.jacksonbukkit.serializer.FireworkEffectSerializer;
 import de.eldoria.jacksonbukkit.serializer.ItemStackSerializer;
@@ -31,7 +31,6 @@ import de.eldoria.jacksonbukkit.serializer.NamespacedKeySerializer;
 import de.eldoria.jacksonbukkit.serializer.PatternSerializer;
 import de.eldoria.jacksonbukkit.serializer.PotionEffectSerializer;
 import de.eldoria.jacksonbukkit.serializer.VectorSerializer;
->>>>>>> c622bdf (Add unit tests for location)
 import org.bukkit.Color;
 import org.bukkit.FireworkEffect;
 import org.bukkit.Location;
@@ -88,18 +87,3 @@ public class JacksonSpigot extends Module {
         context.addDeserializers(deserializers);
     }
 }
-
-/*
-
-- Vector (/)
-- BlockVector (/)
-- ItemStack (/)
-- Color (/)
-- PotionEffect (/)
-- FireworkEffect (/)
-- Pattern (/)
-- Location
-- AttributeModifier (/)
-- BoundingBox (/)
-
- */
