@@ -11,7 +11,7 @@ public record Vector(double x, double y, double z) {
         return new BlockVector(x, y, z);
     }
 
-    public Vector of(org.bukkit.util.Vector vector) {
+    public static Vector of(org.bukkit.util.Vector vector) {
         return new Vector(vector.getX(), vector.getY(), vector.getZ());
     }
 }

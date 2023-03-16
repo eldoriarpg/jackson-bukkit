@@ -7,9 +7,9 @@ import de.eldoria.jacksonbukkit.entities.Vector;
 
 import java.io.IOException;
 
-public class VectorSerializer extends JsonSerializer<Vector> {
+public class VectorSerializer extends JsonSerializer<org.bukkit.util.Vector> {
     @Override
     public void serialize(Vector value, JsonGenerator gen, SerializerProvider serializers) throws IOException {
-        gen.writeObject();
+        gen.writeObject(Vector);
     }
 }
