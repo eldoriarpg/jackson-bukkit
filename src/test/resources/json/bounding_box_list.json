@@ -1,0 +1,34 @@
+[ {
+  "corner1" : {
+    "xCoord" : 10.0,
+    "yCoord" : 20.0,
+    "zCoord" : 10.0
+  },
+  "corner2" : {
+    "xCoord" : 20.0,
+    "yCoord" : 40.0,
+    "zCoord" : 300.0
+  }
+}, {
+  "corner1" : {
+    "xCoord" : 20.0,
+    "yCoord" : 40.0,
+    "zCoord" : 10.0
+  },
+  "corner2" : {
+    "xCoord" : 40.0,
+    "yCoord" : 80.0,
+    "zCoord" : 300.0
+  }
+}, {
+  "corner1" : {
+    "xCoord" : 30.0,
+    "yCoord" : 80.0,
+    "zCoord" : 10.0
+  },
+  "corner2" : {
+    "xCoord" : 60.0,
+    "yCoord" : 160.0,
+    "zCoord" : 300.0
+  }
+} ]

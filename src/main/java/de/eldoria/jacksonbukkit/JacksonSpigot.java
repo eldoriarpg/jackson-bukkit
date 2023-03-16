@@ -9,22 +9,8 @@ import com.fasterxml.jackson.core.Version;
 import com.fasterxml.jackson.databind.Module;
 import com.fasterxml.jackson.databind.module.SimpleDeserializers;
 import com.fasterxml.jackson.databind.module.SimpleSerializers;
-import de.eldoria.jacksonbukkit.deserializer.BlockVectorDeserializer;
-import de.eldoria.jacksonbukkit.deserializer.ColorDeserializer;
-import de.eldoria.jacksonbukkit.deserializer.FireworkEffectDeserializer;
-import de.eldoria.jacksonbukkit.deserializer.ItemStackDeserializer;
-import de.eldoria.jacksonbukkit.deserializer.NamespacedKeyDeserializer;
-import de.eldoria.jacksonbukkit.deserializer.PatternDeserializer;
-import de.eldoria.jacksonbukkit.deserializer.PotionEffectDeserializer;
-import de.eldoria.jacksonbukkit.deserializer.VectorDeserializer;
-import de.eldoria.jacksonbukkit.serializer.BlockVectorSerializer;
-import de.eldoria.jacksonbukkit.serializer.ColorSerializer;
-import de.eldoria.jacksonbukkit.serializer.FireworkEffectSerializer;
-import de.eldoria.jacksonbukkit.serializer.ItemStackSerializer;
-import de.eldoria.jacksonbukkit.serializer.NamespacedKeySerializer;
-import de.eldoria.jacksonbukkit.serializer.PatternSerializer;
-import de.eldoria.jacksonbukkit.serializer.PotionEffectSerializer;
-import de.eldoria.jacksonbukkit.serializer.VectorSerializer;
+import de.eldoria.jacksonbukkit.deserializer.*;
+import de.eldoria.jacksonbukkit.serializer.*;
 import org.bukkit.Color;
 import org.bukkit.FireworkEffect;
 import org.bukkit.NamespacedKey;
@@ -32,6 +18,7 @@ import org.bukkit.block.banner.Pattern;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.util.BlockVector;
+import org.bukkit.util.BoundingBox;
 import org.bukkit.util.Vector;
 
 public class JacksonSpigot extends Module {
@@ -57,6 +44,7 @@ public class JacksonSpigot extends Module {
         serializers.addSerializer(PotionEffect.class, new PotionEffectSerializer());
         serializers.addSerializer(FireworkEffect.class, new FireworkEffectSerializer());
         serializers.addSerializer(Pattern.class, new PatternSerializer());
+        serializers.addSerializer(BoundingBox.class, new BoundingBoxSerializer());
 
         SimpleDeserializers deserializers = new SimpleDeserializers();
         deserializers.addDeserializer(Vector.class, new VectorDeserializer());
@@ -67,6 +55,7 @@ public class JacksonSpigot extends Module {
         deserializers.addDeserializer(PotionEffect.class, new PotionEffectDeserializer());
         deserializers.addDeserializer(FireworkEffect.class, new FireworkEffectDeserializer());
         deserializers.addDeserializer(Pattern.class, new PatternDeserializer());
+        deserializers.addDeserializer(BoundingBox.class, new BoundingBoxDeserializer());
 
         context.addSerializers(serializers);
         context.addDeserializers(deserializers);
@@ -75,15 +64,15 @@ public class JacksonSpigot extends Module {
 
 /*
 
-- Vector
-- BlockVector
-- ItemStack
-- Color
-- PotionEffect
-- FireworkEffect
-- Pattern
+- Vector (/)
+- BlockVector (/)
+- ItemStack (/)
+- Color (/)
+- PotionEffect (/)
+- FireworkEffect (/)
+- Pattern (/)
 - Location
 - AttributeModifier
-- BoundingBox
+- BoundingBox (/)
 
  */
