@@ -3,26 +3,23 @@ package de.eldoria.jacksonbukkit.serializer;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import de.eldoria.jacksonbukkit.TestUtil;
 import de.eldoria.jacksonbukkit.templates.VectorTemplate;
-import org.bukkit.util.Vector;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 class VectorSerializerTest implements TestUtil {
 
     @Test
-    void deserializeToJson() throws JsonProcessingException {
-        Assertions.assertEquals(VectorTemplate.VECTOR, fromJson("vector", Vector.class));
-        Assertions.assertEquals(VectorTemplate.VECTORS, fromJsonList("vector_list", Vector.class));
+    void serializeToJson() throws JsonProcessingException {
+        Assertions.assertEquals(json("vector"), toJson(VectorTemplate.VECTOR));
+        Assertions.assertEquals(json("vector_list"), toJson(VectorTemplate.VECTORS));
     }
-
     @Test
-    void deserializeToYaml() throws JsonProcessingException {
-        Assertions.assertEquals(VectorTemplate.VECTOR, fromYaml("vector", Vector.class));
-        Assertions.assertEquals(VectorTemplate.VECTORS, fromYamlList("vector_list", Vector.class));
+    void serializeToYaml() throws JsonProcessingException {
+        Assertions.assertEquals(yaml("vector"), toYaml(VectorTemplate.VECTOR));
+        Assertions.assertEquals(yaml("vector_list"), toYaml(VectorTemplate.VECTORS));
     }
-
     @Test
-    void deserializeToToml() throws JsonProcessingException {
-        Assertions.assertEquals(VectorTemplate.VECTOR, fromToml("vector", Vector.class));
+    void serializeToToml() throws JsonProcessingException {
+        Assertions.assertEquals(toml("vector"), toToml(VectorTemplate.VECTOR));
     }
 }
