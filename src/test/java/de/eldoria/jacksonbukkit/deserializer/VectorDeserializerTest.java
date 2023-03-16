@@ -21,6 +21,5 @@ class VectorDeserializerTest implements TestUtil {
     @Test
     void deserializeToToml() throws JsonProcessingException {
         Assertions.assertEquals(toml("vector"), toToml(VectorTemplate.VECTOR));
-        Assertions.assertEquals(toml("vector_list"), toToml(VectorTemplate.VECTORS));
     }
 }

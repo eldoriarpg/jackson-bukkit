@@ -3,12 +3,14 @@ package de.eldoria.jacksonbukkit;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.util.DefaultPrettyPrinter;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.ObjectWriter;
 import com.fasterxml.jackson.databind.json.JsonMapper;
+import com.fasterxml.jackson.databind.type.CollectionType;
 import com.fasterxml.jackson.dataformat.toml.TomlMapper;
 import com.fasterxml.jackson.dataformat.yaml.YAMLMapper;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 public interface TestUtil {
     ObjectMapper JSON = JsonMapper.builder()
@@ -19,24 +21,23 @@ public interface TestUtil {
             .addModule(new JacksonSpigot())
             .build();
     ObjectMapper TOML = TomlMapper.builder()
-            .defaultPrettyPrinter(new DefaultPrettyPrinter())
             .addModule(new JacksonSpigot())
             .build();
 
-    default ObjectWriter json() {
-        return JSON.writerWithDefaultPrettyPrinter();
+    default ObjectMapper json() {
+        return JSON;
     }
 
     default ObjectMapper yaml() {
         return YAML;
     }
 
-    default ObjectWriter toml() {
-        return TOML.writerWithDefaultPrettyPrinter();
+    default ObjectMapper toml() {
+        return TOML;
     }
 
     default String toJson(Object object) throws JsonProcessingException {
-        return ensureLinebreak(json().writeValueAsString(object));
+        return ensureLinebreak(json().writerWithDefaultPrettyPrinter().writeValueAsString(object));
     }
 
     default String toYaml(Object object) throws JsonProcessingException {
@@ -47,8 +48,32 @@ public interface TestUtil {
         return ensureLinebreak(toml().writeValueAsString(object));
     }
 
+    default <T> T fromJson(String path, Class<T> clazz) throws JsonProcessingException {
+        return json().readValue(json(path), clazz);
+    }
+    default <T> List<T> fromJsonList(String path, Class<T> clazz) throws JsonProcessingException {
+        CollectionType type = json().getTypeFactory().constructCollectionType(ArrayList.class, clazz);
+        return json().readValue(json(path), type);
+    }
+
+    default <T> T fromYaml(String path, Class<T> clazz) throws JsonProcessingException {
+        return yaml().readValue(yaml(path), clazz);
+    }
+    default <T> List<T> fromYamlList(String path, Class<T> clazz) throws JsonProcessingException {
+        CollectionType type = yaml().getTypeFactory().constructCollectionType(ArrayList.class, clazz);
+        return yaml().readValue(yaml(path), type);
+    }
+
+    default <T> T fromToml(String path, Class<T> clazz) throws JsonProcessingException {
+        return toml().readValue(toml(path), clazz);
+    }
+    default <T> List<T> fromTomlList(String path, Class<T> clazz) throws JsonProcessingException {
+        CollectionType type = yaml().getTypeFactory().constructCollectionType(ArrayList.class, clazz);
+        return toml().readValue(toml(path), type);
+    }
+
     private String ensureLinebreak(String string) {
-        if(string.endsWith("\n")){
+        if (string.endsWith("\n")) {
             return string;
         }
         return string + "\n";
