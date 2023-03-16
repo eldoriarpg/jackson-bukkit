@@ -13,6 +13,7 @@ import de.eldoria.jacksonbukkit.deserializer.BlockVectorDeserializer;
 import de.eldoria.jacksonbukkit.deserializer.ColorDeserializer;
 import de.eldoria.jacksonbukkit.deserializer.ItemStackDeserializer;
 import de.eldoria.jacksonbukkit.deserializer.NamespacedKeyDeserializer;
+import de.eldoria.jacksonbukkit.deserializer.PotionEffectDeserializer;
 import de.eldoria.jacksonbukkit.deserializer.VectorDeserializer;
 import de.eldoria.jacksonbukkit.serializer.BlockVectorSerializer;
 import de.eldoria.jacksonbukkit.serializer.ColorSerializer;
@@ -55,6 +56,7 @@ public class JacksonSpigot extends Module {
         deserializers.addDeserializer(Color.class, new ColorDeserializer());
         deserializers.addDeserializer(ItemStack.class, new ItemStackDeserializer());
         deserializers.addDeserializer(NamespacedKey.class, new NamespacedKeyDeserializer());
+        deserializers.addDeserializer(PotionEffect.class, new PotionEffectDeserializer());
 
         context.addSerializers(serializers);
         context.addDeserializers(deserializers);
