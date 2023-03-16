@@ -14,6 +14,7 @@ import de.eldoria.jacksonbukkit.serializer.*;
 import org.bukkit.Color;
 import org.bukkit.FireworkEffect;
 import org.bukkit.NamespacedKey;
+import org.bukkit.attribute.AttributeModifier;
 import org.bukkit.block.banner.Pattern;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.potion.PotionEffect;
@@ -45,6 +46,7 @@ public class JacksonSpigot extends Module {
         serializers.addSerializer(FireworkEffect.class, new FireworkEffectSerializer());
         serializers.addSerializer(Pattern.class, new PatternSerializer());
         serializers.addSerializer(BoundingBox.class, new BoundingBoxSerializer());
+        serializers.addSerializer(AttributeModifier.class, new AttributeModifierSerializer());
 
         SimpleDeserializers deserializers = new SimpleDeserializers();
         deserializers.addDeserializer(Vector.class, new VectorDeserializer());
@@ -56,6 +58,7 @@ public class JacksonSpigot extends Module {
         deserializers.addDeserializer(FireworkEffect.class, new FireworkEffectDeserializer());
         deserializers.addDeserializer(Pattern.class, new PatternDeserializer());
         deserializers.addDeserializer(BoundingBox.class, new BoundingBoxDeserializer());
+        deserializers.addDeserializer(AttributeModifier.class, new AttributeModifierDeserializer());
 
         context.addSerializers(serializers);
         context.addDeserializers(deserializers);
@@ -72,7 +75,7 @@ public class JacksonSpigot extends Module {
 - FireworkEffect (/)
 - Pattern (/)
 - Location
-- AttributeModifier
+- AttributeModifier (/)
 - BoundingBox (/)
 
  */
