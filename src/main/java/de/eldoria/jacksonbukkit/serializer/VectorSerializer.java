@@ -9,7 +9,7 @@ import java.io.IOException;
 
 public class VectorSerializer extends JsonSerializer<org.bukkit.util.Vector> {
     @Override
-    public void serialize(Vector value, JsonGenerator gen, SerializerProvider serializers) throws IOException {
-        gen.writeObject(Vector);
+    public void serialize(org.bukkit.util.Vector value, JsonGenerator gen, SerializerProvider serializers) throws IOException {
+        gen.writeObject(Vector.of(value));
     }
 }

@@ -1,6 +1,6 @@
 package de.eldoria.jacksonbukkit;
 
-public class JacksonBukkitPaper extends JacksonBukkitSpigot {
+public class JacksonPaper extends JacksonSpigot {
     @Override
     public void setupModule(SetupContext context) {
         super.setupModule(context);
