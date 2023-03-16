@@ -32,14 +32,17 @@ public class JacksonSpigot extends Module {
 
     @Override
     public void setupModule(SetupContext context) {
+
         SimpleSerializers serializers = new SimpleSerializers();
         serializers.addSerializer(Vector.class, new VectorSerializer());
         serializers.addSerializer(BlockVector.class, new BlockVectorSerializer());
         serializers.addSerializer(Color.class, new ColorSerializer());
+
         SimpleDeserializers deserializers = new SimpleDeserializers();
         deserializers.addDeserializer(Vector.class, new VectorDeserializer());
         deserializers.addDeserializer(BlockVector.class, new BlockVectorDeserializer());
         deserializers.addDeserializer(Color.class, new ColorDeserializer());
+
         context.addSerializers(serializers);
         context.addDeserializers(deserializers);
     }

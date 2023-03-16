@@ -1,9 +1,9 @@
 package de.eldoria.jacksonbukkit.entities;
 
-public record Color(int r, int g, int b, int a) {
+public record Color(int red, int green, int blue, int alpha) {
 
     public org.bukkit.Color toBukkitColor() {
-        return org.bukkit.Color.fromARGB(a, r, g, b);
+        return org.bukkit.Color.fromARGB(alpha, red, green, blue);
     }
 
     public static Color of(org.bukkit.Color color) {
