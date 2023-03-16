@@ -10,16 +10,16 @@ class VectorSerializerTest implements TestUtil {
 
     @Test
     void serializeToJson() throws JsonProcessingException {
-        Assertions.assertEquals(json("vector"), toJson(VectorTemplate.VECTOR));
-        Assertions.assertEquals(json("vector_list"), toJson(VectorTemplate.VECTORS));
+        Assertions.assertEquals(json("vector"), toJson(VectorTemplate.SINGLE));
+        Assertions.assertEquals(json("vector_list"), toJson(VectorTemplate.LIST));
     }
     @Test
     void serializeToYaml() throws JsonProcessingException {
-        Assertions.assertEquals(yaml("vector"), toYaml(VectorTemplate.VECTOR));
-        Assertions.assertEquals(yaml("vector_list"), toYaml(VectorTemplate.VECTORS));
+        Assertions.assertEquals(yaml("vector"), toYaml(VectorTemplate.SINGLE));
+        Assertions.assertEquals(yaml("vector_list"), toYaml(VectorTemplate.LIST));
     }
     @Test
     void serializeToToml() throws JsonProcessingException {
-        Assertions.assertEquals(toml("vector"), toToml(VectorTemplate.VECTOR));
+        Assertions.assertEquals(toml("vector"), toToml(VectorTemplate.SINGLE));
     }
 }

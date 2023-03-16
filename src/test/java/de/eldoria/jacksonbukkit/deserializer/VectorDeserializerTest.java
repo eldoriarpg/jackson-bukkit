@@ -11,18 +11,18 @@ class VectorDeserializerTest implements TestUtil {
 
     @Test
     void deserializeToJson() throws JsonProcessingException {
-        Assertions.assertEquals(VectorTemplate.VECTOR, fromJson("vector", Vector.class));
-        Assertions.assertEquals(VectorTemplate.VECTORS, fromJsonList("vector_list", Vector.class));
+        Assertions.assertEquals(VectorTemplate.SINGLE, fromJson("vector", Vector.class));
+        Assertions.assertEquals(VectorTemplate.LIST, fromJsonList("vector_list", Vector.class));
     }
 
     @Test
     void deserializeToYaml() throws JsonProcessingException {
-        Assertions.assertEquals(VectorTemplate.VECTOR, fromYaml("vector", Vector.class));
-        Assertions.assertEquals(VectorTemplate.VECTORS, fromYamlList("vector_list", Vector.class));
+        Assertions.assertEquals(VectorTemplate.SINGLE, fromYaml("vector", Vector.class));
+        Assertions.assertEquals(VectorTemplate.LIST, fromYamlList("vector_list", Vector.class));
     }
 
     @Test
     void deserializeToToml() throws JsonProcessingException {
-        Assertions.assertEquals(VectorTemplate.VECTOR, fromToml("vector", Vector.class));
+        Assertions.assertEquals(VectorTemplate.SINGLE, fromToml("vector", Vector.class));
     }
 }

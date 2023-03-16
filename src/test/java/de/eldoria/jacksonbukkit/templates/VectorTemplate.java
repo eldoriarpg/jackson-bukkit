@@ -5,8 +5,8 @@ import org.bukkit.util.Vector;
 import java.util.List;
 
 public class VectorTemplate {
-    public static final Vector VECTOR = new Vector(1.549687, 58.52578, 8421257.577845);
-    public static final List<Vector> VECTORS = List.of(
+    public static final Vector SINGLE = new Vector(1.549687, 58.52578, 8421257.577845);
+    public static final List<Vector> LIST = List.of(
             new Vector(1.549687, 58.52578, 8421257.577845),
             new Vector(1.549687, 58.52578, 8421257.577845),
             new Vector(1.549687, 58.52578, 8421257.577845));

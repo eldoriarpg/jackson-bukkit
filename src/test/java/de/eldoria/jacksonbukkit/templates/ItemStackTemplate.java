@@ -1,6 +1,5 @@
 package de.eldoria.jacksonbukkit.templates;
 
-import net.kyori.adventure.text.Component;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.inventory.ItemFlag;
@@ -11,9 +10,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ItemStackTemplate {
-    public static final ItemStack DEFAULT;
+    public static final ItemStack SINGLE;
 
-    public static final List<ItemStack> STACKS = new ArrayList<>();
+    public static final List<ItemStack> LIST = new ArrayList<>();
 
     static {
         ItemStack stack = new ItemStack(Material.WOODEN_SWORD);
@@ -24,13 +23,13 @@ public class ItemStackTemplate {
         meta.setDisplayName("Almighty wooden sword");
         meta.setUnbreakable(true);
         stack.setItemMeta(meta);
-        STACKS.add(stack);
-        DEFAULT = stack;
+        LIST.add(stack);
+        SINGLE = stack;
 
-        STACKS.add(new ItemStack(Material.SANDSTONE, 64));
+        LIST.add(new ItemStack(Material.SANDSTONE, 64));
 
-        STACKS.add(new ItemStack(Material.DIRT, 32));
+        LIST.add(new ItemStack(Material.DIRT, 32));
 
-        STACKS.add(new ItemStack(Material.GRAVEL));
+        LIST.add(new ItemStack(Material.GRAVEL));
     }
 }

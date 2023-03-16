@@ -1,0 +1,10 @@
+[ {
+  "color" : "BLACK",
+  "pattern" : "BORDER"
+}, {
+  "color" : "CYAN",
+  "pattern" : "CROSS"
+}, {
+  "color" : "RED",
+  "pattern" : "BASE"
+} ]

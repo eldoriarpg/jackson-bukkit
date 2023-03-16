@@ -19,18 +19,18 @@ class ItemStackSerializerTest implements TestUtil {
 
     @Test
     void serializeToJson() throws JsonProcessingException {
-        Assertions.assertEquals(json("item_stack"), toJson(ItemStackTemplate.DEFAULT));
-        Assertions.assertEquals(json("item_stack_list"), toJson(ItemStackTemplate.STACKS));
+        Assertions.assertEquals(json("item_stack"), toJson(ItemStackTemplate.SINGLE));
+        Assertions.assertEquals(json("item_stack_list"), toJson(ItemStackTemplate.LIST));
     }
 
     @Test
     void serializeToYaml() throws JsonProcessingException {
-        Assertions.assertEquals(yaml("item_stack"), toYaml(ItemStackTemplate.DEFAULT));
-        Assertions.assertEquals(yaml("item_stack_list"), toYaml(ItemStackTemplate.STACKS));
+        Assertions.assertEquals(yaml("item_stack"), toYaml(ItemStackTemplate.SINGLE));
+        Assertions.assertEquals(yaml("item_stack_list"), toYaml(ItemStackTemplate.LIST));
     }
 
     @Test
     void serializeToToml() throws JsonProcessingException {
-        Assertions.assertEquals(toml("item_stack"), toToml(ItemStackTemplate.DEFAULT));
+        Assertions.assertEquals(toml("item_stack"), toToml(ItemStackTemplate.SINGLE));
     }
 }
