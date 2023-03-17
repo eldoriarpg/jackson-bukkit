@@ -12,17 +12,31 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.UUID;
 
+/**
+ * Class for wrapping a {@link Location}.
+ */
 public record LocationWrapper(@Nullable UUID uid, @Nullable String name, double xCoord, double yCoord, double zCoord,
                               float yaw, float pitch) {
 
-    public static LocationWrapper fromLocation(Location loc) {
+    /**
+     * Create a new {@link LocationWrapper} based on a {@link Location}.
+     *
+     * @param loc location instance
+     * @return new {@link LocationWrapper} instance
+     */
+    public static LocationWrapper of(Location loc) {
         if (loc.getWorld() == null) {
             return new LocationWrapper(null, null, loc.getX(), loc.getY(), loc.getZ(), loc.getYaw(), loc.getPitch());
         }
         return new LocationWrapper(loc.getWorld().getUID(), loc.getWorld().getName(), loc.getX(), loc.getY(), loc.getZ(), loc.getYaw(), loc.getPitch());
     }
 
-    public Location toLocation() {
+    /**
+     * Constructs a new {@link Location} based on wrapper values.
+     *
+     * @return new {@link Location} instance
+     */
+    public Location toBukkitLocation() {
         if (uid != null && name != null) {
             World world = Bukkit.getWorld(uid);
             if (world == null) {

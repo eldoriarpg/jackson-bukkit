@@ -9,8 +9,20 @@ import org.bukkit.DyeColor;
 import org.bukkit.block.banner.Pattern;
 import org.bukkit.block.banner.PatternType;
 
+/**
+ * Class for wrapping a {@link Pattern}.
+ */
 public record PatternWrapper(DyeColor color, PatternType pattern) {
-    public Pattern toPattern() {
+    public static PatternWrapper of(Pattern pattern) {
+        return new PatternWrapper(pattern.getColor(), pattern.getPattern());
+    }
+
+    /**
+     * Constructs a new {@link Pattern} based on wrapper values.
+     *
+     * @return new {@link Pattern} instance
+     */
+    public Pattern toBukkitPattern() {
         return new Pattern(color, pattern);
     }
 }

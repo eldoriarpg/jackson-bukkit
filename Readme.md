@@ -35,15 +35,16 @@ dependencies {
 </dependency>
 ```
 
-## Usage
+## Module Creation
 
-Simply add the JacksonBukkit module to the builder of your choice.
+You can either create the `JacksonBukkit` and `JacksonPaper` module directly or use the builder for easy modification. 
+Usage of the builder is recommended.
+Builder for spigot and paper can both be accessed via the `JacksonBukkit` class.
 
 ```java
-    ObjectMapper JSON = JsonMapper.builder()
-            .addModule(new JacksonBukkit())
-            .build();
-
+    ObjectMapper JSON=JsonMapper.builder()
+        .addModule(JacksonBukkit.spigot().build())
+        .build();
 ```
 
 ## Supported Classes
@@ -52,8 +53,8 @@ We support all classes implementing `ConfigurationSerializable`. To be precise w
 
 - Vector
 - BlockVector
-- Color
-- ItemStack (Serialized as Base64 encoded bytes as recommended by [paper](https://jd.papermc.io/paper/1.19/org/bukkit/inventory/ItemStack.html#serializeAsBytes()))
+- Color (Can be serialized as object or as hex string)
+- ItemStack (Serialized as map for `JacksonBukkit`. Serialized as Base64 encoded bytes for `JacksonPaper`)
 - PotionEffect
 - FireworkEffect
 - Pattern
@@ -65,4 +66,4 @@ We support all classes implementing `ConfigurationSerializable`. To be precise w
 
 - NamespacedKey
 - OfflinePlayer
-- Inventory via InventoryWrapper class
+- Inventory via `InventoryWrapper` class

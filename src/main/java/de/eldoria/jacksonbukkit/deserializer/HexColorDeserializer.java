@@ -13,6 +13,9 @@ import org.bukkit.Color;
 
 import java.io.IOException;
 
+/**
+ * Class for deserialization of {@link Color} as hexadecimal string.
+ */
 public class HexColorDeserializer extends JsonDeserializer<Color> {
 
     @Override

@@ -13,9 +13,12 @@ import org.bukkit.NamespacedKey;
 
 import java.io.IOException;
 
+/**
+ * Class for serialization of {@link NamespacedKey}.
+ */
 public class NamespacedKeySerializer extends JsonSerializer<NamespacedKey> {
     @Override
     public void serialize(NamespacedKey value, JsonGenerator gen, SerializerProvider serializers) throws IOException {
-        gen.writeObject(new NamespacedKeyWrapper(value.namespace(), value.getKey()));
+        gen.writeObject(NamespacedKeyWrapper.of(value));
     }
 }

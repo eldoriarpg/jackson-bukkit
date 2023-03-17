@@ -13,6 +13,9 @@ import org.bukkit.util.BlockVector;
 
 import java.io.IOException;
 
+/**
+ * Class for serialization of {@link BlockVector}.
+ */
 public class BlockVectorSerializer extends JsonSerializer<BlockVector> {
     @Override
     public void serialize(BlockVector value, JsonGenerator gen, SerializerProvider serializers) throws IOException {

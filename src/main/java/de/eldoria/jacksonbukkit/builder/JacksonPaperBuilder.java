@@ -9,6 +9,9 @@ import de.eldoria.jacksonbukkit.JacksonBukkit;
 import de.eldoria.jacksonbukkit.JacksonPaper;
 import org.bukkit.configuration.serialization.ConfigurationSerializable;
 
+/**
+ * Class to build a {@link JacksonPaper} module.
+ */
 public class JacksonPaperBuilder extends ModuleBuilder<JacksonPaperBuilder, JacksonBukkit> {
     private boolean legacyItemStackSerialization = false;
 
