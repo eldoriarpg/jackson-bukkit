@@ -1,4 +1,5 @@
 de.eldoria.jacksonbukkit
+de.eldoria.jacksonbukkit.builder
 de.eldoria.jacksonbukkit.deserializer
 de.eldoria.jacksonbukkit.entities
 de.eldoria.jacksonbukkit.serializer
