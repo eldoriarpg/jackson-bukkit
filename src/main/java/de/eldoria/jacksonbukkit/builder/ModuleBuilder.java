@@ -1,3 +1,8 @@
+/*
+ *     SPDX-License-Identifier: MIT
+ *
+ *     Copyright (C) EldoriaRPG Team and Contributor
+ */
 package de.eldoria.jacksonbukkit.builder;
 
 import de.eldoria.jacksonbukkit.JacksonBukkit;
