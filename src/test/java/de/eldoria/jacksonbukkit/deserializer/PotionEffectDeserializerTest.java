@@ -1,20 +1,14 @@
 package de.eldoria.jacksonbukkit.deserializer;
 
 import be.seeseemelk.mockbukkit.MockBukkit;
-import be.seeseemelk.mockbukkit.ServerMock;
 import com.fasterxml.jackson.core.JsonProcessingException;
-import de.eldoria.jacksonbukkit.MockServer;
 import de.eldoria.jacksonbukkit.TestUtil;
-import de.eldoria.jacksonbukkit.templates.NamespacedKeyTemplate;
 import de.eldoria.jacksonbukkit.templates.PotionEffectTemplate;
-import org.bukkit.inventory.ItemStack;
 import org.bukkit.potion.PotionEffect;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class PotionEffectDeserializerTest implements TestUtil {
     @BeforeAll
@@ -40,7 +34,7 @@ class PotionEffectDeserializerTest implements TestUtil {
     }
 
     @AfterAll
-    static void tearDown(){
+    static void tearDown() {
         MockBukkit.unmock();
     }
 }

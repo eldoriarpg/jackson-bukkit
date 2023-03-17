@@ -18,6 +18,7 @@ import de.eldoria.jacksonbukkit.deserializer.ItemStackDeserializer;
 import de.eldoria.jacksonbukkit.deserializer.LocationDeserializer;
 import de.eldoria.jacksonbukkit.deserializer.NamespacedKeyDeserializer;
 import de.eldoria.jacksonbukkit.deserializer.PatternDeserializer;
+import de.eldoria.jacksonbukkit.deserializer.PlayerDeserializer;
 import de.eldoria.jacksonbukkit.deserializer.PotionEffectDeserializer;
 import de.eldoria.jacksonbukkit.deserializer.VectorDeserializer;
 import de.eldoria.jacksonbukkit.serializer.AttributeModifierSerializer;
@@ -29,14 +30,20 @@ import de.eldoria.jacksonbukkit.serializer.ItemStackSerializer;
 import de.eldoria.jacksonbukkit.serializer.LocationSerializer;
 import de.eldoria.jacksonbukkit.serializer.NamespacedKeySerializer;
 import de.eldoria.jacksonbukkit.serializer.PatternSerializer;
+import de.eldoria.jacksonbukkit.serializer.PlayerSerializer;
 import de.eldoria.jacksonbukkit.serializer.PotionEffectSerializer;
 import de.eldoria.jacksonbukkit.serializer.VectorSerializer;
+import org.bukkit.Bukkit;
 import org.bukkit.Color;
 import org.bukkit.FireworkEffect;
 import org.bukkit.Location;
 import org.bukkit.NamespacedKey;
+import org.bukkit.OfflinePlayer;
 import org.bukkit.attribute.AttributeModifier;
 import org.bukkit.block.banner.Pattern;
+import org.bukkit.entity.Player;
+import org.bukkit.event.inventory.InventoryType;
+import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.util.BlockVector;
@@ -69,6 +76,7 @@ public class JacksonSpigot extends Module {
         serializers.addSerializer(BoundingBox.class, new BoundingBoxSerializer());
         serializers.addSerializer(AttributeModifier.class, new AttributeModifierSerializer());
         serializers.addSerializer(Location.class, new LocationSerializer());
+        serializers.addSerializer(OfflinePlayer.class, new PlayerSerializer());
 
         SimpleDeserializers deserializers = new SimpleDeserializers();
         deserializers.addDeserializer(Vector.class, new VectorDeserializer());
@@ -82,8 +90,17 @@ public class JacksonSpigot extends Module {
         deserializers.addDeserializer(BoundingBox.class, new BoundingBoxDeserializer());
         deserializers.addDeserializer(AttributeModifier.class, new AttributeModifierDeserializer());
         deserializers.addDeserializer(Location.class, new LocationDeserializer());
+        deserializers.addDeserializer(OfflinePlayer.class, new PlayerDeserializer());
 
         context.addSerializers(serializers);
         context.addDeserializers(deserializers);
     }
 }
+
+/*
+TODO: More stuff to add
+- Player
+- Inventory
+
+Change name of TestUtil to SerializationTest
+ */
