@@ -1,30 +1,32 @@
+/*
+ *     SPDX-License-Identifier: MIT
+ *
+ *     Copyright (C) EldoriaRPG Team and Contributor
+ */
 package de.eldoria.jacksonbukkit.serializer;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import de.eldoria.jacksonbukkit.TestUtil;
+import de.eldoria.jacksonbukkit.SerializationTest;
 import de.eldoria.jacksonbukkit.templates.FireworkEffectTemplate;
-import de.eldoria.jacksonbukkit.templates.ItemStackTemplate;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class FireworkEffectSerializerTest implements TestUtil {
+class FireworkEffectSerializerTest implements SerializationTest {
     @Test
     void serializeToJson() throws JsonProcessingException {
-        Assertions.assertEquals(json("firework_effect"), toJson(FireworkEffectTemplate.SINGLE));
-        Assertions.assertEquals(json("firework_effect_list"), toJson(FireworkEffectTemplate.LIST));
+        assertEquals(json("firework_effect"), toJson(FireworkEffectTemplate.SINGLE));
+        assertEquals(json("firework_effect_list"), toJson(FireworkEffectTemplate.LIST));
     }
 
     @Test
     void serializeToYaml() throws JsonProcessingException {
-        Assertions.assertEquals(yaml("firework_effect"), toYaml(FireworkEffectTemplate.SINGLE));
-        Assertions.assertEquals(yaml("firework_effect_list"), toYaml(FireworkEffectTemplate.LIST));
+        assertEquals(yaml("firework_effect"), toYaml(FireworkEffectTemplate.SINGLE));
+        assertEquals(yaml("firework_effect_list"), toYaml(FireworkEffectTemplate.LIST));
     }
 
     @Test
     void serializeToToml() throws JsonProcessingException {
-        Assertions.assertEquals(toml("firework_effect"), toToml(FireworkEffectTemplate.SINGLE));
+        assertEquals(toml("firework_effect"), toToml(FireworkEffectTemplate.SINGLE));
     }
-
 }

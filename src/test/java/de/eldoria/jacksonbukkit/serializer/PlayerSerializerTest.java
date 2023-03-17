@@ -1,14 +1,17 @@
+/*
+ *     SPDX-License-Identifier: MIT
+ *
+ *     Copyright (C) EldoriaRPG Team and Contributor
+ */
 package de.eldoria.jacksonbukkit.serializer;
 
 import be.seeseemelk.mockbukkit.MockBukkit;
 import be.seeseemelk.mockbukkit.ServerMock;
 import be.seeseemelk.mockbukkit.entity.PlayerMock;
 import com.fasterxml.jackson.core.JsonProcessingException;
-import de.eldoria.jacksonbukkit.TestUtil;
-import de.eldoria.jacksonbukkit.templates.PatternTemplate;
+import de.eldoria.jacksonbukkit.SerializationTest;
 import org.bukkit.OfflinePlayer;
 import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
@@ -17,7 +20,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-class PlayerSerializerTest implements TestUtil {
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+class PlayerSerializerTest implements SerializationTest {
     static OfflinePlayer SINGLE;
     static List<OfflinePlayer> LIST = new ArrayList<>();
 
@@ -36,27 +41,27 @@ class PlayerSerializerTest implements TestUtil {
         LIST.add(player3);
     }
 
+    @AfterAll
+    static void tearDown() {
+        MockBukkit.unmock();
+    }
+
     @Test
     void serializeToJson() throws JsonProcessingException {
-        Assertions.assertEquals(json("player"), toJson(SINGLE));
-        Assertions.assertEquals(json("player_list"), toJson(LIST));
+        assertEquals(json("player"), toJson(SINGLE));
+        assertEquals(json("player_list"), toJson(LIST));
     }
 
     @Test
     void serializeToYaml() throws JsonProcessingException {
-        Assertions.assertEquals(yaml("player"), toYaml(SINGLE));
-        Assertions.assertEquals(yaml("player_list"), toYaml(LIST));
+        assertEquals(yaml("player"), toYaml(SINGLE));
+        assertEquals(yaml("player_list"), toYaml(LIST));
     }
 
     @Test
     @Disabled
-    // Does not work since this is nothing toml supports
+        // Does not work since this is nothing toml supports
     void serializeToToml() throws JsonProcessingException {
-        Assertions.assertEquals(toml("player"), toToml(SINGLE));
-    }
-
-    @AfterAll
-    static void tearDown() {
-        MockBukkit.unmock();
+        assertEquals(toml("player"), toToml(SINGLE));
     }
 }

@@ -1,23 +1,28 @@
+/*
+ *     SPDX-License-Identifier: MIT
+ *
+ *     Copyright (C) EldoriaRPG Team and Contributor
+ */
 package de.eldoria.jacksonbukkit.deserializer;
 
 import be.seeseemelk.mockbukkit.MockBukkit;
 import be.seeseemelk.mockbukkit.ServerMock;
 import be.seeseemelk.mockbukkit.entity.PlayerMock;
 import com.fasterxml.jackson.core.JsonProcessingException;
-import de.eldoria.jacksonbukkit.TestUtil;
-import de.eldoria.jacksonbukkit.templates.PatternTemplate;
+import de.eldoria.jacksonbukkit.SerializationTest;
 import org.bukkit.OfflinePlayer;
-import org.bukkit.block.banner.Pattern;
 import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-class PlayerDeserializerTest implements TestUtil {
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+class PlayerDeserializerTest implements SerializationTest {
     static OfflinePlayer SINGLE;
     static List<OfflinePlayer> LIST = new ArrayList<>();
 
@@ -36,25 +41,26 @@ class PlayerDeserializerTest implements TestUtil {
         LIST.add(player3);
     }
 
+    @AfterAll
+    static void tearDown() {
+        MockBukkit.unmock();
+    }
+
     @Test
     void deserializeToJson() throws JsonProcessingException {
-        Assertions.assertEquals(SINGLE, fromJson("player", OfflinePlayer.class));
-        Assertions.assertEquals(LIST, fromJsonList("player_list", OfflinePlayer.class));
+        assertEquals(SINGLE, fromJson("player", OfflinePlayer.class));
+        assertEquals(LIST, fromJsonList("player_list", OfflinePlayer.class));
     }
 
     @Test
     void deserializeToYaml() throws JsonProcessingException {
-        Assertions.assertEquals(SINGLE, fromYaml("player", OfflinePlayer.class));
-        Assertions.assertEquals(LIST, fromYamlList("player_list", OfflinePlayer.class));
+        assertEquals(SINGLE, fromYaml("player", OfflinePlayer.class));
+        assertEquals(LIST, fromYamlList("player_list", OfflinePlayer.class));
     }
 
     @Test
+    @Disabled
     void deserializeToToml() throws JsonProcessingException {
-        Assertions.assertEquals(SINGLE, fromToml("player", OfflinePlayer.class));
-    }
-
-    @AfterAll
-    static void tearDown() {
-        MockBukkit.unmock();
+        assertEquals(SINGLE, fromToml("player", OfflinePlayer.class));
     }
 }

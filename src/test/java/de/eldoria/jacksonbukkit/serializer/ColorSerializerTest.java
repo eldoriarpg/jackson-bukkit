@@ -1,30 +1,35 @@
+/*
+ *     SPDX-License-Identifier: MIT
+ *
+ *     Copyright (C) EldoriaRPG Team and Contributor
+ */
 package de.eldoria.jacksonbukkit.serializer;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import de.eldoria.jacksonbukkit.TestUtil;
-import org.junit.jupiter.api.Assertions;
+import de.eldoria.jacksonbukkit.SerializationTest;
 import org.junit.jupiter.api.Test;
 
-import static de.eldoria.jacksonbukkit.templates.ColorTemplate.SINGLE;
 import static de.eldoria.jacksonbukkit.templates.ColorTemplate.LIST;
+import static de.eldoria.jacksonbukkit.templates.ColorTemplate.SINGLE;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class ColorSerializerTest implements TestUtil {
+class ColorSerializerTest implements SerializationTest {
 
 
     @Test
     void serializeToJson() throws JsonProcessingException {
-        Assertions.assertEquals(json("color"), toJson(SINGLE));
-        Assertions.assertEquals(json("color_list"), toJson(LIST));
+        assertEquals(json("color"), toJson(SINGLE));
+        assertEquals(json("color_list"), toJson(LIST));
     }
 
     @Test
     void serializeToYaml() throws JsonProcessingException {
-        Assertions.assertEquals(yaml("color"), toYaml(SINGLE));
-        Assertions.assertEquals(yaml("color_list"), toYaml(LIST));
+        assertEquals(yaml("color"), toYaml(SINGLE));
+        assertEquals(yaml("color_list"), toYaml(LIST));
     }
 
     @Test
     void serializeoToml() throws JsonProcessingException {
-        Assertions.assertEquals(toml("color"), toToml(SINGLE));
+        assertEquals(toml("color"), toToml(SINGLE));
     }
 }

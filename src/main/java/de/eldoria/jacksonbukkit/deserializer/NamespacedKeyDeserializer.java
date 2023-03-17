@@ -1,3 +1,8 @@
+/*
+ *     SPDX-License-Identifier: MIT
+ *
+ *     Copyright (C) EldoriaRPG Team and Contributor
+ */
 package de.eldoria.jacksonbukkit.deserializer;
 
 import com.fasterxml.jackson.core.JacksonException;
@@ -11,7 +16,7 @@ import java.io.IOException;
 
 public class NamespacedKeyDeserializer extends JsonDeserializer<NamespacedKey> {
     @Override
-    public NamespacedKey deserialize(JsonParser p, DeserializationContext ctxt) throws IOException, JacksonException {
+    public NamespacedKey deserialize(JsonParser p, DeserializationContext ctxt) throws IOException {
         return ctxt.readValue(p, NamespacedKeyWrapper.class).toKey();
     }
 }

@@ -1,3 +1,8 @@
+/*
+ *     SPDX-License-Identifier: MIT
+ *
+ *     Copyright (C) EldoriaRPG Team and Contributor
+ */
 package de.eldoria.jacksonbukkit;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -12,7 +17,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public interface TestUtil {
+public interface SerializationTest {
     ObjectMapper JSON = JsonMapper.builder()
             .defaultPrettyPrinter(new DefaultPrettyPrinter())
             .addModule(new JacksonSpigot())
@@ -51,6 +56,7 @@ public interface TestUtil {
     default <T> T fromJson(String path, Class<T> clazz) throws JsonProcessingException {
         return json().readValue(json(path), clazz);
     }
+
     default <T> List<T> fromJsonList(String path, Class<T> clazz) throws JsonProcessingException {
         CollectionType type = json().getTypeFactory().constructCollectionType(ArrayList.class, clazz);
         return json().readValue(json(path), type);
@@ -59,6 +65,7 @@ public interface TestUtil {
     default <T> T fromYaml(String path, Class<T> clazz) throws JsonProcessingException {
         return yaml().readValue(yaml(path), clazz);
     }
+
     default <T> List<T> fromYamlList(String path, Class<T> clazz) throws JsonProcessingException {
         CollectionType type = yaml().getTypeFactory().constructCollectionType(ArrayList.class, clazz);
         return yaml().readValue(yaml(path), type);
@@ -67,6 +74,7 @@ public interface TestUtil {
     default <T> T fromToml(String path, Class<T> clazz) throws JsonProcessingException {
         return toml().readValue(toml(path), clazz);
     }
+
     default <T> List<T> fromTomlList(String path, Class<T> clazz) throws JsonProcessingException {
         CollectionType type = yaml().getTypeFactory().constructCollectionType(ArrayList.class, clazz);
         return toml().readValue(toml(path), type);

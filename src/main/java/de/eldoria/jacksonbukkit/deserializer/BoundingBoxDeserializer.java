@@ -1,3 +1,8 @@
+/*
+ *     SPDX-License-Identifier: MIT
+ *
+ *     Copyright (C) EldoriaRPG Team and Contributor
+ */
 package de.eldoria.jacksonbukkit.deserializer;
 
 import com.fasterxml.jackson.core.JacksonException;
@@ -10,7 +15,7 @@ import java.io.IOException;
 
 public class BoundingBoxDeserializer extends JsonDeserializer<BoundingBox> {
     @Override
-    public BoundingBox deserialize(JsonParser p, DeserializationContext ctxt) throws IOException, JacksonException {
+    public BoundingBox deserialize(JsonParser p, DeserializationContext ctxt) throws IOException {
         return ctxt.readValue(p, de.eldoria.jacksonbukkit.entities.BoundingBox.class).toBukkitBoundingBox();
     }
 }

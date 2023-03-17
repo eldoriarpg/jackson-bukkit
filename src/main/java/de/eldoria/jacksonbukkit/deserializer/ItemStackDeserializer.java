@@ -1,3 +1,8 @@
+/*
+ *     SPDX-License-Identifier: MIT
+ *
+ *     Copyright (C) EldoriaRPG Team and Contributor
+ */
 package de.eldoria.jacksonbukkit.deserializer;
 
 import com.fasterxml.jackson.core.JacksonException;
@@ -11,7 +16,7 @@ import java.util.Base64;
 
 public class ItemStackDeserializer extends JsonDeserializer<ItemStack> {
     @Override
-    public ItemStack deserialize(JsonParser p, DeserializationContext ctxt) throws IOException, JacksonException {
+    public ItemStack deserialize(JsonParser p, DeserializationContext ctxt) throws IOException {
         byte[] decode = Base64.getDecoder().decode(ctxt.readValue(p, String.class));
         return ItemStack.deserializeBytes(decode);
     }

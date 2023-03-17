@@ -1,3 +1,8 @@
+/*
+ *     SPDX-License-Identifier: MIT
+ *
+ *     Copyright (C) EldoriaRPG Team and Contributor
+ */
 package de.eldoria.jacksonbukkit.entities;
 
 import org.bukkit.attribute.AttributeModifier;
@@ -5,9 +10,10 @@ import org.bukkit.inventory.EquipmentSlot;
 
 import java.util.UUID;
 
-public record AttributeModifierWrapper(UUID uuid, String name, double amount, AttributeModifier.Operation operation, EquipmentSlot equipmentSlot) {
+public record AttributeModifierWrapper(UUID uuid, String name, double amount, AttributeModifier.Operation operation,
+                                       EquipmentSlot equipmentSlot) {
 
-    public static AttributeModifierWrapper of(AttributeModifier attributeModifier){
+    public static AttributeModifierWrapper of(AttributeModifier attributeModifier) {
         return new AttributeModifierWrapper(
                 attributeModifier.getUniqueId(),
                 attributeModifier.getName(),
@@ -16,7 +22,7 @@ public record AttributeModifierWrapper(UUID uuid, String name, double amount, At
                 attributeModifier.getSlot());
     }
 
-    public AttributeModifier toBukkitAttributeModifier(){
+    public AttributeModifier toBukkitAttributeModifier() {
         return new AttributeModifier(
                 uuid,
                 name,

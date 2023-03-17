@@ -36,7 +36,6 @@ import de.eldoria.jacksonbukkit.serializer.PatternSerializer;
 import de.eldoria.jacksonbukkit.serializer.PlayerSerializer;
 import de.eldoria.jacksonbukkit.serializer.PotionEffectSerializer;
 import de.eldoria.jacksonbukkit.serializer.VectorSerializer;
-import org.bukkit.Bukkit;
 import org.bukkit.Color;
 import org.bukkit.FireworkEffect;
 import org.bukkit.Location;
@@ -44,8 +43,7 @@ import org.bukkit.NamespacedKey;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.attribute.AttributeModifier;
 import org.bukkit.block.banner.Pattern;
-import org.bukkit.entity.Player;
-import org.bukkit.event.inventory.InventoryType;
+import org.bukkit.configuration.serialization.ConfigurationSerializable;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.potion.PotionEffect;
@@ -53,6 +51,30 @@ import org.bukkit.util.BlockVector;
 import org.bukkit.util.BoundingBox;
 import org.bukkit.util.Vector;
 
+/**
+ * Class adding support for classes implementing {@link ConfigurationSerializable}.
+ *
+ * <ul>
+ *     <li>{@link Vector}
+ *     <li>{@link BlockVector}
+ *     <li>{@link Color}
+ *     <li>{@link ItemStack}
+ *     <li>{@link PotionEffect}
+ *     <li>{@link FireworkEffect}
+ *     <li>{@link Pattern}
+ *     <li>{@link BoundingBox}
+ *     <li>{@link AttributeModifier}
+ *     <li>{@link Location}
+ * </ul>
+ * <p>
+ * It also provides some additional serialization for:
+ * <ul>
+ *     <li>{@link NamespacedKey}
+ *     <li>{@link OfflinePlayer}
+ *     <li>{@link Inventory} via {@link InventoryWrapper}
+ * </ul>
+ * <p>
+ */
 public class JacksonSpigot extends Module {
     @Override
     public String getModuleName() {
@@ -66,7 +88,6 @@ public class JacksonSpigot extends Module {
 
     @Override
     public void setupModule(SetupContext context) {
-
         SimpleSerializers serializers = new SimpleSerializers();
         serializers.addSerializer(Vector.class, new VectorSerializer());
         serializers.addSerializer(BlockVector.class, new BlockVectorSerializer());
@@ -101,11 +122,3 @@ public class JacksonSpigot extends Module {
         context.addDeserializers(deserializers);
     }
 }
-
-/*
-TODO: More stuff to add
-- Player
-- Inventory
-
-Change name of TestUtil to SerializationTest
- */

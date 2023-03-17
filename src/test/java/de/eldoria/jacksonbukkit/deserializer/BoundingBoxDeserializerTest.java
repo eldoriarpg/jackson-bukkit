@@ -1,29 +1,36 @@
+/*
+ *     SPDX-License-Identifier: MIT
+ *
+ *     Copyright (C) EldoriaRPG Team and Contributor
+ */
 package de.eldoria.jacksonbukkit.deserializer;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import de.eldoria.jacksonbukkit.TestUtil;
+import de.eldoria.jacksonbukkit.SerializationTest;
 import org.bukkit.util.BoundingBox;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import static de.eldoria.jacksonbukkit.templates.BoundingBoxTemplate.SINGLE;
 import static de.eldoria.jacksonbukkit.templates.BoundingBoxTemplate.LIST;
+import static de.eldoria.jacksonbukkit.templates.BoundingBoxTemplate.SINGLE;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 
-class BoundingBoxDeserializerTest implements TestUtil {
+class BoundingBoxDeserializerTest implements SerializationTest {
 
     @Test
     void deserializeFromJson() throws JsonProcessingException {
-        Assertions.assertEquals(SINGLE, fromJson("bounding_box", BoundingBox.class));
-        Assertions.assertEquals(LIST, fromJsonList("bounding_box_list", BoundingBox.class));
+        assertEquals(SINGLE, fromJson("bounding_box", BoundingBox.class));
+        assertEquals(LIST, fromJsonList("bounding_box_list", BoundingBox.class));
     }
+
     @Test
     void deserializeFromYaml() throws JsonProcessingException {
-        Assertions.assertEquals(SINGLE, fromYaml("bounding_box", BoundingBox.class));
-        Assertions.assertEquals(LIST, fromYamlList("bounding_box_list", BoundingBox.class));
+        assertEquals(SINGLE, fromYaml("bounding_box", BoundingBox.class));
+        assertEquals(LIST, fromYamlList("bounding_box_list", BoundingBox.class));
     }
+
     @Test
     void deserializeFromToml() throws JsonProcessingException {
-        Assertions.assertEquals(SINGLE, fromToml("bounding_box", BoundingBox.class));
+        assertEquals(SINGLE, fromToml("bounding_box", BoundingBox.class));
     }
 }

@@ -1,13 +1,23 @@
+/*
+ *     SPDX-License-Identifier: MIT
+ *
+ *     Copyright (C) EldoriaRPG Team and Contributor
+ */
 package de.eldoria.jacksonbukkit.serializer;
 
 import be.seeseemelk.mockbukkit.MockBukkit;
 import com.fasterxml.jackson.core.JsonProcessingException;
-import de.eldoria.jacksonbukkit.TestUtil;
+import de.eldoria.jacksonbukkit.SerializationTest;
 import de.eldoria.jacksonbukkit.templates.InventoryWrapperTemplate;
-import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @Disabled
-class InventorySerializerTest implements TestUtil {
+class InventorySerializerTest implements SerializationTest {
 
 
     // Mockbukkit does not support serialization to bytes
@@ -16,24 +26,23 @@ class InventorySerializerTest implements TestUtil {
         MockBukkit.mock();
     }
 
+    @AfterAll
+    static void tearDown() {
+        MockBukkit.unmock();
+    }
+
     @Test
     void serializeToJson() throws JsonProcessingException {
-        Assertions.assertEquals(json("inventory"), toJson(InventoryWrapperTemplate.SINGLE));
+        assertEquals(json("inventory"), toJson(InventoryWrapperTemplate.SINGLE));
     }
 
     @Test
     void serializeToYaml() throws JsonProcessingException {
-        Assertions.assertEquals(yaml("inventory"), toYaml(InventoryWrapperTemplate.SINGLE));
+        assertEquals(yaml("inventory"), toYaml(InventoryWrapperTemplate.SINGLE));
     }
 
     @Test
     void serializeToToml() throws JsonProcessingException {
-        Assertions.assertEquals(toml("inventory"), toToml(InventoryWrapperTemplate.SINGLE));
+        assertEquals(toml("inventory"), toToml(InventoryWrapperTemplate.SINGLE));
     }
-
-    @AfterAll
-    static void tearDown(){
-        MockBukkit.unmock();
-    }
-
 }

@@ -1,3 +1,5 @@
+import org.gradle.internal.impldep.org.apache.commons.codec.CharEncoding
+
 plugins {
     java
     `maven-publish`
@@ -36,8 +38,7 @@ dependencies {
     // junit and stuff
     testImplementation("org.junit.jupiter:junit-jupiter-api:5.9.2")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.9.2")
-    testImplementation("org.skyscreamer:jsonassert:1.5.1")
-    testImplementation("org.mockito:mockito-core:3.+")
+    testImplementation("org.mockito:mockito-core:5.2.0")
 }
 
 spotless {
@@ -74,6 +75,16 @@ tasks {
             events("passed", "skipped", "failed")
         }
     }
+    javadoc {
+        val options = options as StandardJavadocDocletOptions
+        options.encoding = CharEncoding.UTF_8
+        options.links(
+            "https://javadoc.io/doc/com.fasterxml.jackson.core/jackson-core/latest/",
+            "https://javadoc.io/doc/com.fasterxml.jackson.core/jackson-annotations/latest",
+            "https://javadoc.io/doc/com.fasterxml.jackson.core/jackson-databind/latest",
+            "https://jd.papermc.io/paper/1.19/",
+        )
+    }
 }
 
 publishData {
@@ -93,7 +104,7 @@ publishing {
                     organization.set("EldoriaRPG")
                     organizationUrl.set("https://github.com/eldoriarpg")
                 }
-                developer{
+                developer {
                     name.set("Yannick Lamprecht")
                     url.set("https://github.com/yannicklamprecht")
                 }

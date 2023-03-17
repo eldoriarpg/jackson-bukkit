@@ -1,3 +1,8 @@
+/*
+ *     SPDX-License-Identifier: MIT
+ *
+ *     Copyright (C) EldoriaRPG Team and Contributor
+ */
 package de.eldoria.jacksonbukkit.templates;
 
 import org.bukkit.attribute.AttributeModifier;
@@ -15,6 +20,7 @@ public class AttributeModifierTemplate {
             AttributeModifier.Operation.ADD_NUMBER,
             EquipmentSlot.HAND
     );
+
     public static final List<AttributeModifier> LIST = List.of(
 
             new AttributeModifier(

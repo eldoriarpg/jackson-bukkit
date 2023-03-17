@@ -1,3 +1,8 @@
+/*
+ *     SPDX-License-Identifier: MIT
+ *
+ *     Copyright (C) EldoriaRPG Team and Contributor
+ */
 package de.eldoria.jacksonbukkit.templates;
 
 import org.bukkit.Material;
@@ -19,7 +24,7 @@ public class ItemStackTemplate {
         ItemMeta meta = stack.getItemMeta();
         meta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
         meta.addEnchant(Enchantment.DURABILITY, 3, false);
-        meta.setLore(List.of("Amazing",  "Lore"));
+        meta.setLore(List.of("Amazing", "Lore"));
         meta.setDisplayName("Almighty wooden sword");
         meta.setUnbreakable(true);
         stack.setItemMeta(meta);
