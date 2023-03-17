@@ -77,15 +77,22 @@ import org.bukkit.util.Vector;
  *     <li>{@link OfflinePlayer}
  *     <li>{@link Inventory} via {@link InventoryWrapper}
  * </ul>
- * <p>
  */
 public class JacksonBukkit extends Module {
     private final boolean hexColors;
 
+    /**
+     * Create a new JacksonBukkit module.
+     *
+     * @param hexColors true to serialize colors as hex by default
+     */
     public JacksonBukkit(boolean hexColors) {
         this.hexColors = hexColors;
     }
 
+    /**
+     * Create a new JacksonPaper module.
+     */
     public JacksonBukkit() {
         hexColors = false;
     }
@@ -143,6 +150,11 @@ public class JacksonBukkit extends Module {
         context.addDeserializers(deserializers);
     }
 
+    /**
+     * Add serializer to the serializers
+     *
+     * @param serializers serializers
+     */
     protected void addSerializer(SimpleSerializers serializers) {
         serializers.addSerializer(Vector.class, new VectorSerializer());
         serializers.addSerializer(BlockVector.class, new BlockVectorSerializer());
@@ -159,6 +171,11 @@ public class JacksonBukkit extends Module {
         serializers.addSerializer(InventoryWrapper.class, new InventorySerializer());
     }
 
+    /**
+     * Add deserializer to the deserializers
+     *
+     * @param deserializers deserializers
+     */
     protected void addDeserializer(SimpleDeserializers deserializers) {
         deserializers.addDeserializer(Vector.class, new VectorDeserializer());
         deserializers.addDeserializer(BlockVector.class, new BlockVectorDeserializer());

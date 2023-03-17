@@ -24,6 +24,11 @@ public record VectorWrapper(double xCoord, double yCoord, double zCoord) {
         return new VectorWrapper(vector.getX(), vector.getY(), vector.getZ());
     }
 
+    /**
+     * Constructs a new {@link Vector} based on wrapper values.
+     *
+     * @return new {@link Vector} instance
+     */
     public Vector toBukkitVector() {
         return new Vector(xCoord, yCoord, zCoord);
     }

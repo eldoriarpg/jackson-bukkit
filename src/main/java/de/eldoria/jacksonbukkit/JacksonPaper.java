@@ -47,16 +47,24 @@ import org.bukkit.util.Vector;
  *     <li>{@link OfflinePlayer}
  *     <li>{@link Inventory} via {@link InventoryWrapper}
  * </ul>
- * <p>
  */
 public class JacksonPaper extends JacksonBukkit {
     private final boolean legacyItemStackSerialization;
 
+    /**
+     * Create a new JacksonPaper module.
+     *
+     * @param hexColors                    true to serialize colors as hex by default
+     * @param legacyItemStackSerialization true to use spigot based serialization
+     */
     public JacksonPaper(boolean hexColors, boolean legacyItemStackSerialization) {
         super(hexColors);
         this.legacyItemStackSerialization = legacyItemStackSerialization;
     }
 
+    /**
+     * Create a new JacksonPaper module.
+     */
     public JacksonPaper() {
         super();
         legacyItemStackSerialization = false;

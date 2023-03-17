@@ -75,7 +75,7 @@ There are some more customizations
 Colors will be read and written to an object containing a value for red, green, blue and alpha by default. 
 By calling `ModuleBuilder#colorAsHex()` you can enable hex codes.
 This will attempt to read each color as a HEX string with RGBA or RGB format.
-It will also write colors as ARGB.
+It will also write colors as RGBA.
 
 **Warning:** As of now you can use either way, but not both at the same time. Mixing up format will cause errors.
 

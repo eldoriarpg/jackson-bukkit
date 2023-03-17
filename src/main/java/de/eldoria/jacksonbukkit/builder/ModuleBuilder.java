@@ -14,6 +14,9 @@ import de.eldoria.jacksonbukkit.JacksonBukkit;
  * @param <V> type of created module
  */
 public abstract class ModuleBuilder<T, V extends JacksonBukkit> {
+    /**
+     * Whether hex colors should be serialized as hex or not.
+     */
     protected boolean hexColors = false;
 
     /**
