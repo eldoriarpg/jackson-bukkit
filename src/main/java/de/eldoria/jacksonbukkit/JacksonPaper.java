@@ -75,6 +75,14 @@ import org.bukkit.util.Vector;
  * <p>
  */
 public class JacksonPaper extends JacksonBukkit {
+    public JacksonPaper(boolean hexColors) {
+        super(hexColors);
+    }
+
+    public JacksonPaper() {
+        super();
+    }
+
     @Override
     public String getModuleName() {
         return "JacksonPaper";
