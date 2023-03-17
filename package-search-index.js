@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"de.eldoria.jacksonbukkit"},{"l":"de.eldoria.jacksonbukkit.deserializer"},{"l":"de.eldoria.jacksonbukkit.entities"},{"l":"de.eldoria.jacksonbukkit.serializer"}];updateSearchResults();
