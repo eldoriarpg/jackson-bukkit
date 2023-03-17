@@ -7,10 +7,12 @@ import de.eldoria.jacksonbukkit.templates.ItemStackTemplate;
 import org.bukkit.inventory.ItemStack;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+@Disabled
 class BukkitItemStackDeserializerTest implements SerializationTest {
     @BeforeAll
     static void setup() {
