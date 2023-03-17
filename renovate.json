@@ -1,6 +1,14 @@
 {
-  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "baseBranches": ["dev"],
+  "dependencyDashboard": true,
+  "labels": ["dependencies"],
   "extends": [
     "config:base"
-  ]
+  ],
+  "reviewers": [
+    "RainbowDashLabs",
+    "yannicklamprecht"
+  ],
+  "prConcurrentLimit": 3,
+  "prHourlyLimit": 10
 }
