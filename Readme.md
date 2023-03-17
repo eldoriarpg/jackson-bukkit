@@ -16,7 +16,7 @@ repositories {
 }
 
 dependencies {
-    compileOnly("de.eldoria", "jackson-bukkit", "version")
+    implementation("de.eldoria", "jackson-bukkit", "version")
 }
 ```
 
