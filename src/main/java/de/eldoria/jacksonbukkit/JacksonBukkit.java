@@ -75,7 +75,7 @@ import org.bukkit.util.Vector;
  * </ul>
  * <p>
  */
-public class JacksonSpigot extends Module {
+public class JacksonBukkit extends Module {
     @Override
     public String getModuleName() {
         return "JacksonBukkit";

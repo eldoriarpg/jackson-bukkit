@@ -20,13 +20,13 @@ import java.util.List;
 public interface SerializationTest {
     ObjectMapper JSON = JsonMapper.builder()
             .defaultPrettyPrinter(new DefaultPrettyPrinter())
-            .addModule(new JacksonSpigot())
+            .addModule(new JacksonBukkit())
             .build();
     ObjectMapper YAML = YAMLMapper.builder()
-            .addModule(new JacksonSpigot())
+            .addModule(new JacksonBukkit())
             .build();
     ObjectMapper TOML = TomlMapper.builder()
-            .addModule(new JacksonSpigot())
+            .addModule(new JacksonBukkit())
             .build();
 
     default ObjectMapper json() {
