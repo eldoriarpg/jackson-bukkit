@@ -9,6 +9,8 @@ import com.fasterxml.jackson.core.Version;
 import com.fasterxml.jackson.databind.Module;
 import com.fasterxml.jackson.databind.module.SimpleDeserializers;
 import com.fasterxml.jackson.databind.module.SimpleSerializers;
+import de.eldoria.jacksonbukkit.builder.JacksonBukkitBuilder;
+import de.eldoria.jacksonbukkit.builder.JacksonPaperBuilder;
 import de.eldoria.jacksonbukkit.deserializer.AttributeModifierDeserializer;
 import de.eldoria.jacksonbukkit.deserializer.BlockVectorDeserializer;
 import de.eldoria.jacksonbukkit.deserializer.BoundingBoxDeserializer;
@@ -88,6 +90,37 @@ public class JacksonBukkit extends Module {
         hexColors = false;
     }
 
+    /**
+     * Create a new builder for a {@link JacksonBukkit} module for use with spigot.
+     * <p>
+     * If you are using paper you should use the {@link #paper()} builder.
+     *
+     * @return builder instance
+     */
+    public static JacksonBukkitBuilder bukkit() {
+        return new JacksonBukkitBuilder();
+    }
+
+    /**
+     * Create a new builder for a {@link JacksonBukkit} module for use with spigot.
+     * <p>
+     * If you are using paper you should use the {@link #paper()} builder.
+     *
+     * @return builder instance
+     */
+    public static JacksonBukkitBuilder spigot() {
+        return new JacksonBukkitBuilder();
+    }
+
+    /**
+     * Create a new builder for a {@link JacksonPaper} module for use with paper.
+     *
+     * @return builder instance
+     */
+    public static JacksonPaperBuilder paper() {
+        return new JacksonPaperBuilder();
+    }
+
     @Override
     public String getModuleName() {
         return "JacksonBukkit";
@@ -113,11 +146,7 @@ public class JacksonBukkit extends Module {
     protected void addSerializer(SimpleSerializers serializers) {
         serializers.addSerializer(Vector.class, new VectorSerializer());
         serializers.addSerializer(BlockVector.class, new BlockVectorSerializer());
-        if (hexColors) {
-            serializers.addSerializer(Color.class, new HexColorSerializer());
-        } else {
-            serializers.addSerializer(Color.class, new ColorSerializer());
-        }
+        serializers.addSerializer(Color.class, hexColors ? new HexColorSerializer() : new ColorSerializer());
         serializers.addSerializer(ItemStack.class, new BukkitItemStackSerializer());
         serializers.addSerializer(NamespacedKey.class, new NamespacedKeySerializer());
         serializers.addSerializer(PotionEffect.class, new PotionEffectSerializer());
@@ -133,11 +162,7 @@ public class JacksonBukkit extends Module {
     protected void addDeserializer(SimpleDeserializers deserializers) {
         deserializers.addDeserializer(Vector.class, new VectorDeserializer());
         deserializers.addDeserializer(BlockVector.class, new BlockVectorDeserializer());
-        if (hexColors) {
-            deserializers.addDeserializer(Color.class, new HexColorDeserializer());
-        } else {
-            deserializers.addDeserializer(Color.class, new ColorDeserializer());
-        }
+        deserializers.addDeserializer(Color.class, hexColors ? new HexColorDeserializer() : new ColorDeserializer());
         deserializers.addDeserializer(ItemStack.class, new BukkitItemStackDeserializer());
         deserializers.addDeserializer(NamespacedKey.class, new NamespacedKeyDeserializer());
         deserializers.addDeserializer(PotionEffect.class, new PotionEffectDeserializer());

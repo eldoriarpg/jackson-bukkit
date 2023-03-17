@@ -5,36 +5,12 @@
  */
 package de.eldoria.jacksonbukkit;
 
-import com.fasterxml.jackson.core.Version;
 import com.fasterxml.jackson.databind.module.SimpleDeserializers;
 import com.fasterxml.jackson.databind.module.SimpleSerializers;
-import de.eldoria.jacksonbukkit.deserializer.AttributeModifierDeserializer;
-import de.eldoria.jacksonbukkit.deserializer.BlockVectorDeserializer;
-import de.eldoria.jacksonbukkit.deserializer.BoundingBoxDeserializer;
-import de.eldoria.jacksonbukkit.deserializer.ColorDeserializer;
-import de.eldoria.jacksonbukkit.deserializer.FireworkEffectDeserializer;
-import de.eldoria.jacksonbukkit.deserializer.InventoryDeserializer;
-import de.eldoria.jacksonbukkit.deserializer.LocationDeserializer;
-import de.eldoria.jacksonbukkit.deserializer.NamespacedKeyDeserializer;
+import de.eldoria.jacksonbukkit.builder.JacksonPaperBuilder;
 import de.eldoria.jacksonbukkit.deserializer.PaperItemStackDeserializer;
-import de.eldoria.jacksonbukkit.deserializer.PatternDeserializer;
-import de.eldoria.jacksonbukkit.deserializer.PlayerDeserializer;
-import de.eldoria.jacksonbukkit.deserializer.PotionEffectDeserializer;
-import de.eldoria.jacksonbukkit.deserializer.VectorDeserializer;
 import de.eldoria.jacksonbukkit.entities.InventoryWrapper;
-import de.eldoria.jacksonbukkit.serializer.AttributeModifierSerializer;
-import de.eldoria.jacksonbukkit.serializer.BlockVectorSerializer;
-import de.eldoria.jacksonbukkit.serializer.BoundingBoxSerializer;
-import de.eldoria.jacksonbukkit.serializer.ColorSerializer;
-import de.eldoria.jacksonbukkit.serializer.FireworkEffectSerializer;
-import de.eldoria.jacksonbukkit.serializer.InventorySerializer;
-import de.eldoria.jacksonbukkit.serializer.LocationSerializer;
-import de.eldoria.jacksonbukkit.serializer.NamespacedKeySerializer;
 import de.eldoria.jacksonbukkit.serializer.PaperItemStackSerializer;
-import de.eldoria.jacksonbukkit.serializer.PatternSerializer;
-import de.eldoria.jacksonbukkit.serializer.PlayerSerializer;
-import de.eldoria.jacksonbukkit.serializer.PotionEffectSerializer;
-import de.eldoria.jacksonbukkit.serializer.VectorSerializer;
 import org.bukkit.Color;
 import org.bukkit.FireworkEffect;
 import org.bukkit.Location;
