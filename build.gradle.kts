@@ -75,3 +75,49 @@ tasks {
         }
     }
 }
+
+publishData {
+    useEldoNexusRepos()
+    publishComponent("java")
+}
+
+publishing {
+    publications.create<MavenPublication>("maven") {
+        publishData.configurePublication(this)
+        pom {
+            url.set("https://github.com/eldoriarpg/schematicbrushreborn")
+            developers {
+                developer {
+                    name.set("Florian Fülling")
+                    url.set("https://github.com/rainbowdashlabs")
+                    organization.set("EldoriaRPG")
+                    organizationUrl.set("https://github.com/eldoriarpg")
+                }
+                developer{
+                    name.set("Yannick Lamprecht")
+                    url.set("https://github.com/yannicklamprecht")
+                }
+            }
+            licenses {
+                license {
+                    name.set("MIT")
+                    url.set("https://github.com/eldoriarpg/bukkit-jackson/blob/main/LICENSE.md")
+                }
+            }
+        }
+    }
+
+    repositories {
+        maven {
+            authentication {
+                credentials(PasswordCredentials::class) {
+                    username = System.getenv("NEXUS_USERNAME")
+                    password = System.getenv("NEXUS_PASSWORD")
+                }
+            }
+
+            setUrl(publishData.getRepository())
+            name = "EldoNexus"
+        }
+    }
+}
