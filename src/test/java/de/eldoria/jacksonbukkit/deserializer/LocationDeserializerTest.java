@@ -20,7 +20,6 @@ import java.lang.reflect.Field;
 import java.util.UUID;
 import java.util.logging.Logger;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
@@ -51,28 +50,28 @@ class LocationDeserializerTest implements SerializationTest {
 
     @Test
     void deserializeToJson() throws JsonProcessingException {
-        assertEquals(LocationTemplate.SINGLE, fromJson("location", Location.class));
-        assertEquals(LocationTemplate.LIST, fromJsonList("location_list", Location.class));
+        assertEqualsIgnoring(LocationTemplate.SINGLE, fromJson("location", Location.class));
+        assertEqualsIgnoring(LocationTemplate.LIST, fromJsonList("location_list", Location.class));
     }
 
     @Test
     void deserializeToYaml() throws JsonProcessingException {
-        assertEquals(LocationTemplate.SINGLE, fromYaml("location", Location.class));
-        assertEquals(LocationTemplate.LIST, fromYamlList("location_list", Location.class));
+        assertEqualsIgnoring(LocationTemplate.SINGLE, fromYaml("location", Location.class));
+        assertEqualsIgnoring(LocationTemplate.LIST, fromYamlList("location_list", Location.class));
     }
 
     @Test
     void deserializeToToml() throws JsonProcessingException {
-        assertEquals(LocationTemplate.SINGLE, fromToml("location", Location.class));
+        assertEqualsIgnoring(LocationTemplate.SINGLE, fromToml("location", Location.class));
     }
 
     @Test
     void deserializeUidOnly() throws JsonProcessingException {
-        assertEquals(LocationTemplate.SINGLE, fromJson("location_only_uid", Location.class));
+        assertEqualsIgnoring(LocationTemplate.SINGLE, fromJson("location_only_uid", Location.class));
     }
 
     @Test
     void deserializeNameOnly() throws JsonProcessingException {
-        assertEquals(LocationTemplate.SINGLE, fromJson("location_only_name", Location.class));
+        assertEqualsIgnoring(LocationTemplate.SINGLE, fromJson("location_only_name", Location.class));
     }
 }

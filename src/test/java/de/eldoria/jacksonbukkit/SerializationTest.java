@@ -13,9 +13,12 @@ import com.fasterxml.jackson.databind.json.JsonMapper;
 import com.fasterxml.jackson.databind.type.CollectionType;
 import com.fasterxml.jackson.dataformat.toml.TomlMapper;
 import com.fasterxml.jackson.dataformat.yaml.YAMLMapper;
+import org.assertj.core.api.Assertions;
+import org.bukkit.World;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 public interface SerializationTest {
@@ -111,6 +114,15 @@ public interface SerializationTest {
     default String yaml(String name) {
         return read("/yaml/%s.yaml".formatted(name));
     }
+
+    default <T> void assertEqualsIgnoring(T expected, T actual){
+        Assertions.assertThat(actual)
+                .usingRecursiveComparison()
+                .withComparatorForType(
+                        Comparator.comparing(World::getUID).thenComparing(World::getName), World.class)
+                .isEqualTo(expected);
+    }
+
 
     private String read(String path) {
         try (var in = getClass().getResourceAsStream(path)) {
