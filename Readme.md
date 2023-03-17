@@ -41,11 +41,43 @@ You can either create the `JacksonBukkit` and `JacksonPaper` module directly or 
 Usage of the builder is recommended.
 Builder for spigot and paper can both be accessed via the `JacksonBukkit` class.
 
+### Creating a Spigot/Bukkit Module
+
 ```java
     ObjectMapper JSON=JsonMapper.builder()
         .addModule(JacksonBukkit.spigot().build())
         .build();
 ```
+
+### Creating a Paper Module
+
+```java
+    ObjectMapper JSON=JsonMapper.builder()
+        .addModule(JacksonBukkit.paper().build())
+        .build();
+```
+
+### Difference between Paper and Bukkit module
+
+Paper serializes `ItemStack`s to a Base64 encoded byte array instead of using spigots serialization.
+This will only work on paper servers and not on spigot servers. 
+The builder allows to use spigots serialization on paper servers as well, but this is not recommended. 
+
+When creating a paper plugin the `JacksonBukkit` module is no longer able to serialize `ItemStacks`.
+you need to use `JacksonPaper` in that case and make sure that you are not using legacy serialization.
+
+### More customization
+
+There are some more customizations
+
+#### Color
+
+Colors will be read and written to an object containing a value for red, green, blue and alpha by default. 
+By calling `ModuleBuilder#colorAsHex()` you can enable hex codes.
+This will attempt to read each color as a HEX string with RGBA or RGB format.
+It will also write colors as ARGB.
+
+**Warning:** As of now you can use either way, but not both at the same time. Mixing up format will cause errors.
 
 ## Supported Classes
 
