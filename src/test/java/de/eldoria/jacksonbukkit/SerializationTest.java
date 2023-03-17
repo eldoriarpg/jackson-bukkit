@@ -7,6 +7,7 @@ package de.eldoria.jacksonbukkit;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.util.DefaultPrettyPrinter;
+import com.fasterxml.jackson.databind.Module;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.json.JsonMapper;
 import com.fasterxml.jackson.databind.type.CollectionType;
@@ -18,27 +19,39 @@ import java.util.ArrayList;
 import java.util.List;
 
 public interface SerializationTest {
-    ObjectMapper JSON = JsonMapper.builder()
-            .defaultPrettyPrinter(new DefaultPrettyPrinter())
-            .addModule(new JacksonBukkit())
-            .build();
-    ObjectMapper YAML = YAMLMapper.builder()
-            .addModule(new JacksonBukkit())
-            .build();
-    ObjectMapper TOML = TomlMapper.builder()
-            .addModule(new JacksonBukkit())
-            .build();
-
     default ObjectMapper json() {
-        return JSON;
+        return buildJson();
     }
 
     default ObjectMapper yaml() {
-        return YAML;
+        return buildYaml();
     }
 
     default ObjectMapper toml() {
-        return TOML;
+        return buildToml();
+    }
+
+    default Module buildModule() {
+        return new JacksonBukkit();
+    }
+
+    default ObjectMapper buildJson() {
+        return JsonMapper.builder()
+                .defaultPrettyPrinter(new DefaultPrettyPrinter())
+                .addModule(buildModule())
+                .build();
+    }
+
+    default ObjectMapper buildYaml() {
+        return YAMLMapper.builder()
+                .addModule(buildModule())
+                .build();
+    }
+
+    default ObjectMapper buildToml() {
+        return TomlMapper.builder()
+                .addModule(buildModule())
+                .build();
     }
 
     default String toJson(Object object) throws JsonProcessingException {
