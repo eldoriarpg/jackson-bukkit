@@ -12,6 +12,9 @@ import de.eldoria.jacksonbukkit.entities.InventoryWrapper;
 
 import java.io.IOException;
 
+/**
+ * Class for serialization of {@link InventoryWrapper}.
+ */
 public class InventorySerializer extends JsonSerializer<InventoryWrapper> {
     @Override
     public void serialize(InventoryWrapper value, JsonGenerator gen, SerializerProvider serializers) throws IOException {

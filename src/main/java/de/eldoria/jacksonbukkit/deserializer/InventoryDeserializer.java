@@ -12,6 +12,9 @@ import de.eldoria.jacksonbukkit.entities.InventoryWrapper;
 
 import java.io.IOException;
 
+/**
+ * Class for deserialization of {@link InventoryWrapper}.
+ */
 public class InventoryDeserializer extends JsonDeserializer<InventoryWrapper> {
     @Override
     public InventoryWrapper deserialize(JsonParser p, DeserializationContext ctxt) throws IOException {

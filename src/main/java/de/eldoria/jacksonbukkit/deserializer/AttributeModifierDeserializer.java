@@ -13,6 +13,9 @@ import org.bukkit.attribute.AttributeModifier;
 
 import java.io.IOException;
 
+/**
+ * Class for deserialization of {@link AttributeModifier}.
+ */
 public class AttributeModifierDeserializer extends JsonDeserializer<AttributeModifier> {
     @Override
     public AttributeModifier deserialize(JsonParser p, DeserializationContext ctxt) throws IOException {

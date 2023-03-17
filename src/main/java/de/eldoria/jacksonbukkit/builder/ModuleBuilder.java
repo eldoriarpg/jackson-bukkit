@@ -7,6 +7,12 @@ package de.eldoria.jacksonbukkit.builder;
 
 import de.eldoria.jacksonbukkit.JacksonBukkit;
 
+/**
+ * Base class for module builder.
+ *
+ * @param <T> type of builder
+ * @param <V> type of created module
+ */
 public abstract class ModuleBuilder<T, V extends JacksonBukkit> {
     protected boolean hexColors = false;
 

@@ -13,6 +13,9 @@ import org.bukkit.inventory.ItemStack;
 import java.io.IOException;
 import java.util.Base64;
 
+/**
+ * Class for deserialization of {@link ItemStack} as {@code byte[]}.
+ */
 public class PaperItemStackDeserializer extends JsonDeserializer<ItemStack> {
     @Override
     public ItemStack deserialize(JsonParser p, DeserializationContext ctxt) throws IOException {

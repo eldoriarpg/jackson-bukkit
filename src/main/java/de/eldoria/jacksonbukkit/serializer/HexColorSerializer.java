@@ -13,6 +13,9 @@ import org.bukkit.Color;
 
 import java.io.IOException;
 
+/**
+ * Class for serialization of {@link Color}.
+ */
 public class HexColorSerializer extends JsonSerializer<Color> {
     @Override
     public void serialize(Color value, JsonGenerator gen, SerializerProvider serializers) throws IOException {

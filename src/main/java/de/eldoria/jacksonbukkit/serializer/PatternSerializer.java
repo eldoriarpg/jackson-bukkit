@@ -13,9 +13,12 @@ import org.bukkit.block.banner.Pattern;
 
 import java.io.IOException;
 
+/**
+ * Class for serialization of {@link Pattern}.
+ */
 public class PatternSerializer extends JsonSerializer<Pattern> {
     @Override
     public void serialize(Pattern value, JsonGenerator gen, SerializerProvider serializers) throws IOException {
-        gen.writeObject(new PatternWrapper(value.getColor(), value.getPattern()));
+        gen.writeObject(PatternWrapper.of(value));
     }
 }
