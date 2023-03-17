@@ -1,0 +1,7 @@
+---
+- namespace: "key"
+  key: "name"
+- namespace: "key"
+  key: "name"
+- namespace: "key"
+  key: "name"

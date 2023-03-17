@@ -1,0 +1,19 @@
+[ {
+  "uuid" : "00000000-0000-000a-0000-000000000014",
+  "name" : "test1",
+  "amount" : 1337.0,
+  "operation" : "ADD_NUMBER",
+  "equipmentSlot" : "HAND"
+}, {
+  "uuid" : "00000000-0000-0014-0000-000000000028",
+  "name" : "test2",
+  "amount" : 1337.0,
+  "operation" : "ADD_SCALAR",
+  "equipmentSlot" : "HAND"
+}, {
+  "uuid" : "00000000-0000-001e-0000-00000000003c",
+  "name" : "test3",
+  "amount" : 1337.0,
+  "operation" : "MULTIPLY_SCALAR_1",
+  "equipmentSlot" : "HAND"
+} ]

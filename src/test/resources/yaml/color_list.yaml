@@ -1,0 +1,9 @@
+---
+- red: 255
+  green: 60
+  blue: 0
+  alpha: 255
+- red: 20
+  green: 200
+  blue: 70
+  alpha: 215

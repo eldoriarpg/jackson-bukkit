@@ -1,0 +1,6 @@
+---
+uuid: "78d16016-b2c3-48c0-8334-4dff96a1b42d"
+name: "test"
+amount: 1337.0
+operation: "ADD_NUMBER"
+equipmentSlot: "HAND"

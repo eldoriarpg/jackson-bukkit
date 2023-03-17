@@ -1,0 +1,25 @@
+[ {
+  "uid" : "00000000-0000-0000-0000-000000000000",
+  "name" : "world",
+  "xCoord" : 10.0,
+  "yCoord" : 0.0,
+  "zCoord" : -10.0,
+  "yaw" : 0.001,
+  "pitch" : 0.005
+}, {
+  "uid" : null,
+  "name" : null,
+  "xCoord" : 12.0,
+  "yCoord" : 0.0,
+  "zCoord" : 55.0,
+  "yaw" : 285.0,
+  "pitch" : 250.0
+}, {
+  "uid" : "00000000-0000-0000-0000-000000000000",
+  "name" : "world",
+  "xCoord" : 0.0,
+  "yCoord" : 0.0,
+  "zCoord" : 0.0,
+  "yaw" : 0.0,
+  "pitch" : 0.0
+} ]

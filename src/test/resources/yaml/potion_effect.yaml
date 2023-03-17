@@ -1,0 +1,9 @@
+---
+amplifier: 1
+duration: 1
+type:
+  namespace: "minecraft"
+  key: "blindness"
+ambient: true
+particles: true
+icon: true
