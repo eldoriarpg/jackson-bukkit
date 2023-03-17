@@ -7,8 +7,11 @@ package de.eldoria.jacksonbukkit.serializer;
 
 import be.seeseemelk.mockbukkit.MockBukkit;
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.Module;
+import de.eldoria.jacksonbukkit.JacksonPaper;
 import de.eldoria.jacksonbukkit.SerializationTest;
 import de.eldoria.jacksonbukkit.templates.ItemStackTemplate;
+import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
@@ -16,11 +19,21 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @Disabled
-class ItemStackSerializerTest implements SerializationTest {
+class PaperItemStackSerializerTest implements SerializationTest {
     // Mockbukkit does not support serialization to bytes
     @BeforeAll
     static void setup() {
         MockBukkit.mock();
+    }
+
+    @AfterAll
+    static void tearDown() {
+        MockBukkit.unmock();
+    }
+
+    @Override
+    public Module buildModule() {
+        return new JacksonPaper();
     }
 
     @Test

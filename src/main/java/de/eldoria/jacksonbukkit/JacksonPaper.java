@@ -6,13 +6,11 @@
 package de.eldoria.jacksonbukkit;
 
 import com.fasterxml.jackson.core.Version;
-import com.fasterxml.jackson.databind.Module;
 import com.fasterxml.jackson.databind.module.SimpleDeserializers;
 import com.fasterxml.jackson.databind.module.SimpleSerializers;
 import de.eldoria.jacksonbukkit.deserializer.AttributeModifierDeserializer;
 import de.eldoria.jacksonbukkit.deserializer.BlockVectorDeserializer;
 import de.eldoria.jacksonbukkit.deserializer.BoundingBoxDeserializer;
-import de.eldoria.jacksonbukkit.deserializer.BukkitItemStackDeserializer;
 import de.eldoria.jacksonbukkit.deserializer.ColorDeserializer;
 import de.eldoria.jacksonbukkit.deserializer.FireworkEffectDeserializer;
 import de.eldoria.jacksonbukkit.deserializer.InventoryDeserializer;
@@ -27,7 +25,6 @@ import de.eldoria.jacksonbukkit.entities.InventoryWrapper;
 import de.eldoria.jacksonbukkit.serializer.AttributeModifierSerializer;
 import de.eldoria.jacksonbukkit.serializer.BlockVectorSerializer;
 import de.eldoria.jacksonbukkit.serializer.BoundingBoxSerializer;
-import de.eldoria.jacksonbukkit.serializer.BukkitItemStackSerializer;
 import de.eldoria.jacksonbukkit.serializer.ColorSerializer;
 import de.eldoria.jacksonbukkit.serializer.FireworkEffectSerializer;
 import de.eldoria.jacksonbukkit.serializer.InventorySerializer;
@@ -77,58 +74,21 @@ import org.bukkit.util.Vector;
  * </ul>
  * <p>
  */
-public class JacksonBukkit extends Module {
+public class JacksonPaper extends JacksonBukkit {
     @Override
     public String getModuleName() {
-        return "JacksonBukkit";
+        return "JacksonPaper";
     }
 
     @Override
-    public Version version() {
-        return new Version(1, 0, 0, "", "de.eldoria", "jackson-bukkit");
-    }
-
-    @Override
-    public void setupModule(SetupContext context) {
-        SimpleSerializers serializers = new SimpleSerializers();
-        addSerializer(serializers);
-
-        SimpleDeserializers deserializers = new SimpleDeserializers();
-        addDeserializer(deserializers);
-
-        context.addSerializers(serializers);
-        context.addDeserializers(deserializers);
-    }
-
-    protected void addSerializer(SimpleSerializers serializers) {
-        serializers.addSerializer(Vector.class, new VectorSerializer());
-        serializers.addSerializer(BlockVector.class, new BlockVectorSerializer());
-        serializers.addSerializer(Color.class, new ColorSerializer());
-        serializers.addSerializer(ItemStack.class, new BukkitItemStackSerializer());
-        serializers.addSerializer(NamespacedKey.class, new NamespacedKeySerializer());
-        serializers.addSerializer(PotionEffect.class, new PotionEffectSerializer());
-        serializers.addSerializer(FireworkEffect.class, new FireworkEffectSerializer());
-        serializers.addSerializer(Pattern.class, new PatternSerializer());
-        serializers.addSerializer(BoundingBox.class, new BoundingBoxSerializer());
-        serializers.addSerializer(AttributeModifier.class, new AttributeModifierSerializer());
-        serializers.addSerializer(Location.class, new LocationSerializer());
-        serializers.addSerializer(OfflinePlayer.class, new PlayerSerializer());
-        serializers.addSerializer(InventoryWrapper.class, new InventorySerializer());
-    }
-
     protected void addDeserializer(SimpleDeserializers deserializers) {
-        deserializers.addDeserializer(Vector.class, new VectorDeserializer());
-        deserializers.addDeserializer(BlockVector.class, new BlockVectorDeserializer());
-        deserializers.addDeserializer(Color.class, new ColorDeserializer());
-        deserializers.addDeserializer(ItemStack.class, new BukkitItemStackDeserializer());
-        deserializers.addDeserializer(NamespacedKey.class, new NamespacedKeyDeserializer());
-        deserializers.addDeserializer(PotionEffect.class, new PotionEffectDeserializer());
-        deserializers.addDeserializer(FireworkEffect.class, new FireworkEffectDeserializer());
-        deserializers.addDeserializer(Pattern.class, new PatternDeserializer());
-        deserializers.addDeserializer(BoundingBox.class, new BoundingBoxDeserializer());
-        deserializers.addDeserializer(AttributeModifier.class, new AttributeModifierDeserializer());
-        deserializers.addDeserializer(Location.class, new LocationDeserializer());
-        deserializers.addDeserializer(OfflinePlayer.class, new PlayerDeserializer());
-        deserializers.addDeserializer(InventoryWrapper.class, new InventoryDeserializer());
+        super.addDeserializer(deserializers);
+        deserializers.addDeserializer(ItemStack.class, new PaperItemStackDeserializer());
+    }
+
+    @Override
+    protected void addSerializer(SimpleSerializers serializers) {
+        super.addSerializer(serializers);
+        serializers.addSerializer(ItemStack.class, new PaperItemStackSerializer());
     }
 }
