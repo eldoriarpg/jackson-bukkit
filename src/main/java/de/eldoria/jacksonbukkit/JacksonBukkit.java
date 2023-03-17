@@ -9,13 +9,16 @@ import com.fasterxml.jackson.core.Version;
 import com.fasterxml.jackson.databind.Module;
 import com.fasterxml.jackson.databind.module.SimpleDeserializers;
 import com.fasterxml.jackson.databind.module.SimpleSerializers;
+import de.eldoria.jacksonbukkit.builder.JacksonBukkitBuilder;
+import de.eldoria.jacksonbukkit.builder.JacksonPaperBuilder;
 import de.eldoria.jacksonbukkit.deserializer.AttributeModifierDeserializer;
 import de.eldoria.jacksonbukkit.deserializer.BlockVectorDeserializer;
 import de.eldoria.jacksonbukkit.deserializer.BoundingBoxDeserializer;
+import de.eldoria.jacksonbukkit.deserializer.BukkitItemStackDeserializer;
 import de.eldoria.jacksonbukkit.deserializer.ColorDeserializer;
 import de.eldoria.jacksonbukkit.deserializer.FireworkEffectDeserializer;
+import de.eldoria.jacksonbukkit.deserializer.HexColorDeserializer;
 import de.eldoria.jacksonbukkit.deserializer.InventoryDeserializer;
-import de.eldoria.jacksonbukkit.deserializer.ItemStackDeserializer;
 import de.eldoria.jacksonbukkit.deserializer.LocationDeserializer;
 import de.eldoria.jacksonbukkit.deserializer.NamespacedKeyDeserializer;
 import de.eldoria.jacksonbukkit.deserializer.PatternDeserializer;
@@ -26,10 +29,11 @@ import de.eldoria.jacksonbukkit.entities.InventoryWrapper;
 import de.eldoria.jacksonbukkit.serializer.AttributeModifierSerializer;
 import de.eldoria.jacksonbukkit.serializer.BlockVectorSerializer;
 import de.eldoria.jacksonbukkit.serializer.BoundingBoxSerializer;
+import de.eldoria.jacksonbukkit.serializer.BukkitItemStackSerializer;
 import de.eldoria.jacksonbukkit.serializer.ColorSerializer;
 import de.eldoria.jacksonbukkit.serializer.FireworkEffectSerializer;
+import de.eldoria.jacksonbukkit.serializer.HexColorSerializer;
 import de.eldoria.jacksonbukkit.serializer.InventorySerializer;
-import de.eldoria.jacksonbukkit.serializer.ItemStackSerializer;
 import de.eldoria.jacksonbukkit.serializer.LocationSerializer;
 import de.eldoria.jacksonbukkit.serializer.NamespacedKeySerializer;
 import de.eldoria.jacksonbukkit.serializer.PatternSerializer;
@@ -73,9 +77,57 @@ import org.bukkit.util.Vector;
  *     <li>{@link OfflinePlayer}
  *     <li>{@link Inventory} via {@link InventoryWrapper}
  * </ul>
- * <p>
  */
 public class JacksonBukkit extends Module {
+    private final boolean hexColors;
+
+    /**
+     * Create a new JacksonBukkit module.
+     *
+     * @param hexColors true to serialize colors as hex by default
+     */
+    public JacksonBukkit(boolean hexColors) {
+        this.hexColors = hexColors;
+    }
+
+    /**
+     * Create a new JacksonPaper module.
+     */
+    public JacksonBukkit() {
+        hexColors = false;
+    }
+
+    /**
+     * Create a new builder for a {@link JacksonBukkit} module for use with spigot.
+     * <p>
+     * If you are using paper you should use the {@link #paper()} builder.
+     *
+     * @return builder instance
+     */
+    public static JacksonBukkitBuilder bukkit() {
+        return new JacksonBukkitBuilder();
+    }
+
+    /**
+     * Create a new builder for a {@link JacksonBukkit} module for use with spigot.
+     * <p>
+     * If you are using paper you should use the {@link #paper()} builder.
+     *
+     * @return builder instance
+     */
+    public static JacksonBukkitBuilder spigot() {
+        return new JacksonBukkitBuilder();
+    }
+
+    /**
+     * Create a new builder for a {@link JacksonPaper} module for use with paper.
+     *
+     * @return builder instance
+     */
+    public static JacksonPaperBuilder paper() {
+        return new JacksonPaperBuilder();
+    }
+
     @Override
     public String getModuleName() {
         return "JacksonBukkit";
@@ -89,10 +141,25 @@ public class JacksonBukkit extends Module {
     @Override
     public void setupModule(SetupContext context) {
         SimpleSerializers serializers = new SimpleSerializers();
+        addSerializer(serializers);
+
+        SimpleDeserializers deserializers = new SimpleDeserializers();
+        addDeserializer(deserializers);
+
+        context.addSerializers(serializers);
+        context.addDeserializers(deserializers);
+    }
+
+    /**
+     * Add serializer to the serializers
+     *
+     * @param serializers serializers
+     */
+    protected void addSerializer(SimpleSerializers serializers) {
         serializers.addSerializer(Vector.class, new VectorSerializer());
         serializers.addSerializer(BlockVector.class, new BlockVectorSerializer());
-        serializers.addSerializer(Color.class, new ColorSerializer());
-        serializers.addSerializer(ItemStack.class, new ItemStackSerializer());
+        serializers.addSerializer(Color.class, hexColors ? new HexColorSerializer() : new ColorSerializer());
+        serializers.addSerializer(ItemStack.class, new BukkitItemStackSerializer());
         serializers.addSerializer(NamespacedKey.class, new NamespacedKeySerializer());
         serializers.addSerializer(PotionEffect.class, new PotionEffectSerializer());
         serializers.addSerializer(FireworkEffect.class, new FireworkEffectSerializer());
@@ -102,12 +169,18 @@ public class JacksonBukkit extends Module {
         serializers.addSerializer(Location.class, new LocationSerializer());
         serializers.addSerializer(OfflinePlayer.class, new PlayerSerializer());
         serializers.addSerializer(InventoryWrapper.class, new InventorySerializer());
+    }
 
-        SimpleDeserializers deserializers = new SimpleDeserializers();
+    /**
+     * Add deserializer to the deserializers
+     *
+     * @param deserializers deserializers
+     */
+    protected void addDeserializer(SimpleDeserializers deserializers) {
         deserializers.addDeserializer(Vector.class, new VectorDeserializer());
         deserializers.addDeserializer(BlockVector.class, new BlockVectorDeserializer());
-        deserializers.addDeserializer(Color.class, new ColorDeserializer());
-        deserializers.addDeserializer(ItemStack.class, new ItemStackDeserializer());
+        deserializers.addDeserializer(Color.class, hexColors ? new HexColorDeserializer() : new ColorDeserializer());
+        deserializers.addDeserializer(ItemStack.class, new BukkitItemStackDeserializer());
         deserializers.addDeserializer(NamespacedKey.class, new NamespacedKeyDeserializer());
         deserializers.addDeserializer(PotionEffect.class, new PotionEffectDeserializer());
         deserializers.addDeserializer(FireworkEffect.class, new FireworkEffectDeserializer());
@@ -117,8 +190,5 @@ public class JacksonBukkit extends Module {
         deserializers.addDeserializer(Location.class, new LocationDeserializer());
         deserializers.addDeserializer(OfflinePlayer.class, new PlayerDeserializer());
         deserializers.addDeserializer(InventoryWrapper.class, new InventoryDeserializer());
-
-        context.addSerializers(serializers);
-        context.addDeserializers(deserializers);
     }
 }

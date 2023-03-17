@@ -35,16 +35,49 @@ dependencies {
 </dependency>
 ```
 
-## Usage
+## Module Creation
 
-Simply add the JacksonBukkit module to the builder of your choice.
+You can either create the `JacksonBukkit` and `JacksonPaper` module directly or use the builder for easy modification. 
+Usage of the builder is recommended.
+Builder for spigot and paper can both be accessed via the `JacksonBukkit` class.
+
+### Creating a Spigot/Bukkit Module
 
 ```java
-    ObjectMapper JSON = JsonMapper.builder()
-            .addModule(new JacksonBukkit())
-            .build();
-
+    ObjectMapper JSON=JsonMapper.builder()
+        .addModule(JacksonBukkit.spigot().build())
+        .build();
 ```
+
+### Creating a Paper Module
+
+```java
+    ObjectMapper JSON=JsonMapper.builder()
+        .addModule(JacksonBukkit.paper().build())
+        .build();
+```
+
+### Difference between Paper and Bukkit module
+
+Paper serializes `ItemStack`s to a Base64 encoded byte array instead of using spigots serialization.
+This will only work on paper servers and not on spigot servers. 
+The builder allows to use spigots serialization on paper servers as well, but this is not recommended. 
+
+When creating a paper plugin the `JacksonBukkit` module is no longer able to serialize `ItemStacks`.
+you need to use `JacksonPaper` in that case and make sure that you are not using legacy serialization.
+
+### More customization
+
+There are some more customizations
+
+#### Color
+
+Colors will be read and written to an object containing a value for red, green, blue and alpha by default. 
+By calling `ModuleBuilder#colorAsHex()` you can enable hex codes.
+This will attempt to read each color as a HEX string with RGBA or RGB format.
+It will also write colors as RGBA.
+
+**Warning:** As of now you can use either way, but not both at the same time. Mixing up format will cause errors.
 
 ## Supported Classes
 
@@ -52,8 +85,8 @@ We support all classes implementing `ConfigurationSerializable`. To be precise w
 
 - Vector
 - BlockVector
-- Color
-- ItemStack (Serialized as Base64 encoded bytes as recommended by [paper](https://jd.papermc.io/paper/1.19/org/bukkit/inventory/ItemStack.html#serializeAsBytes()))
+- Color (Can be serialized as object or as hex string)
+- ItemStack (Serialized as map for `JacksonBukkit`. Serialized as Base64 encoded bytes for `JacksonPaper`)
 - PotionEffect
 - FireworkEffect
 - Pattern
@@ -65,4 +98,4 @@ We support all classes implementing `ConfigurationSerializable`. To be precise w
 
 - NamespacedKey
 - OfflinePlayer
-- Inventory via InventoryWrapper class
+- Inventory via `InventoryWrapper` class

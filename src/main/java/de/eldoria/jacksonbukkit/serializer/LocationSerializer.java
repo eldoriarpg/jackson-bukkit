@@ -13,9 +13,12 @@ import org.bukkit.Location;
 
 import java.io.IOException;
 
+/**
+ * Class for serialization of {@link Location}.
+ */
 public class LocationSerializer extends JsonSerializer<Location> {
     @Override
     public void serialize(Location value, JsonGenerator gen, SerializerProvider serializers) throws IOException {
-        gen.writeObject(LocationWrapper.fromLocation(value));
+        gen.writeObject(LocationWrapper.of(value));
     }
 }

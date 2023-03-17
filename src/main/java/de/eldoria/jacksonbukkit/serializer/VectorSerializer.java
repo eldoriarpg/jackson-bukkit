@@ -13,6 +13,9 @@ import org.bukkit.util.Vector;
 
 import java.io.IOException;
 
+/**
+ * Class for serialization of {@link Vector}.
+ */
 public class VectorSerializer extends JsonSerializer<Vector> {
     @Override
     public void serialize(Vector value, JsonGenerator gen, SerializerProvider serializers) throws IOException {

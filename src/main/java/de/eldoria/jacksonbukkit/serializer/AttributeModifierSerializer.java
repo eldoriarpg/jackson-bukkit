@@ -13,6 +13,9 @@ import org.bukkit.attribute.AttributeModifier;
 
 import java.io.IOException;
 
+/**
+ * Class for serialization of {@link AttributeModifier}.
+ */
 public class AttributeModifierSerializer extends JsonSerializer<AttributeModifier> {
     @Override
     public void serialize(AttributeModifier value, JsonGenerator gen, SerializerProvider serializers) throws IOException {

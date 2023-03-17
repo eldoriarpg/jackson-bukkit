@@ -12,6 +12,9 @@ import org.bukkit.OfflinePlayer;
 
 import java.io.IOException;
 
+/**
+ * Class for serialization of {@link OfflinePlayer}.
+ */
 public class PlayerSerializer extends JsonSerializer<OfflinePlayer> {
     @Override
     public void serialize(OfflinePlayer value, JsonGenerator gen, SerializerProvider serializers) throws IOException {

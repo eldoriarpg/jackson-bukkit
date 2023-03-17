@@ -5,7 +5,6 @@
  */
 package de.eldoria.jacksonbukkit.deserializer;
 
-import com.fasterxml.jackson.core.JacksonException;
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.databind.DeserializationContext;
 import com.fasterxml.jackson.databind.JsonDeserializer;
@@ -14,6 +13,9 @@ import org.bukkit.FireworkEffect;
 
 import java.io.IOException;
 
+/**
+ * Class for deserialization of {@link FireworkEffect}.
+ */
 public class FireworkEffectDeserializer extends JsonDeserializer<FireworkEffect> {
     @Override
     public FireworkEffect deserialize(JsonParser p, DeserializationContext ctxt) throws IOException {

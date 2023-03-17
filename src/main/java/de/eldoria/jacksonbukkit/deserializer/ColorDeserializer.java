@@ -13,6 +13,9 @@ import org.bukkit.Color;
 
 import java.io.IOException;
 
+/**
+ * Class for deserialization of {@link Color} as object.
+ */
 public class ColorDeserializer extends JsonDeserializer<Color> {
 
     @Override

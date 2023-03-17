@@ -5,19 +5,22 @@
  */
 package de.eldoria.jacksonbukkit.deserializer;
 
-import com.fasterxml.jackson.core.JacksonException;
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.databind.DeserializationContext;
 import com.fasterxml.jackson.databind.JsonDeserializer;
+import com.fasterxml.jackson.databind.type.MapType;
 import org.bukkit.inventory.ItemStack;
 
 import java.io.IOException;
-import java.util.Base64;
+import java.util.HashMap;
 
-public class ItemStackDeserializer extends JsonDeserializer<ItemStack> {
+/**
+ * Class for deserialization of {@link ItemStack} as a map.
+ */
+public class BukkitItemStackDeserializer extends JsonDeserializer<ItemStack> {
     @Override
     public ItemStack deserialize(JsonParser p, DeserializationContext ctxt) throws IOException {
-        byte[] decode = Base64.getDecoder().decode(ctxt.readValue(p, String.class));
-        return ItemStack.deserializeBytes(decode);
+        MapType type = ctxt.getTypeFactory().constructMapType(HashMap.class, String.class, Object.class);
+        return ItemStack.deserialize(ctxt.readValue(p, type));
     }
 }

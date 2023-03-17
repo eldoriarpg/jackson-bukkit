@@ -4,13 +4,13 @@ plugins {
     java
     `maven-publish`
     `java-library`
-    id("com.diffplug.spotless") version "6.16.0"
+    id("com.diffplug.spotless") version "6.17.0"
     id("de.chojo.publishdata") version "1.2.4"
     id("io.papermc.paperweight.userdev") version "1.5.3"
 }
 
 group = "de.eldoria"
-version = "1.0.1"
+version = "1.0.2"
 
 repositories {
     mavenCentral()
