@@ -7,7 +7,6 @@ package de.eldoria.jacksonbukkit;
 
 import com.fasterxml.jackson.databind.module.SimpleDeserializers;
 import com.fasterxml.jackson.databind.module.SimpleSerializers;
-import de.eldoria.jacksonbukkit.builder.JacksonPaperBuilder;
 import de.eldoria.jacksonbukkit.deserializer.PaperItemStackDeserializer;
 import de.eldoria.jacksonbukkit.entities.InventoryWrapper;
 import de.eldoria.jacksonbukkit.serializer.PaperItemStackSerializer;
@@ -51,12 +50,16 @@ import org.bukkit.util.Vector;
  * <p>
  */
 public class JacksonPaper extends JacksonBukkit {
-    public JacksonPaper(boolean hexColors) {
+    private final boolean legacyItemStackSerialization;
+
+    public JacksonPaper(boolean hexColors, boolean legacyItemStackSerialization) {
         super(hexColors);
+        this.legacyItemStackSerialization = legacyItemStackSerialization;
     }
 
     public JacksonPaper() {
         super();
+        legacyItemStackSerialization = false;
     }
 
     @Override
@@ -67,12 +70,16 @@ public class JacksonPaper extends JacksonBukkit {
     @Override
     protected void addDeserializer(SimpleDeserializers deserializers) {
         super.addDeserializer(deserializers);
-        deserializers.addDeserializer(ItemStack.class, new PaperItemStackDeserializer());
+        if (!legacyItemStackSerialization) {
+            deserializers.addDeserializer(ItemStack.class, new PaperItemStackDeserializer());
+        }
     }
 
     @Override
     protected void addSerializer(SimpleSerializers serializers) {
         super.addSerializer(serializers);
-        serializers.addSerializer(ItemStack.class, new PaperItemStackSerializer());
+        if (!legacyItemStackSerialization) {
+            serializers.addSerializer(ItemStack.class, new PaperItemStackSerializer());
+        }
     }
 }
