@@ -14,6 +14,7 @@ import de.eldoria.jacksonbukkit.deserializer.BlockVectorDeserializer;
 import de.eldoria.jacksonbukkit.deserializer.BoundingBoxDeserializer;
 import de.eldoria.jacksonbukkit.deserializer.ColorDeserializer;
 import de.eldoria.jacksonbukkit.deserializer.FireworkEffectDeserializer;
+import de.eldoria.jacksonbukkit.deserializer.InventoryDeserializer;
 import de.eldoria.jacksonbukkit.deserializer.ItemStackDeserializer;
 import de.eldoria.jacksonbukkit.deserializer.LocationDeserializer;
 import de.eldoria.jacksonbukkit.deserializer.NamespacedKeyDeserializer;
@@ -21,11 +22,13 @@ import de.eldoria.jacksonbukkit.deserializer.PatternDeserializer;
 import de.eldoria.jacksonbukkit.deserializer.PlayerDeserializer;
 import de.eldoria.jacksonbukkit.deserializer.PotionEffectDeserializer;
 import de.eldoria.jacksonbukkit.deserializer.VectorDeserializer;
+import de.eldoria.jacksonbukkit.entities.InventoryWrapper;
 import de.eldoria.jacksonbukkit.serializer.AttributeModifierSerializer;
 import de.eldoria.jacksonbukkit.serializer.BlockVectorSerializer;
 import de.eldoria.jacksonbukkit.serializer.BoundingBoxSerializer;
 import de.eldoria.jacksonbukkit.serializer.ColorSerializer;
 import de.eldoria.jacksonbukkit.serializer.FireworkEffectSerializer;
+import de.eldoria.jacksonbukkit.serializer.InventorySerializer;
 import de.eldoria.jacksonbukkit.serializer.ItemStackSerializer;
 import de.eldoria.jacksonbukkit.serializer.LocationSerializer;
 import de.eldoria.jacksonbukkit.serializer.NamespacedKeySerializer;
@@ -77,6 +80,7 @@ public class JacksonSpigot extends Module {
         serializers.addSerializer(AttributeModifier.class, new AttributeModifierSerializer());
         serializers.addSerializer(Location.class, new LocationSerializer());
         serializers.addSerializer(OfflinePlayer.class, new PlayerSerializer());
+        serializers.addSerializer(InventoryWrapper.class, new InventorySerializer());
 
         SimpleDeserializers deserializers = new SimpleDeserializers();
         deserializers.addDeserializer(Vector.class, new VectorDeserializer());
@@ -91,6 +95,7 @@ public class JacksonSpigot extends Module {
         deserializers.addDeserializer(AttributeModifier.class, new AttributeModifierDeserializer());
         deserializers.addDeserializer(Location.class, new LocationDeserializer());
         deserializers.addDeserializer(OfflinePlayer.class, new PlayerDeserializer());
+        deserializers.addDeserializer(InventoryWrapper.class, new InventoryDeserializer());
 
         context.addSerializers(serializers);
         context.addDeserializers(deserializers);
