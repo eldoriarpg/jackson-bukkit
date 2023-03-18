@@ -14,10 +14,12 @@ import de.eldoria.jacksonbukkit.builder.JacksonPaperBuilder;
 import de.eldoria.jacksonbukkit.deserializer.AttributeModifierDeserializer;
 import de.eldoria.jacksonbukkit.deserializer.BlockVectorDeserializer;
 import de.eldoria.jacksonbukkit.deserializer.BoundingBoxDeserializer;
+import de.eldoria.jacksonbukkit.deserializer.BukkitColorDeserializer;
 import de.eldoria.jacksonbukkit.deserializer.BukkitItemStackDeserializer;
-import de.eldoria.jacksonbukkit.deserializer.ColorDeserializer;
+import de.eldoria.jacksonbukkit.deserializer.HexBukkitColorDeserializer;
+import de.eldoria.jacksonbukkit.deserializer.PaperColorDeserializer;
 import de.eldoria.jacksonbukkit.deserializer.FireworkEffectDeserializer;
-import de.eldoria.jacksonbukkit.deserializer.HexColorDeserializer;
+import de.eldoria.jacksonbukkit.deserializer.HexPaperColorDeserializer;
 import de.eldoria.jacksonbukkit.deserializer.InventoryDeserializer;
 import de.eldoria.jacksonbukkit.deserializer.LocationDeserializer;
 import de.eldoria.jacksonbukkit.deserializer.NamespacedKeyDeserializer;
@@ -29,10 +31,12 @@ import de.eldoria.jacksonbukkit.entities.InventoryWrapper;
 import de.eldoria.jacksonbukkit.serializer.AttributeModifierSerializer;
 import de.eldoria.jacksonbukkit.serializer.BlockVectorSerializer;
 import de.eldoria.jacksonbukkit.serializer.BoundingBoxSerializer;
+import de.eldoria.jacksonbukkit.serializer.BukkitColorSerializer;
 import de.eldoria.jacksonbukkit.serializer.BukkitItemStackSerializer;
-import de.eldoria.jacksonbukkit.serializer.ColorSerializer;
+import de.eldoria.jacksonbukkit.serializer.HexBukkitColorSerializer;
+import de.eldoria.jacksonbukkit.serializer.PaperColorSerializer;
 import de.eldoria.jacksonbukkit.serializer.FireworkEffectSerializer;
-import de.eldoria.jacksonbukkit.serializer.HexColorSerializer;
+import de.eldoria.jacksonbukkit.serializer.HexPaperColorSerializer;
 import de.eldoria.jacksonbukkit.serializer.InventorySerializer;
 import de.eldoria.jacksonbukkit.serializer.LocationSerializer;
 import de.eldoria.jacksonbukkit.serializer.NamespacedKeySerializer;
@@ -79,7 +83,10 @@ import org.bukkit.util.Vector;
  * </ul>
  */
 public class JacksonBukkit extends Module {
-    private final boolean hexColors;
+    /**
+     * True when colors should be interpreted as hex strings.
+     */
+    protected final boolean hexColors;
 
     /**
      * Create a new JacksonBukkit module.
@@ -158,7 +165,7 @@ public class JacksonBukkit extends Module {
     protected void addSerializer(SimpleSerializers serializers) {
         serializers.addSerializer(Vector.class, new VectorSerializer());
         serializers.addSerializer(BlockVector.class, new BlockVectorSerializer());
-        serializers.addSerializer(Color.class, hexColors ? new HexColorSerializer() : new ColorSerializer());
+        serializers.addSerializer(Color.class, hexColors ? new HexBukkitColorSerializer() : new BukkitColorSerializer());
         serializers.addSerializer(ItemStack.class, new BukkitItemStackSerializer());
         serializers.addSerializer(NamespacedKey.class, new NamespacedKeySerializer());
         serializers.addSerializer(PotionEffect.class, new PotionEffectSerializer());
@@ -179,7 +186,7 @@ public class JacksonBukkit extends Module {
     protected void addDeserializer(SimpleDeserializers deserializers) {
         deserializers.addDeserializer(Vector.class, new VectorDeserializer());
         deserializers.addDeserializer(BlockVector.class, new BlockVectorDeserializer());
-        deserializers.addDeserializer(Color.class, hexColors ? new HexColorDeserializer() : new ColorDeserializer());
+        deserializers.addDeserializer(Color.class, hexColors ? new HexBukkitColorDeserializer() : new BukkitColorDeserializer());
         deserializers.addDeserializer(ItemStack.class, new BukkitItemStackDeserializer());
         deserializers.addDeserializer(NamespacedKey.class, new NamespacedKeyDeserializer());
         deserializers.addDeserializer(PotionEffect.class, new PotionEffectDeserializer());

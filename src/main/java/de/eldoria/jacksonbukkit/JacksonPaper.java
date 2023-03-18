@@ -7,8 +7,16 @@ package de.eldoria.jacksonbukkit;
 
 import com.fasterxml.jackson.databind.module.SimpleDeserializers;
 import com.fasterxml.jackson.databind.module.SimpleSerializers;
+import de.eldoria.jacksonbukkit.deserializer.BukkitColorDeserializer;
+import de.eldoria.jacksonbukkit.deserializer.HexBukkitColorDeserializer;
+import de.eldoria.jacksonbukkit.deserializer.HexPaperColorDeserializer;
+import de.eldoria.jacksonbukkit.deserializer.PaperColorDeserializer;
 import de.eldoria.jacksonbukkit.deserializer.PaperItemStackDeserializer;
 import de.eldoria.jacksonbukkit.entities.InventoryWrapper;
+import de.eldoria.jacksonbukkit.serializer.BukkitColorSerializer;
+import de.eldoria.jacksonbukkit.serializer.HexBukkitColorSerializer;
+import de.eldoria.jacksonbukkit.serializer.HexPaperColorSerializer;
+import de.eldoria.jacksonbukkit.serializer.PaperColorSerializer;
 import de.eldoria.jacksonbukkit.serializer.PaperItemStackSerializer;
 import org.bukkit.Color;
 import org.bukkit.FireworkEffect;
@@ -81,6 +89,7 @@ public class JacksonPaper extends JacksonBukkit {
         if (!legacyItemStackSerialization) {
             deserializers.addDeserializer(ItemStack.class, new PaperItemStackDeserializer());
         }
+        deserializers.addDeserializer(Color.class, hexColors ? new HexPaperColorDeserializer() : new PaperColorDeserializer());
     }
 
     @Override
@@ -89,5 +98,6 @@ public class JacksonPaper extends JacksonBukkit {
         if (!legacyItemStackSerialization) {
             serializers.addSerializer(ItemStack.class, new PaperItemStackSerializer());
         }
+        serializers.addSerializer(Color.class, hexColors ? new HexPaperColorSerializer() : new PaperColorSerializer());
     }
 }

@@ -6,6 +6,8 @@
 package de.eldoria.jacksonbukkit.deserializer;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.Module;
+import de.eldoria.jacksonbukkit.JacksonPaper;
 import de.eldoria.jacksonbukkit.SerializationTest;
 import de.eldoria.jacksonbukkit.templates.FireworkEffectTemplate;
 import org.bukkit.FireworkEffect;
@@ -14,6 +16,10 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class FireworkEffectDeserializerTest implements SerializationTest {
+        @Override
+    public Module buildModule() {
+        return JacksonPaper.paper().build();
+    }
     @Test
     void deserializeToJson() throws JsonProcessingException {
         assertEquals(FireworkEffectTemplate.SINGLE, fromJson("firework_effect", FireworkEffect.class));

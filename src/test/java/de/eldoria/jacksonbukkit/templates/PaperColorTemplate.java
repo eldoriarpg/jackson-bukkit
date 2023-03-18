@@ -9,7 +9,7 @@ import org.bukkit.Color;
 
 import java.util.List;
 
-public class ColorTemplate {
+public class PaperColorTemplate {
     public static final Color SINGLE = Color.fromARGB(
             255, 255, 60, 0
     );
