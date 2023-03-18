@@ -1,0 +1,82 @@
+{
+  "strength" : {
+    "uuid" : "78d16016-b2c3-48c0-8334-4dff96a1b42d",
+    "name" : "test",
+    "amount" : 1337.0,
+    "operation" : "ADD_NUMBER",
+    "equipmentSlot" : "HAND"
+  },
+  "skyIslandOrigin" : {
+    "xCoord" : 1.549687,
+    "yCoord" : 58.52578,
+    "zCoord" : 8421257.577845
+  },
+  "boundingBox" : {
+    "corner1" : {
+      "xCoord" : 10.0,
+      "yCoord" : 20.0,
+      "zCoord" : 10.0
+    },
+    "corner2" : {
+      "xCoord" : 60.0,
+      "yCoord" : 40.0,
+      "zCoord" : 300.0
+    }
+  },
+  "color" : {
+    "red" : 255,
+    "green" : 60,
+    "blue" : 0,
+    "alpha" : 255
+  },
+  "fireworkEffect" : {
+    "type" : "BURST",
+    "colors" : [ {
+      "red" : 255,
+      "green" : 0,
+      "blue" : 0,
+      "alpha" : 255
+    } ],
+    "fadeColors" : [ {
+      "red" : 0,
+      "green" : 255,
+      "blue" : 255,
+      "alpha" : 255
+    } ],
+    "flicker" : false,
+    "trail" : false
+  },
+  "location" : {
+    "uid" : "00000000-0000-0000-0000-000000000000",
+    "name" : "world",
+    "xCoord" : 0.0,
+    "yCoord" : 0.0,
+    "zCoord" : 0.0,
+    "yaw" : 0.0,
+    "pitch" : 0.0
+  },
+  "namespacedKey" : {
+    "namespace" : "key",
+    "key" : "name"
+  },
+  "pattern" : {
+    "color" : "RED",
+    "pattern" : "BASE"
+  },
+  "potionEffect" : {
+    "amplifier" : 1,
+    "duration" : 1,
+    "type" : {
+      "namespace" : "minecraft",
+      "key" : "blindness"
+    },
+    "ambient" : true,
+    "particles" : true,
+    "icon" : true
+  },
+  "heavyWeightedPressurePlateJump" : {
+    "xCoord" : 1.549687,
+    "yCoord" : 58.52578,
+    "zCoord" : 8421257.577845
+  }
+}
