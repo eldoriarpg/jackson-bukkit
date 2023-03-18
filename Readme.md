@@ -66,16 +66,21 @@ The builder allows to use spigots serialization on paper servers as well, but th
 When creating a paper plugin the `JacksonBukkit` module is no longer able to serialize `ItemStacks`.
 you need to use `JacksonPaper` in that case and make sure that you are not using legacy serialization.
 
+| Class     | Paper                           | Spigot         |
+|-----------|---------------------------------|----------------|
+| Color     | RGBA or HEX RGBA                | RGB or HEX RGB |
+| ItemStack | NBT byte array or as legacy Map | Legacy Map     |
+
 ### More customization
 
 There are some more customizations
 
 #### Color
 
-Colors will be read and written to an object containing a value for red, green, blue and alpha by default. 
+Colors will be read and written to an object containing a value for red, green, blue and alpha (Paper only) by default. 
 By calling `ModuleBuilder#colorAsHex()` you can enable hex codes.
-This will attempt to read each color as a HEX string with RGBA or RGB format.
-It will also write colors as RGBA.
+This will attempt to read each color as a HEX string with RGBA (Paper) or RGB (Spigot) format.
+It will also write colors as RGBA (Paper) or RGB (Spigot).
 
 **Warning:** As of now you can use either way, but not both at the same time. Mixing up format will cause errors.
 
@@ -99,3 +104,5 @@ We support all classes implementing `ConfigurationSerializable`. To be precise w
 - NamespacedKey
 - OfflinePlayer
 - Inventory via `InventoryWrapper` class
+
+
