@@ -22,7 +22,7 @@ public class ComplexPojoTemplate {
             AttributeModifierTemplate.SINGLE,
             BlockVectorTemplate.SINGLE,
             BoundingBoxTemplate.SINGLE,
-            ColorTemplate.SINGLE,
+            PaperColorTemplate.SINGLE,
             FireworkEffectTemplate.SINGLE,
             LocationTemplate.SINGLE,
             NamespacedKeyTemplate.SINGLE,

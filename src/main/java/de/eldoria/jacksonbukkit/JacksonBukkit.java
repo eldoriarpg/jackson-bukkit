@@ -83,6 +83,9 @@ import org.bukkit.util.Vector;
  * </ul>
  */
 public class JacksonBukkit extends Module {
+    /**
+     * True when colors should be interpreted as hex strings.
+     */
     protected final boolean hexColors;
 
     /**

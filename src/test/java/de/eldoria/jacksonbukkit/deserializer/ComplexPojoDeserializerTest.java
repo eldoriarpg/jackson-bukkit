@@ -8,6 +8,8 @@ package de.eldoria.jacksonbukkit.deserializer;
 import be.seeseemelk.mockbukkit.MockBukkit;
 import be.seeseemelk.mockbukkit.WorldMock;
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.Module;
+import de.eldoria.jacksonbukkit.JacksonPaper;
 import de.eldoria.jacksonbukkit.SerializationTest;
 import de.eldoria.jacksonbukkit.templates.ComplexPojoTemplate;
 import org.bukkit.World;
@@ -22,6 +24,10 @@ import static org.mockito.Mockito.*;
 
 public class ComplexPojoDeserializerTest implements SerializationTest {
     static UUID worldUID = new UUID(0, 0);
+    @Override
+    public Module buildModule() {
+        return JacksonPaper.paper().build();
+    }
 
     @BeforeAll
     static void setup() {
