@@ -8,7 +8,8 @@ package de.eldoria.jacksonbukkit.deserializer;
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.databind.DeserializationContext;
 import com.fasterxml.jackson.databind.JsonDeserializer;
-import de.eldoria.jacksonbukkit.entities.ColorWrapper;
+import de.eldoria.jacksonbukkit.entities.BukkitColorWrapper;
+import de.eldoria.jacksonbukkit.entities.PaperColorWrapper;
 import org.bukkit.Color;
 
 import java.io.IOException;
@@ -16,10 +17,10 @@ import java.io.IOException;
 /**
  * Class for deserialization of {@link Color} as object.
  */
-public class ColorDeserializer extends JsonDeserializer<Color> {
+public class BukkitColorDeserializer extends JsonDeserializer<Color> {
 
     @Override
     public Color deserialize(JsonParser p, DeserializationContext ctxt) throws IOException {
-        return ctxt.readValue(p, ColorWrapper.class).toBukkitColor();
+        return ctxt.readValue(p, BukkitColorWrapper.class).toBukkitColor();
     }
 }

@@ -12,35 +12,30 @@ import org.bukkit.Color;
  * <p>
  * It also allows transformation to hex code and parsing of hex code.
  */
-public record ColorWrapper(int red, int green, int blue, int alpha) {
+public record PaperColorWrapper(int red, int green, int blue, int alpha) {
 
     /**
-     * Create a new {@link ColorWrapper} based on a {@link Color}.
+     * Create a new {@link PaperColorWrapper} based on a {@link Color}.
      *
      * @param color color instance
-     * @return new {@link ColorWrapper} instance
+     * @return new {@link PaperColorWrapper} instance
      */
-    public static ColorWrapper of(Color color) {
-        return new ColorWrapper(color.getRed(), color.getGreen(), color.getBlue(), color.getAlpha());
+    public static PaperColorWrapper of(Color color) {
+        return new PaperColorWrapper(color.getRed(), color.getGreen(), color.getBlue(), color.getAlpha());
     }
 
     /**
-     * Create a new {@link ColorWrapper} based on a hex string with RGBA or RGB.
+     * Create a new {@link PaperColorWrapper} based on a hex string with RGBA or RGB.
      *
      * @param hex color as hex string
-     * @return new {@link ColorWrapper} instance
+     * @return new {@link PaperColorWrapper} instance
      */
-    public static ColorWrapper of(String hex) {
-
+    public static PaperColorWrapper of(String hex) {
         int red = Integer.parseInt(hex.substring(0, 2), 16);
         int green = Integer.parseInt(hex.substring(2, 4), 16);
         int blue = Integer.parseInt(hex.substring(4, 6), 16);
-        int alpha = 255;
-        if (hex.length() == 8) {
-            alpha = Integer.parseInt(hex.substring(6, 8), 16);
-        }
-
-        return new ColorWrapper(red, green, blue, alpha);
+        int alpha = hex.length() == 8 ? Integer.parseInt(hex.substring(6, 8), 16) : 255;
+        return new PaperColorWrapper(red, green, blue, alpha);
     }
 
     /**
@@ -50,10 +45,6 @@ public record ColorWrapper(int red, int green, int blue, int alpha) {
      */
     public String asHex() {
         return "%02X%02X%02X%02X".formatted(red, green, blue, alpha);
-    }
-
-    private String pad(String s) {
-        return (s.length() == 1) ? "0" + s : s;
     }
 
     /**
