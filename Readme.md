@@ -103,6 +103,3 @@ We support all classes implementing `ConfigurationSerializable`. To be precise w
 
 - NamespacedKey
 - OfflinePlayer
-- Inventory via `InventoryWrapper` class
-
-
