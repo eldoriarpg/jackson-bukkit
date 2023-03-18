@@ -4,7 +4,7 @@
 ![Sonatype Nexus (Development)](https://img.shields.io/nexus/maven-dev/de.eldoria/jackson-bukkit?label=DEV&logo=Release&server=https%3A%2F%2Feldonexus.de&style=for-the-badge)
 ![Sonatype Nexus (Snapshots)](https://img.shields.io/nexus/s/de.eldoria/jackson-bukkit?color=orange&label=Snapshot&server=https%3A%2F%2Feldonexus.de&style=for-the-badge)
 
-### [Javadocs](https://rainbowdashlabs.github.io/jackson-bukkit/)
+### [Javadocs](https://eldoriarpg.github.io/jackson-bukkit/)
 
 ## Dependency
 
