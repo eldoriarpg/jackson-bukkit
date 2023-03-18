@@ -17,10 +17,7 @@ import de.eldoria.jacksonbukkit.deserializer.BoundingBoxDeserializer;
 import de.eldoria.jacksonbukkit.deserializer.BukkitColorDeserializer;
 import de.eldoria.jacksonbukkit.deserializer.BukkitItemStackDeserializer;
 import de.eldoria.jacksonbukkit.deserializer.HexBukkitColorDeserializer;
-import de.eldoria.jacksonbukkit.deserializer.PaperColorDeserializer;
 import de.eldoria.jacksonbukkit.deserializer.FireworkEffectDeserializer;
-import de.eldoria.jacksonbukkit.deserializer.HexPaperColorDeserializer;
-import de.eldoria.jacksonbukkit.deserializer.InventoryDeserializer;
 import de.eldoria.jacksonbukkit.deserializer.LocationDeserializer;
 import de.eldoria.jacksonbukkit.deserializer.NamespacedKeyDeserializer;
 import de.eldoria.jacksonbukkit.deserializer.PatternDeserializer;
@@ -34,10 +31,7 @@ import de.eldoria.jacksonbukkit.serializer.BoundingBoxSerializer;
 import de.eldoria.jacksonbukkit.serializer.BukkitColorSerializer;
 import de.eldoria.jacksonbukkit.serializer.BukkitItemStackSerializer;
 import de.eldoria.jacksonbukkit.serializer.HexBukkitColorSerializer;
-import de.eldoria.jacksonbukkit.serializer.PaperColorSerializer;
 import de.eldoria.jacksonbukkit.serializer.FireworkEffectSerializer;
-import de.eldoria.jacksonbukkit.serializer.HexPaperColorSerializer;
-import de.eldoria.jacksonbukkit.serializer.InventorySerializer;
 import de.eldoria.jacksonbukkit.serializer.LocationSerializer;
 import de.eldoria.jacksonbukkit.serializer.NamespacedKeySerializer;
 import de.eldoria.jacksonbukkit.serializer.PatternSerializer;
@@ -175,7 +169,6 @@ public class JacksonBukkit extends Module {
         serializers.addSerializer(AttributeModifier.class, new AttributeModifierSerializer());
         serializers.addSerializer(Location.class, new LocationSerializer());
         serializers.addSerializer(OfflinePlayer.class, new PlayerSerializer());
-        serializers.addSerializer(InventoryWrapper.class, new InventorySerializer());
     }
 
     /**
@@ -196,6 +189,5 @@ public class JacksonBukkit extends Module {
         deserializers.addDeserializer(AttributeModifier.class, new AttributeModifierDeserializer());
         deserializers.addDeserializer(Location.class, new LocationDeserializer());
         deserializers.addDeserializer(OfflinePlayer.class, new PlayerDeserializer());
-        deserializers.addDeserializer(InventoryWrapper.class, new InventoryDeserializer());
     }
 }
