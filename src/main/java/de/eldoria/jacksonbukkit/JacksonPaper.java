@@ -7,17 +7,17 @@ package de.eldoria.jacksonbukkit;
 
 import com.fasterxml.jackson.databind.module.SimpleDeserializers;
 import com.fasterxml.jackson.databind.module.SimpleSerializers;
-import de.eldoria.jacksonbukkit.deserializer.BukkitColorDeserializer;
-import de.eldoria.jacksonbukkit.deserializer.HexBukkitColorDeserializer;
+import de.eldoria.jacksonbukkit.deserializer.ComponentMiniDeserializer;
 import de.eldoria.jacksonbukkit.deserializer.HexPaperColorDeserializer;
 import de.eldoria.jacksonbukkit.deserializer.PaperColorDeserializer;
 import de.eldoria.jacksonbukkit.deserializer.PaperItemStackDeserializer;
 import de.eldoria.jacksonbukkit.entities.InventoryWrapper;
-import de.eldoria.jacksonbukkit.serializer.BukkitColorSerializer;
-import de.eldoria.jacksonbukkit.serializer.HexBukkitColorSerializer;
+import de.eldoria.jacksonbukkit.serializer.ComponentMiniSerializer;
 import de.eldoria.jacksonbukkit.serializer.HexPaperColorSerializer;
 import de.eldoria.jacksonbukkit.serializer.PaperColorSerializer;
 import de.eldoria.jacksonbukkit.serializer.PaperItemStackSerializer;
+import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.minimessage.MiniMessage;
 import org.bukkit.Color;
 import org.bukkit.FireworkEffect;
 import org.bukkit.Location;
@@ -32,6 +32,9 @@ import org.bukkit.potion.PotionEffect;
 import org.bukkit.util.BlockVector;
 import org.bukkit.util.BoundingBox;
 import org.bukkit.util.Vector;
+import org.jetbrains.annotations.Nullable;
+
+import java.util.function.Supplier;
 
 /**
  * Class adding support for classes implementing {@link ConfigurationSerializable}.
@@ -53,21 +56,24 @@ import org.bukkit.util.Vector;
  * <ul>
  *     <li>{@link NamespacedKey}
  *     <li>{@link OfflinePlayer}
- *     <li>{@link Inventory} via {@link InventoryWrapper}
+ *     <li>{@link Component}
  * </ul>
  */
 public class JacksonPaper extends JacksonBukkit {
     private final boolean legacyItemStackSerialization;
+    private final Supplier<@Nullable MiniMessage> miniMessage;
 
     /**
      * Create a new JacksonPaper module.
      *
      * @param hexColors                    true to serialize colors as hex by default
      * @param legacyItemStackSerialization true to use spigot based serialization
+     * @param miniMessage supplier for a mini message instance
      */
-    public JacksonPaper(boolean hexColors, boolean legacyItemStackSerialization) {
+    public JacksonPaper(boolean hexColors, boolean legacyItemStackSerialization, Supplier<@Nullable MiniMessage> miniMessage) {
         super(hexColors);
         this.legacyItemStackSerialization = legacyItemStackSerialization;
+        this.miniMessage = miniMessage;
     }
 
     /**
@@ -76,6 +82,7 @@ public class JacksonPaper extends JacksonBukkit {
     public JacksonPaper() {
         super();
         legacyItemStackSerialization = false;
+        miniMessage = MiniMessage::miniMessage;
     }
 
     @Override
@@ -90,6 +97,9 @@ public class JacksonPaper extends JacksonBukkit {
             deserializers.addDeserializer(ItemStack.class, new PaperItemStackDeserializer());
         }
         deserializers.addDeserializer(Color.class, hexColors ? new HexPaperColorDeserializer() : new PaperColorDeserializer());
+        if (miniMessage.get() != null) {
+            deserializers.addDeserializer(Component.class, new ComponentMiniDeserializer(miniMessage.get()));
+        }
     }
 
     @Override
@@ -99,5 +109,8 @@ public class JacksonPaper extends JacksonBukkit {
             serializers.addSerializer(ItemStack.class, new PaperItemStackSerializer());
         }
         serializers.addSerializer(Color.class, hexColors ? new HexPaperColorSerializer() : new PaperColorSerializer());
+        if (miniMessage.get() != null) {
+            serializers.addSerializer(Component.class, new ComponentMiniSerializer(miniMessage.get()));
+        }
     }
 }

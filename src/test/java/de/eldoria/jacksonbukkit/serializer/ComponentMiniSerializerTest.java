@@ -1,20 +1,16 @@
-/*
- *     SPDX-License-Identifier: MIT
- *
- *     Copyright (C) EldoriaRPG Team and Contributor
- */
 package de.eldoria.jacksonbukkit.serializer;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.Module;
 import de.eldoria.jacksonbukkit.JacksonPaper;
 import de.eldoria.jacksonbukkit.SerializationTest;
-import de.eldoria.jacksonbukkit.templates.FireworkEffectTemplate;
+import de.eldoria.jacksonbukkit.templates.ComponentTemplate;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class FireworkEffectSerializerTest implements SerializationTest {
+class ComponentMiniSerializerTest implements SerializationTest {
     @Override
     public Module buildModule() {
         return JacksonPaper.paper().build();
@@ -22,18 +18,21 @@ class FireworkEffectSerializerTest implements SerializationTest {
 
     @Test
     void serializeToJson() throws JsonProcessingException {
-        assertEquals(json("firework_effect"), toJson(FireworkEffectTemplate.SINGLE));
-        assertEquals(json("firework_effect_list"), toJson(FireworkEffectTemplate.LIST));
+        assertEquals(json("component"), toJson(ComponentTemplate.SINGLE));
+        assertEquals(json("component_list"), toJson(ComponentTemplate.LIST));
     }
 
     @Test
     void serializeToYaml() throws JsonProcessingException {
-        assertEquals(yaml("firework_effect"), toYaml(FireworkEffectTemplate.SINGLE));
-        assertEquals(yaml("firework_effect_list"), toYaml(FireworkEffectTemplate.LIST));
+        assertEquals(yaml("component"), toYaml(ComponentTemplate.SINGLE));
+        assertEquals(yaml("component_list"), toYaml(ComponentTemplate.LIST));
     }
 
+    // toml can't c:
     @Test
+    @Disabled
     void serializeToToml() throws JsonProcessingException {
-        assertEquals(toml("firework_effect"), toToml(FireworkEffectTemplate.SINGLE));
+        assertEquals(toml("component"), toToml(ComponentTemplate.SINGLE));
     }
+
 }

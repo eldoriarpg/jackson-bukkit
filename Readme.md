@@ -44,7 +44,7 @@ Builder for spigot and paper can both be accessed via the `JacksonBukkit` class.
 ### Creating a Spigot/Bukkit Module
 
 ```java
-    ObjectMapper JSON=JsonMapper.builder()
+    ObjectMapper JSON = JsonMapper.builder()
         .addModule(JacksonBukkit.spigot().build())
         .build();
 ```
@@ -52,7 +52,7 @@ Builder for spigot and paper can both be accessed via the `JacksonBukkit` class.
 ### Creating a Paper Module
 
 ```java
-    ObjectMapper JSON=JsonMapper.builder()
+    ObjectMapper JSON = JsonMapper.builder()
         .addModule(JacksonBukkit.paper().build())
         .build();
 ```
@@ -70,6 +70,7 @@ you need to use `JacksonPaper` in that case and make sure that you are not using
 |-----------|---------------------------------|----------------|
 | Color     | RGBA or HEX RGBA                | RGB or HEX RGB |
 | ItemStack | NBT byte array or as legacy Map | Legacy Map     |
+| Component | MiniMessage String              | Nope c:        |
 
 ### More customization
 
@@ -103,3 +104,4 @@ We support all classes implementing `ConfigurationSerializable`. To be precise w
 
 - NamespacedKey
 - OfflinePlayer
+- Components (Paper only as MiniMessage string)

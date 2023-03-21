@@ -36,5 +36,4 @@ class FireworkEffectDeserializerTest implements SerializationTest {
     void deserializeToToml() throws JsonProcessingException {
         assertEquals(FireworkEffectTemplate.SINGLE, fromToml("firework_effect", FireworkEffect.class));
     }
-
 }
