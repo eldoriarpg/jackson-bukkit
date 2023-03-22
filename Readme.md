@@ -27,7 +27,7 @@ When serializing the data the currently used serializer will be used.
 
 #### General
 
-- In 1.16 the type of PotionEffect changed from a numeric integer to a namespaced key.
+- In 1.18 the type of PotionEffect changed from a numeric integer to a namespaced key.
 
 #### Paper
 
