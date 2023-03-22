@@ -3,27 +3,31 @@
  *
  *     Copyright (C) EldoriaRPG Team and Contributor
  */
-package de.eldoria.jacksonbukkit.templates;
+package de.eldoria.jacksonbukkit.entities;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import de.eldoria.jacksonbukkit.entities.RGBColorWrapper;
 import org.bukkit.Color;
-
-import java.util.Objects;
 
 /**
  * Class for wrapping a {@link Color}.
  * <p>
  * It also allows transformation to hex code and parsing of hex code.
+ * <p>
+ * This class is used on Paper Servers starting from 1.19 where alpha was introduced to colors.
  */
 @JsonPropertyOrder({"format", "red", "green", "blue", "alpha"})
 public final class RGBAColorWrapper extends RGBColorWrapper {
     private final int alpha;
 
     /**
+     * Create a new color wrapper for RGBA colors
      *
+     * @param red   red value
+     * @param green green value
+     * @param blue  blue value
+     * @param alpha alpha value
      */
     @JsonCreator
     public RGBAColorWrapper(@JsonProperty("red") int red,
@@ -76,6 +80,11 @@ public final class RGBAColorWrapper extends RGBColorWrapper {
         return Color.fromARGB(alpha, red(), green(), blue());
     }
 
+    /**
+     * Alpha value of the color
+     *
+     * @return alpha
+     */
     @JsonProperty
     public int alpha() {
         return alpha;

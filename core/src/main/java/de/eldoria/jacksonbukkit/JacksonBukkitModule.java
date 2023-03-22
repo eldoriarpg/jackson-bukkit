@@ -44,6 +44,9 @@ import org.bukkit.util.BoundingBox;
 import org.bukkit.util.Vector;
 import org.jetbrains.annotations.ApiStatus;
 
+/**
+ * Base class to implement a bukkit jackson module.
+ */
 @ApiStatus.Internal
 public abstract class JacksonBukkitModule extends Module {
     /**
@@ -51,6 +54,11 @@ public abstract class JacksonBukkitModule extends Module {
      */
     protected final boolean hexColors;
 
+    /**
+     * Creates a new jackson bukkit module
+     *
+     * @param hexColors true to use hex colors
+     */
     public JacksonBukkitModule(boolean hexColors) {
         this.hexColors = hexColors;
     }
@@ -95,6 +103,13 @@ public abstract class JacksonBukkitModule extends Module {
         registerSerializer(serializers);
     }
 
+    /**
+     * Register serializer of the inheriting class
+     * <p>
+     * Will be called after default serializer were registered.
+     *
+     * @param serializers serializers
+     */
     protected abstract void registerSerializer(SimpleSerializers serializers);
 
     /**
@@ -117,5 +132,12 @@ public abstract class JacksonBukkitModule extends Module {
         registerDeserializer(deserializers);
     }
 
+    /**
+     * Register deserializers of the inheriting class.
+     * <p>
+     * Will be called after default deserializer were registered.
+     *
+     * @param deserializers deserializers
+     */
     protected abstract void registerDeserializer(SimpleDeserializers deserializers);
 }

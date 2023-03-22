@@ -10,6 +10,7 @@ import com.fasterxml.jackson.databind.JsonSerializer;
 import com.fasterxml.jackson.databind.SerializerProvider;
 import de.eldoria.jacksonbukkit.entities.LegacyPotionEffectWrapper;
 import de.eldoria.jacksonbukkit.entities.PotionEffectWrapper;
+import de.eldoria.jacksonbukkit.util.Reflections;
 import org.bukkit.NamespacedKey;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
@@ -24,13 +25,7 @@ public class PotionEffectSerializer extends JsonSerializer<PotionEffect> {
     private static final boolean LEGACY;
 
     static {
-        boolean isLegacy = false;
-        try {
-            PotionEffectType.class.getDeclaredMethod("getByKey", NamespacedKey.class);
-        } catch (NoSuchMethodException e) {
-            isLegacy = true;
-        }
-        LEGACY = isLegacy;
+        LEGACY = !Reflections.methodExists(PotionEffectType.class, "getByKey", NamespacedKey.class);
     }
 
     @Override

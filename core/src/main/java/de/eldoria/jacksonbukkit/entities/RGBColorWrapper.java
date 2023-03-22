@@ -17,14 +17,18 @@ import java.util.Objects;
  * <p>
  * It also allows transformation to hex code and parsing of hex code.
  */
-@JsonPropertyOrder({"format", "red", "green", "blue"})
+@JsonPropertyOrder({"red", "green", "blue"})
 public class RGBColorWrapper {
     private final int red;
     private final int green;
     private final int blue;
 
     /**
+     * Create a new color wrapper for RGB colors
      *
+     * @param red   red value
+     * @param green green value
+     * @param blue  blue value
      */
     @JsonCreator
     public RGBColorWrapper(@JsonProperty("red") int red,
@@ -55,7 +59,7 @@ public class RGBColorWrapper {
         int red = Integer.parseInt(hex.substring(0, 2), 16);
         int green = Integer.parseInt(hex.substring(2, 4), 16);
         int blue = Integer.parseInt(hex.substring(4, 6), 16);
-        return new RGBColorWrapper( red, green, blue);
+        return new RGBColorWrapper(red, green, blue);
     }
 
     /**
@@ -76,16 +80,31 @@ public class RGBColorWrapper {
         return Color.fromRGB(red, green, blue);
     }
 
+    /**
+     * Value of color red
+     *
+     * @return red
+     */
     @JsonProperty
     public int red() {
         return red;
     }
 
+    /**
+     * Value of color green
+     *
+     * @return green
+     */
     @JsonProperty
     public int green() {
         return green;
     }
 
+    /**
+     * Value of color blue
+     *
+     * @return blue
+     */
     @JsonProperty
     public int blue() {
         return blue;

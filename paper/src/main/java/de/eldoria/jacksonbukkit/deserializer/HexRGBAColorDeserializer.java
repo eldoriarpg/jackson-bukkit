@@ -9,7 +9,7 @@ import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.databind.DeserializationContext;
 import com.fasterxml.jackson.databind.JsonDeserializer;
 import de.eldoria.jacksonbukkit.entities.RGBColorWrapper;
-import de.eldoria.jacksonbukkit.templates.RGBAColorWrapper;
+import de.eldoria.jacksonbukkit.entities.RGBAColorWrapper;
 import de.eldoria.jacksonbukkit.util.PaperFeatures;
 import org.bukkit.Color;
 

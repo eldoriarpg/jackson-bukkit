@@ -88,6 +88,10 @@ public class JacksonBukkit extends JacksonBukkitModule {
         serializers.addSerializer(Color.class, hexColors ? new HexRGBColorSerializer() : new RGBColorSerializer());
     }
 
+    /**
+     * Creates a new builder for a {@link JacksonBukkit} module
+     * @return builder instance
+     */
     public static JacksonBukkitBuilder builder() {
         return new JacksonBukkitBuilder();
     }
