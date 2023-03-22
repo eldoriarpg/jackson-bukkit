@@ -94,17 +94,17 @@ Builder for spigot and paper can both be accessed via the corresponding class.
 ### Creating a Spigot/Bukkit Module
 
 ```java
-    ObjectMapper JSON = JsonMapper.builder()
-        .addModule(JacksonBukkit.builder().build())
-        .build();
+ObjectMapper JSON = JsonMapper.builder()
+    .addModule(JacksonBukkit.builder().build())
+    .build();
 ```
 
 ### Creating a Paper Module
 
 ```java
-    ObjectMapper JSON = JsonMapper.builder()
-        .addModule(JacksonPaper.builer().build())
-        .build();
+ObjectMapper JSON = JsonMapper.builder()
+    .addModule(JacksonPaper.builer().build())
+    .build();
 ```
 
 Of course, you can use TOML or YAML or whatever else jackson supports as well

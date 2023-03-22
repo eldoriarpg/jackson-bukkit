@@ -13,9 +13,11 @@ plugins {
 group = "de.eldoria.jacksonbukkit"
 version = "1.1.0"
 
+val publicProjects = setOf("core", "bukkit", "paper")
+
 dependencies {
-    implementation(project(":paper"))
-    implementation(project(":bukkit"))
+    api(project(":paper"))
+    api(project(":bukkit"))
 }
 
 allprojects {
@@ -72,43 +74,46 @@ allprojects {
         publishComponent("java")
     }
 
-    publishing {
-        publications.create<MavenPublication>("maven") {
-            publishData.configurePublication(this)
-            pom {
-                url.set("https://github.com/eldoriarpg/schematicbrushreborn")
-                developers {
-                    developer {
-                        name.set("Florian Fülling")
-                        url.set("https://github.com/rainbowdashlabs")
-                        organization.set("EldoriaRPG")
-                        organizationUrl.set("https://github.com/eldoriarpg")
+    if (publicProjects.contains(project.name)) {
+
+        publishing {
+            publications.create<MavenPublication>("maven") {
+                publishData.configurePublication(this)
+                pom {
+                    url.set("https://github.com/eldoriarpg/jackson-bukkit")
+                    developers {
+                        developer {
+                            name.set("Florian Fülling")
+                            url.set("https://github.com/rainbowdashlabs")
+                            organization.set("EldoriaRPG")
+                            organizationUrl.set("https://github.com/eldoriarpg")
+                        }
+                        developer {
+                            name.set("Yannick Lamprecht")
+                            url.set("https://github.com/yannicklamprecht")
+                        }
                     }
-                    developer {
-                        name.set("Yannick Lamprecht")
-                        url.set("https://github.com/yannicklamprecht")
-                    }
-                }
-                licenses {
-                    license {
-                        name.set("MIT")
-                        url.set("https://github.com/eldoriarpg/bukkit-jackson/blob/main/LICENSE.md")
+                    licenses {
+                        license {
+                            name.set("MIT")
+                            url.set("https://github.com/eldoriarpg/bukkit-jackson/blob/main/LICENSE.md")
+                        }
                     }
                 }
             }
-        }
 
-        repositories {
-            maven {
-                authentication {
-                    credentials(PasswordCredentials::class) {
-                        username = System.getenv("NEXUS_USERNAME")
-                        password = System.getenv("NEXUS_PASSWORD")
+            repositories {
+                maven {
+                    authentication {
+                        credentials(PasswordCredentials::class) {
+                            username = System.getenv("NEXUS_USERNAME")
+                            password = System.getenv("NEXUS_PASSWORD")
+                        }
                     }
-                }
 
-                setUrl(publishData.getRepository())
-                name = "EldoNexus"
+                    setUrl(publishData.getRepository())
+                    name = "EldoNexus"
+                }
             }
         }
     }
@@ -168,17 +173,16 @@ fun applyJavaDocOptions(options: MinimalJavadocOptions) {
         "https://javadoc.io/doc/com.fasterxml.jackson.core/jackson-annotations/latest",
         "https://javadoc.io/doc/com.fasterxml.jackson.core/jackson-databind/latest",
         "https://jd.papermc.io/paper/1.19/"
-        )
+    )
 }
 
 
 tasks {
     register<Javadoc>("allJavadocs") {
-        val include = setOf("core", "bukkit", "paper")
         applyJavaDocOptions(options)
 
         setDestinationDir(file("${buildDir}/docs/javadoc"))
-        val projects = project.rootProject.allprojects.filter { p -> include.contains(p.name) }
+        val projects = project.rootProject.allprojects.filter { p -> publicProjects.contains(p.name) }
         setSource(projects.map { p -> p.sourceSets.main.get().allJava })
         classpath = files(projects.map { p -> p.sourceSets.main.get().compileClasspath })
     }

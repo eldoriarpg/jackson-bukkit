@@ -23,7 +23,6 @@ import java.util.Map;
  */
 public class ComponentMiniMessageDeserializer extends ComponentGsonDeserializer {
     private final MiniMessage miniMessage;
-    private static final Gson GSON = new Gson();
 
     /**
      * Creates a new serializer
@@ -44,15 +43,7 @@ public class ComponentMiniMessageDeserializer extends ComponentGsonDeserializer 
     @Override
     public Component deserialize(JsonParser p, DeserializationContext ctxt) throws IOException {
         JsonNode tree = ctxt.readTree(p);
-        if (tree.isObject()) {
-            return parseObjectTree(tree, ctxt);
-        }
+        if (tree.isObject()) return parseObjectTree(tree, ctxt);
         return miniMessage.deserialize(ctxt.readValue(p, String.class));
-    }
-
-    protected Component parseObjectTree(JsonNode tree, DeserializationContext ctxt) throws IOException {
-        MapType type = ctxt.getTypeFactory().constructMapType(HashMap.class, String.class, Object.class);
-        Map<String, Object> map = ctxt.readTreeAsValue(tree, type);
-        return GsonComponentSerializer.gson().deserialize(GSON.toJson(map));
     }
 }

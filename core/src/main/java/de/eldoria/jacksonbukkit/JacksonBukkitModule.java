@@ -68,7 +68,7 @@ public abstract class JacksonBukkitModule extends Module {
 
     @Override
     public Version version() {
-        return new Version(1, 0, 0, "", "de.eldoria.jacksonbukkit", "jacksonbukkit");
+        return new Version(1, 0, 0, "", "de.eldoria.jacksonbukkit", "jackson-bukkit");
     }
 
     @Override

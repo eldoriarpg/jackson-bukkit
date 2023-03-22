@@ -90,6 +90,7 @@ public class JacksonBukkit extends JacksonBukkitModule {
 
     /**
      * Creates a new builder for a {@link JacksonBukkit} module
+     *
      * @return builder instance
      */
     public static JacksonBukkitBuilder builder() {

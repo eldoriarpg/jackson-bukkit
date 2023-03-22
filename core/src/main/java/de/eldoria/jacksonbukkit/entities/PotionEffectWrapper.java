@@ -49,7 +49,6 @@ public final class PotionEffectWrapper extends BasePotionEffectWrapper<Namespace
         boolean icon = effect.hasIcon();
         boolean particles = effect.hasParticles();
         return new PotionEffectWrapper(amplifier, duration, type.getKey(), ambient, particles, icon);
-
     }
 
     /**
