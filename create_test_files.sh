@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
-touch $PWD/src/test/resources/json/$1.json
-touch $PWD/src/test/resources/json/$1_list.json
-touch $PWD/src/test/resources/yaml/$1.yaml
-touch $PWD/src/test/resources/yaml/$1_list.yaml
-touch $PWD/src/test/resources/toml/$1.toml
-touch $PWD/src/test/resources/toml/$1_list.toml
+touch $PWD/$1/src/test/resources/json/$2.json
+touch $PWD/$1/src/test/resources/json/$2_list.json
+touch $PWD/$1/src/test/resources/yaml/$2.yaml
+touch $PWD/$1/src/test/resources/yaml/$2_list.yaml
+touch $PWD/$1/src/test/resources/toml/$2.toml
+touch $PWD/$1/src/test/resources/toml/$2_list.toml
