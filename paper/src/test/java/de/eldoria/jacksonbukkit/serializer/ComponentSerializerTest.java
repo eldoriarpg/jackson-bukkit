@@ -15,7 +15,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class ComponentMiniSerializerTest implements PaperSerializationTest {
+class ComponentSerializerTest implements PaperSerializationTest {
     @Override
     public Module buildModule() {
         return JacksonPaper.builder().build();
