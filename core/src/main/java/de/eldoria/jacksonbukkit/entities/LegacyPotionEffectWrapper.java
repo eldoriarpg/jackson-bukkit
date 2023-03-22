@@ -7,19 +7,23 @@ package de.eldoria.jacksonbukkit.entities;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import org.bukkit.NamespacedKey;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
-import java.util.Objects;
-
 /**
  * Class for wrapping a {@link PotionEffect}.
+ * <p>
+ * This class is used to handle PotionEffects prior to 1.16 where the number id was replaced by a {@link org.bukkit.NamespacedKey}.
  */
 public final class LegacyPotionEffectWrapper extends BasePotionEffectWrapper<Integer> {
 
     /**
-     *
+     * @param amplifier the amplifier, see {@link PotionEffect#getAmplifier()}
+     * @param duration  measured in ticks, see {@link PotionEffect#getDuration()}
+     * @param type      effect type as id as defined in {@link PotionEffectType#getId()}
+     * @param ambient   the ambient status, see {@link PotionEffect#isAmbient()}
+     * @param particles the particle status, see {@link PotionEffect#hasParticles()}
+     * @param icon      the icon status, see {@link PotionEffect#hasIcon()}
      */
     @JsonCreator
     public LegacyPotionEffectWrapper(@JsonProperty("amplifier") int amplifier,

@@ -8,27 +8,25 @@ package de.eldoria.jacksonbukkit.util;
 import org.bukkit.Color;
 import org.bukkit.inventory.ItemStack;
 
+/**
+ * Class used to check for api features of a Paper server.
+ */
 public class PaperFeatures {
+    /**
+     * True when {@link Color} supports alpha values.
+     */
     public static final boolean IS_RGBA;
+
+    /**
+     * True when {@link ItemStack} supports {@code ItemStack#serializeAsBytes()}
+     */
     public static final boolean HAS_SERIALIZE_AS_BYTES;
 
     static {
         // Check if this version supports ARGB colors (1.19+)
-        boolean isRGBA = true;
-        try {
-            Color.class.getDeclaredMethod("getAlpha");
-        } catch (NoSuchMethodException e) {
-            isRGBA = false;
-        }
-        IS_RGBA = isRGBA;
+        IS_RGBA = Reflections.methodExists(Color.class, "getAlpha");
 
         // Check if this version supports byte serialization (1.16+)
-        boolean hasSerializeAsBytes = true;
-        try {
-            ItemStack.class.getDeclaredMethod("serializeAsBytes");
-        } catch (NoSuchMethodException e) {
-            hasSerializeAsBytes = false;
-        }
-        HAS_SERIALIZE_AS_BYTES = hasSerializeAsBytes;
+        HAS_SERIALIZE_AS_BYTES = Reflections.methodExists(ItemStack.class, "serializeAsBytes");
     }
 }

@@ -14,9 +14,17 @@ import net.kyori.adventure.text.minimessage.MiniMessage;
 
 import java.io.IOException;
 
+/**
+ * Class for deserialization of {@link Component} using {@link MiniMessage}.
+ */
 public class ComponentMiniDeserializer extends JsonDeserializer<Component> {
     private final MiniMessage miniMessage;
 
+    /**
+     * Creates a new serializer
+     *
+     * @param miniMessage MiniMessage instance to use
+     */
     public ComponentMiniDeserializer(MiniMessage miniMessage) {
         this.miniMessage = miniMessage;
     }

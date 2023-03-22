@@ -12,10 +12,19 @@ import org.bukkit.potion.PotionEffectType;
 
 /**
  * Class for wrapping a {@link PotionEffect}.
+ * <p>
+ * This class is for version 1.16 and newer and uses a {@link NamespacedKey} instead of integer id.
  */
 public final class PotionEffectWrapper extends BasePotionEffectWrapper<NamespacedKey> {
     /**
+     * Create a new potion wrapper instance.
      *
+     * @param amplifier the amplifier, see {@link PotionEffect#getAmplifier()}
+     * @param duration  measured in ticks, see {@link PotionEffect#getDuration()}
+     * @param type      effect type as {@link NamespacedKey}
+     * @param ambient   the ambient status, see {@link PotionEffect#isAmbient()}
+     * @param particles the particle status, see {@link PotionEffect#hasParticles()}
+     * @param icon      the icon status, see {@link PotionEffect#hasIcon()}
      */
     public PotionEffectWrapper(@JsonProperty("amplifier") int amplifier,
                                @JsonProperty("duration") int duration,

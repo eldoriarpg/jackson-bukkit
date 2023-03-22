@@ -10,13 +10,21 @@ import com.fasterxml.jackson.databind.JsonSerializer;
 import com.fasterxml.jackson.databind.SerializerProvider;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.minimessage.MiniMessage;
+import org.bukkit.Color;
 
 import java.io.IOException;
 
+/**
+ * Class for serialization of {@link Component} using {@link MiniMessage}.
+ */
 public class ComponentMiniSerializer extends JsonSerializer<Component> {
 
     private final MiniMessage miniMessage;
 
+    /**
+     * Creates a new serializer
+     * @param miniMessage MiniMessage instance to use
+     */
     public ComponentMiniSerializer(MiniMessage miniMessage) {
         this.miniMessage = miniMessage;
     }

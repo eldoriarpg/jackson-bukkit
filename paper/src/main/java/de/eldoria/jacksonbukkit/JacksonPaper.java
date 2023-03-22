@@ -10,8 +10,8 @@ import com.fasterxml.jackson.databind.module.SimpleSerializers;
 import de.eldoria.jacksonbukkit.builder.JacksonPaperBuilder;
 import de.eldoria.jacksonbukkit.deserializer.ComponentMiniDeserializer;
 import de.eldoria.jacksonbukkit.deserializer.HexRGBAColorDeserializer;
-import de.eldoria.jacksonbukkit.deserializer.RGBAColorDeserializer;
 import de.eldoria.jacksonbukkit.deserializer.PaperItemStackDeserializer;
+import de.eldoria.jacksonbukkit.deserializer.RGBAColorDeserializer;
 import de.eldoria.jacksonbukkit.serializer.ComponentMiniSerializer;
 import de.eldoria.jacksonbukkit.serializer.HexPaperColorSerializer;
 import de.eldoria.jacksonbukkit.serializer.PaperColorSerializer;
@@ -87,6 +87,11 @@ public class JacksonPaper extends JacksonBukkitModule {
         miniMessage = MiniMessage::miniMessage;
     }
 
+    /**
+     * Get a new builder to create a {@link JacksonPaper} module.
+     *
+     * @return builder instance
+     */
     public static JacksonPaperBuilder builder() {
         return new JacksonPaperBuilder();
     }
