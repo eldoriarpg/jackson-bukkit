@@ -1,0 +1,31 @@
+[ {
+  "amplifier" : 1,
+  "duration" : 10,
+  "type" : {
+    "namespace" : "minecraft",
+    "key" : "nausea"
+  },
+  "ambient" : false,
+  "particles" : true,
+  "icon" : false
+}, {
+  "amplifier" : 1,
+  "duration" : 10,
+  "type" : {
+    "namespace" : "minecraft",
+    "key" : "nausea"
+  },
+  "ambient" : true,
+  "particles" : true,
+  "icon" : false
+}, {
+  "amplifier" : 1,
+  "duration" : 1,
+  "type" : {
+    "namespace" : "minecraft",
+    "key" : "blindness"
+  },
+  "ambient" : true,
+  "particles" : true,
+  "icon" : true
+} ]
