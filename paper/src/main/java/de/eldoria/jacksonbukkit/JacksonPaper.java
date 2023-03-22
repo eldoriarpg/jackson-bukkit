@@ -10,12 +10,10 @@ import com.fasterxml.jackson.databind.JsonSerializer;
 import com.fasterxml.jackson.databind.module.SimpleDeserializers;
 import com.fasterxml.jackson.databind.module.SimpleSerializers;
 import de.eldoria.jacksonbukkit.builder.JacksonPaperBuilder;
-import de.eldoria.jacksonbukkit.deserializer.ComponentGsonDeserializer;
 import de.eldoria.jacksonbukkit.deserializer.HexRGBAColorDeserializer;
 import de.eldoria.jacksonbukkit.deserializer.LegacyItemStackDeserializer;
 import de.eldoria.jacksonbukkit.deserializer.PaperItemStackDeserializer;
 import de.eldoria.jacksonbukkit.deserializer.RGBAColorDeserializer;
-import de.eldoria.jacksonbukkit.serializer.ComponentGsonSerializer;
 import de.eldoria.jacksonbukkit.serializer.HexPaperColorSerializer;
 import de.eldoria.jacksonbukkit.serializer.LegacyItemStackSerializer;
 import de.eldoria.jacksonbukkit.serializer.PaperColorSerializer;
@@ -35,6 +33,7 @@ import org.bukkit.util.BlockVector;
 import org.bukkit.util.BoundingBox;
 import org.bukkit.util.Vector;
 import org.jetbrains.annotations.ApiStatus;
+import org.jetbrains.annotations.Nullable;
 
 /**
  * Class adding support for classes implementing {@link ConfigurationSerializable}.
@@ -61,8 +60,8 @@ import org.jetbrains.annotations.ApiStatus;
  */
 public class JacksonPaper extends JacksonBukkitModule {
     private final boolean legacyItemStackSerialization;
-    private final JsonDeserializer<Component> componentDeserializer;
-    private final JsonSerializer<Component> componentSerializer;
+    private final @Nullable JsonDeserializer<Component> componentDeserializer;
+    private final @Nullable JsonSerializer<Component> componentSerializer;
 
     /**
      * Create a new JacksonPaper module.
@@ -71,8 +70,10 @@ public class JacksonPaper extends JacksonBukkitModule {
      * @param legacyItemStackSerialization true to use spigot based serialization
      */
     @ApiStatus.Internal
-    public JacksonPaper(boolean hexColors, boolean legacyItemStackSerialization,
-                        JsonDeserializer<Component> componentDeserializer, JsonSerializer<Component> componentSerializer) {
+    public JacksonPaper(boolean hexColors,
+                        boolean legacyItemStackSerialization,
+                        @Nullable JsonDeserializer<Component> componentDeserializer,
+                        @Nullable JsonSerializer<Component> componentSerializer) {
         super(hexColors);
         this.legacyItemStackSerialization = legacyItemStackSerialization;
         this.componentDeserializer = componentDeserializer;
@@ -86,8 +87,8 @@ public class JacksonPaper extends JacksonBukkitModule {
     public JacksonPaper() {
         super(false);
         legacyItemStackSerialization = false;
-        componentDeserializer = new ComponentGsonDeserializer();
-        componentSerializer = new ComponentGsonSerializer();
+        componentDeserializer = null;
+        componentSerializer = null;
     }
 
     /**
@@ -108,21 +109,21 @@ public class JacksonPaper extends JacksonBukkitModule {
     protected void registerSerializer(SimpleSerializers serializers) {
         if (!legacyItemStackSerialization) {
             serializers.addSerializer(ItemStack.class, new PaperItemStackSerializer());
-        }else {
+        } else {
             serializers.addSerializer(ItemStack.class, new LegacyItemStackSerializer());
         }
         serializers.addSerializer(Color.class, hexColors ? new HexPaperColorSerializer() : new PaperColorSerializer());
-        serializers.addSerializer(Component.class, componentSerializer);
+        if (componentSerializer != null) serializers.addSerializer(Component.class, componentSerializer);
     }
 
     @Override
     protected void registerDeserializer(SimpleDeserializers deserializers) {
         if (!legacyItemStackSerialization) {
             deserializers.addDeserializer(ItemStack.class, new PaperItemStackDeserializer());
-        }else {
+        } else {
             deserializers.addDeserializer(ItemStack.class, new LegacyItemStackDeserializer());
         }
         deserializers.addDeserializer(Color.class, hexColors ? new HexRGBAColorDeserializer() : new RGBAColorDeserializer());
-        deserializers.addDeserializer(Component.class, componentDeserializer);
+        if (componentDeserializer != null) deserializers.addDeserializer(Component.class, componentDeserializer);
     }
 }
