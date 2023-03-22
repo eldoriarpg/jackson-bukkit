@@ -94,7 +94,7 @@ Builder for spigot and paper can both be accessed via the corresponding class.
 ### Creating a Spigot/Bukkit Module
 
 ```java
-    ObjectMapper JSON=JsonMapper.builder()
+    ObjectMapper JSON = JsonMapper.builder()
         .addModule(JacksonBukkit.builder().build())
         .build();
 ```
@@ -102,7 +102,7 @@ Builder for spigot and paper can both be accessed via the corresponding class.
 ### Creating a Paper Module
 
 ```java
-    ObjectMapper JSON=JsonMapper.builder()
+    ObjectMapper JSON = JsonMapper.builder()
         .addModule(JacksonPaper.builer().build())
         .build();
 ```
