@@ -21,6 +21,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
+import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class PlayerSerializerTest implements CoreSerializationTest {
@@ -49,20 +50,20 @@ class PlayerSerializerTest implements CoreSerializationTest {
 
     @Test
     void serializeToJson() throws JsonProcessingException {
-        Assertions.assertEquals(json("player"), toJson(SINGLE));
-        Assertions.assertEquals(json("player_list"), toJson(LIST));
+        assertEquals(json("player"), toJson(SINGLE));
+        assertEquals(json("player_list"), toJson(LIST));
     }
 
     @Test
     void serializeToYaml() throws JsonProcessingException {
-        Assertions.assertEquals(yaml("player"), toYaml(SINGLE));
-        Assertions.assertEquals(yaml("player_list"), toYaml(LIST));
+        assertEquals(yaml("player"), toYaml(SINGLE));
+        assertEquals(yaml("player_list"), toYaml(LIST));
     }
 
     @Test
     @Disabled
         // Does not work since this is nothing toml supports
     void serializeToToml() throws JsonProcessingException {
-        Assertions.assertEquals(toml("player"), toToml(SINGLE));
+        assertEquals(toml("player"), toToml(SINGLE));
     }
 }

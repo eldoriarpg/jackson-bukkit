@@ -13,6 +13,7 @@ import org.junit.jupiter.api.Test;
 
 import static de.eldoria.jacksonbukkit.templates.BoundingBoxTemplate.LIST;
 import static de.eldoria.jacksonbukkit.templates.BoundingBoxTemplate.SINGLE;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 
@@ -20,19 +21,19 @@ class BoundingBoxSerializerTest implements CoreSerializationTest {
 
     @Test
     void serializeToJson() throws JsonProcessingException {
-        Assertions.assertEquals(json("bounding_box"), toJson(BoundingBoxTemplate.SINGLE));
-        Assertions.assertEquals(json("bounding_box_list"), toJson(BoundingBoxTemplate.LIST));
+        assertEquals(json("bounding_box"), toJson(BoundingBoxTemplate.SINGLE));
+        assertEquals(json("bounding_box_list"), toJson(BoundingBoxTemplate.LIST));
     }
 
     @Test
     void serializeToYaml() throws JsonProcessingException {
-        Assertions.assertEquals(yaml("bounding_box"), toYaml(BoundingBoxTemplate.SINGLE));
-        Assertions.assertEquals(yaml("bounding_box_list"), toYaml(BoundingBoxTemplate.LIST));
+        assertEquals(yaml("bounding_box"), toYaml(BoundingBoxTemplate.SINGLE));
+        assertEquals(yaml("bounding_box_list"), toYaml(BoundingBoxTemplate.LIST));
     }
 
     @Test
     void serializeToToml() throws JsonProcessingException {
-        Assertions.assertEquals(toml("bounding_box"), toToml(BoundingBoxTemplate.SINGLE));
+        assertEquals(toml("bounding_box"), toToml(BoundingBoxTemplate.SINGLE));
     }
 }
 

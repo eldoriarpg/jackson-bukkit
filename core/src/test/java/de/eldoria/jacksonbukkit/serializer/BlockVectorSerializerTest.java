@@ -13,24 +13,25 @@ import org.junit.jupiter.api.Test;
 
 import static de.eldoria.jacksonbukkit.templates.BlockVectorTemplate.LIST;
 import static de.eldoria.jacksonbukkit.templates.BlockVectorTemplate.SINGLE;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class BlockVectorSerializerTest implements CoreSerializationTest {
 
     @Test
     void serializeToJson() throws JsonProcessingException {
-        Assertions.assertEquals(json("vector"), toJson(BlockVectorTemplate.SINGLE));
-        Assertions.assertEquals(json("vector_list"), toJson(BlockVectorTemplate.LIST));
+        assertEquals(json("vector"), toJson(BlockVectorTemplate.SINGLE));
+        assertEquals(json("vector_list"), toJson(BlockVectorTemplate.LIST));
     }
 
     @Test
     void serializeToYaml() throws JsonProcessingException {
-        Assertions.assertEquals(yaml("vector"), toYaml(BlockVectorTemplate.SINGLE));
-        Assertions.assertEquals(yaml("vector_list"), toYaml(BlockVectorTemplate.LIST));
+        assertEquals(yaml("vector"), toYaml(BlockVectorTemplate.SINGLE));
+        assertEquals(yaml("vector_list"), toYaml(BlockVectorTemplate.LIST));
     }
 
     @Test
     void serializeToToml() throws JsonProcessingException {
-        Assertions.assertEquals(toml("vector"), toToml(BlockVectorTemplate.SINGLE));
+        assertEquals(toml("vector"), toToml(BlockVectorTemplate.SINGLE));
     }
 }

@@ -13,6 +13,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
+import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class PotionEffectSerializerTest implements CoreSerializationTest {
@@ -23,18 +24,18 @@ class PotionEffectSerializerTest implements CoreSerializationTest {
 
     @Test
     void serializeToJson() throws JsonProcessingException {
-        Assertions.assertEquals(json("potion_effect"), toJson(PotionEffectTemplate.SINGLE));
-        Assertions.assertEquals(json("potion_effect_list"), toJson(PotionEffectTemplate.LIST));
+        assertEquals(json("potion_effect"), toJson(PotionEffectTemplate.SINGLE));
+        assertEquals(json("potion_effect_list"), toJson(PotionEffectTemplate.LIST));
     }
 
     @Test
     void serializeToYaml() throws JsonProcessingException {
-        Assertions.assertEquals(yaml("potion_effect"), toYaml(PotionEffectTemplate.SINGLE));
-        Assertions.assertEquals(yaml("potion_effect_list"), toYaml(PotionEffectTemplate.LIST));
+        assertEquals(yaml("potion_effect"), toYaml(PotionEffectTemplate.SINGLE));
+        assertEquals(yaml("potion_effect_list"), toYaml(PotionEffectTemplate.LIST));
     }
 
     @Test
     void serializeToToml() throws JsonProcessingException {
-        Assertions.assertEquals(toml("potion_effect"), toToml(PotionEffectTemplate.SINGLE));
+        assertEquals(toml("potion_effect"), toToml(PotionEffectTemplate.SINGLE));
     }
 }

@@ -11,24 +11,25 @@ import de.eldoria.jacksonbukkit.templates.PatternTemplate;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class PatternSerializerTest implements CoreSerializationTest {
     @Test
     void serializeToJson() throws JsonProcessingException {
-        Assertions.assertEquals(json("pattern"), toJson(PatternTemplate.SINGLE));
-        Assertions.assertEquals(json("pattern_list"), toJson(PatternTemplate.LIST));
+        assertEquals(json("pattern"), toJson(PatternTemplate.SINGLE));
+        assertEquals(json("pattern_list"), toJson(PatternTemplate.LIST));
     }
 
     @Test
     void serializeToYaml() throws JsonProcessingException {
-        Assertions.assertEquals(yaml("pattern"), toYaml(PatternTemplate.SINGLE));
-        Assertions.assertEquals(yaml("pattern_list"), toYaml(PatternTemplate.LIST));
+        assertEquals(yaml("pattern"), toYaml(PatternTemplate.SINGLE));
+        assertEquals(yaml("pattern_list"), toYaml(PatternTemplate.LIST));
     }
 
     @Test
     void serializeToToml() throws JsonProcessingException {
-        Assertions.assertEquals(toml("pattern"), toToml(PatternTemplate.SINGLE));
+        assertEquals(toml("pattern"), toToml(PatternTemplate.SINGLE));
     }
 
 }

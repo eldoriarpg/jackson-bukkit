@@ -15,18 +15,20 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
+import static be.seeseemelk.mockbukkit.MockBukkit.mock;
+import static be.seeseemelk.mockbukkit.MockBukkit.unmock;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @Disabled
 class LegacyItemStackDeserializerTest implements CoreSerializationTest {
     @BeforeAll
     static void setup() {
-        MockBukkit.mock();
+        mock();
     }
 
     @AfterAll
     static void tearDown() {
-        MockBukkit.unmock();
+        unmock();
     }
 
     @Test

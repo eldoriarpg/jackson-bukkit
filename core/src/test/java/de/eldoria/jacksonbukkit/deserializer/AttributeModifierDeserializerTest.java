@@ -14,25 +14,26 @@ import org.junit.jupiter.api.Test;
 
 import static de.eldoria.jacksonbukkit.templates.AttributeModifierTemplate.LIST;
 import static de.eldoria.jacksonbukkit.templates.AttributeModifierTemplate.SINGLE;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class AttributeModifierDeserializerTest implements CoreSerializationTest {
 
     @Test
     void deserializeFromJson() throws JsonProcessingException {
-        Assertions.assertEquals(AttributeModifierTemplate.SINGLE, fromJson("attribute_modifier", AttributeModifier.class));
-        Assertions.assertEquals(AttributeModifierTemplate.LIST, fromJsonList("attribute_modifier_list", AttributeModifier.class));
+        assertEquals(AttributeModifierTemplate.SINGLE, fromJson("attribute_modifier", AttributeModifier.class));
+        assertEquals(AttributeModifierTemplate.LIST, fromJsonList("attribute_modifier_list", AttributeModifier.class));
     }
 
     @Test
     void deserializeFromYaml() throws JsonProcessingException {
-        Assertions.assertEquals(AttributeModifierTemplate.SINGLE, fromYaml("attribute_modifier", AttributeModifier.class));
-        Assertions.assertEquals(AttributeModifierTemplate.LIST, fromYamlList("attribute_modifier_list", AttributeModifier.class));
+        assertEquals(AttributeModifierTemplate.SINGLE, fromYaml("attribute_modifier", AttributeModifier.class));
+        assertEquals(AttributeModifierTemplate.LIST, fromYamlList("attribute_modifier_list", AttributeModifier.class));
     }
 
     @Test
     void deserializeFromToml() throws JsonProcessingException {
-        Assertions.assertEquals(AttributeModifierTemplate.SINGLE, fromToml("attribute_modifier", AttributeModifier.class));
+        assertEquals(AttributeModifierTemplate.SINGLE, fromToml("attribute_modifier", AttributeModifier.class));
     }
 
 }

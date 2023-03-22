@@ -16,6 +16,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
+import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class ComponentMiniDeserializerTest implements PaperSerializationTest {
@@ -28,13 +29,13 @@ class ComponentMiniDeserializerTest implements PaperSerializationTest {
 
     @Test
     void deserializeToJson() throws JsonProcessingException {
-        Assertions.assertEquals(miniMessage.serialize(ComponentTemplate.SINGLE), miniMessage.serialize(fromJson("component", Component.class)));
+        assertEquals(miniMessage.serialize(ComponentTemplate.SINGLE), miniMessage.serialize(fromJson("component", Component.class)));
         assertEquals(ComponentTemplate.LIST.stream().map(miniMessage::serialize).toList(), fromJsonList("component_list", Component.class).stream().map(miniMessage::serialize).toList());
     }
 
     @Test
     void deserializeToYaml() throws JsonProcessingException {
-        Assertions.assertEquals(miniMessage.serialize(ComponentTemplate.SINGLE), miniMessage.serialize(fromYaml("component", Component.class)));
+        assertEquals(miniMessage.serialize(ComponentTemplate.SINGLE), miniMessage.serialize(fromYaml("component", Component.class)));
         assertEquals(ComponentTemplate.LIST.stream().map(miniMessage::serialize).toList(), fromYamlList("component_list", Component.class).stream().map(miniMessage::serialize).toList());
     }
 

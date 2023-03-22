@@ -14,6 +14,7 @@ import org.junit.jupiter.api.Test;
 
 import static de.eldoria.jacksonbukkit.templates.BoundingBoxTemplate.LIST;
 import static de.eldoria.jacksonbukkit.templates.BoundingBoxTemplate.SINGLE;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 
@@ -22,13 +23,13 @@ class BoundingBoxDeserializerTest implements CoreSerializationTest {
     @Test
     void deserializeFromJson() throws JsonProcessingException {
         assertEquals(BoundingBoxTemplate.SINGLE, fromJson("bounding_box", BoundingBox.class));
-        Assertions.assertEquals(BoundingBoxTemplate.LIST, fromJsonList("bounding_box_list", BoundingBox.class));
+        assertEquals(BoundingBoxTemplate.LIST, fromJsonList("bounding_box_list", BoundingBox.class));
     }
 
     @Test
     void deserializeFromYaml() throws JsonProcessingException {
         assertEquals(BoundingBoxTemplate.SINGLE, fromYaml("bounding_box", BoundingBox.class));
-        Assertions.assertEquals(BoundingBoxTemplate.LIST, fromYamlList("bounding_box_list", BoundingBox.class));
+        assertEquals(BoundingBoxTemplate.LIST, fromYamlList("bounding_box_list", BoundingBox.class));
     }
 
     @Test

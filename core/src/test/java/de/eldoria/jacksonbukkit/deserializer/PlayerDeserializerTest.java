@@ -21,6 +21,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
+import static be.seeseemelk.mockbukkit.MockBukkit.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class PlayerDeserializerTest implements CoreSerializationTest {
@@ -29,7 +30,7 @@ class PlayerDeserializerTest implements CoreSerializationTest {
 
     @BeforeAll
     static void setup() {
-        ServerMock mock = MockBukkit.mock();
+        ServerMock mock = mock();
         PlayerMock player1 = new PlayerMock(mock, "Player1", new UUID(0, 1));
         PlayerMock player2 = new PlayerMock(mock, "Player2", new UUID(0, 2));
         PlayerMock player3 = new PlayerMock(mock, "Player3", new UUID(0, 3));
@@ -44,7 +45,7 @@ class PlayerDeserializerTest implements CoreSerializationTest {
 
     @AfterAll
     static void tearDown() {
-        MockBukkit.unmock();
+        unmock();
     }
 
     @Test

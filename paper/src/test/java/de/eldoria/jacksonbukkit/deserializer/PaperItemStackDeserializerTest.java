@@ -18,6 +18,7 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
+import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @Disabled
@@ -40,18 +41,18 @@ class PaperItemStackDeserializerTest implements PaperSerializationTest {
 
     @Test
     void deserializeToJson() throws JsonProcessingException {
-        Assertions.assertEquals(ItemStackTemplate.SINGLE, fromJson("item_stack_paper", ItemStack.class));
+        assertEquals(ItemStackTemplate.SINGLE, fromJson("item_stack_paper", ItemStack.class));
         assertEquals(ItemStackTemplate.LIST, fromJsonList("item_stack_paper_list", ItemStack.class));
     }
 
     @Test
     void deserializeToYaml() throws JsonProcessingException {
-        Assertions.assertEquals(ItemStackTemplate.SINGLE, fromYaml("item_stack_paper", ItemStack.class));
+        assertEquals(ItemStackTemplate.SINGLE, fromYaml("item_stack_paper", ItemStack.class));
         assertEquals(ItemStackTemplate.LIST, fromYamlList("item_stack_paper_list", ItemStack.class));
     }
 
     @Test
     void deserializeToToml() throws JsonProcessingException {
-        Assertions.assertEquals(ItemStackTemplate.SINGLE, fromToml("item_stack_paper", ItemStack.class));
+        assertEquals(ItemStackTemplate.SINGLE, fromToml("item_stack_paper", ItemStack.class));
     }
 }

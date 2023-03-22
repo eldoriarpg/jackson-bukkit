@@ -19,6 +19,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.UUID;
 
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.spy;
 import static org.mockito.Mockito.when;
 
@@ -46,16 +47,16 @@ public class ComplexPojoDeserializerTest implements PaperSerializationTest {
 
     @Test
     void deserializeFromJson() throws JsonProcessingException {
-        Assertions.assertEquals(ComplexPojoTemplate.SINGLE, fromJson("complex_pojo", ComplexPojoTemplate.ComplexPojo.class));
+        assertEquals(ComplexPojoTemplate.SINGLE, fromJson("complex_pojo", ComplexPojoTemplate.ComplexPojo.class));
     }
 
     @Test
     void deserializeFromYaml() throws JsonProcessingException {
-        Assertions.assertEquals(ComplexPojoTemplate.SINGLE, fromYaml("complex_pojo", ComplexPojoTemplate.ComplexPojo.class));
+        assertEquals(ComplexPojoTemplate.SINGLE, fromYaml("complex_pojo", ComplexPojoTemplate.ComplexPojo.class));
     }
 
     @Test
     void deserializeFromToml() throws JsonProcessingException {
-        Assertions.assertEquals(ComplexPojoTemplate.SINGLE, fromToml("complex_pojo", ComplexPojoTemplate.ComplexPojo.class));
+        assertEquals(ComplexPojoTemplate.SINGLE, fromToml("complex_pojo", ComplexPojoTemplate.ComplexPojo.class));
     }
 }

@@ -21,6 +21,7 @@ import java.lang.reflect.Field;
 import java.util.UUID;
 import java.util.logging.Logger;
 
+import static org.mockito.Mockito.*;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
@@ -32,8 +33,8 @@ class LocationDeserializerTest implements CoreSerializationTest {
 
     @BeforeAll
     static void setup() {
-        server = Mockito.mock(Server.class);
-        world = Mockito.mock(World.class);
+        server = mock(Server.class);
+        world = mock(World.class);
         when(world.getUID()).thenReturn(worldUID);
         when(world.getName()).thenReturn("world");
         when(server.getWorld(worldUID)).thenReturn(world);

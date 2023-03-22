@@ -14,6 +14,7 @@ import org.bukkit.Color;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class RGBAColorDeserializerTest implements PaperSerializationTest {
@@ -24,18 +25,18 @@ class RGBAColorDeserializerTest implements PaperSerializationTest {
 
     @Test
     void deserializeFromJson() throws JsonProcessingException {
-        Assertions.assertEquals(RGBAColorTemplate.SINGLE, fromJson("rgba_color", Color.class));
+        assertEquals(RGBAColorTemplate.SINGLE, fromJson("rgba_color", Color.class));
         assertEquals(RGBAColorTemplate.LIST, fromJsonList("rgba_color_list", Color.class));
     }
 
     @Test
     void deserializeFromYaml() throws JsonProcessingException {
-        Assertions.assertEquals(RGBAColorTemplate.SINGLE, fromYaml("rgba_color", Color.class));
+        assertEquals(RGBAColorTemplate.SINGLE, fromYaml("rgba_color", Color.class));
         assertEquals(RGBAColorTemplate.LIST, fromYamlList("rgba_color_list", Color.class));
     }
 
     @Test
     void deserializeFromToml() throws JsonProcessingException {
-        Assertions.assertEquals(RGBAColorTemplate.SINGLE, fromToml("rgba_color", Color.class));
+        assertEquals(RGBAColorTemplate.SINGLE, fromToml("rgba_color", Color.class));
     }
 }

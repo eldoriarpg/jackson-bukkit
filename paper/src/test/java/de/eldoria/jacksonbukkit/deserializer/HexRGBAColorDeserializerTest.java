@@ -15,6 +15,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
+import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class HexRGBAColorDeserializerTest implements PaperSerializationTest {
@@ -25,13 +26,13 @@ class HexRGBAColorDeserializerTest implements PaperSerializationTest {
 
     @Test
     void deserializeFromJson() throws JsonProcessingException {
-        Assertions.assertEquals(RGBAColorTemplate.SINGLE, fromJson("rgba_color_hex", Color.class));
+        assertEquals(RGBAColorTemplate.SINGLE, fromJson("rgba_color_hex", Color.class));
         assertEquals(RGBAColorTemplate.LIST, fromJsonList("rgba_color_hex_list", Color.class));
     }
 
     @Test
     void deserializeFromYaml() throws JsonProcessingException {
-        Assertions.assertEquals(RGBAColorTemplate.SINGLE, fromYaml("rgba_color_hex", Color.class));
+        assertEquals(RGBAColorTemplate.SINGLE, fromYaml("rgba_color_hex", Color.class));
         assertEquals(RGBAColorTemplate.LIST, fromYamlList("rgba_color_hex_list", Color.class));
     }
 
@@ -39,6 +40,6 @@ class HexRGBAColorDeserializerTest implements PaperSerializationTest {
     @Test
     @Disabled
     void deserializeFromToml() throws JsonProcessingException {
-        Assertions.assertEquals(RGBAColorTemplate.SINGLE, fromToml("rgba_color_hex", Color.class));
+        assertEquals(RGBAColorTemplate.SINGLE, fromToml("rgba_color_hex", Color.class));
     }
 }

@@ -14,24 +14,25 @@ import org.junit.jupiter.api.Test;
 
 import static de.eldoria.jacksonbukkit.templates.BlockVectorTemplate.LIST;
 import static de.eldoria.jacksonbukkit.templates.BlockVectorTemplate.SINGLE;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class BlockVectorDeserializerTest implements CoreSerializationTest {
     @Test
     void deserializeFromJson() throws JsonProcessingException {
-        Assertions.assertEquals(BlockVectorTemplate.SINGLE, fromJson("vector", BlockVector.class));
-        Assertions.assertEquals(BlockVectorTemplate.LIST, fromJsonList("vector_list", BlockVector.class));
+        assertEquals(BlockVectorTemplate.SINGLE, fromJson("vector", BlockVector.class));
+        assertEquals(BlockVectorTemplate.LIST, fromJsonList("vector_list", BlockVector.class));
     }
 
     @Test
     void deserializeFromYaml() throws JsonProcessingException {
-        Assertions.assertEquals(BlockVectorTemplate.SINGLE, fromYaml("vector", BlockVector.class));
-        Assertions.assertEquals(BlockVectorTemplate.LIST, fromYamlList("vector_list", BlockVector.class));
+        assertEquals(BlockVectorTemplate.SINGLE, fromYaml("vector", BlockVector.class));
+        assertEquals(BlockVectorTemplate.LIST, fromYamlList("vector_list", BlockVector.class));
     }
 
     @Test
     void deserializeFromToml() throws JsonProcessingException {
-        Assertions.assertEquals(BlockVectorTemplate.SINGLE, fromToml("vector", BlockVector.class));
+        assertEquals(BlockVectorTemplate.SINGLE, fromToml("vector", BlockVector.class));
     }
 
 }

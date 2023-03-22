@@ -21,6 +21,7 @@ import java.lang.reflect.Field;
 import java.util.UUID;
 import java.util.logging.Logger;
 
+import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
@@ -52,18 +53,18 @@ class LocationSerializerTest implements CoreSerializationTest {
 
     @Test
     void serializeToJson() throws JsonProcessingException {
-        Assertions.assertEquals(json("location"), toJson(LocationTemplate.SINGLE));
-        Assertions.assertEquals(json("location_list"), toJson(LocationTemplate.LIST));
+        assertEquals(json("location"), toJson(LocationTemplate.SINGLE));
+        assertEquals(json("location_list"), toJson(LocationTemplate.LIST));
     }
 
     @Test
     void serializeToYaml() throws JsonProcessingException {
-        Assertions.assertEquals(yaml("location"), toYaml(LocationTemplate.SINGLE));
-        Assertions.assertEquals(yaml("location_list"), toYaml(LocationTemplate.LIST));
+        assertEquals(yaml("location"), toYaml(LocationTemplate.SINGLE));
+        assertEquals(yaml("location_list"), toYaml(LocationTemplate.LIST));
     }
 
     @Test
     void serializeToToml() throws JsonProcessingException {
-        Assertions.assertEquals(toml("location"), toToml(LocationTemplate.SINGLE));
+        assertEquals(toml("location"), toToml(LocationTemplate.SINGLE));
     }
 }
