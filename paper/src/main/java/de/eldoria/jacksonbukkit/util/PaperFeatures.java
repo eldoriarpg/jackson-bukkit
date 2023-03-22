@@ -5,6 +5,7 @@
  */
 package de.eldoria.jacksonbukkit.util;
 
+import net.kyori.adventure.text.minimessage.MiniMessage;
 import org.bukkit.Color;
 import org.bukkit.inventory.ItemStack;
 
@@ -21,6 +22,10 @@ public class PaperFeatures {
      * True when {@link ItemStack} supports {@code ItemStack#serializeAsBytes()}
      */
     public static final boolean HAS_SERIALIZE_AS_BYTES;
+    /**
+     * True when minimessages is present
+     */
+    public static final boolean HAS_MINI_MESSAGE;
 
     static {
         // Check if this version supports ARGB colors (1.19+)
@@ -28,5 +33,13 @@ public class PaperFeatures {
 
         // Check if this version supports byte serialization (1.16+)
         HAS_SERIALIZE_AS_BYTES = Reflections.methodExists(ItemStack.class, "serializeAsBytes");
+
+        boolean hasMiniMessage = true;
+        try {
+            Class.forName(MiniMessage.class.getName());
+        } catch (ClassNotFoundException e) {
+            hasMiniMessage = false;
+        }
+        HAS_MINI_MESSAGE = hasMiniMessage;
     }
 }

@@ -5,19 +5,22 @@
  */
 package de.eldoria.jacksonbukkit;
 
+import com.fasterxml.jackson.databind.JsonDeserializer;
+import com.fasterxml.jackson.databind.JsonSerializer;
 import com.fasterxml.jackson.databind.module.SimpleDeserializers;
 import com.fasterxml.jackson.databind.module.SimpleSerializers;
 import de.eldoria.jacksonbukkit.builder.JacksonPaperBuilder;
-import de.eldoria.jacksonbukkit.deserializer.ComponentMiniDeserializer;
+import de.eldoria.jacksonbukkit.deserializer.ComponentGsonDeserializer;
 import de.eldoria.jacksonbukkit.deserializer.HexRGBAColorDeserializer;
+import de.eldoria.jacksonbukkit.deserializer.LegacyItemStackDeserializer;
 import de.eldoria.jacksonbukkit.deserializer.PaperItemStackDeserializer;
 import de.eldoria.jacksonbukkit.deserializer.RGBAColorDeserializer;
-import de.eldoria.jacksonbukkit.serializer.ComponentMiniSerializer;
+import de.eldoria.jacksonbukkit.serializer.ComponentGsonSerializer;
 import de.eldoria.jacksonbukkit.serializer.HexPaperColorSerializer;
+import de.eldoria.jacksonbukkit.serializer.LegacyItemStackSerializer;
 import de.eldoria.jacksonbukkit.serializer.PaperColorSerializer;
 import de.eldoria.jacksonbukkit.serializer.PaperItemStackSerializer;
 import net.kyori.adventure.text.Component;
-import net.kyori.adventure.text.minimessage.MiniMessage;
 import org.bukkit.Color;
 import org.bukkit.FireworkEffect;
 import org.bukkit.Location;
@@ -32,9 +35,6 @@ import org.bukkit.util.BlockVector;
 import org.bukkit.util.BoundingBox;
 import org.bukkit.util.Vector;
 import org.jetbrains.annotations.ApiStatus;
-import org.jetbrains.annotations.Nullable;
-
-import java.util.function.Supplier;
 
 /**
  * Class adding support for classes implementing {@link ConfigurationSerializable}.
@@ -61,20 +61,22 @@ import java.util.function.Supplier;
  */
 public class JacksonPaper extends JacksonBukkitModule {
     private final boolean legacyItemStackSerialization;
-    private final Supplier<@Nullable MiniMessage> miniMessage;
+    private final JsonDeserializer<Component> componentDeserializer;
+    private final JsonSerializer<Component> componentSerializer;
 
     /**
      * Create a new JacksonPaper module.
      *
      * @param hexColors                    true to serialize colors as hex by default
      * @param legacyItemStackSerialization true to use spigot based serialization
-     * @param miniMessage                  supplier for a mini message instance
      */
     @ApiStatus.Internal
-    public JacksonPaper(boolean hexColors, boolean legacyItemStackSerialization, Supplier<@Nullable MiniMessage> miniMessage) {
+    public JacksonPaper(boolean hexColors, boolean legacyItemStackSerialization,
+                        JsonDeserializer<Component> componentDeserializer, JsonSerializer<Component> componentSerializer) {
         super(hexColors);
         this.legacyItemStackSerialization = legacyItemStackSerialization;
-        this.miniMessage = miniMessage;
+        this.componentDeserializer = componentDeserializer;
+        this.componentSerializer = componentSerializer;
     }
 
     /**
@@ -84,7 +86,8 @@ public class JacksonPaper extends JacksonBukkitModule {
     public JacksonPaper() {
         super(false);
         legacyItemStackSerialization = false;
-        miniMessage = MiniMessage::miniMessage;
+        componentDeserializer = new ComponentGsonDeserializer();
+        componentSerializer = new ComponentGsonSerializer();
     }
 
     /**
@@ -105,21 +108,21 @@ public class JacksonPaper extends JacksonBukkitModule {
     protected void registerSerializer(SimpleSerializers serializers) {
         if (!legacyItemStackSerialization) {
             serializers.addSerializer(ItemStack.class, new PaperItemStackSerializer());
+        }else {
+            serializers.addSerializer(ItemStack.class, new LegacyItemStackSerializer());
         }
         serializers.addSerializer(Color.class, hexColors ? new HexPaperColorSerializer() : new PaperColorSerializer());
-        if (miniMessage.get() != null) {
-            serializers.addSerializer(Component.class, new ComponentMiniSerializer(miniMessage.get()));
-        }
+        serializers.addSerializer(Component.class, componentSerializer);
     }
 
     @Override
     protected void registerDeserializer(SimpleDeserializers deserializers) {
         if (!legacyItemStackSerialization) {
             deserializers.addDeserializer(ItemStack.class, new PaperItemStackDeserializer());
+        }else {
+            deserializers.addDeserializer(ItemStack.class, new LegacyItemStackDeserializer());
         }
         deserializers.addDeserializer(Color.class, hexColors ? new HexRGBAColorDeserializer() : new RGBAColorDeserializer());
-        if (miniMessage.get() != null) {
-            deserializers.addDeserializer(Component.class, new ComponentMiniDeserializer(miniMessage.get()));
-        }
+        deserializers.addDeserializer(Component.class, componentDeserializer);
     }
 }

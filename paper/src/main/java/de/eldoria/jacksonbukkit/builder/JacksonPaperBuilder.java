@@ -5,19 +5,38 @@
  */
 package de.eldoria.jacksonbukkit.builder;
 
+import com.fasterxml.jackson.databind.JsonDeserializer;
+import com.fasterxml.jackson.databind.JsonSerializer;
 import de.eldoria.jacksonbukkit.JacksonPaper;
+import de.eldoria.jacksonbukkit.deserializer.ComponentGsonDeserializer;
+import de.eldoria.jacksonbukkit.deserializer.ComponentMiniMessageDeserializer;
+import de.eldoria.jacksonbukkit.serializer.ComponentGsonSerializer;
+import de.eldoria.jacksonbukkit.serializer.ComponentMiniMessageSerializer;
+import de.eldoria.jacksonbukkit.util.PaperFeatures;
+import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.minimessage.MiniMessage;
 import org.bukkit.configuration.serialization.ConfigurationSerializable;
-import org.jetbrains.annotations.Nullable;
-
-import java.util.function.Supplier;
 
 /**
  * Class to build a {@link JacksonPaper} module.
  */
 public class JacksonPaperBuilder extends ModuleBuilder<JacksonPaperBuilder, JacksonPaper> {
     private boolean legacyItemStackSerialization = false;
-    private Supplier<MiniMessage> miniMessage = MiniMessage::miniMessage;
+    private JsonSerializer<Component> componentJsonSerializer;
+    private JsonDeserializer<Component> componentJsonDeserializer;
+
+    /**
+     * Create a new builder instance
+     */
+    public JacksonPaperBuilder() {
+        if (PaperFeatures.HAS_MINI_MESSAGE) {
+            componentJsonDeserializer = new ComponentMiniMessageDeserializer();
+            componentJsonSerializer = new ComponentMiniMessageSerializer();
+        } else {
+            componentJsonSerializer = new ComponentGsonSerializer();
+            componentJsonDeserializer = new ComponentGsonDeserializer();
+        }
+    }
 
     /**
      * Use legacy serializer which serializes the item stack as a map via {@link ConfigurationSerializable}.
@@ -37,25 +56,25 @@ public class JacksonPaperBuilder extends ModuleBuilder<JacksonPaperBuilder, Jack
      * @param miniMessage mini message instance. Providing null will disable component serialization.
      * @return builder instance
      */
-    public JacksonPaperBuilder withMiniMessages(Supplier<@Nullable MiniMessage> miniMessage) {
-        this.miniMessage = miniMessage;
+    public JacksonPaperBuilder withMiniMessages(MiniMessage miniMessage) {
+        this.componentJsonSerializer = new ComponentMiniMessageSerializer(miniMessage);
+        this.componentJsonDeserializer = new ComponentMiniMessageDeserializer(miniMessage);
         return this;
     }
 
     /**
-     * Disable component support via mini messages.
-     * <p>
-     * This is equal to calling {@link #withMiniMessages(Supplier)} and providing {@code null}
+     * Use mini message for deserialization. This is usually the default behaviour when mini messages is present.
      *
      * @return builder instance
      */
-    public JacksonPaperBuilder withoutComponentSupport() {
-        miniMessage = () -> null;
+    public JacksonPaperBuilder withMiniMessages() {
+        this.componentJsonSerializer = new ComponentMiniMessageSerializer();
+        this.componentJsonDeserializer = new ComponentMiniMessageDeserializer();
         return this;
     }
 
     @Override
     public JacksonPaper build() {
-        return new JacksonPaper(hexColors, legacyItemStackSerialization, miniMessage);
+        return new JacksonPaper(hexColors, legacyItemStackSerialization, componentJsonDeserializer, componentJsonSerializer);
     }
 }

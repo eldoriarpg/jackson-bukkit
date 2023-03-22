@@ -12,14 +12,12 @@ import de.eldoria.jacksonbukkit.PaperSerializationTest;
 import de.eldoria.jacksonbukkit.templates.ComponentTemplate;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.minimessage.MiniMessage;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class ComponentMiniDeserializerTest implements PaperSerializationTest {
+class ComponentDeserializerTest implements PaperSerializationTest {
     MiniMessage miniMessage = MiniMessage.miniMessage();
 
     @Override

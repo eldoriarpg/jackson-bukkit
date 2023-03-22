@@ -11,7 +11,7 @@ plugins {
 }
 
 group = "de.eldoria.jacksonbukkit"
-version = "1.0.2"
+version = "1.1.0"
 
 dependencies {
     implementation(project(":paper"))
