@@ -6,6 +6,34 @@
 
 ### [Javadocs](https://eldoriarpg.github.io/jackson-bukkit/)
 
+This is a module supporting serialization of common bukkit objects and some more on Spigot and Paper servers.
+The library should always support every version between 1.13 and the latest minecraft version. 
+We do not use any NMS, therefore it should not be required to update this library often.
+It might work on earlier versions as well, but we do not check for this.
+The library takes format changes into account between versions. 
+It is therefore safe to read old data on a newer version.
+Reading new data on an older version is not explicitly supported.
+
+We provide two modules for Bukkit/Spigot and one for Paper.
+To use the full feature set we recommend Paper.
+Make sure to use the Paper module when your plugin is running on paper.
+Switching from Spigot to Paper will always work, but going back might cause errors.
+
+### Known and implemented changes
+
+Those are the format changes we support when updating to a newer version.
+The deserializer detect the current used format automatically and will parse it into the requested type.
+When serializing the data the currently used serializer will be used. 
+
+#### General
+
+- In 1.16 the type of PotionEffect changed from a numeric integer to a namespaced key.
+
+#### Paper
+
+- In 1.16 Paper added the `serializeAsBytes` method to item stacks. This method will be used by default when available.
+- In 1.19 Paper added an alpha value to `Color`. The value will be automatically added.
+
 ## Dependency
 
 **Gradle**

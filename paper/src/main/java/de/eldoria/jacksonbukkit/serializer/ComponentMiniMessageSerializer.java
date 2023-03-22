@@ -29,10 +29,10 @@ public class ComponentMiniMessageSerializer extends JsonSerializer<Component> {
         this.miniMessage = miniMessage;
     }
 
-        /**
+    /**
      * Creates a new serializer
      */
-public ComponentMiniMessageSerializer() {
+    public ComponentMiniMessageSerializer() {
         this.miniMessage = MiniMessage.miniMessage();
     }
 
