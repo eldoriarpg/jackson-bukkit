@@ -16,14 +16,15 @@ import de.eldoria.jacksonbukkit.util.PaperFeatures;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.minimessage.MiniMessage;
 import org.bukkit.configuration.serialization.ConfigurationSerializable;
+import org.jetbrains.annotations.Nullable;
 
 /**
  * Class to build a {@link JacksonPaper} module.
  */
 public class JacksonPaperBuilder extends ModuleBuilder<JacksonPaperBuilder, JacksonPaper> {
     private boolean legacyItemStackSerialization = false;
-    private JsonSerializer<Component> componentJsonSerializer;
-    private JsonDeserializer<Component> componentJsonDeserializer;
+    private @Nullable JsonSerializer<Component> componentJsonSerializer;
+    private @Nullable JsonDeserializer<Component> componentJsonDeserializer;
 
     /**
      * Create a new builder instance
@@ -32,7 +33,7 @@ public class JacksonPaperBuilder extends ModuleBuilder<JacksonPaperBuilder, Jack
         if (PaperFeatures.HAS_MINI_MESSAGE) {
             componentJsonDeserializer = new ComponentMiniMessageDeserializer();
             componentJsonSerializer = new ComponentMiniMessageSerializer();
-        } else {
+        } else if (PaperFeatures.HAS_ADVENTURE) {
             componentJsonSerializer = new ComponentGsonSerializer();
             componentJsonDeserializer = new ComponentGsonDeserializer();
         }
@@ -63,7 +64,7 @@ public class JacksonPaperBuilder extends ModuleBuilder<JacksonPaperBuilder, Jack
     }
 
     /**
-     * Use mini message for deserialization. This is usually the default behaviour when mini messages is present.
+     * Use mini message for deserialization. This is the default behaviour when mini messages is present.
      *
      * @return builder instance
      */

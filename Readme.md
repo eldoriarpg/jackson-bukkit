@@ -120,11 +120,11 @@ The builder allows to use spigots serialization on paper servers as well, but th
 When creating a [paper plugin](https://docs.papermc.io/paper/reference/paper-plugins) the `JacksonBukkit` module is no longer able to serialize `ItemStacks`.
 You need to use `JacksonPaper` in that case and make sure that you are not using legacy serialization.
 
-| Class     | Paper                                     | Spigot         |
-|-----------|-------------------------------------------|----------------|
-| Color     | RGB or HEX RGB < 1.19 <= RGBA or HEX RGBA | RGB or HEX RGB |
-| ItemStack | legacy Map < 1.16 <= NBT byte array       | Legacy Map     |
-| Component | MiniMessage String                        | Nope c:        |
+| Class     | Paper                                                                   | Spigot         |
+|-----------|-------------------------------------------------------------------------|----------------|
+| Color     | RGB or HEX RGB < 1.19 <= RGBA or HEX RGBA                               | RGB or HEX RGB |
+| ItemStack | legacy Map < 1.16 <= NBT byte array                                     | Legacy Map     |
+| Component | MiniMessage String when MiniMessages is present. Otherwise Json Object. | Nope c:        |
 
 ### More customization
 

@@ -5,6 +5,7 @@
  */
 package de.eldoria.jacksonbukkit.util;
 
+import net.kyori.adventure.Adventure;
 import net.kyori.adventure.text.minimessage.MiniMessage;
 import org.bukkit.Color;
 import org.bukkit.inventory.ItemStack;
@@ -23,9 +24,14 @@ public class PaperFeatures {
      */
     public static final boolean HAS_SERIALIZE_AS_BYTES;
     /**
-     * True when minimessages is present
+     * True when MiniMessages is present
      */
     public static final boolean HAS_MINI_MESSAGE;
+
+    /**
+     * True when Adventure is present
+     */
+    public static final boolean HAS_ADVENTURE;
 
     static {
         // Check if this version supports ARGB colors (1.19+)
@@ -36,10 +42,20 @@ public class PaperFeatures {
 
         boolean hasMiniMessage = true;
         try {
+            // Use class directly. This does not break on relocation.
             Class.forName(MiniMessage.class.getName());
         } catch (ClassNotFoundException e) {
             hasMiniMessage = false;
         }
         HAS_MINI_MESSAGE = hasMiniMessage;
+
+        boolean hasAdventure = true;
+        try {
+            // Use class directly. This does not break on relocation.
+            Class.forName(Adventure.class.getName());
+        } catch (ClassNotFoundException e) {
+            hasAdventure = false;
+        }
+        HAS_ADVENTURE = hasAdventure;
     }
 }
