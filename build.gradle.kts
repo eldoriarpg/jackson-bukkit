@@ -13,7 +13,7 @@ plugins {
 group = "de.eldoria.jacksonbukkit"
 version = "1.1.0"
 
-val publicProjects = setOf("core", "bukkit", "paper")
+val publicProjects = setOf("core", "bukkit", "paper", "jackson-bukkit")
 
 dependencies {
     api(project(":paper"))
