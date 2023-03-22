@@ -32,6 +32,8 @@ When serializing the data the currently used serializer will be used.
 #### Paper
 
 - In 1.16 Paper added the `serializeAsBytes` method to item stacks. This method will be used by default when available.
+- In 1.16 Paper added Adventure. If you haven't shaded it yet, you are now able to serialize Components as Objects.
+- In 1.18.2 Paper included MiniMessages. If you haven't shaded it yet, Components will be serialized using MiniMessages from here on.
 - In 1.19 Paper added an alpha value to `Color`. The value will be automatically added.
 
 ## Dependency
