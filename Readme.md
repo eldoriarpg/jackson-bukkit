@@ -27,11 +27,13 @@ When serializing the data the currently used serializer will be used.
 
 #### General
 
-- In 1.16 the type of PotionEffect changed from a numeric integer to a namespaced key.
+- In 1.18 the type of PotionEffect changed from a numeric integer to a namespaced key.
 
 #### Paper
 
 - In 1.16 Paper added the `serializeAsBytes` method to item stacks. This method will be used by default when available.
+- In 1.16 Paper added Adventure. If you haven't shaded it yet, you are now able to serialize Components as Objects.
+- In 1.18.2 Paper included MiniMessages. If you haven't shaded it yet, Components will be serialized using MiniMessages from here on.
 - In 1.19 Paper added an alpha value to `Color`. The value will be automatically added.
 
 ## Dependency
@@ -92,17 +94,17 @@ Builder for spigot and paper can both be accessed via the corresponding class.
 ### Creating a Spigot/Bukkit Module
 
 ```java
-    ObjectMapper JSON=JsonMapper.builder()
-        .addModule(JacksonBukkit.builder().build())
-        .build();
+ObjectMapper JSON = JsonMapper.builder()
+    .addModule(JacksonBukkit.builder().build())
+    .build();
 ```
 
 ### Creating a Paper Module
 
 ```java
-    ObjectMapper JSON=JsonMapper.builder()
-        .addModule(JacksonPaper.builer().build())
-        .build();
+ObjectMapper JSON = JsonMapper.builder()
+    .addModule(JacksonPaper.builer().build())
+    .build();
 ```
 
 Of course, you can use TOML or YAML or whatever else jackson supports as well

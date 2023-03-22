@@ -25,12 +25,6 @@ import java.util.Map;
 public class ComponentGsonDeserializer extends JsonDeserializer<Component> {
     private static final Gson GSON = new Gson();
 
-    /**
-     * Creates a new serializer
-     */
-    public ComponentGsonDeserializer() {
-    }
-
     @Override
     public Component deserialize(JsonParser p, DeserializationContext ctxt) throws IOException {
         JsonNode tree = ctxt.readTree(p);

@@ -1,5 +1,5 @@
 dependencies {
-    implementation(project(":core"))
+    api(project(":core"))
     compileOnly("org.spigotmc", "spigot-api", "1.13.2-R0.1-SNAPSHOT")
 
     testImplementation(project(":core"))

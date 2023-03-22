@@ -107,22 +107,14 @@ public class JacksonPaper extends JacksonBukkitModule {
 
     @Override
     protected void registerSerializer(SimpleSerializers serializers) {
-        if (!legacyItemStackSerialization) {
-            serializers.addSerializer(ItemStack.class, new PaperItemStackSerializer());
-        } else {
-            serializers.addSerializer(ItemStack.class, new LegacyItemStackSerializer());
-        }
+        serializers.addSerializer(ItemStack.class, !legacyItemStackSerialization ? new PaperItemStackSerializer() : new LegacyItemStackSerializer());
         serializers.addSerializer(Color.class, hexColors ? new HexPaperColorSerializer() : new PaperColorSerializer());
         if (componentSerializer != null) serializers.addSerializer(Component.class, componentSerializer);
     }
 
     @Override
     protected void registerDeserializer(SimpleDeserializers deserializers) {
-        if (!legacyItemStackSerialization) {
-            deserializers.addDeserializer(ItemStack.class, new PaperItemStackDeserializer());
-        } else {
-            deserializers.addDeserializer(ItemStack.class, new LegacyItemStackDeserializer());
-        }
+        deserializers.addDeserializer(ItemStack.class, !legacyItemStackSerialization ? new PaperItemStackDeserializer() : new LegacyItemStackDeserializer());
         deserializers.addDeserializer(Color.class, hexColors ? new HexRGBAColorDeserializer() : new RGBAColorDeserializer());
         if (componentDeserializer != null) deserializers.addDeserializer(Component.class, componentDeserializer);
     }
