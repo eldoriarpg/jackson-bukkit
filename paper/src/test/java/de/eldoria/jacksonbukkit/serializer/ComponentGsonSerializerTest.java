@@ -6,7 +6,6 @@ import de.eldoria.jacksonbukkit.JacksonPaper;
 import de.eldoria.jacksonbukkit.PaperSerializationTest;
 import de.eldoria.jacksonbukkit.deserializer.ComponentGsonDeserializer;
 import de.eldoria.jacksonbukkit.templates.ComponentTemplate;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
