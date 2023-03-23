@@ -12,3 +12,16 @@ dependencies {
     implementation(project(":testing"))
     testImplementation("com.github.seeseemelk", "MockBukkit-v1.19", "2.29.0")
 }
+
+
+/*
+ * todo What to test
+ *
+ *
+ * - GsonComponentDeSerializer and serializer (/)
+ * - ComponentMiniMessageDeserializer, test upgrade from legacy to mini
+ *
+ * - RGBAColorDeserializer, if alpha is absent -> spy   DeserializationContext#readTreeAsValue is called with RGBColorWrapper, else with RGBAColorWrapper
+ * - HexRGBAColorDeserializer, if is RGBA PaperFeature is absent -> Color should have 255, else the one configured
+ *
+ */
