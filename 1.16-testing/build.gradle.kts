@@ -12,11 +12,3 @@ dependencies {
     implementation(project(":testing"))
     testImplementation("com.github.seeseemelk", "MockBukkit-v1.19", "2.29.0")
 }
-
-
-/*
- * todo What to test
- *
- * - ComponentMiniMessageDeserializer, test upgrade from legacy to mini
- *
- */
