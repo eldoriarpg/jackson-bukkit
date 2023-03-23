@@ -17,11 +17,6 @@ dependencies {
 /*
  * todo What to test
  *
- *
- * - GsonComponentDeSerializer and serializer (/)
  * - ComponentMiniMessageDeserializer, test upgrade from legacy to mini
- *
- * - RGBAColorDeserializer, if alpha is absent -> spy   DeserializationContext#readTreeAsValue is called with RGBColorWrapper, else with RGBAColorWrapper
- * - HexRGBAColorDeserializer, if is RGBA PaperFeature is absent -> Color should have 255, else the one configured
  *
  */
