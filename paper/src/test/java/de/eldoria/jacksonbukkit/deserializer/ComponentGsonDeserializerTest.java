@@ -1,3 +1,8 @@
+/*
+ *     SPDX-License-Identifier: MIT
+ *
+ *     Copyright (C) EldoriaRPG Team and Contributor
+ */
 package de.eldoria.jacksonbukkit.deserializer;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -33,10 +38,8 @@ class ComponentGsonDeserializerTest implements PaperSerializationTest {
         assertEquals(ComponentTemplate.LIST, fromYamlList("gson_component_list", Component.class));
     }
 
-    // toml can't c:
     @Test
     void deserializeToToml() throws JsonProcessingException {
         assertEquals(ComponentTemplate.SINGLE, fromToml("gson_component", Component.class));
     }
-
 }
