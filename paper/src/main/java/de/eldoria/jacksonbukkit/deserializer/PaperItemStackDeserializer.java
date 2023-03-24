@@ -25,6 +25,6 @@ public class PaperItemStackDeserializer extends LegacyItemStackDeserializer {
             byte[] decode = Base64.getDecoder().decode(ctxt.readValue(p, String.class));
             return ItemStack.deserializeBytes(decode);
         }
-        return super.deserialize(p, ctxt);
+        return parseTree(tree, ctxt);
     }
 }
