@@ -8,6 +8,7 @@ plugins {
     `java-library`
     id("com.diffplug.spotless") version "6.17.0"
     id("de.chojo.publishdata") version "1.2.4"
+    jacoco
 }
 
 group = "de.eldoria.jacksonbukkit"
@@ -27,6 +28,7 @@ allprojects {
         plugin<JavaPlugin>()
         plugin<MavenPublishPlugin>()
         plugin<PublishData>()
+        plugin<JacocoPlugin>()
     }
 
     repositories {
@@ -66,6 +68,51 @@ allprojects {
         java {
             licenseHeaderFile(rootProject.file("HEADER.txt"))
             target("**/*.java")
+        }
+    }
+
+
+
+    jacoco {
+        toolVersion = "0.8.8"
+    }
+
+
+    tasks.test {
+        finalizedBy(tasks.jacocoTestReport)
+    }
+    tasks.jacocoTestReport {
+        dependsOn(tasks.test)
+    }
+    tasks.jacocoTestReport {
+        reports {
+            xml.required.set(false)
+            csv.required.set(true)
+            html.required.set(false)
+        }
+    }
+
+
+
+    tasks.jacocoTestCoverageVerification {
+        violationRules {
+            rule {
+                limit {
+                    minimum = "0.8".toBigDecimal()
+                }
+            }
+
+            rule {
+                isEnabled = false
+                element = "CLASS"
+                includes = listOf("org.gradle.*")
+
+                limit {
+                    counter = "LINE"
+                    value = "TOTALCOUNT"
+                    maximum = "0.8".toBigDecimal()
+                }
+            }
         }
     }
 

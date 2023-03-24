@@ -3,7 +3,9 @@
 ![Sonatype Nexus (Releases)](https://img.shields.io/nexus/maven-releases/de.eldoria.jacksonbukkit/jackson-bukkit?label=Release&logo=Release&server=https%3A%2F%2Feldonexus.de&style=for-the-badge)
 ![Sonatype Nexus (Development)](https://img.shields.io/nexus/maven-dev/de.eldoria.jacksonbukkit/jackson-bukkit?label=DEV&logo=Release&server=https%3A%2F%2Feldonexus.de&style=for-the-badge)
 ![Sonatype Nexus (Snapshots)](https://img.shields.io/nexus/s/de.eldoria.jacksonbukkit/jackson-bukkit?color=orange&label=Snapshot&server=https%3A%2F%2Feldonexus.de&style=for-the-badge)\
-![Times wasted](https://wakatime.com/badge/github/eldoriarpg/jackson-bukkit.svg)
+![Times wasted](https://wakatime.com/badge/github/eldoriarpg/jackson-bukkit.svg)\
+![Branches](.github/badges/branches.svg)
+![Jacoco](.github/badges/jacoco.svg)
 ### [Javadocs](https://eldoriarpg.github.io/jackson-bukkit/)
 
 This is a module supporting serialization of common bukkit objects and some more on Spigot and Paper servers.
