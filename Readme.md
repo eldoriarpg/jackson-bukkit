@@ -1,9 +1,15 @@
-![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/eldoriarpg/jackson-bukkit/verify.yml?branch=main&style=for-the-badge&label=Building)
-![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/eldoriarpg/jackson-bukkit/publish_to_nexus.yml?branch=main&style=for-the-badge&label=Publishing) \
-![Sonatype Nexus (Releases)](https://img.shields.io/nexus/maven-releases/de.eldoria.jacksonbukkit/jackson-bukkit?label=Release&logo=Release&server=https%3A%2F%2Feldonexus.de&style=for-the-badge)
-![Sonatype Nexus (Development)](https://img.shields.io/nexus/maven-dev/de.eldoria.jacksonbukkit/jackson-bukkit?label=DEV&logo=Release&server=https%3A%2F%2Feldonexus.de&style=for-the-badge)
-![Sonatype Nexus (Snapshots)](https://img.shields.io/nexus/s/de.eldoria.jacksonbukkit/jackson-bukkit?color=orange&label=Snapshot&server=https%3A%2F%2Feldonexus.de&style=for-the-badge)\
-![Times wasted](https://wakatime.com/badge/github/eldoriarpg/jackson-bukkit.svg)\
+![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/eldoriarpg/jackson-bukkit/verify.yml?branch=main&style=flat-square&label=Building)
+![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/eldoriarpg/jackson-bukkit/publish_to_nexus.yml?branch=main&style=flat-square&label=Publishing) 
+
+![Sonatype Nexus (Releases)](https://img.shields.io/nexus/maven-releases/de.eldoria.jacksonbukkit/jackson-bukkit?label=Release&logo=Release&server=https%3A%2F%2Feldonexus.de&style=flat-square)
+![Sonatype Nexus (Development)](https://img.shields.io/nexus/maven-dev/de.eldoria.jacksonbukkit/jackson-bukkit?label=DEV&logo=Release&server=https%3A%2F%2Feldonexus.de&style=flat-square)
+![Sonatype Nexus (Snapshots)](https://img.shields.io/nexus/s/de.eldoria.jacksonbukkit/jackson-bukkit?color=orange&label=Snapshot&server=https%3A%2F%2Feldonexus.de&style=flat-square)
+
+![Times wasted](https://wakatime.com/badge/github/eldoriarpg/jackson-bukkit.svg?style=flat-square)
+![Last Commit](https://img.shields.io/github/last-commit/eldoriarpg/jackson-bukkit?style=flat-square)
+[![Discord](https://img.shields.io/discord/718502316940066927?label=Discord&logo=Discord&style=flat-square)](https://discord.com/invite/rfRuUge)
+![](https://img.shields.io/github/languages/top/eldoriarpg/jackson-bukkit?style=flat-square)
+
 ![Branches](.github/badges/branches.svg)
 ![Jacoco](.github/badges/jacoco.svg)
 
