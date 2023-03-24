@@ -183,33 +183,6 @@ allprojects {
     }
 }
 
-dependencies {
-
-    compileOnly("io.papermc.paper", "paper-api", "1.19.4-R0.1-SNAPSHOT")
-
-
-    // minecraft testing
-    testImplementation("com.github.seeseemelk", "MockBukkit-v1.19", "2.29.0")
-    testCompileOnly("io.papermc.paper", "paper-api", "1.16.2-R0.1-SNAPSHOT")
-
-
-}
-
-
-
-tasks {
-    javadoc {
-        val options = options as StandardJavadocDocletOptions
-        options.encoding = CharEncoding.UTF_8
-        options.links(
-            "https://javadoc.io/doc/com.fasterxml.jackson.core/jackson-core/latest/",
-            "https://javadoc.io/doc/com.fasterxml.jackson.core/jackson-annotations/latest",
-            "https://javadoc.io/doc/com.fasterxml.jackson.core/jackson-databind/latest",
-            "https://jd.papermc.io/paper/1.19/",
-        )
-    }
-}
-
 fun applyJavaDocOptions(options: MinimalJavadocOptions) {
     val javaDocOptions = options as StandardJavadocDocletOptions
     javaDocOptions.links(
