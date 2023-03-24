@@ -12,7 +12,7 @@ plugins {
 }
 
 group = "de.eldoria.jacksonbukkit"
-version = "1.1.0"
+version = "1.1.1"
 
 val publicProjects = setOf("core", "bukkit", "paper", "jackson-bukkit")
 
