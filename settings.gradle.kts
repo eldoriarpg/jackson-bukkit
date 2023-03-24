@@ -8,3 +8,8 @@ pluginManagement{
         maven("https://repo.papermc.io/repository/maven-public/")
     }
 }
+include("bukkit")
+include("core")
+include("paper")
+include("testing")
+include("1.16-testing")
