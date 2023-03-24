@@ -1,7 +1,16 @@
 #!/usr/bin/env bash
-touch $PWD/$1/src/test/resources/json/$2.json
-touch $PWD/$1/src/test/resources/json/$2_list.json
-touch $PWD/$1/src/test/resources/yaml/$2.yaml
-touch $PWD/$1/src/test/resources/yaml/$2_list.yaml
-touch $PWD/$1/src/test/resources/toml/$2.toml
-touch $PWD/$1/src/test/resources/toml/$2_list.toml
+
+if [ $# -ne 3 ]; then
+  echo "$0 <module> <main|test> <name>"
+  exit 0
+fi
+
+
+touch $PWD/$1/src/$2/resources/json/$3.json
+touch $PWD/$1/src/$2/resources/json/$3_list.json
+touch $PWD/$1/src/$2/resources/yaml/$3.yaml
+touch $PWD/$1/src/$2/resources/yaml/$3_list.yaml
+touch $PWD/$1/src/$2/resources/toml/$3.toml
+touch $PWD/$1/src/$2/resources/toml/$3_list.toml
+
+exit 0

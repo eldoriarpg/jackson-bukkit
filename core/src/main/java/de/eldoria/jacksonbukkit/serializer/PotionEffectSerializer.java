@@ -22,7 +22,7 @@ import java.io.IOException;
  */
 public class PotionEffectSerializer extends JsonSerializer<PotionEffect> {
 
-    private static final boolean LEGACY;
+    public static final boolean LEGACY;
 
     static {
         LEGACY = !Reflections.methodExists(PotionEffectType.class, "getByKey", NamespacedKey.class);

@@ -8,6 +8,7 @@ package de.eldoria.jacksonbukkit.deserializer;
 import be.seeseemelk.mockbukkit.MockBukkit;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import de.eldoria.jacksonbukkit.CoreSerializationTest;
+import de.eldoria.jacksonbukkit.serializer.PotionEffectSerializer;
 import de.eldoria.jacksonbukkit.templates.PotionEffectTemplate;
 import org.bukkit.potion.PotionEffect;
 import org.junit.jupiter.api.AfterAll;
@@ -27,6 +28,11 @@ class PotionEffectDeserializerTest implements CoreSerializationTest {
     @AfterAll
     static void tearDown() {
         MockBukkit.unmock();
+    }
+
+    @Test
+    void notLegacy() {
+        assertFalse(PotionEffectSerializer.LEGACY);
     }
 
     @Test
