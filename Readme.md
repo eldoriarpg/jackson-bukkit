@@ -6,6 +6,7 @@
 ![Times wasted](https://wakatime.com/badge/github/eldoriarpg/jackson-bukkit.svg)\
 ![Branches](.github/badges/branches.svg)
 ![Jacoco](.github/badges/jacoco.svg)
+
 ### [Javadocs](https://eldoriarpg.github.io/jackson-bukkit/)
 
 This is a module supporting serialization of common bukkit objects and some more on Spigot and Paper servers.
