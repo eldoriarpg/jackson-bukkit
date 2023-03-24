@@ -1,0 +1,7 @@
+---
+extra:
+- text: " "
+- bold: true
+  color: "aqua"
+  text: "text"
+text: "Awesome"
