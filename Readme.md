@@ -112,7 +112,7 @@ ObjectMapper JSON = JsonMapper.builder()
 
 ```java
 ObjectMapper JSON = JsonMapper.builder()
-    .addModule(JacksonPaper.builer().build())
+    .addModule(JacksonPaper.builder().build())
     .build();
 ```
 
