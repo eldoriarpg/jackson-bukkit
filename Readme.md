@@ -56,9 +56,9 @@ repositories {
 
 dependencies {
     // Spigot server
-    compileOnly("de.eldoria.jacksonbukkit", "spigot", "version")
+    implementation("de.eldoria.jacksonbukkit", "spigot", "version")
     // Paper server
-    compileOnly("de.eldoria.jacksonbukkit", "paper", "version")
+    implementation("de.eldoria.jacksonbukkit", "paper", "version")
 }
 ```
 
