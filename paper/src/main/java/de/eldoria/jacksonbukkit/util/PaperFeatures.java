@@ -6,6 +6,7 @@
 package de.eldoria.jacksonbukkit.util;
 
 import net.kyori.adventure.Adventure;
+import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.minimessage.MiniMessage;
 import org.bukkit.Color;
 import org.bukkit.inventory.ItemStack;
@@ -27,6 +28,10 @@ public class PaperFeatures {
      * True when MiniMessages is present
      */
     public static final boolean HAS_MINI_MESSAGE;
+    /**
+     * True when MiniMessages is present
+     */
+    public static final boolean HAS_COMPONENT_COMPACT;
 
     /**
      * True when Adventure is present
@@ -36,6 +41,9 @@ public class PaperFeatures {
     static {
         // Check if this version supports ARGB colors (1.19+)
         IS_RGBA = Reflections.methodExists(Color.class, "getAlpha");
+
+        // Check if this version supports ARGB colors (1.19+)
+        HAS_COMPONENT_COMPACT = Reflections.methodExists(Component.class, "compact");
 
         // Check if this version supports byte serialization (1.16+)
         HAS_SERIALIZE_AS_BYTES = Reflections.methodExists(ItemStack.class, "serializeAsBytes");
