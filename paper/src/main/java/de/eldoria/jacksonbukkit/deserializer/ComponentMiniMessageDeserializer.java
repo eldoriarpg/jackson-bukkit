@@ -13,6 +13,8 @@ import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.minimessage.MiniMessage;
 
 import java.io.IOException;
+import java.util.function.Function;
+import java.util.function.UnaryOperator;
 
 /**
  * Class for deserialization of {@link Component} using {@link MiniMessage}.
@@ -36,7 +38,7 @@ public class ComponentMiniMessageDeserializer extends ComponentGsonDeserializer 
         if (PaperFeatures.HAS_COMPONENT_COMPACT) {
             miniMessage = MiniMessage.builder().build();
         } else {
-            miniMessage = MiniMessage.builder().postProcessor(Function::indentity).build();
+            miniMessage = MiniMessage.builder().postProcessor(UnaryOperator.identity()).build();
         }
     }
 
