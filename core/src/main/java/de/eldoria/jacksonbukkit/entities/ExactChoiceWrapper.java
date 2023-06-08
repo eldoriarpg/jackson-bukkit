@@ -1,3 +1,8 @@
+/*
+ *     SPDX-License-Identifier: MIT
+ *
+ *     Copyright (C) EldoriaRPG Team and Contributor
+ */
 package de.eldoria.jacksonbukkit.entities;
 
 import org.bukkit.inventory.ItemStack;

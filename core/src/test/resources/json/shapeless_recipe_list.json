@@ -1,0 +1,58 @@
+[ {
+  "key" : {
+    "namespace" : "minecraft",
+    "key" : "test1"
+  },
+  "result" : {
+    "material" : "STRING",
+    "amount" : 1
+  },
+  "group" : "",
+  "choiceList" : [ {
+    "@clazz" : "ExactChoiceWrapper",
+    "choices" : [ {
+      "material" : "CHEST",
+      "amount" : 2
+    } ]
+  }, {
+    "@clazz" : "MaterialChoiceWrapper",
+    "choices" : [ "STICK" ]
+  } ]
+}, {
+  "key" : {
+    "namespace" : "minecraft",
+    "key" : "test2"
+  },
+  "result" : {
+    "material" : "GOLD_BLOCK",
+    "amount" : 1
+  },
+  "group" : "",
+  "choiceList" : [ {
+    "@clazz" : "ExactChoiceWrapper",
+    "choices" : [ {
+      "material" : "CHEST",
+      "amount" : 2
+    } ]
+  }, {
+    "@clazz" : "MaterialChoiceWrapper",
+    "choices" : [ "STICK" ]
+  } ]
+}, {
+  "key" : {
+    "namespace" : "minecraft",
+    "key" : "test3"
+  },
+  "result" : {
+    "material" : "ANVIL",
+    "amount" : 1
+  },
+  "group" : "",
+  "choiceList" : [ {
+    "@clazz" : "MaterialChoiceWrapper",
+    "choices" : [ "ICE", "GRAVEL" ]
+  }, {
+    "@clazz" : "MaterialChoiceWrapper",
+    "choices" : [ "STICK" ]
+  } ]
+} ]

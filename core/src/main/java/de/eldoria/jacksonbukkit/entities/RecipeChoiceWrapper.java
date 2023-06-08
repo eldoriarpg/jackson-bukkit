@@ -1,3 +1,8 @@
+/*
+ *     SPDX-License-Identifier: MIT
+ *
+ *     Copyright (C) EldoriaRPG Team and Contributor
+ */
 package de.eldoria.jacksonbukkit.entities;
 
 import com.fasterxml.jackson.annotation.JsonSubTypes;
@@ -9,8 +14,8 @@ import org.bukkit.inventory.RecipeChoice;
  */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, property = "@clazz")
 @JsonSubTypes({
-        @JsonSubTypes.Type(value = ShapedRecipeWrapper.class, name = "ShapedRecipe"),
-        @JsonSubTypes.Type(value = ShapelessRecipeWrapper.class, name = "ShapedRecipe")
+        @JsonSubTypes.Type(value = ExactChoiceWrapper.class, name = "ExactChoiceWrapper"),
+        @JsonSubTypes.Type(value = MaterialChoiceWrapper.class, name = "MaterialChoiceWrapper")
 })
 public interface RecipeChoiceWrapper<T extends RecipeChoice> {
 
@@ -20,4 +25,19 @@ public interface RecipeChoiceWrapper<T extends RecipeChoice> {
      * @return new {@link T} instance
      */
     T toBukkitRecipeChoice();
+
+    public static RecipeChoiceWrapper<?> of(RecipeChoice choice) {
+        if (choice == null) {
+            return null;
+        }
+
+        if (choice instanceof RecipeChoice.ExactChoice c) {
+            return ExactChoiceWrapper.of(c);
+        }
+
+        if (choice instanceof RecipeChoice.MaterialChoice c) {
+            return MaterialChoiceWrapper.of(c);
+        }
+        throw new IllegalArgumentException("%s is not a known RecipeChoice".formatted(choice.getClass().getName()));
+    }
 }

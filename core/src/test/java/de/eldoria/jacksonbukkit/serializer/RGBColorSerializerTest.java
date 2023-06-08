@@ -13,8 +13,6 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class RGBColorSerializerTest implements CoreSerializationTest {
-
-
     @Test
     void serializeToJson() throws JsonProcessingException {
         assertEquals(json("rgb_color"), toJson(RGBColorTemplate.SINGLE));

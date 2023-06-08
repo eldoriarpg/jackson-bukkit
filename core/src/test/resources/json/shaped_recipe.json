@@ -1,0 +1,23 @@
+{
+  "key" : {
+    "namespace" : "minecraft",
+    "key" : "test"
+  },
+  "result" : {
+    "material" : "STONE",
+    "amount" : 32
+  },
+  "shape" : [ "aaa", " b ", " b " ],
+  "group" : "",
+  "ingredients" : {
+    " " : null,
+    "a" : {
+      "@clazz" : "MaterialChoiceWrapper",
+      "choices" : [ "STONE", "COBBLED_DEEPSLATE" ]
+    },
+    "b" : {
+      "@clazz" : "MaterialChoiceWrapper",
+      "choices" : [ "STICK" ]
+    }
+  }
+}

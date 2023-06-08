@@ -18,6 +18,7 @@ import org.bukkit.World;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
@@ -36,23 +37,30 @@ public interface SerializationTest {
 
     Module buildModule();
 
+    default List<Module> additionalModules() {
+        return Collections.emptyList();
+    }
+
     default ObjectMapper buildJson() {
-        return JsonMapper.builder()
+        JsonMapper.Builder builder = JsonMapper.builder()
                 .defaultPrettyPrinter(new DefaultPrettyPrinter())
-                .addModule(buildModule())
-                .build();
+                .addModule(buildModule());
+        for (Module module : additionalModules()) builder.addModule(module);
+        return builder.build();
     }
 
     default ObjectMapper buildYaml() {
-        return YAMLMapper.builder()
-                .addModule(buildModule())
-                .build();
+        YAMLMapper.Builder builder = YAMLMapper.builder()
+                .addModule(buildModule());
+        for (Module module : additionalModules()) builder.addModule(module);
+        return builder.build();
     }
 
     default ObjectMapper buildToml() {
-        return TomlMapper.builder()
-                .addModule(buildModule())
-                .build();
+        TomlMapper.Builder builder = TomlMapper.builder()
+                .addModule(buildModule());
+        for (Module module : additionalModules()) builder.addModule(module);
+        return builder.build();
     }
 
     default String toJson(Object object) throws JsonProcessingException {
@@ -113,7 +121,7 @@ public interface SerializationTest {
         return read("/yaml/%s.yaml".formatted(name));
     }
 
-    default <T> void assertEqualsIgnoring(T expected, T actual){
+    default <T> void assertEqualsIgnoring(T expected, T actual) {
         Assertions.assertThat(actual)
                 .usingRecursiveComparison()
                 .withComparatorForType(
