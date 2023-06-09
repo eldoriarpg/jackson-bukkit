@@ -53,7 +53,10 @@
   "shape" : [ " a ", " a ", " a " ],
   "group" : "",
   "ingredients" : {
-    " " : null,
+    " " : {
+      "@clazz" : "MaterialChoiceWrapper",
+      "choices" : [ "AIR" ]
+    },
     "a" : {
       "@clazz" : "MaterialChoiceWrapper",
       "choices" : [ "BONE_MEAL", "GOLD_BLOCK" ]

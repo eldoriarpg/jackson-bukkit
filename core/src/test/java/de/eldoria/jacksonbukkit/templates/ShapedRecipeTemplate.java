@@ -28,5 +28,6 @@ public class ShapedRecipeTemplate implements CoreSerializationTest {
                     .setIngredient('a', new RecipeChoice.ExactChoice(new ItemStack(Material.DIAMOND, 2))),
             new ShapedRecipe(NamespacedKey.minecraft("test3"), new ItemStack(Material.CHEST, 9))
                     .shape(" a ", " a ", " a ")
-                    .setIngredient('a', new RecipeChoice.MaterialChoice(Material.BONE_MEAL,Material.GOLD_BLOCK)));
+                    .setIngredient('a', new RecipeChoice.MaterialChoice(Material.BONE_MEAL,Material.GOLD_BLOCK))
+                    .setIngredient(' ', Material.AIR));
 }

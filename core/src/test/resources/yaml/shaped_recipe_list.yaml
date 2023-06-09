@@ -48,7 +48,9 @@
   - " a "
   group: ""
   ingredients:
-    ' ': null
+    ' ': !<MaterialChoiceWrapper>
+      choices:
+      - "AIR"
     a: !<MaterialChoiceWrapper>
       choices:
       - "BONE_MEAL"
