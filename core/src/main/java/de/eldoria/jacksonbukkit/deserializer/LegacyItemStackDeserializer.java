@@ -10,18 +10,16 @@ import com.fasterxml.jackson.databind.DeserializationContext;
 import com.fasterxml.jackson.databind.JsonDeserializer;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.type.MapType;
-import de.eldoria.jacksonbukkit.entities.MapContainer;
 import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.inventory.ItemStack;
-import org.yaml.snakeyaml.DumperOptions;
 import org.yaml.snakeyaml.LoaderOptions;
 import org.yaml.snakeyaml.Yaml;
 import org.yaml.snakeyaml.constructor.Constructor;
-import org.yaml.snakeyaml.constructor.SafeConstructor;
 
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Class for deserialization of {@link ItemStack} as a map.
@@ -39,7 +37,9 @@ public class LegacyItemStackDeserializer extends JsonDeserializer<ItemStack> {
 
         YamlConfiguration yamlConfiguration = new YamlConfiguration();
         try {
-            yamlConfiguration.loadFromString(YAML.dump(new MapContainer(ctxt.readTreeAsValue(tree, type))));
+            Map<String, Object> map = new HashMap<>();
+            map.put("map", ctxt.readTreeAsValue(tree, type));
+            yamlConfiguration.loadFromString(YAML.dump(map));
         } catch (InvalidConfigurationException e) {
             throw new IOException(e);
         }
