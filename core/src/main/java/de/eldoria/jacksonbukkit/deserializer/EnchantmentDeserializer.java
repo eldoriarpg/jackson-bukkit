@@ -19,7 +19,7 @@ public class EnchantmentDeserializer extends JsonDeserializer<Enchantment> {
     public Enchantment deserialize(JsonParser p, DeserializationContext ctxt) throws IOException {
         JsonNode tree = ctxt.readTree(p);
         if (tree.isTextual()) {
-            return Enchantment.getByName(ctxt.readValue(p, String.class));
+            return Enchantment.getByName(ctxt.readTreeAsValue(tree, String.class));
         }
 
         if (tree.isObject()) {
