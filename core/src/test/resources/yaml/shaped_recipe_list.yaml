@@ -1,0 +1,57 @@
+---
+- key:
+    namespace: "minecraft"
+    key: "test"
+  result:
+    material: "STONE"
+    amount: 32
+  shape:
+  - "aaa"
+  - " b "
+  - " b "
+  group: ""
+  ingredients:
+    ' ': null
+    a: !<MaterialChoice>
+      choices:
+      - "STONE"
+      - "COBBLED_DEEPSLATE"
+    b: !<MaterialChoice>
+      choices:
+      - "STICK"
+- key:
+    namespace: "minecraft"
+    key: "test2"
+  result:
+    material: "BONE"
+    amount: 1
+  shape:
+  - " a "
+  - " a "
+  - " a "
+  group: ""
+  ingredients:
+    ' ': null
+    a: !<ExactChoice>
+      choices:
+      - material: "DIAMOND"
+        amount: 2
+- key:
+    namespace: "minecraft"
+    key: "test3"
+  result:
+    material: "CHEST"
+    amount: 9
+  shape:
+  - " a "
+  - " a "
+  - " a "
+  group: ""
+  ingredients:
+    ' ': !<MaterialChoice>
+      choices:
+      - "AIR"
+    a: !<MaterialChoice>
+      choices:
+      - "BONE_MEAL"
+      - "GOLD_BLOCK"

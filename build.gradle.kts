@@ -1,6 +1,5 @@
 import com.diffplug.gradle.spotless.SpotlessPlugin
 import de.chojo.PublishData
-import org.gradle.internal.impldep.org.apache.commons.codec.CharEncoding
 
 plugins {
     java
@@ -71,50 +70,10 @@ allprojects {
         }
     }
 
-
-
     jacoco {
         toolVersion = "0.8.10"
     }
 
-
-    tasks.test {
-        finalizedBy(tasks.jacocoTestReport)
-    }
-    tasks.jacocoTestReport {
-        dependsOn(tasks.test)
-    }
-    tasks.jacocoTestReport {
-        reports {
-            xml.required.set(false)
-            csv.required.set(true)
-            html.required.set(false)
-        }
-    }
-
-
-
-    tasks.jacocoTestCoverageVerification {
-        violationRules {
-            rule {
-                limit {
-                    minimum = "0.8".toBigDecimal()
-                }
-            }
-
-            rule {
-                isEnabled = false
-                element = "CLASS"
-                includes = listOf("org.gradle.*")
-
-                limit {
-                    counter = "LINE"
-                    value = "TOTALCOUNT"
-                    maximum = "0.8".toBigDecimal()
-                }
-            }
-        }
-    }
 
     publishData {
         useEldoNexusRepos()
@@ -175,9 +134,44 @@ allprojects {
         }
 
         test {
+            finalizedBy(jacocoTestReport)
             useJUnitPlatform()
             testLogging {
                 events("passed", "skipped", "failed")
+            }
+        }
+
+        jacocoTestReport {
+            dependsOn(test)
+        }
+
+        jacocoTestReport {
+            reports {
+                xml.required.set(false)
+                csv.required.set(true)
+                html.required.set(false)
+            }
+        }
+
+        jacocoTestCoverageVerification {
+            violationRules {
+                rule {
+                    limit {
+                        minimum = "0.8".toBigDecimal()
+                    }
+                }
+
+                rule {
+                    isEnabled = false
+                    element = "CLASS"
+                    includes = listOf("org.gradle.*")
+
+                    limit {
+                        counter = "LINE"
+                        value = "TOTALCOUNT"
+                        maximum = "0.8".toBigDecimal()
+                    }
+                }
             }
         }
     }
@@ -196,7 +190,6 @@ fun applyJavaDocOptions(options: MinimalJavadocOptions) {
     )
 }
 
-
 tasks {
     register<Javadoc>("allJavadocs") {
         applyJavaDocOptions(options)
@@ -207,4 +200,3 @@ tasks {
         classpath = files(projects.map { p -> p.sourceSets.main.get().compileClasspath })
     }
 }
-

@@ -1,0 +1,46 @@
+---
+- key:
+    namespace: "minecraft"
+    key: "test1"
+  result:
+    material: "STRING"
+    amount: 1
+  group: ""
+  choiceList:
+  - !<ExactChoice>
+    choices:
+    - material: "CHEST"
+      amount: 2
+  - !<MaterialChoice>
+    choices:
+    - "STICK"
+- key:
+    namespace: "minecraft"
+    key: "test2"
+  result:
+    material: "GOLD_BLOCK"
+    amount: 1
+  group: ""
+  choiceList:
+  - !<ExactChoice>
+    choices:
+    - material: "CHEST"
+      amount: 2
+  - !<MaterialChoice>
+    choices:
+    - "STICK"
+- key:
+    namespace: "minecraft"
+    key: "test3"
+  result:
+    material: "ANVIL"
+    amount: 1
+  group: ""
+  choiceList:
+  - !<MaterialChoice>
+    choices:
+    - "ICE"
+    - "GRAVEL"
+  - !<MaterialChoice>
+    choices:
+    - "STICK"

@@ -1,0 +1,21 @@
+{
+  "key" : {
+    "namespace" : "minecraft",
+    "key" : "test1"
+  },
+  "result" : {
+    "material" : "STRING",
+    "amount" : 1
+  },
+  "group" : "",
+  "choiceList" : [ {
+    "@clazz" : "ExactChoice",
+    "choices" : [ {
+      "material" : "CHEST",
+      "amount" : 2
+    } ]
+  }, {
+    "@clazz" : "MaterialChoice",
+    "choices" : [ "STICK" ]
+  } ]
+}

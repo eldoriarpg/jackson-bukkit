@@ -12,26 +12,34 @@ import com.fasterxml.jackson.databind.module.SimpleSerializers;
 import de.eldoria.jacksonbukkit.deserializer.AttributeModifierDeserializer;
 import de.eldoria.jacksonbukkit.deserializer.BlockVectorDeserializer;
 import de.eldoria.jacksonbukkit.deserializer.BoundingBoxDeserializer;
+import de.eldoria.jacksonbukkit.deserializer.ExactChoiceDeserializer;
 import de.eldoria.jacksonbukkit.serializer.EnchantmentSerializer;
 import de.eldoria.jacksonbukkit.deserializer.FireworkEffectDeserializer;
 import de.eldoria.jacksonbukkit.deserializer.LocationDeserializer;
+import de.eldoria.jacksonbukkit.deserializer.MaterialChoiceDeserializer;
 import de.eldoria.jacksonbukkit.deserializer.NamespacedKeyDeserializer;
 import de.eldoria.jacksonbukkit.deserializer.PatternDeserializer;
 import de.eldoria.jacksonbukkit.deserializer.PlayerDeserializer;
 import de.eldoria.jacksonbukkit.deserializer.PotionEffectDeserializer;
 import de.eldoria.jacksonbukkit.deserializer.RGBColorDeserializer;
+import de.eldoria.jacksonbukkit.deserializer.ShapedRecipeDeserializer;
+import de.eldoria.jacksonbukkit.deserializer.ShapelessRecipeDeserializer;
 import de.eldoria.jacksonbukkit.deserializer.VectorDeserializer;
 import de.eldoria.jacksonbukkit.serializer.AttributeModifierSerializer;
 import de.eldoria.jacksonbukkit.serializer.BlockVectorSerializer;
 import de.eldoria.jacksonbukkit.serializer.BoundingBoxSerializer;
+import de.eldoria.jacksonbukkit.serializer.ExactChoiceSerializer;
 import de.eldoria.jacksonbukkit.deserializer.EnchantmentDeserializer;
 import de.eldoria.jacksonbukkit.serializer.FireworkEffectSerializer;
 import de.eldoria.jacksonbukkit.serializer.LocationSerializer;
+import de.eldoria.jacksonbukkit.serializer.MaterialChoiceSerializer;
 import de.eldoria.jacksonbukkit.serializer.NamespacedKeySerializer;
 import de.eldoria.jacksonbukkit.serializer.PatternSerializer;
 import de.eldoria.jacksonbukkit.serializer.PlayerSerializer;
 import de.eldoria.jacksonbukkit.serializer.PotionEffectSerializer;
 import de.eldoria.jacksonbukkit.serializer.RGBColorSerializer;
+import de.eldoria.jacksonbukkit.serializer.ShapedRecipeSerializer;
+import de.eldoria.jacksonbukkit.serializer.ShapelessRecipeSerializer;
 import de.eldoria.jacksonbukkit.serializer.VectorSerializer;
 import org.bukkit.Color;
 import org.bukkit.FireworkEffect;
@@ -40,6 +48,10 @@ import org.bukkit.NamespacedKey;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.attribute.AttributeModifier;
 import org.bukkit.block.banner.Pattern;
+import org.bukkit.inventory.RecipeChoice.ExactChoice;
+import org.bukkit.inventory.RecipeChoice.MaterialChoice;
+import org.bukkit.inventory.ShapedRecipe;
+import org.bukkit.inventory.ShapelessRecipe;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.util.BlockVector;
@@ -104,6 +116,10 @@ public abstract class JacksonBukkitModule extends Module {
         serializers.addSerializer(Location.class, new LocationSerializer());
         serializers.addSerializer(OfflinePlayer.class, new PlayerSerializer());
         serializers.addSerializer(Color.class, new RGBColorSerializer());
+        serializers.addSerializer(ExactChoice.class, new ExactChoiceSerializer());
+        serializers.addSerializer(MaterialChoice.class, new MaterialChoiceSerializer());
+        serializers.addSerializer(ShapedRecipe.class, new ShapedRecipeSerializer());
+        serializers.addSerializer(ShapelessRecipe.class, new ShapelessRecipeSerializer());
         registerSerializer(serializers);
     }
 
@@ -134,6 +150,10 @@ public abstract class JacksonBukkitModule extends Module {
         deserializers.addDeserializer(Location.class, new LocationDeserializer());
         deserializers.addDeserializer(OfflinePlayer.class, new PlayerDeserializer());
         deserializers.addDeserializer(Color.class, new RGBColorDeserializer());
+        deserializers.addDeserializer(ExactChoice.class, new ExactChoiceDeserializer());
+        deserializers.addDeserializer(MaterialChoice.class, new MaterialChoiceDeserializer());
+        deserializers.addDeserializer(ShapedRecipe.class, new ShapedRecipeDeserializer());
+        deserializers.addDeserializer(ShapelessRecipe.class, new ShapelessRecipeDeserializer());
         registerDeserializer(deserializers);
     }
 

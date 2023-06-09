@@ -26,4 +26,9 @@ public interface CoreSerializationTest extends SerializationTest {
     default Module buildModule() {
         return new JacksonBukkit();
     }
+
+    @Override
+    default List<Module> additionalModules() {
+        return List.of(new DummyItemStackSerialization());
+    }
 }

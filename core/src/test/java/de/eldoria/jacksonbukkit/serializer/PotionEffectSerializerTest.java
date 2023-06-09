@@ -9,6 +9,8 @@ import be.seeseemelk.mockbukkit.MockBukkit;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import de.eldoria.jacksonbukkit.CoreSerializationTest;
 import de.eldoria.jacksonbukkit.templates.PotionEffectTemplate;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -20,6 +22,11 @@ class PotionEffectSerializerTest implements CoreSerializationTest {
     @BeforeAll
     static void setup() {
         MockBukkit.mock();
+    }
+
+    @AfterAll
+    static void afterAll() {
+        MockBukkit.unmock();
     }
 
     @Test
