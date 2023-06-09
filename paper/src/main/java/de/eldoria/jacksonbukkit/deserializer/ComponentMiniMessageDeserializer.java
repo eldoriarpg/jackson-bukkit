@@ -13,7 +13,6 @@ import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.minimessage.MiniMessage;
 
 import java.io.IOException;
-import java.util.function.Function;
 import java.util.function.UnaryOperator;
 
 /**
