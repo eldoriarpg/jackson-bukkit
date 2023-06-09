@@ -12,7 +12,7 @@ plugins {
 }
 
 group = "de.eldoria.jacksonbukkit"
-version = "1.1.2"
+version = "1.2.0"
 
 val publicProjects = setOf("core", "bukkit", "paper", "jackson-bukkit")
 
@@ -40,7 +40,7 @@ allprojects {
     dependencies {
         api("org.jetbrains", "annotations", "24.0.1")
 
-        api(platform("com.fasterxml.jackson:jackson-bom:2.14.2"))
+        api(platform("com.fasterxml.jackson:jackson-bom:2.15.2"))
         api("com.fasterxml.jackson.core", "jackson-core")
         api("com.fasterxml.jackson.core:jackson-databind")
 
