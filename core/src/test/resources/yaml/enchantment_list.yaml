@@ -1,0 +1,7 @@
+---
+- namespace: "minecraft"
+  key: "flame"
+- namespace: "minecraft"
+  key: "riptide"
+- namespace: "minecraft"
+  key: "quick_charge"
