@@ -12,11 +12,11 @@
   "ingredients" : {
     " " : null,
     "a" : {
-      "@clazz" : "MaterialChoiceWrapper",
+      "@clazz" : "MaterialChoice",
       "choices" : [ "STONE", "COBBLED_DEEPSLATE" ]
     },
     "b" : {
-      "@clazz" : "MaterialChoiceWrapper",
+      "@clazz" : "MaterialChoice",
       "choices" : [ "STICK" ]
     }
   }

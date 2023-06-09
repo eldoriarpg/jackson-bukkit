@@ -12,11 +12,11 @@
   "ingredients" : {
     " " : null,
     "a" : {
-      "@clazz" : "MaterialChoiceWrapper",
+      "@clazz" : "MaterialChoice",
       "choices" : [ "STONE", "COBBLED_DEEPSLATE" ]
     },
     "b" : {
-      "@clazz" : "MaterialChoiceWrapper",
+      "@clazz" : "MaterialChoice",
       "choices" : [ "STICK" ]
     }
   }
@@ -34,7 +34,7 @@
   "ingredients" : {
     " " : null,
     "a" : {
-      "@clazz" : "ExactChoiceWrapper",
+      "@clazz" : "ExactChoice",
       "choices" : [ {
         "material" : "DIAMOND",
         "amount" : 2
@@ -54,11 +54,11 @@
   "group" : "",
   "ingredients" : {
     " " : {
-      "@clazz" : "MaterialChoiceWrapper",
+      "@clazz" : "MaterialChoice",
       "choices" : [ "AIR" ]
     },
     "a" : {
-      "@clazz" : "MaterialChoiceWrapper",
+      "@clazz" : "MaterialChoice",
       "choices" : [ "BONE_MEAL", "GOLD_BLOCK" ]
     }
   }

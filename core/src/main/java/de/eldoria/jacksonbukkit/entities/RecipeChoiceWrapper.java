@@ -14,8 +14,8 @@ import org.bukkit.inventory.RecipeChoice;
  */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, property = "@clazz")
 @JsonSubTypes({
-        @JsonSubTypes.Type(value = ExactChoiceWrapper.class, name = "ExactChoiceWrapper"),
-        @JsonSubTypes.Type(value = MaterialChoiceWrapper.class, name = "MaterialChoiceWrapper")
+        @JsonSubTypes.Type(value = ExactChoiceWrapper.class, name = "ExactChoice"),
+        @JsonSubTypes.Type(value = MaterialChoiceWrapper.class, name = "MaterialChoice")
 })
 public interface RecipeChoiceWrapper<T extends RecipeChoice> {
 

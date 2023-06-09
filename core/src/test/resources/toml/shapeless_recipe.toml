@@ -3,4 +3,4 @@ key.key = 'test1'
 result.material = 'STRING'
 result.amount = 1
 group = ''
-choiceList = [{'@clazz' = 'ExactChoiceWrapper', choices = [{material = 'CHEST', amount = 2}]}, {'@clazz' = 'MaterialChoiceWrapper', choices = ['STICK']}]
+choiceList = [{'@clazz' = 'ExactChoice', choices = [{material = 'CHEST', amount = 2}]}, {'@clazz' = 'MaterialChoice', choices = ['STICK']}]

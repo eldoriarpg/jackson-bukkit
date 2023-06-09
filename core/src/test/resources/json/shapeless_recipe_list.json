@@ -9,13 +9,13 @@
   },
   "group" : "",
   "choiceList" : [ {
-    "@clazz" : "ExactChoiceWrapper",
+    "@clazz" : "ExactChoice",
     "choices" : [ {
       "material" : "CHEST",
       "amount" : 2
     } ]
   }, {
-    "@clazz" : "MaterialChoiceWrapper",
+    "@clazz" : "MaterialChoice",
     "choices" : [ "STICK" ]
   } ]
 }, {
@@ -29,13 +29,13 @@
   },
   "group" : "",
   "choiceList" : [ {
-    "@clazz" : "ExactChoiceWrapper",
+    "@clazz" : "ExactChoice",
     "choices" : [ {
       "material" : "CHEST",
       "amount" : 2
     } ]
   }, {
-    "@clazz" : "MaterialChoiceWrapper",
+    "@clazz" : "MaterialChoice",
     "choices" : [ "STICK" ]
   } ]
 }, {
@@ -49,10 +49,10 @@
   },
   "group" : "",
   "choiceList" : [ {
-    "@clazz" : "MaterialChoiceWrapper",
+    "@clazz" : "MaterialChoice",
     "choices" : [ "ICE", "GRAVEL" ]
   }, {
-    "@clazz" : "MaterialChoiceWrapper",
+    "@clazz" : "MaterialChoice",
     "choices" : [ "STICK" ]
   } ]
 } ]

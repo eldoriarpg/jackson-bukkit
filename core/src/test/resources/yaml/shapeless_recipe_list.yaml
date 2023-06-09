@@ -7,11 +7,11 @@
     amount: 1
   group: ""
   choiceList:
-  - !<ExactChoiceWrapper>
+  - !<ExactChoice>
     choices:
     - material: "CHEST"
       amount: 2
-  - !<MaterialChoiceWrapper>
+  - !<MaterialChoice>
     choices:
     - "STICK"
 - key:
@@ -22,11 +22,11 @@
     amount: 1
   group: ""
   choiceList:
-  - !<ExactChoiceWrapper>
+  - !<ExactChoice>
     choices:
     - material: "CHEST"
       amount: 2
-  - !<MaterialChoiceWrapper>
+  - !<MaterialChoice>
     choices:
     - "STICK"
 - key:
@@ -37,10 +37,10 @@
     amount: 1
   group: ""
   choiceList:
-  - !<MaterialChoiceWrapper>
+  - !<MaterialChoice>
     choices:
     - "ICE"
     - "GRAVEL"
-  - !<MaterialChoiceWrapper>
+  - !<MaterialChoice>
     choices:
     - "STICK"

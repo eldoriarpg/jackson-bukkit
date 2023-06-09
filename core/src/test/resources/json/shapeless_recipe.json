@@ -9,13 +9,13 @@
   },
   "group" : "",
   "choiceList" : [ {
-    "@clazz" : "ExactChoiceWrapper",
+    "@clazz" : "ExactChoice",
     "choices" : [ {
       "material" : "CHEST",
       "amount" : 2
     } ]
   }, {
-    "@clazz" : "MaterialChoiceWrapper",
+    "@clazz" : "MaterialChoice",
     "choices" : [ "STICK" ]
   } ]
 }

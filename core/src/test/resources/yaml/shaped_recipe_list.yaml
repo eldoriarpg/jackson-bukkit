@@ -12,11 +12,11 @@
   group: ""
   ingredients:
     ' ': null
-    a: !<MaterialChoiceWrapper>
+    a: !<MaterialChoice>
       choices:
       - "STONE"
       - "COBBLED_DEEPSLATE"
-    b: !<MaterialChoiceWrapper>
+    b: !<MaterialChoice>
       choices:
       - "STICK"
 - key:
@@ -32,7 +32,7 @@
   group: ""
   ingredients:
     ' ': null
-    a: !<ExactChoiceWrapper>
+    a: !<ExactChoice>
       choices:
       - material: "DIAMOND"
         amount: 2
@@ -48,10 +48,10 @@
   - " a "
   group: ""
   ingredients:
-    ' ': !<MaterialChoiceWrapper>
+    ' ': !<MaterialChoice>
       choices:
       - "AIR"
-    a: !<MaterialChoiceWrapper>
+    a: !<MaterialChoice>
       choices:
       - "BONE_MEAL"
       - "GOLD_BLOCK"
