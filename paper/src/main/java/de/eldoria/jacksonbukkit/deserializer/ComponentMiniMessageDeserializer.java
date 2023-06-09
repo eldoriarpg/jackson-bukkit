@@ -8,15 +8,12 @@ package de.eldoria.jacksonbukkit.deserializer;
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.databind.DeserializationContext;
 import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.type.MapType;
-import com.google.gson.Gson;
+import de.eldoria.jacksonbukkit.util.PaperFeatures;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.minimessage.MiniMessage;
-import net.kyori.adventure.text.serializer.gson.GsonComponentSerializer;
 
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.function.UnaryOperator;
 
 /**
  * Class for deserialization of {@link Component} using {@link MiniMessage}.
@@ -37,7 +34,11 @@ public class ComponentMiniMessageDeserializer extends ComponentGsonDeserializer 
      * Creates a new serializer
      */
     public ComponentMiniMessageDeserializer() {
-        miniMessage = MiniMessage.miniMessage();
+        if (PaperFeatures.HAS_COMPONENT_COMPACT) {
+            miniMessage = MiniMessage.builder().build();
+        } else {
+            miniMessage = MiniMessage.builder().postProcessor(UnaryOperator.identity()).build();
+        }
     }
 
     @Override
