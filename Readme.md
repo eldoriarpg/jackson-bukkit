@@ -56,7 +56,7 @@ repositories {
 
 dependencies {
     // Spigot server
-    implementation("de.eldoria.jacksonbukkit", "spigot", "version")
+    implementation("de.eldoria.jacksonbukkit", "bukkit", "version")
     // Paper server
     implementation("de.eldoria.jacksonbukkit", "paper", "version")
 }
@@ -157,7 +157,7 @@ We support all classes implementing `ConfigurationSerializable`. To be precise w
 - Vector
 - BlockVector
 - Color (Can be serialized as object or as hex string)
-- ItemStack (Serialized as map for `JacksonBukkit`. Serialized as Base64 encoded bytes for `JacksonPaper`, when possible)
+- ItemStack (Serialized as map for `Bukkit/Spigot`. Serialized as Base64 encoded bytes for `Paper`, when possible)
 - PotionEffect
 - FireworkEffect
 - Pattern
@@ -170,3 +170,7 @@ We support all classes implementing `ConfigurationSerializable`. To be precise w
 - NamespacedKey
 - OfflinePlayer
 - Components (Paper only as MiniMessage string)
+- ShapedRecipe
+- ShapelessRecipe
+- Enchantment
+- PotionEffectType

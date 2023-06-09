@@ -1,0 +1,16 @@
+---
+key:
+  namespace: "minecraft"
+  key: "test1"
+result:
+  material: "STRING"
+  amount: 1
+group: ""
+choiceList:
+- !<ExactChoice>
+  choices:
+  - material: "CHEST"
+    amount: 2
+- !<MaterialChoice>
+  choices:
+  - "STICK"

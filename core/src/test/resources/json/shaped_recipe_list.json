@@ -1,0 +1,65 @@
+[ {
+  "key" : {
+    "namespace" : "minecraft",
+    "key" : "test"
+  },
+  "result" : {
+    "material" : "STONE",
+    "amount" : 32
+  },
+  "shape" : [ "aaa", " b ", " b " ],
+  "group" : "",
+  "ingredients" : {
+    " " : null,
+    "a" : {
+      "@clazz" : "MaterialChoice",
+      "choices" : [ "STONE", "COBBLED_DEEPSLATE" ]
+    },
+    "b" : {
+      "@clazz" : "MaterialChoice",
+      "choices" : [ "STICK" ]
+    }
+  }
+}, {
+  "key" : {
+    "namespace" : "minecraft",
+    "key" : "test2"
+  },
+  "result" : {
+    "material" : "BONE",
+    "amount" : 1
+  },
+  "shape" : [ " a ", " a ", " a " ],
+  "group" : "",
+  "ingredients" : {
+    " " : null,
+    "a" : {
+      "@clazz" : "ExactChoice",
+      "choices" : [ {
+        "material" : "DIAMOND",
+        "amount" : 2
+      } ]
+    }
+  }
+}, {
+  "key" : {
+    "namespace" : "minecraft",
+    "key" : "test3"
+  },
+  "result" : {
+    "material" : "CHEST",
+    "amount" : 9
+  },
+  "shape" : [ " a ", " a ", " a " ],
+  "group" : "",
+  "ingredients" : {
+    " " : {
+      "@clazz" : "MaterialChoice",
+      "choices" : [ "AIR" ]
+    },
+    "a" : {
+      "@clazz" : "MaterialChoice",
+      "choices" : [ "BONE_MEAL", "GOLD_BLOCK" ]
+    }
+  }
+} ]

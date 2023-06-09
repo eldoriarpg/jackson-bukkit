@@ -1,18 +1,17 @@
 import com.diffplug.gradle.spotless.SpotlessPlugin
 import de.chojo.PublishData
-import org.gradle.internal.impldep.org.apache.commons.codec.CharEncoding
 
 plugins {
     java
     `maven-publish`
     `java-library`
-    id("com.diffplug.spotless") version "6.17.0"
+    id("com.diffplug.spotless") version "6.19.0"
     id("de.chojo.publishdata") version "1.2.4"
     jacoco
 }
 
 group = "de.eldoria.jacksonbukkit"
-version = "1.1.1"
+version = "1.2.0"
 
 val publicProjects = setOf("core", "bukkit", "paper", "jackson-bukkit")
 
@@ -40,7 +39,7 @@ allprojects {
     dependencies {
         api("org.jetbrains", "annotations", "24.0.1")
 
-        api(platform("com.fasterxml.jackson:jackson-bom:2.14.2"))
+        api(platform("com.fasterxml.jackson:jackson-bom:2.15.2"))
         api("com.fasterxml.jackson.core", "jackson-core")
         api("com.fasterxml.jackson.core:jackson-databind")
 
@@ -50,9 +49,9 @@ allprojects {
         testImplementation("com.fasterxml.jackson.dataformat:jackson-dataformat-toml")
 
         // junit and stuff
-        testImplementation("org.junit.jupiter:junit-jupiter-api:5.9.2")
-        testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.9.2")
-        testImplementation("org.mockito:mockito-core:5.2.0")
+        testImplementation("org.junit.jupiter:junit-jupiter-api:5.9.3")
+        testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.9.3")
+        testImplementation("org.mockito:mockito-core:5.3.1")
         testImplementation("org.assertj:assertj-core:3.24.2")
     }
 
@@ -71,50 +70,10 @@ allprojects {
         }
     }
 
-
-
     jacoco {
-        toolVersion = "0.8.8"
+        toolVersion = "0.8.10"
     }
 
-
-    tasks.test {
-        finalizedBy(tasks.jacocoTestReport)
-    }
-    tasks.jacocoTestReport {
-        dependsOn(tasks.test)
-    }
-    tasks.jacocoTestReport {
-        reports {
-            xml.required.set(false)
-            csv.required.set(true)
-            html.required.set(false)
-        }
-    }
-
-
-
-    tasks.jacocoTestCoverageVerification {
-        violationRules {
-            rule {
-                limit {
-                    minimum = "0.8".toBigDecimal()
-                }
-            }
-
-            rule {
-                isEnabled = false
-                element = "CLASS"
-                includes = listOf("org.gradle.*")
-
-                limit {
-                    counter = "LINE"
-                    value = "TOTALCOUNT"
-                    maximum = "0.8".toBigDecimal()
-                }
-            }
-        }
-    }
 
     publishData {
         useEldoNexusRepos()
@@ -175,9 +134,44 @@ allprojects {
         }
 
         test {
+            finalizedBy(jacocoTestReport)
             useJUnitPlatform()
             testLogging {
                 events("passed", "skipped", "failed")
+            }
+        }
+
+        jacocoTestReport {
+            dependsOn(test)
+        }
+
+        jacocoTestReport {
+            reports {
+                xml.required.set(false)
+                csv.required.set(true)
+                html.required.set(false)
+            }
+        }
+
+        jacocoTestCoverageVerification {
+            violationRules {
+                rule {
+                    limit {
+                        minimum = "0.8".toBigDecimal()
+                    }
+                }
+
+                rule {
+                    isEnabled = false
+                    element = "CLASS"
+                    includes = listOf("org.gradle.*")
+
+                    limit {
+                        counter = "LINE"
+                        value = "TOTALCOUNT"
+                        maximum = "0.8".toBigDecimal()
+                    }
+                }
             }
         }
     }
@@ -196,15 +190,13 @@ fun applyJavaDocOptions(options: MinimalJavadocOptions) {
     )
 }
 
-
 tasks {
     register<Javadoc>("allJavadocs") {
         applyJavaDocOptions(options)
 
-        setDestinationDir(file("${buildDir}/docs/javadoc"))
+        destinationDir = file("${buildDir}/docs/javadoc")
         val projects = project.rootProject.allprojects.filter { p -> publicProjects.contains(p.name) }
         setSource(projects.map { p -> p.sourceSets.main.get().allJava })
         classpath = files(projects.map { p -> p.sourceSets.main.get().compileClasspath })
     }
 }
-

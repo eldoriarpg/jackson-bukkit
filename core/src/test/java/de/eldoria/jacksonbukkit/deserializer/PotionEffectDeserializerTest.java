@@ -31,11 +31,6 @@ class PotionEffectDeserializerTest implements CoreSerializationTest {
     }
 
     @Test
-    void notLegacy() {
-        assertFalse(PotionEffectSerializer.LEGACY);
-    }
-
-    @Test
     void deserializeToJson() throws JsonProcessingException {
         assertEquals(PotionEffectTemplate.SINGLE, fromJson("potion_effect", PotionEffect.class));
         assertEquals(PotionEffectTemplate.LIST, fromJsonList("potion_effect_list", PotionEffect.class));
