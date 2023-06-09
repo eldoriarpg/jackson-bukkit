@@ -27,7 +27,7 @@ public class LegacyItemStackSerializer extends JsonSerializer<ItemStack> {
     public void serialize(ItemStack value, JsonGenerator gen, SerializerProvider serializers) throws IOException {
         YamlConfiguration yamlConfiguration = new YamlConfiguration();
         yamlConfiguration.set("map", value);
-        MapContainer items = YAML.load(yamlConfiguration.saveToString());
+        MapContainer items = YAML.loadAs(yamlConfiguration.saveToString(), MapContainer.class);
         gen.writeObject(items.map);
     }
 }
