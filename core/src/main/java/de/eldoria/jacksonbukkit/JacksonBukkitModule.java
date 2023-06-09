@@ -20,6 +20,7 @@ import de.eldoria.jacksonbukkit.deserializer.NamespacedKeyDeserializer;
 import de.eldoria.jacksonbukkit.deserializer.PatternDeserializer;
 import de.eldoria.jacksonbukkit.deserializer.PlayerDeserializer;
 import de.eldoria.jacksonbukkit.deserializer.PotionEffectDeserializer;
+import de.eldoria.jacksonbukkit.deserializer.RGBColorDeserializer;
 import de.eldoria.jacksonbukkit.deserializer.ShapedRecipeDeserializer;
 import de.eldoria.jacksonbukkit.deserializer.ShapelessRecipeDeserializer;
 import de.eldoria.jacksonbukkit.deserializer.VectorDeserializer;
@@ -143,6 +144,7 @@ public abstract class JacksonBukkitModule extends Module {
         deserializers.addDeserializer(AttributeModifier.class, new AttributeModifierDeserializer());
         deserializers.addDeserializer(Location.class, new LocationDeserializer());
         deserializers.addDeserializer(OfflinePlayer.class, new PlayerDeserializer());
+        deserializers.addDeserializer(Color.class, new RGBColorDeserializer());
         deserializers.addDeserializer(ExactChoice.class, new ExactChoiceDeserializer());
         deserializers.addDeserializer(MaterialChoice.class, new MaterialChoiceDeserializer());
         deserializers.addDeserializer(ShapedRecipe.class, new ShapedRecipeDeserializer());
