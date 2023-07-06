@@ -10,5 +10,5 @@ dependencies {
     testImplementation("org.junit.jupiter:junit-jupiter-api:5.9.3")
     testImplementation("org.assertj:assertj-core:3.24.2")
     implementation(project(":testing"))
-    testImplementation("com.github.seeseemelk", "MockBukkit-v1.19", "2.29.0")
+    testImplementation("com.github.seeseemelk", "MockBukkit-v1.19", "3.1.0")
 }
