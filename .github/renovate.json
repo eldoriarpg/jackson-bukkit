@@ -1,6 +1,5 @@
 {
   "baseBranches": ["dev"],
-  "labels": ["dependencies"],
   "extends": [
     "github>eldoriarpg/.github//.github/default_renovate"
   ],
