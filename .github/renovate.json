@@ -1,14 +1,11 @@
 {
   "baseBranches": ["dev"],
-  "dependencyDashboard": true,
   "labels": ["dependencies"],
   "extends": [
-    "config:base"
+    "github>eldoriarpg/.github//.github/default_renovate"
   ],
   "reviewers": [
     "RainbowDashLabs",
     "yannicklamprecht"
-  ],
-  "prConcurrentLimit": 3,
-  "prHourlyLimit": 10
+  ]
 }
