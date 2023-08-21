@@ -1,16 +1,19 @@
-name: Publish to Nexus
+name: Publish
 
 on:
+  workflow_dispatch:
   push:
     branches:
       - main
       - dev*
       - feature/*
       - fix/*
+
 jobs:
-  build:
+  publish-central:
     environment: build
     runs-on: ubuntu-latest
+    name: Publish to Maven Central
 
     steps:
       - uses: actions/checkout@v3
@@ -23,8 +26,10 @@ jobs:
         run: ./gradlew --build-cache build
       - name: Test with Gradle
         run: ./gradlew test
-      - name: Publish to eldonexus
-        run: ./gradlew publishMavenPublicationToEldoNexusRepository
+      - name: Publish to Maven Central
+        run: ./gradlew publish -PforceSign=true
         env:
-          NEXUS_USERNAME: ${{ secrets.NEXUS_USERNAME }}
-          NEXUS_PASSWORD: ${{ secrets.NEXUS_PASSWORD }}
+          ORG_GRADLE_PROJECT_sonatypeUsername: "${{ secrets.SONATYPE_USERNAME }}"
+          ORG_GRADLE_PROJECT_sonatypePassword: "${{ secrets.SONATYPE_PASSWORD }}"
+          ORG_GRADLE_PROJECT_rainbowdashlabsSigningKey: "${{ secrets.RAINBOWDASHLABS_SIGN_KEY }}"
+          ORG_GRADLE_PROJECT_rainbowdashlabsSigningPassword: "${{ secrets.RAINBOWDASHLABS_GPG_PASSWORD }}"
