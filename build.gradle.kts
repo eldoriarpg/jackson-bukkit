@@ -15,10 +15,14 @@ plugins {
     alias(libs.plugins.indra.sonatype)
     jacoco
 }
+publishData {
+    useEldoNexusRepos(false)
+    publishingVersion = "1.2.0"
+}
+version = publishData.getVersion()
 
 description = "Module for serialization on Spigot and Paper based servers"
 group = "de.eldoria.jacksonbukkit"
-version = "1.2.0"
 
 val publicProjects = setOf("core", "bukkit", "paper", "jackson-bukkit")
 
