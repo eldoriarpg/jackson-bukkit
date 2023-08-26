@@ -1,9 +1,7 @@
 ![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/eldoriarpg/jackson-bukkit/verify.yml?branch=main&style=flat-square&label=Building)
 ![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/eldoriarpg/jackson-bukkit/publish_to_nexus.yml?branch=main&style=flat-square&label=Publishing) 
 
-![Sonatype Nexus (Releases)](https://img.shields.io/nexus/maven-releases/de.eldoria.jacksonbukkit/jackson-bukkit?label=Release&logo=Release&server=https%3A%2F%2Feldonexus.de&style=flat-square)
-![Sonatype Nexus (Development)](https://img.shields.io/nexus/maven-dev/de.eldoria.jacksonbukkit/jackson-bukkit?label=DEV&logo=Release&server=https%3A%2F%2Feldonexus.de&style=flat-square)
-![Sonatype Nexus (Snapshots)](https://img.shields.io/nexus/s/de.eldoria.jacksonbukkit/jackson-bukkit?color=orange&label=Snapshot&server=https%3A%2F%2Feldonexus.de&style=flat-square)
+![Maven Central](https://img.shields.io/maven-central/v/de.eldoria.jacksonbukkit/jackson-bukkit)
 
 ![Times wasted](https://wakatime.com/badge/github/eldoriarpg/jackson-bukkit.svg?style=flat-square)
 ![Last Commit](https://img.shields.io/github/last-commit/eldoriarpg/jackson-bukkit?style=flat-square)
@@ -50,10 +48,6 @@ When serializing the data the currently used serializer will be used.
 **Gradle**
 
 ```kts
-repositories {
-    maven("https://eldonexus.de/repository/maven-public")
-}
-
 dependencies {
     // Spigot server
     implementation("de.eldoria.jacksonbukkit", "bukkit", "version")
@@ -67,14 +61,6 @@ dependencies {
 <!-- @formatter:off -->
 
 ```xml
-
-<repositories>
-    <repository>
-        <id>EldoNexus</id>
-        <url>https://eldonexus.de/repository/maven-public/</url>
-    </repository>
-</repositories>
-
 <dependencies>
     <!-- Spigot Server -->
     <dependency>
