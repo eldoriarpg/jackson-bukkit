@@ -39,7 +39,7 @@ allprojects {
     dependencies {
         api("org.jetbrains", "annotations", "24.1.0")
 
-        api(platform("com.fasterxml.jackson:jackson-bom:2.15.3"))
+        api(platform("com.fasterxml.jackson:jackson-bom:2.16.0"))
         api("com.fasterxml.jackson.core", "jackson-core")
         api("com.fasterxml.jackson.core:jackson-databind")
 
