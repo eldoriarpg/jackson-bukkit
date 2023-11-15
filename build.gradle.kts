@@ -37,7 +37,7 @@ allprojects {
     }
 
     dependencies {
-        api("org.jetbrains", "annotations", "24.0.1")
+        api("org.jetbrains", "annotations", "24.1.0")
 
         api(platform("com.fasterxml.jackson:jackson-bom:2.15.3"))
         api("com.fasterxml.jackson.core", "jackson-core")
