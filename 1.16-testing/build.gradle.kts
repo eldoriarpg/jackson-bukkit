@@ -8,7 +8,7 @@ dependencies {
     testImplementation("com.fasterxml.jackson.dataformat:jackson-dataformat-yaml")
     testImplementation("com.fasterxml.jackson.dataformat:jackson-dataformat-toml")
     testImplementation("org.junit.jupiter:junit-jupiter-api:5.10.2")
-    testImplementation("org.assertj:assertj-core:3.25.2")
+    testImplementation("org.assertj:assertj-core:3.25.3")
     implementation(project(":testing"))
     testImplementation("com.github.seeseemelk", "MockBukkit-v1.19", "2.29.0")
 }
