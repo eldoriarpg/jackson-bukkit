@@ -3,5 +3,5 @@ dependencies {
     implementation("com.fasterxml.jackson.dataformat:jackson-dataformat-yaml")
     implementation("com.fasterxml.jackson.dataformat:jackson-dataformat-toml")
     implementation("org.junit.jupiter:junit-jupiter-api:5.10.3")
-    implementation("org.assertj:assertj-core:3.26.0")
+    implementation("org.assertj:assertj-core:3.26.3")
 }
