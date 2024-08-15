@@ -5,3 +5,9 @@ dependencies {
     implementation("org.junit.jupiter:junit-jupiter-api:5.11.0")
     implementation("org.assertj:assertj-core:3.26.3")
 }
+
+java{
+    toolchain{
+        languageVersion.set(JavaLanguageVersion.of(17))
+    }
+}

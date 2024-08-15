@@ -1,7 +1,7 @@
 {
   "baseBranches": ["dev"],
   "extends": [
-    "github>eldoriarpg/.github//.github/default_renovate"
+    "github>eldoriarpg/.github"
   ],
   "reviewers": [
     "RainbowDashLabs",

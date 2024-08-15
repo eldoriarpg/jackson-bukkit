@@ -1,17 +1,28 @@
 import com.diffplug.gradle.spotless.SpotlessPlugin
 import de.chojo.PublishData
+import net.kyori.indra.IndraExtension
+import net.kyori.indra.IndraPlugin
+import net.kyori.indra.IndraPublishingPlugin
 
 plugins {
     java
     `maven-publish`
     `java-library`
-    id("com.diffplug.spotless") version "6.25.0"
-    id("de.chojo.publishdata") version "1.4.0"
+    alias(libs.plugins.spotless)
+    alias(libs.plugins.publishdata)
+    alias(libs.plugins.indra.core)
+    alias(libs.plugins.indra.publishing)
+    alias(libs.plugins.indra.sonatype)
     jacoco
 }
+publishData {
+    useEldoNexusRepos(false)
+    publishingVersion = "1.2.0"
+}
+version = publishData.getVersion()
 
+description = "Module for serialization on Spigot and Paper based servers"
 group = "de.eldoria.jacksonbukkit"
-version = "1.2.0"
 
 val publicProjects = setOf("core", "bukkit", "paper", "jackson-bukkit")
 
@@ -25,7 +36,6 @@ allprojects {
         plugin<JavaLibraryPlugin>()
         plugin<SpotlessPlugin>()
         plugin<JavaPlugin>()
-        plugin<MavenPublishPlugin>()
         plugin<PublishData>()
         plugin<JacocoPlugin>()
     }
@@ -55,14 +65,6 @@ allprojects {
         testImplementation("org.assertj:assertj-core:3.26.3")
     }
 
-    java {
-        withJavadocJar()
-        withJavadocJar()
-        toolchain {
-            languageVersion.set(JavaLanguageVersion.of(17))
-        }
-    }
-
     spotless {
         java {
             licenseHeaderFile(rootProject.file("HEADER.txt"))
@@ -72,56 +74,6 @@ allprojects {
 
     jacoco {
         toolVersion = "0.8.12"
-    }
-
-
-    publishData {
-        useEldoNexusRepos()
-        publishComponent("java")
-    }
-
-    if (publicProjects.contains(project.name)) {
-
-        publishing {
-            publications.create<MavenPublication>("maven") {
-                publishData.configurePublication(this)
-                pom {
-                    url.set("https://github.com/eldoriarpg/jackson-bukkit")
-                    developers {
-                        developer {
-                            name.set("Florian Fülling")
-                            url.set("https://github.com/rainbowdashlabs")
-                            organization.set("EldoriaRPG")
-                            organizationUrl.set("https://github.com/eldoriarpg")
-                        }
-                        developer {
-                            name.set("Yannick Lamprecht")
-                            url.set("https://github.com/yannicklamprecht")
-                        }
-                    }
-                    licenses {
-                        license {
-                            name.set("MIT")
-                            url.set("https://github.com/eldoriarpg/bukkit-jackson/blob/main/LICENSE.md")
-                        }
-                    }
-                }
-            }
-
-            repositories {
-                maven {
-                    authentication {
-                        credentials(PasswordCredentials::class) {
-                            username = System.getenv("NEXUS_USERNAME")
-                            password = System.getenv("NEXUS_PASSWORD")
-                        }
-                    }
-
-                    setUrl(publishData.getRepository())
-                    name = "EldoNexus"
-                }
-            }
-        }
     }
 
     tasks {
@@ -177,16 +129,80 @@ allprojects {
     }
 }
 
+fun configureIndra(extension: IndraExtension) {
+    extension.javaVersions {
+        target(17)
+        testWith(17)
+    }
+
+    extension.github("eldoriarpg", "jackson-bukkit") {
+        ci(true)
+    }
+
+    extension.mitLicense()
+
+    extension.signWithKeyFromPrefixedProperties("rainbowdashlabs")
+
+    extension.configurePublications {
+        pom {
+            developers {
+                developer {
+                    id.set("rainbowdashlabs")
+                    name.set("Florian Fülling")
+                    email.set("mail@chojo.dev")
+                    url.set("https://github.com/rainbowdashlabs")
+                }
+                developer {
+                    id.set("yannicklamprecht")
+                    name.set("Yannick Lamprecht")
+                    url.set("https://github.com/yannicklamprecht")
+                }
+            }
+        }
+    }
+
+}
+
+subprojects {
+    apply {
+        // We want to apply several plugins to subprojects
+        plugin<JavaPlugin>()
+        plugin<SpotlessPlugin>()
+        plugin<PublishData>()
+        plugin<JavaLibraryPlugin>()
+    }
+    if (project.name in publicProjects) {
+        apply {
+            plugin<MavenPublishPlugin>()
+            plugin<IndraPlugin>()
+            plugin<IndraPublishingPlugin>()
+            plugin<SigningPlugin>()
+        }
+
+        indra {
+            configureIndra(this)
+        }
+    }
+}
+
+indra {
+    configureIndra(this)
+}
+
+indraSonatype {
+    useAlternateSonatypeOSSHost("s01")
+}
+
 fun applyJavaDocOptions(options: MinimalJavadocOptions) {
     val javaDocOptions = options as StandardJavadocDocletOptions
     javaDocOptions.links(
-        "https://javadoc.io/doc/com.google.code.findbugs/jsr305/latest/",
-        "https://javadoc.io/doc/org.jetbrains/annotations/latest/",
-        "https://docs.oracle.com/en/java/javase/${java.toolchain.languageVersion.get().asInt()}/docs/api/",
-        "https://javadoc.io/doc/com.fasterxml.jackson.core/jackson-core/latest/",
-        "https://javadoc.io/doc/com.fasterxml.jackson.core/jackson-annotations/latest",
-        "https://javadoc.io/doc/com.fasterxml.jackson.core/jackson-databind/latest",
-        "https://jd.papermc.io/paper/1.19/"
+            "https://javadoc.io/doc/com.google.code.findbugs/jsr305/latest/",
+            "https://javadoc.io/doc/org.jetbrains/annotations/latest/",
+            "https://docs.oracle.com/en/java/javase/${java.toolchain.languageVersion.get().asInt()}/docs/api/",
+            "https://javadoc.io/doc/com.fasterxml.jackson.core/jackson-core/latest/",
+            "https://javadoc.io/doc/com.fasterxml.jackson.core/jackson-annotations/latest",
+            "https://javadoc.io/doc/com.fasterxml.jackson.core/jackson-databind/latest",
+            "https://jd.papermc.io/paper/1.19/"
     )
 }
 
