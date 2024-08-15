@@ -17,7 +17,7 @@ plugins {
 }
 publishData {
     useEldoNexusRepos(false)
-    publishingVersion = "1.2.0"
+    publishingVersion = "1.2.1"
 }
 version = publishData.getVersion()
 
