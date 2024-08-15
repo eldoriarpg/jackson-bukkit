@@ -40,7 +40,7 @@ dependencyResolutionManagement {
         }
 
         create("testlibs") {
-            version("jackson", "2.14.2")
+            version("jackson", "2.17.2")
             // jackson testing
             library("jackson-databind", "com.fasterxml.jackson.core", "jackson-databind").versionRef("jackson")
             library("jackson-dataformat-yaml", "com.fasterxml.jackson.dataformat", "jackson-dataformat-yaml").versionRef("jackson")
