@@ -46,14 +46,14 @@ dependencyResolutionManagement {
             library("jackson-dataformat-yaml", "com.fasterxml.jackson.dataformat", "jackson-dataformat-yaml").versionRef("jackson")
             library("jackson-dataformat-toml", "com.fasterxml.jackson.dataformat", "jackson-dataformat-toml").versionRef("jackson")
             bundle("jackson", listOf("jackson-databind", "jackson-dataformat-yaml", "jackson-dataformat-toml"))
-            version("junit", "5.9.3")
+            version("junit", "5.11.0")
 
             library("junit-jupiter-core", "org.junit.jupiter", "junit-jupiter").versionRef("junit")
             library("junit-jupiter-engine", "org.junit.jupiter", "junit-jupiter-engine").versionRef("junit")
             library("junit-jupiter-api", "org.junit.jupiter", "junit-jupiter-api").versionRef("junit")
             library("junit-params", "org.junit.jupiter", "junit-jupiter-params").versionRef("junit")
 
-            library("mockito", "org.junit.jupiter", "junit-jupiter-params").version("5.2.0")
+            library("mockito", "org.junit.jupiter", "junit-jupiter-params").version("5.11.0")
             library("assertj-core", "org.junit.jupiter", "junit-jupiter-params").version("3.24.2")
 
             bundle("unittests", listOf("junit-jupiter-core", "junit-jupiter-engine", "junit-jupiter-api", "junit-params", "mockito", "assertj-core"))
