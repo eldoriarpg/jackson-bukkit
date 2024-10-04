@@ -209,8 +209,7 @@ fun applyJavaDocOptions(options: MinimalJavadocOptions) {
 tasks {
     register<Javadoc>("allJavadocs") {
         applyJavaDocOptions(options)
-
-        destinationDir = file("${buildDir}/docs/javadoc")
+        setDestinationDir(file("${layout.buildDirectory}/docs/javadoc"))
         val projects = project.rootProject.allprojects.filter { p -> publicProjects.contains(p.name) }
         setSource(projects.map { p -> p.sourceSets.main.get().allJava })
         classpath = files(projects.map { p -> p.sourceSets.main.get().compileClasspath })
