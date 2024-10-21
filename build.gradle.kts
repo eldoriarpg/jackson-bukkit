@@ -17,7 +17,7 @@ plugins {
 }
 publishData {
     useEldoNexusRepos(false)
-    publishingVersion = "1.2.0"
+    publishingVersion = "1.2.1"
 }
 version = publishData.getVersion()
 
@@ -47,9 +47,9 @@ allprojects {
     }
 
     dependencies {
-        api("org.jetbrains", "annotations", "24.0.1")
+        api("org.jetbrains", "annotations", "26.0.1")
 
-        api(platform("com.fasterxml.jackson:jackson-bom:2.15.2"))
+        api(platform("com.fasterxml.jackson:jackson-bom:2.18.0"))
         api("com.fasterxml.jackson.core", "jackson-core")
         api("com.fasterxml.jackson.core:jackson-databind")
 
@@ -59,10 +59,10 @@ allprojects {
         testImplementation("com.fasterxml.jackson.dataformat:jackson-dataformat-toml")
 
         // junit and stuff
-        testImplementation("org.junit.jupiter:junit-jupiter-api:5.9.3")
-        testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.9.3")
-        testImplementation("org.mockito:mockito-core:5.3.1")
-        testImplementation("org.assertj:assertj-core:3.24.2")
+        testImplementation("org.junit.jupiter:junit-jupiter-api:5.11.3")
+        testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.11.3")
+        testImplementation("org.mockito:mockito-core:5.14.2")
+        testImplementation("org.assertj:assertj-core:3.26.3")
     }
 
     spotless {
@@ -73,7 +73,7 @@ allprojects {
     }
 
     jacoco {
-        toolVersion = "0.8.10"
+        toolVersion = "0.8.12"
     }
 
     tasks {
@@ -209,8 +209,7 @@ fun applyJavaDocOptions(options: MinimalJavadocOptions) {
 tasks {
     register<Javadoc>("allJavadocs") {
         applyJavaDocOptions(options)
-
-        destinationDir = file("${buildDir}/docs/javadoc")
+        setDestinationDir(file("${layout.buildDirectory}/docs/javadoc"))
         val projects = project.rootProject.allprojects.filter { p -> publicProjects.contains(p.name) }
         setSource(projects.map { p -> p.sourceSets.main.get().allJava })
         classpath = files(projects.map { p -> p.sourceSets.main.get().compileClasspath })
