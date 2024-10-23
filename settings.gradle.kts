@@ -25,7 +25,7 @@ dependencyResolutionManagement {
         create("libs") {
             // plugins
             plugin("spotless", "com.diffplug.spotless").version("6.25.0")
-            plugin("publishdata", "de.chojo.publishdata").version("1.2.5")
+            plugin("publishdata", "de.chojo.publishdata").version("1.4.0")
 
             version("indra", "3.1.3")
             plugin("indra-core", "net.kyori.indra").versionRef("indra")
