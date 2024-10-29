@@ -32,7 +32,7 @@ dependencyResolutionManagement {
             plugin("indra-publishing", "net.kyori.indra.publishing").versionRef("indra")
             plugin("indra-sonatype", "net.kyori.indra.publishing.sonatype").versionRef("indra")
 
-            version("jackson", "2.18.0")
+            version("jackson", "2.18.1")
             library("jackson-core", "com.fasterxml.jackson.core", "jackson-core").versionRef("jackson")
             library("jackson-databind", "com.fasterxml.jackson.core", "jackson-databind").versionRef("jackson")
             bundle("jackson", listOf("jackson-core", "jackson-databind"))
@@ -40,7 +40,7 @@ dependencyResolutionManagement {
         }
 
         create("testlibs") {
-            version("jackson", "2.18.0")
+            version("jackson", "2.18.1")
             // jackson testing
             library("jackson-databind", "com.fasterxml.jackson.core", "jackson-databind").versionRef("jackson")
             library("jackson-dataformat-yaml", "com.fasterxml.jackson.dataformat", "jackson-dataformat-yaml").versionRef("jackson")
