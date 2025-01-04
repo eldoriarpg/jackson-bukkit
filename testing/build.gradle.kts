@@ -3,7 +3,7 @@ dependencies {
     implementation("com.fasterxml.jackson.dataformat:jackson-dataformat-yaml")
     implementation("com.fasterxml.jackson.dataformat:jackson-dataformat-toml")
     implementation("org.junit.jupiter:junit-jupiter-api:5.11.4")
-    implementation("org.assertj:assertj-core:3.27.1")
+    implementation("org.assertj:assertj-core:3.27.2")
 }
 
 java{
