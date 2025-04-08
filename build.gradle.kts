@@ -1,8 +1,8 @@
 import com.diffplug.gradle.spotless.SpotlessPlugin
 import de.chojo.PublishData
-import net.kyori.indra.IndraExtension
+/*import net.kyori.indra.IndraExtension
 import net.kyori.indra.IndraPlugin
-import net.kyori.indra.IndraPublishingPlugin
+import net.kyori.indra.IndraPublishingPlugin*/
 
 plugins {
     java
@@ -10,9 +10,9 @@ plugins {
     `java-library`
     alias(libs.plugins.spotless)
     alias(libs.plugins.publishdata)
-    alias(libs.plugins.indra.core)
+   /* alias(libs.plugins.indra.core)
     alias(libs.plugins.indra.publishing)
-    alias(libs.plugins.indra.sonatype)
+    alias(libs.plugins.indra.sonatype)*/
     jacoco
 }
 publishData {
@@ -129,7 +129,7 @@ allprojects {
     }
 }
 
-fun configureIndra(extension: IndraExtension) {
+/*fun configureIndra(extension: IndraExtension) {
     extension.javaVersions {
         target(17)
         testWith(17)
@@ -161,7 +161,7 @@ fun configureIndra(extension: IndraExtension) {
         }
     }
 
-}
+}*/
 
 subprojects {
     apply {
@@ -174,24 +174,24 @@ subprojects {
     if (project.name in publicProjects) {
         apply {
             plugin<MavenPublishPlugin>()
-            plugin<IndraPlugin>()
-            plugin<IndraPublishingPlugin>()
+            //plugin<IndraPlugin>()
+            //plugin<IndraPublishingPlugin>()
             plugin<SigningPlugin>()
         }
 
-        indra {
+        /*indra {
             configureIndra(this)
-        }
+        }*/
     }
 }
 
-indra {
+/*indra {
     configureIndra(this)
 }
 
 indraSonatype {
     useAlternateSonatypeOSSHost("s01")
-}
+}*/
 
 fun applyJavaDocOptions(options: MinimalJavadocOptions) {
     val javaDocOptions = options as StandardJavadocDocletOptions
