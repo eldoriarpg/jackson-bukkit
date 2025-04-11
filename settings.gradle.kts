@@ -47,7 +47,7 @@ dependencyResolutionManagement {
             library("jackson-dataformat-toml", "com.fasterxml.jackson.dataformat", "jackson-dataformat-toml").versionRef("jackson")
             bundle("jackson", listOf("jackson-databind", "jackson-dataformat-yaml", "jackson-dataformat-toml"))
 
-            version("junit", "5.12.1")
+            version("junit", "5.12.2")
             library("junit-jupiter-core", "org.junit.jupiter", "junit-jupiter").versionRef("junit")
             library("junit-jupiter-engine", "org.junit.jupiter", "junit-jupiter-engine").versionRef("junit")
             library("junit-platform-launcher", "org.junit.platform", "junit-platform-launcher").version { "1.12.1" }
