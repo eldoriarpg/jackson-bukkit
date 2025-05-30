@@ -50,7 +50,7 @@ dependencyResolutionManagement {
             version("junit", "5.12.2")
             library("junit-jupiter-core", "org.junit.jupiter", "junit-jupiter").versionRef("junit")
             library("junit-jupiter-engine", "org.junit.jupiter", "junit-jupiter-engine").versionRef("junit")
-            library("junit-platform-launcher", "org.junit.platform", "junit-platform-launcher").version { "1.12.2" }
+            library("junit-platform-launcher", "org.junit.platform", "junit-platform-launcher").version { "1.13.0" }
             library("junit-jupiter-api", "org.junit.jupiter", "junit-jupiter-api").versionRef("junit")
             library("junit-params", "org.junit.jupiter", "junit-jupiter-params").versionRef("junit")
 
