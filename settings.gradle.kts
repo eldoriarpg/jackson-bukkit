@@ -47,14 +47,14 @@ dependencyResolutionManagement {
             library("jackson-dataformat-toml", "com.fasterxml.jackson.dataformat", "jackson-dataformat-toml").versionRef("jackson")
             bundle("jackson", listOf("jackson-databind", "jackson-dataformat-yaml", "jackson-dataformat-toml"))
 
-            version("junit", "5.13.0")
+            version("junit", "5.13.1")
             library("junit-jupiter-core", "org.junit.jupiter", "junit-jupiter").versionRef("junit")
             library("junit-jupiter-engine", "org.junit.jupiter", "junit-jupiter-engine").versionRef("junit")
-            library("junit-platform-launcher", "org.junit.platform", "junit-platform-launcher").version { "1.13.0" }
+            library("junit-platform-launcher", "org.junit.platform", "junit-platform-launcher").version { "1.13.1" }
             library("junit-jupiter-api", "org.junit.jupiter", "junit-jupiter-api").versionRef("junit")
             library("junit-params", "org.junit.jupiter", "junit-jupiter-params").versionRef("junit")
 
-            library("mockito", "org.junit.jupiter", "junit-jupiter-params").version("5.13.0")
+            library("mockito", "org.junit.jupiter", "junit-jupiter-params").version("5.13.1")
             library("assertj-core", "org.assertj", "assertj-core").version("3.27.3")
 
             bundle("unittests", listOf("junit-jupiter-core", "junit-jupiter-engine", "junit-jupiter-api","junit-platform-launcher", "junit-params", "mockito", "assertj-core"))
