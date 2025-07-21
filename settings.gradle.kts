@@ -50,11 +50,11 @@ dependencyResolutionManagement {
             version("junit", "5.13.4")
             library("junit-jupiter-core", "org.junit.jupiter", "junit-jupiter").versionRef("junit")
             library("junit-jupiter-engine", "org.junit.jupiter", "junit-jupiter-engine").versionRef("junit")
-            library("junit-platform-launcher", "org.junit.platform", "junit-platform-launcher").version("1.13.3")
+            library("junit-platform-launcher", "org.junit.platform", "junit-platform-launcher").version("1.13.4")
             library("junit-jupiter-api", "org.junit.jupiter", "junit-jupiter-api").versionRef("junit")
             library("junit-params", "org.junit.jupiter", "junit-jupiter-params").versionRef("junit")
 
-            library("mockito", "org.junit.jupiter", "junit-jupiter-params").version("5.13.3")
+            library("mockito", "org.junit.jupiter", "junit-jupiter-params").version("5.13.4")
             library("assertj-core", "org.assertj", "assertj-core").version("3.27.3")
 
             bundle("unittests", listOf("junit-jupiter-core", "junit-jupiter-engine", "junit-jupiter-api","junit-platform-launcher", "junit-params", "mockito", "assertj-core"))
