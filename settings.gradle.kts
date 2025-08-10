@@ -27,7 +27,7 @@ dependencyResolutionManagement {
             plugin("spotless", "com.diffplug.spotless").version("7.2.1")
             plugin("publishdata", "de.chojo.publishdata").version("1.2.5")
 
-            version("indra", "3.1.3")
+            version("indra", "3.2.0")
             plugin("indra-core", "net.kyori.indra").versionRef("indra")
             plugin("indra-publishing", "net.kyori.indra.publishing").versionRef("indra")
             plugin("indra-sonatype", "net.kyori.indra.publishing.sonatype").versionRef("indra")
