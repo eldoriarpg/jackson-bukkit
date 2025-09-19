@@ -55,7 +55,7 @@ dependencyResolutionManagement {
             library("junit-params", "org.junit.jupiter", "junit-jupiter-params").versionRef("junit")
 
             library("mockito", "org.junit.jupiter", "junit-jupiter-params").version("5.13.4")
-            library("assertj-core", "org.assertj", "assertj-core").version("3.27.4")
+            library("assertj-core", "org.assertj", "assertj-core").version("3.27.5")
 
             bundle("unittests", listOf("junit-jupiter-core", "junit-jupiter-engine", "junit-jupiter-api","junit-platform-launcher", "junit-params", "mockito", "assertj-core"))
         }
