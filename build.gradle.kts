@@ -59,8 +59,8 @@ allprojects {
         testImplementation("com.fasterxml.jackson.dataformat:jackson-dataformat-toml")
 
         // junit and stuff
-        testImplementation("org.junit.jupiter:junit-jupiter-api:5.14.0")
-        testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.14.0")
+        testImplementation("org.junit.jupiter:junit-jupiter-api:6.0.0")
+        testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:6.0.0")
         testImplementation("org.mockito:mockito-core:5.20.0")
         testImplementation("org.assertj:assertj-core:3.27.6")
     }
