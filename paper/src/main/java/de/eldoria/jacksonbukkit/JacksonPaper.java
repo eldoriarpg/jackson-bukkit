@@ -16,6 +16,8 @@ import de.eldoria.jacksonbukkit.deserializer.PaperItemStackDeserializer;
 import de.eldoria.jacksonbukkit.deserializer.RGBAColorDeserializer;
 import de.eldoria.jacksonbukkit.serializer.HexPaperColorSerializer;
 import de.eldoria.jacksonbukkit.serializer.LegacyItemStackSerializer;
+import de.eldoria.jacksonbukkit.serializer.NamespacedKeySerializer;
+import de.eldoria.jacksonbukkit.serializer.NamespacedKeySerializer.Format;
 import de.eldoria.jacksonbukkit.serializer.PaperColorSerializer;
 import de.eldoria.jacksonbukkit.serializer.PaperItemStackSerializer;
 import net.kyori.adventure.text.Component;
@@ -73,8 +75,9 @@ public class JacksonPaper extends JacksonBukkitModule {
     public JacksonPaper(boolean hexColors,
                         boolean legacyItemStackSerialization,
                         @Nullable JsonDeserializer<Component> componentDeserializer,
-                        @Nullable JsonSerializer<Component> componentSerializer) {
-        super(hexColors);
+                        @Nullable JsonSerializer<Component> componentSerializer,
+                        Format namespacedKeyformat) {
+        super(hexColors, namespacedKeyformat);
         this.legacyItemStackSerialization = legacyItemStackSerialization;
         this.componentDeserializer = componentDeserializer;
         this.componentSerializer = componentSerializer;
@@ -85,7 +88,7 @@ public class JacksonPaper extends JacksonBukkitModule {
      */
     @ApiStatus.Internal
     public JacksonPaper() {
-        super(false);
+        super(false, Format.FULL);
         legacyItemStackSerialization = false;
         componentDeserializer = null;
         componentSerializer = null;
