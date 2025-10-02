@@ -12,11 +12,11 @@ jobs:
 
     steps:
       - uses: actions/checkout@v5
-      - name: Set up JDK 18
+      - name: Set up JDK 21
         uses: actions/setup-java@v5
         with:
           distribution: temurin
-          java-version: 18
+          java-version: 21
       - name: Run Test Coverage
         run: ./gradlew jacocoTestReport
       - name: Generate JaCoCo Badge

@@ -11,15 +11,15 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v5
-      - name: Set up JDK 18
+      - name: Set up JDK 21
         uses: actions/setup-java@v5
         with:
           distribution: adopt
-          java-version: 18
+          java-version: 21
       - name: Build Javadocs
         run: |
           echo "Building javadocs with gradle"
-          ./gradlew clean allJavadocs
+          ./gradlew clean javadoc
           echo "Moving to javadocs directory:"
           cd build/docs/javadoc
           echo "Creating .nojekyll to have Github pages deploy html as is:"

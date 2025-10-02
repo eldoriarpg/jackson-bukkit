@@ -10,6 +10,7 @@ import com.fasterxml.jackson.databind.Module;
 import de.eldoria.jacksonbukkit.JacksonPaper;
 import de.eldoria.jacksonbukkit.PaperSerializationTest;
 import de.eldoria.jacksonbukkit.serializer.ComponentGsonSerializer;
+import de.eldoria.jacksonbukkit.serializer.NamespacedKeySerializer;
 import de.eldoria.jacksonbukkit.templates.ComponentTemplate;
 import net.kyori.adventure.text.Component;
 import org.junit.jupiter.api.Test;
@@ -23,7 +24,8 @@ class ComponentGsonDeserializerTest implements PaperSerializationTest {
         return new JacksonPaper(false,
                 false,
                 new ComponentGsonDeserializer(),
-                new ComponentGsonSerializer());
+                new ComponentGsonSerializer(),
+                NamespacedKeySerializer.Format.OBJECT);
     }
 
     @Test
