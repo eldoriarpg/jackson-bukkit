@@ -5,7 +5,7 @@ import com.vanniktech.maven.publish.SonatypeHost
 import de.chojo.PublishData
 
 plugins {
-    id("io.freefair.aggregate-javadoc") version ("8.12.2.1")
+    id("io.freefair.aggregate-javadoc") version ("8.14.2")
     java
     `maven-publish`
     `java-library`
