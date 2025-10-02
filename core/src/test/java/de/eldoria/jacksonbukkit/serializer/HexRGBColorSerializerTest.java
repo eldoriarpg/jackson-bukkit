@@ -18,7 +18,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 class HexRGBColorSerializerTest implements CoreSerializationTest {
     @Override
     public Module buildModule() {
-        return new JacksonBukkit(true);
+        return new JacksonBukkit(true, NamespacedKeySerializer.Format.FULL);
     }
 
     @Test

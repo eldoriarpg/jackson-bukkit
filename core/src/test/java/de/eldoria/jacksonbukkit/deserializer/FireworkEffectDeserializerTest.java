@@ -9,6 +9,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.Module;
 import de.eldoria.jacksonbukkit.JacksonBukkit;
 import de.eldoria.jacksonbukkit.CoreSerializationTest;
+import de.eldoria.jacksonbukkit.serializer.NamespacedKeySerializer;
 import de.eldoria.jacksonbukkit.templates.FireworkEffectTemplate;
 import org.bukkit.FireworkEffect;
 import org.junit.jupiter.api.Assertions;
@@ -20,7 +21,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 class FireworkEffectDeserializerTest implements CoreSerializationTest {
     @Override
     public Module buildModule() {
-        return new JacksonBukkit(false);
+        return new JacksonBukkit(false, NamespacedKeySerializer.Format.FULL);
     }
 
     @Test

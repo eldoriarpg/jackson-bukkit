@@ -21,16 +21,22 @@ class NamespacedKeyDeserializerTest implements CoreSerializationTest {
     void deserializeToJson() throws JsonProcessingException {
         assertEquals(NamespacedKeyTemplate.SINGLE, fromJson("namespaced_key", NamespacedKey.class));
         assertEquals(NamespacedKeyTemplate.LIST, fromJsonList("namespaced_key_list", NamespacedKey.class));
+        assertEquals(NamespacedKeyTemplate.SINGLE, json().readValue("\"key:name\"", NamespacedKey.class));
+        assertEquals(NamespacedKeyTemplate.SINGLE_MINECRAFT, json().readValue("\"name\"", NamespacedKey.class));
+        assertEquals(NamespacedKeyTemplate.SINGLE_MINECRAFT, json().readValue("\"minecraft:name\"", NamespacedKey.class));
     }
 
     @Test
-    void deserializeToYaml() throws JsonProcessingException {
+    void deserializeObjectToYaml() throws JsonProcessingException {
         assertEquals(NamespacedKeyTemplate.SINGLE, fromYaml("namespaced_key", NamespacedKey.class));
         assertEquals(NamespacedKeyTemplate.LIST, fromYamlList("namespaced_key_list", NamespacedKey.class));
+        assertEquals(NamespacedKeyTemplate.SINGLE_MINECRAFT, yaml().readValue("--- \"minecraft:name\"", NamespacedKey.class));
+        assertEquals(NamespacedKeyTemplate.SINGLE_MINECRAFT, yaml().readValue("--- \"name\"", NamespacedKey.class));
+        assertEquals(NamespacedKeyTemplate.SINGLE, yaml().readValue("--- \"key:name\"", NamespacedKey.class));
     }
 
     @Test
-    void deserializeToToml() throws JsonProcessingException {
+    void deserializeObjectToToml() throws JsonProcessingException {
         assertEquals(NamespacedKeyTemplate.SINGLE, fromToml("namespaced_key", NamespacedKey.class));
     }
 }
