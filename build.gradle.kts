@@ -1,7 +1,6 @@
 import com.diffplug.gradle.spotless.SpotlessPlugin
 import com.vanniktech.maven.publish.JavaLibrary
 import com.vanniktech.maven.publish.JavadocJar
-import com.vanniktech.maven.publish.SonatypeHost
 import de.chojo.PublishData
 
 plugins {
@@ -156,7 +155,7 @@ subprojects {
         }
 
         mavenPublishing {
-            publishToMavenCentral(SonatypeHost.CENTRAL_PORTAL)
+            publishToMavenCentral()
             signAllPublications()
 
             coordinates(groupId = "de.eldoria.jacksonbukkit", artifactId = project.name, version = publishData.getVersion())
@@ -201,7 +200,7 @@ subprojects {
 }
 
 mavenPublishing {
-    publishToMavenCentral(SonatypeHost.CENTRAL_PORTAL)
+    publishToMavenCentral()
     signAllPublications()
 
 
