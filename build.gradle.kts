@@ -12,7 +12,7 @@ plugins {
     alias(libs.plugins.spotless)
     alias(libs.plugins.publishdata)
     jacoco
-    id("com.vanniktech.maven.publish") version "0.30.0"
+    id("com.vanniktech.maven.publish") version "0.34.0"
 }
 publishData {
     useEldoNexusRepos(false)
