@@ -5,7 +5,7 @@ import com.vanniktech.maven.publish.SonatypeHost
 import de.chojo.PublishData
 
 plugins {
-    id("io.freefair.aggregate-javadoc") version("8.12.2.1")
+    id("io.freefair.aggregate-javadoc") version ("8.12.2.1")
     java
     `maven-publish`
     `java-library`
@@ -64,8 +64,8 @@ allprojects {
         testImplementation("org.assertj:assertj-core:3.27.6")
     }
 
-    java{
-        toolchain{
+    java {
+        toolchain {
             languageVersion.set(JavaLanguageVersion.of(21))
         }
     }
@@ -159,7 +159,11 @@ subprojects {
             publishToMavenCentral(SonatypeHost.CENTRAL_PORTAL)
             signAllPublications()
 
-            coordinates(groupId = "de.eldoria.jacksonbukkit", artifactId = project.name, version = publishData.getVersion())
+            coordinates(
+                groupId = "de.eldoria.jacksonbukkit",
+                artifactId = project.name,
+                version = publishData.getVersion()
+            )
 
             pom {
                 name.set("jackson-bukkit")
@@ -179,6 +183,11 @@ subprojects {
                         name.set("Nora Fülling")
                         email.set("mail@chojo.dev")
                         url.set("https://github.com/rainbowdashlabs")
+                    }
+                    developer {
+                        id.set("yannicklamprecht")
+                        name.set("Yannick Lamprecht")
+                        url.set("https://github.com/yannicklamprecht")
                     }
                 }
 
@@ -225,6 +234,11 @@ mavenPublishing {
                 name.set("Nora Fülling")
                 email.set("mail@chojo.dev")
                 url.set("https://github.com/rainbowdashlabs")
+            }
+            developer {
+                id.set("yannicklamprecht")
+                name.set("Yannick Lamprecht")
+                url.set("https://github.com/yannicklamprecht")
             }
         }
 
