@@ -148,7 +148,7 @@ subprojects {
                 coordinates(
                     groupId = "de.eldoria.jacksonbukkit",
                     artifactId = project.name,
-                    version = publishData.getVersion()
+                    version = rootProject.version as String
                 )
 
                 pom {
