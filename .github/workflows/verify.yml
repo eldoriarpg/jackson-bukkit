@@ -15,6 +15,6 @@ jobs:
           java-version: 21
           architecture: x64
       - name: Build with Gradle
-        run: ./gradlew --build-cache build
+        run: ./gradlew --build-cache build  -x test
       - name: Test with Gradle
         run: ./gradlew test

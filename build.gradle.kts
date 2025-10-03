@@ -31,10 +31,10 @@ dependencies {
 
 allprojects {
     apply {
-        plugin<JavaLibraryPlugin>()
-        plugin<SpotlessPlugin>()
-        plugin<JavaPlugin>()
         plugin<PublishData>()
+        plugin<JavaPlugin>()
+        plugin<SpotlessPlugin>()
+        plugin<JavaLibraryPlugin>()
         plugin<JacocoPlugin>()
     }
 
@@ -135,76 +135,63 @@ allprojects {
 
 
 subprojects {
-    apply {
-        // We want to apply several plugins to subprojects
-        plugin<JavaPlugin>()
-        plugin<SpotlessPlugin>()
-        plugin<PublishData>()
-        plugin<JavaLibraryPlugin>()
-    }
     if (project.name in publicProjects) {
-        apply {
-            plugin<MavenPublishPlugin>()
-            plugin<SigningPlugin>()
-        }
-
-    }
-    afterEvaluate {
-        apply {
-            plugin<com.vanniktech.maven.publish.MavenPublishPlugin>()
-        }
-
-        mavenPublishing {
-            publishToMavenCentral()
-            signAllPublications()
-
-            coordinates(
-                groupId = "de.eldoria.jacksonbukkit",
-                artifactId = project.name,
-                version = publishData.getVersion()
-            )
-
-            pom {
-                name.set("jackson-bukkit")
-                description.set(project.description)
-                inceptionYear.set("2025")
-                url.set("https://github.com/eldoriarpg/jackson-bukkit")
-                licenses {
-                    license {
-                        name.set("LGPL-3.0")
-                        url.set("https://opensource.org/license/lgpl-3-0")
-                    }
-                }
-
-                developers {
-                    developer {
-                        id.set("rainbowdashlabs")
-                        name.set("Nora Fülling")
-                        email.set("mail@chojo.dev")
-                        url.set("https://github.com/rainbowdashlabs")
-                    }
-                    developer {
-                        id.set("yannicklamprecht")
-                        name.set("Yannick Lamprecht")
-                        url.set("https://github.com/yannicklamprecht")
-                    }
-                }
-
-                scm {
-                    url.set("https://github.com/eldoriarpg/jackson-bukkit")
-                    connection.set("scm:git:git://github.com/eldoriarpg/jackson-bukkit.git")
-                    developerConnection.set("scm:git:ssh://github.com/eldoriarpg/jackson-bukkit.git")
-                }
+        afterEvaluate {
+            apply {
+                plugin<com.vanniktech.maven.publish.MavenPublishPlugin>()
             }
 
-            configure(
-                JavaLibrary(
-                    javadocJar = JavadocJar.Javadoc(),
-                    sourcesJar = true
-                )
-            )
-        }
+            mavenPublishing {
+                publishToMavenCentral()
+                signAllPublications()
 
+                coordinates(
+                    groupId = "de.eldoria.jacksonbukkit",
+                    artifactId = project.name,
+                    version = publishData.getVersion()
+                )
+
+                pom {
+                    name.set("jackson-bukkit")
+                    description.set(project.description)
+                    inceptionYear.set("2025")
+                    url.set("https://github.com/eldoriarpg/jackson-bukkit")
+                    licenses {
+                        license {
+                            name.set("LGPL-3.0")
+                            url.set("https://opensource.org/license/lgpl-3-0")
+                        }
+                    }
+
+                    developers {
+                        developer {
+                            id.set("rainbowdashlabs")
+                            name.set("Nora Fülling")
+                            email.set("mail@chojo.dev")
+                            url.set("https://github.com/rainbowdashlabs")
+                        }
+                        developer {
+                            id.set("yannicklamprecht")
+                            name.set("Yannick Lamprecht")
+                            url.set("https://github.com/yannicklamprecht")
+                        }
+                    }
+
+                    scm {
+                        url.set("https://github.com/eldoriarpg/jackson-bukkit")
+                        connection.set("scm:git:git://github.com/eldoriarpg/jackson-bukkit.git")
+                        developerConnection.set("scm:git:ssh://github.com/eldoriarpg/jackson-bukkit.git")
+                    }
+                }
+
+                configure(
+                    JavaLibrary(
+                        javadocJar = JavadocJar.Javadoc(),
+                        sourcesJar = true
+                    )
+                )
+            }
+        }
     }
 }
 
