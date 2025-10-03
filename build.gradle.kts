@@ -4,7 +4,7 @@ import com.vanniktech.maven.publish.JavadocJar
 import de.chojo.PublishData
 
 plugins {
-    id("io.freefair.aggregate-javadoc") version ("8.14.2")
+    id("io.freefair.aggregate-javadoc") version ("9.0.0")
     java
     `maven-publish`
     `java-library`
@@ -27,6 +27,10 @@ val publicProjects = setOf("core", "bukkit", "paper", "jackson-bukkit")
 dependencies {
     api(project(":paper"))
     api(project(":bukkit"))
+
+    javadoc(project(":core"))
+    javadoc(project(":paper"))
+    javadoc(project(":bukkit"))
 }
 
 allprojects {
@@ -260,6 +264,7 @@ fun applyJavaDocOptions(options: MinimalJavadocOptions) {
     val javaDocOptions = options as StandardJavadocDocletOptions
     javaDocOptions.links(
         "https://javadoc.io/doc/org.jetbrains/annotations/latest/",
+        "https://jd.papermc.io/paper/1.21.9/api",
         "https://docs.oracle.com/en/java/javase/${java.toolchain.languageVersion.get().asInt()}/docs/api/"
     )
 }
