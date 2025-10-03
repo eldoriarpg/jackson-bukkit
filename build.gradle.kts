@@ -1,7 +1,6 @@
 import com.diffplug.gradle.spotless.SpotlessPlugin
 import com.vanniktech.maven.publish.JavaLibrary
 import com.vanniktech.maven.publish.JavadocJar
-import com.vanniktech.maven.publish.SonatypeHost
 import de.chojo.PublishData
 
 plugins {
@@ -12,7 +11,7 @@ plugins {
     alias(libs.plugins.spotless)
     alias(libs.plugins.publishdata)
     jacoco
-    id("com.vanniktech.maven.publish") version "0.30.0"
+    id("com.vanniktech.maven.publish") version "0.34.0"
 }
 publishData {
     useEldoNexusRepos(false)
@@ -156,7 +155,7 @@ subprojects {
         }
 
         mavenPublishing {
-            publishToMavenCentral(SonatypeHost.CENTRAL_PORTAL)
+            publishToMavenCentral()
             signAllPublications()
 
             coordinates(
@@ -210,7 +209,7 @@ subprojects {
 }
 
 mavenPublishing {
-    publishToMavenCentral(SonatypeHost.CENTRAL_PORTAL)
+    publishToMavenCentral()
     signAllPublications()
 
 
