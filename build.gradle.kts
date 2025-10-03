@@ -44,6 +44,10 @@ allprojects {
         maven("https://eldonexus.de/repository/maven-proxies/")
     }
 
+        publishData {
+        useEldoNexusRepos(false)
+    }
+
     dependencies {
         api("org.jetbrains", "annotations", "26.0.2-1")
 
@@ -148,7 +152,7 @@ subprojects {
                 coordinates(
                     groupId = "de.eldoria.jacksonbukkit",
                     artifactId = project.name,
-                    version = rootProject.version as String
+                    version = publishData.getVersion()
                 )
 
                 pom {
