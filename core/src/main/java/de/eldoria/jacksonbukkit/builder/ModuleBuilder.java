@@ -6,6 +6,7 @@
 package de.eldoria.jacksonbukkit.builder;
 
 import de.eldoria.jacksonbukkit.JacksonBukkitModule;
+import de.eldoria.jacksonbukkit.serializer.NamespacedKeySerializer;
 
 /**
  * Base class for module builder.
@@ -18,6 +19,7 @@ public abstract class ModuleBuilder<T, V extends JacksonBukkitModule> {
      * Whether hex colors should be serialized as hex or not.
      */
     protected boolean hexColors = false;
+    protected NamespacedKeySerializer.Format namespacedKeyFormat = NamespacedKeySerializer.Format.OBJECT;
 
     /**
      * Serialize {@link org.bukkit.Color} as hex string.
@@ -37,6 +39,16 @@ public abstract class ModuleBuilder<T, V extends JacksonBukkitModule> {
      */
     public T colorAsHex(boolean hexColors) {
         this.hexColors = hexColors;
+        return (T) this;
+    }
+
+    /**
+     * Define the format used for serializing namespaced keys. Every format can be deserialized, independent of this setting.
+     *
+     * @return builder instance
+     */
+    public T withNamespacedKeyFormat(NamespacedKeySerializer.Format format) {
+        this.namespacedKeyFormat = format;
         return (T) this;
     }
 

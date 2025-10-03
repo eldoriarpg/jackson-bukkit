@@ -1,23 +1,21 @@
 import com.diffplug.gradle.spotless.SpotlessPlugin
+import com.vanniktech.maven.publish.JavaLibrary
+import com.vanniktech.maven.publish.JavadocJar
 import de.chojo.PublishData
-import net.kyori.indra.IndraExtension
-import net.kyori.indra.IndraPlugin
-import net.kyori.indra.IndraPublishingPlugin
 
 plugins {
+    id("io.freefair.aggregate-javadoc") version ("8.14.2")
     java
     `maven-publish`
     `java-library`
     alias(libs.plugins.spotless)
     alias(libs.plugins.publishdata)
-    alias(libs.plugins.indra.core)
-    alias(libs.plugins.indra.publishing)
-    alias(libs.plugins.indra.sonatype)
     jacoco
+    id("com.vanniktech.maven.publish") version "0.34.0"
 }
 publishData {
     useEldoNexusRepos(false)
-    publishingVersion = "1.2.0"
+    publishingVersion = "1.3.0"
 }
 version = publishData.getVersion()
 
@@ -47,9 +45,9 @@ allprojects {
     }
 
     dependencies {
-        api("org.jetbrains", "annotations", "24.0.1")
+        api("org.jetbrains", "annotations", "26.0.2-1")
 
-        api(platform("com.fasterxml.jackson:jackson-bom:2.15.2"))
+        api(platform("com.fasterxml.jackson:jackson-bom:2.20.0"))
         api("com.fasterxml.jackson.core", "jackson-core")
         api("com.fasterxml.jackson.core:jackson-databind")
 
@@ -59,10 +57,16 @@ allprojects {
         testImplementation("com.fasterxml.jackson.dataformat:jackson-dataformat-toml")
 
         // junit and stuff
-        testImplementation("org.junit.jupiter:junit-jupiter-api:5.9.3")
-        testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.9.3")
-        testImplementation("org.mockito:mockito-core:5.3.1")
-        testImplementation("org.assertj:assertj-core:3.24.2")
+        testImplementation("org.junit.jupiter:junit-jupiter-api:6.0.0")
+        testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:6.0.0")
+        testImplementation("org.mockito:mockito-core:5.20.0")
+        testImplementation("org.assertj:assertj-core:3.27.6")
+    }
+
+    java {
+        toolchain {
+            languageVersion.set(JavaLanguageVersion.of(21))
+        }
     }
 
     spotless {
@@ -73,7 +77,7 @@ allprojects {
     }
 
     jacoco {
-        toolVersion = "0.8.10"
+        toolVersion = "0.8.13"
     }
 
     tasks {
@@ -129,39 +133,6 @@ allprojects {
     }
 }
 
-fun configureIndra(extension: IndraExtension) {
-    extension.javaVersions {
-        target(17)
-        testWith(17)
-    }
-
-    extension.github("eldoriarpg", "jackson-bukkit") {
-        ci(true)
-    }
-
-    extension.mitLicense()
-
-    extension.signWithKeyFromPrefixedProperties("rainbowdashlabs")
-
-    extension.configurePublications {
-        pom {
-            developers {
-                developer {
-                    id.set("rainbowdashlabs")
-                    name.set("Florian Fülling")
-                    email.set("mail@chojo.dev")
-                    url.set("https://github.com/rainbowdashlabs")
-                }
-                developer {
-                    id.set("yannicklamprecht")
-                    name.set("Yannick Lamprecht")
-                    url.set("https://github.com/yannicklamprecht")
-                }
-            }
-        }
-    }
-
-}
 
 subprojects {
     apply {
@@ -174,45 +145,125 @@ subprojects {
     if (project.name in publicProjects) {
         apply {
             plugin<MavenPublishPlugin>()
-            plugin<IndraPlugin>()
-            plugin<IndraPublishingPlugin>()
             plugin<SigningPlugin>()
         }
 
-        indra {
-            configureIndra(this)
+    }
+    afterEvaluate {
+        apply {
+            plugin<com.vanniktech.maven.publish.MavenPublishPlugin>()
         }
+
+        mavenPublishing {
+            publishToMavenCentral()
+            signAllPublications()
+
+            coordinates(
+                groupId = "de.eldoria.jacksonbukkit",
+                artifactId = project.name,
+                version = publishData.getVersion()
+            )
+
+            pom {
+                name.set("jackson-bukkit")
+                description.set(project.description)
+                inceptionYear.set("2025")
+                url.set("https://github.com/eldoriarpg/jackson-bukkit")
+                licenses {
+                    license {
+                        name.set("LGPL-3.0")
+                        url.set("https://opensource.org/license/lgpl-3-0")
+                    }
+                }
+
+                developers {
+                    developer {
+                        id.set("rainbowdashlabs")
+                        name.set("Nora Fülling")
+                        email.set("mail@chojo.dev")
+                        url.set("https://github.com/rainbowdashlabs")
+                    }
+                    developer {
+                        id.set("yannicklamprecht")
+                        name.set("Yannick Lamprecht")
+                        url.set("https://github.com/yannicklamprecht")
+                    }
+                }
+
+                scm {
+                    url.set("https://github.com/eldoriarpg/jackson-bukkit")
+                    connection.set("scm:git:git://github.com/eldoriarpg/jackson-bukkit.git")
+                    developerConnection.set("scm:git:ssh://github.com/eldoriarpg/jackson-bukkit.git")
+                }
+            }
+
+            configure(
+                JavaLibrary(
+                    javadocJar = JavadocJar.Javadoc(),
+                    sourcesJar = true
+                )
+            )
+        }
+
     }
 }
 
-indra {
-    configureIndra(this)
-}
+mavenPublishing {
+    publishToMavenCentral()
+    signAllPublications()
 
-indraSonatype {
-    useAlternateSonatypeOSSHost("s01")
+
+    coordinates(groupId = "de.eldoria.jacksonbukkit", artifactId = project.name, version = publishData.getVersion())
+
+    pom {
+        name.set("jackson-bukkit")
+        description.set(project.description)
+        inceptionYear.set("2025")
+        url.set("https://github.com/eldoriarpg/jackson-bukkit")
+        licenses {
+            license {
+                name.set("LGPL-3.0")
+                url.set("https://opensource.org/license/lgpl-3-0")
+            }
+        }
+
+        developers {
+            developer {
+                id.set("rainbowdashlabs")
+                name.set("Nora Fülling")
+                email.set("mail@chojo.dev")
+                url.set("https://github.com/rainbowdashlabs")
+            }
+            developer {
+                id.set("yannicklamprecht")
+                name.set("Yannick Lamprecht")
+                url.set("https://github.com/yannicklamprecht")
+            }
+        }
+
+        scm {
+            url.set("https://github.com/eldoriarpg/jackson-bukkit")
+            connection.set("scm:git:git://github.com/eldoriarpg/jackson-bukkit.git")
+            developerConnection.set("scm:git:ssh://github.com/eldoriarpg/jackson-bukkit.git")
+        }
+    }
+
+    configure(
+        JavaLibrary(
+            javadocJar = JavadocJar.Javadoc(),
+            sourcesJar = true
+        )
+    )
 }
 
 fun applyJavaDocOptions(options: MinimalJavadocOptions) {
     val javaDocOptions = options as StandardJavadocDocletOptions
     javaDocOptions.links(
-            "https://javadoc.io/doc/com.google.code.findbugs/jsr305/latest/",
-            "https://javadoc.io/doc/org.jetbrains/annotations/latest/",
-            "https://docs.oracle.com/en/java/javase/${java.toolchain.languageVersion.get().asInt()}/docs/api/",
-            "https://javadoc.io/doc/com.fasterxml.jackson.core/jackson-core/latest/",
-            "https://javadoc.io/doc/com.fasterxml.jackson.core/jackson-annotations/latest",
-            "https://javadoc.io/doc/com.fasterxml.jackson.core/jackson-databind/latest",
-            "https://jd.papermc.io/paper/1.19/"
+        "https://javadoc.io/doc/org.jetbrains/annotations/latest/",
+        "https://docs.oracle.com/en/java/javase/${java.toolchain.languageVersion.get().asInt()}/docs/api/"
     )
 }
 
-tasks {
-    register<Javadoc>("allJavadocs") {
-        applyJavaDocOptions(options)
-
-        destinationDir = file("${buildDir}/docs/javadoc")
-        val projects = project.rootProject.allprojects.filter { p -> publicProjects.contains(p.name) }
-        setSource(projects.map { p -> p.sourceSets.main.get().allJava })
-        classpath = files(projects.map { p -> p.sourceSets.main.get().compileClasspath })
-    }
+tasks.javadoc.configure {
+    applyJavaDocOptions(options)
 }

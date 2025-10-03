@@ -71,14 +71,16 @@ public abstract class JacksonBukkitModule extends Module {
      * True when colors should be interpreted as hex strings.
      */
     protected final boolean hexColors;
+    protected final NamespacedKeySerializer.Format namespacedKeyFormat;
 
     /**
      * Creates a new jackson bukkit module
      *
      * @param hexColors true to use hex colors
      */
-    public JacksonBukkitModule(boolean hexColors) {
+    public JacksonBukkitModule(boolean hexColors, NamespacedKeySerializer.Format namespacedKeyFormat) {
         this.hexColors = hexColors;
+        this.namespacedKeyFormat = namespacedKeyFormat;
     }
 
     @Override
@@ -109,7 +111,7 @@ public abstract class JacksonBukkitModule extends Module {
     protected final void addSerializer(SimpleSerializers serializers) {
         serializers.addSerializer(Vector.class, new VectorSerializer());
         serializers.addSerializer(BlockVector.class, new BlockVectorSerializer());
-        serializers.addSerializer(NamespacedKey.class, new NamespacedKeySerializer());
+        serializers.addSerializer(NamespacedKey.class, new NamespacedKeySerializer(namespacedKeyFormat));
         serializers.addSerializer(PotionEffect.class, new PotionEffectSerializer());
         serializers.addSerializer(PotionEffectType.class, new PotionEffectTypeSerializer());
         serializers.addSerializer(FireworkEffect.class, new FireworkEffectSerializer());

@@ -1,14 +1,10 @@
-repositories {
-    maven("https://eldonexus.de/repository/codemc-nms/")
-}
+
 
 dependencies {
     testImplementation(project(":core"))
-    implementation("com.destroystokyo.paper:paper-api:1.16.5-R0.1-20211218.081530-231")
-    testImplementation("com.fasterxml.jackson.dataformat:jackson-dataformat-yaml")
-    testImplementation("com.fasterxml.jackson.dataformat:jackson-dataformat-toml")
-    testImplementation("org.junit.jupiter:junit-jupiter-api:5.9.3")
-    testImplementation("org.assertj:assertj-core:3.24.2")
+    implementation("com.destroystokyo.paper:paper-api:1.16.5-R0.1-SNAPSHOT")
+    testImplementation(libs.bundles.jackson)
+    testImplementation(testlibs.bundles.unittests)
     implementation(project(":testing"))
-    testImplementation("com.github.seeseemelk", "MockBukkit-v1.19", "2.29.0")
+    testImplementation("com.github.seeseemelk", "MockBukkit-v1.19", "3.1.0")
 }

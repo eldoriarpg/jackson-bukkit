@@ -12,6 +12,8 @@ import de.eldoria.jacksonbukkit.deserializer.ComponentGsonDeserializer;
 import de.eldoria.jacksonbukkit.deserializer.ComponentMiniMessageDeserializer;
 import de.eldoria.jacksonbukkit.serializer.ComponentGsonSerializer;
 import de.eldoria.jacksonbukkit.serializer.ComponentMiniMessageSerializer;
+import de.eldoria.jacksonbukkit.serializer.NamespacedKeySerializer;
+import de.eldoria.jacksonbukkit.serializer.NamespacedKeySerializer.Format;
 import de.eldoria.jacksonbukkit.util.PaperFeatures;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.minimessage.MiniMessage;
@@ -76,6 +78,6 @@ public class JacksonPaperBuilder extends ModuleBuilder<JacksonPaperBuilder, Jack
 
     @Override
     public JacksonPaper build() {
-        return new JacksonPaper(hexColors, legacyItemStackSerialization, componentJsonDeserializer, componentJsonSerializer);
+        return new JacksonPaper(hexColors, legacyItemStackSerialization, componentJsonDeserializer, componentJsonSerializer, namespacedKeyFormat);
     }
 }

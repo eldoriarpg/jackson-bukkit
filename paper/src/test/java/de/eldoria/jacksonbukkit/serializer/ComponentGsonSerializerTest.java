@@ -22,7 +22,8 @@ class ComponentGsonSerializerTest implements PaperSerializationTest {
         return new JacksonPaper(false,
                 false,
                 new ComponentGsonDeserializer(),
-                new ComponentGsonSerializer());
+                new ComponentGsonSerializer(),
+                NamespacedKeySerializer.Format.OBJECT);
     }
 
     @Test

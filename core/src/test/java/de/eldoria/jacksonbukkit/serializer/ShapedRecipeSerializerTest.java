@@ -7,16 +7,22 @@ package de.eldoria.jacksonbukkit.serializer;
 
 import be.seeseemelk.mockbukkit.MockBukkit;
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.Module;
 import de.eldoria.jacksonbukkit.CoreSerializationTest;
-import de.eldoria.jacksonbukkit.templates.RGBColorTemplate;
+import de.eldoria.jacksonbukkit.JacksonBukkit;
 import de.eldoria.jacksonbukkit.templates.ShapedRecipeTemplate;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class ShapedRecipeSerializerTest implements CoreSerializationTest {
+    @Override
+    public Module buildModule() {
+        return new JacksonBukkit(false, NamespacedKeySerializer.Format.OBJECT);
+    }
+
     @BeforeAll
     static void beforeAll() {
         MockBukkit.mock();

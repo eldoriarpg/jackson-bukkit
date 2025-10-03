@@ -13,6 +13,8 @@ import de.eldoria.jacksonbukkit.deserializer.LegacyItemStackDeserializer;
 import de.eldoria.jacksonbukkit.deserializer.RGBColorDeserializer;
 import de.eldoria.jacksonbukkit.serializer.HexRGBColorSerializer;
 import de.eldoria.jacksonbukkit.serializer.LegacyItemStackSerializer;
+import de.eldoria.jacksonbukkit.serializer.NamespacedKeySerializer;
+import de.eldoria.jacksonbukkit.serializer.NamespacedKeySerializer.Format;
 import de.eldoria.jacksonbukkit.serializer.RGBColorSerializer;
 import org.bukkit.Color;
 import org.bukkit.FireworkEffect;
@@ -59,8 +61,8 @@ public class JacksonBukkit extends JacksonBukkitModule {
      * @param hexColors true to serialize colors as hex by default
      */
     @ApiStatus.Internal
-    public JacksonBukkit(boolean hexColors) {
-        super(hexColors);
+    public JacksonBukkit(boolean hexColors, Format namespacedKeyformat) {
+        super(hexColors, namespacedKeyformat);
     }
 
     @Override
@@ -73,7 +75,7 @@ public class JacksonBukkit extends JacksonBukkitModule {
      */
     @ApiStatus.Internal
     public JacksonBukkit() {
-        this(false);
+        this(false, Format.FULL);
     }
 
     @Override

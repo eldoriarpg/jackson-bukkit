@@ -18,7 +18,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class FireworkEffectSerializerTest implements CoreSerializationTest {
     @Override
     public Module buildModule() {
-        return new JacksonBukkit(false);
+        return new JacksonBukkit(false, NamespacedKeySerializer.Format.FULL);
     }
 
     @Test
