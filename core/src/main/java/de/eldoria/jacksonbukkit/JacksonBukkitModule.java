@@ -113,8 +113,8 @@ public abstract class JacksonBukkitModule extends Module {
      */
     protected final void addSerializer(SimpleSerializers serializers) {
         serializers.addSerializer(AttributeModifier.class, new AttributeModifierSerializer());
-        serializers.addSerializer(BlockVector.class, new BlockVectorSerializer());
         serializers.addSerializer(BlockData.class, new BlockDataSerializer());
+        serializers.addSerializer(BlockVector.class, new BlockVectorSerializer());
         serializers.addSerializer(BoundingBox.class, new BoundingBoxSerializer());
         serializers.addSerializer(Color.class, new RGBColorSerializer());
         serializers.addSerializer(Enchantment.class, new EnchantmentSerializer());
@@ -149,8 +149,8 @@ public abstract class JacksonBukkitModule extends Module {
      */
     protected final void addDeserializer(SimpleDeserializers deserializers) {
         deserializers.addDeserializer(AttributeModifier.class, new AttributeModifierDeserializer());
-        deserializers.addDeserializer(BlockVector.class, new BlockVectorDeserializer());
         deserializers.addDeserializer(BlockData.class, new BlockDataDeserializer());
+        deserializers.addDeserializer(BlockVector.class, new BlockVectorDeserializer());
         deserializers.addDeserializer(BoundingBox.class, new BoundingBoxDeserializer());
         deserializers.addDeserializer(Color.class, new RGBColorDeserializer());
         deserializers.addDeserializer(Enchantment.class, new EnchantmentDeserializer());
