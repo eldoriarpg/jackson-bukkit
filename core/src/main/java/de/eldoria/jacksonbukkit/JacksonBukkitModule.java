@@ -10,9 +10,11 @@ import com.fasterxml.jackson.databind.Module;
 import com.fasterxml.jackson.databind.module.SimpleDeserializers;
 import com.fasterxml.jackson.databind.module.SimpleSerializers;
 import de.eldoria.jacksonbukkit.deserializer.AttributeModifierDeserializer;
+import de.eldoria.jacksonbukkit.deserializer.BlockDataDeserializer;
 import de.eldoria.jacksonbukkit.deserializer.BlockVectorDeserializer;
 import de.eldoria.jacksonbukkit.deserializer.BoundingBoxDeserializer;
 import de.eldoria.jacksonbukkit.deserializer.ExactChoiceDeserializer;
+import de.eldoria.jacksonbukkit.serializer.BlockDataSerializer;
 import de.eldoria.jacksonbukkit.serializer.EnchantmentSerializer;
 import de.eldoria.jacksonbukkit.deserializer.FireworkEffectDeserializer;
 import de.eldoria.jacksonbukkit.deserializer.LocationDeserializer;
@@ -50,6 +52,7 @@ import org.bukkit.NamespacedKey;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.attribute.AttributeModifier;
 import org.bukkit.block.banner.Pattern;
+import org.bukkit.block.data.BlockData;
 import org.bukkit.inventory.RecipeChoice.ExactChoice;
 import org.bukkit.inventory.RecipeChoice.MaterialChoice;
 import org.bukkit.inventory.ShapedRecipe;
@@ -109,23 +112,24 @@ public abstract class JacksonBukkitModule extends Module {
      * @param serializers serializers
      */
     protected final void addSerializer(SimpleSerializers serializers) {
-        serializers.addSerializer(Vector.class, new VectorSerializer());
+        serializers.addSerializer(AttributeModifier.class, new AttributeModifierSerializer());
         serializers.addSerializer(BlockVector.class, new BlockVectorSerializer());
+        serializers.addSerializer(BlockData.class, new BlockDataSerializer());
+        serializers.addSerializer(BoundingBox.class, new BoundingBoxSerializer());
+        serializers.addSerializer(Color.class, new RGBColorSerializer());
+        serializers.addSerializer(Enchantment.class, new EnchantmentSerializer());
+        serializers.addSerializer(ExactChoice.class, new ExactChoiceSerializer());
+        serializers.addSerializer(FireworkEffect.class, new FireworkEffectSerializer());
+        serializers.addSerializer(Location.class, new LocationSerializer());
+        serializers.addSerializer(MaterialChoice.class, new MaterialChoiceSerializer());
         serializers.addSerializer(NamespacedKey.class, new NamespacedKeySerializer(namespacedKeyFormat));
+        serializers.addSerializer(OfflinePlayer.class, new PlayerSerializer());
+        serializers.addSerializer(Pattern.class, new PatternSerializer());
         serializers.addSerializer(PotionEffect.class, new PotionEffectSerializer());
         serializers.addSerializer(PotionEffectType.class, new PotionEffectTypeSerializer());
-        serializers.addSerializer(FireworkEffect.class, new FireworkEffectSerializer());
-        serializers.addSerializer(Pattern.class, new PatternSerializer());
-        serializers.addSerializer(BoundingBox.class, new BoundingBoxSerializer());
-        serializers.addSerializer(Enchantment.class, new EnchantmentSerializer());
-        serializers.addSerializer(AttributeModifier.class, new AttributeModifierSerializer());
-        serializers.addSerializer(Location.class, new LocationSerializer());
-        serializers.addSerializer(OfflinePlayer.class, new PlayerSerializer());
-        serializers.addSerializer(Color.class, new RGBColorSerializer());
-        serializers.addSerializer(ExactChoice.class, new ExactChoiceSerializer());
-        serializers.addSerializer(MaterialChoice.class, new MaterialChoiceSerializer());
         serializers.addSerializer(ShapedRecipe.class, new ShapedRecipeSerializer());
         serializers.addSerializer(ShapelessRecipe.class, new ShapelessRecipeSerializer());
+        serializers.addSerializer(Vector.class, new VectorSerializer());
         registerSerializer(serializers);
     }
 
@@ -144,23 +148,24 @@ public abstract class JacksonBukkitModule extends Module {
      * @param deserializers deserializers
      */
     protected final void addDeserializer(SimpleDeserializers deserializers) {
-        deserializers.addDeserializer(Vector.class, new VectorDeserializer());
+        deserializers.addDeserializer(AttributeModifier.class, new AttributeModifierDeserializer());
         deserializers.addDeserializer(BlockVector.class, new BlockVectorDeserializer());
+        deserializers.addDeserializer(BlockData.class, new BlockDataDeserializer());
+        deserializers.addDeserializer(BoundingBox.class, new BoundingBoxDeserializer());
+        deserializers.addDeserializer(Color.class, new RGBColorDeserializer());
+        deserializers.addDeserializer(Enchantment.class, new EnchantmentDeserializer());
+        deserializers.addDeserializer(ExactChoice.class, new ExactChoiceDeserializer());
+        deserializers.addDeserializer(FireworkEffect.class, new FireworkEffectDeserializer());
+        deserializers.addDeserializer(Location.class, new LocationDeserializer());
+        deserializers.addDeserializer(MaterialChoice.class, new MaterialChoiceDeserializer());
         deserializers.addDeserializer(NamespacedKey.class, new NamespacedKeyDeserializer());
+        deserializers.addDeserializer(OfflinePlayer.class, new PlayerDeserializer());
+        deserializers.addDeserializer(Pattern.class, new PatternDeserializer());
         deserializers.addDeserializer(PotionEffect.class, new PotionEffectDeserializer());
         deserializers.addDeserializer(PotionEffectType.class, new PotionEffectTypeDeserializer());
-        deserializers.addDeserializer(FireworkEffect.class, new FireworkEffectDeserializer());
-        deserializers.addDeserializer(Pattern.class, new PatternDeserializer());
-        deserializers.addDeserializer(BoundingBox.class, new BoundingBoxDeserializer());
-        deserializers.addDeserializer(Enchantment.class, new EnchantmentDeserializer());
-        deserializers.addDeserializer(AttributeModifier.class, new AttributeModifierDeserializer());
-        deserializers.addDeserializer(Location.class, new LocationDeserializer());
-        deserializers.addDeserializer(OfflinePlayer.class, new PlayerDeserializer());
-        deserializers.addDeserializer(Color.class, new RGBColorDeserializer());
-        deserializers.addDeserializer(ExactChoice.class, new ExactChoiceDeserializer());
-        deserializers.addDeserializer(MaterialChoice.class, new MaterialChoiceDeserializer());
         deserializers.addDeserializer(ShapedRecipe.class, new ShapedRecipeDeserializer());
         deserializers.addDeserializer(ShapelessRecipe.class, new ShapelessRecipeDeserializer());
+        deserializers.addDeserializer(Vector.class, new VectorDeserializer());
         registerDeserializer(deserializers);
     }
 
