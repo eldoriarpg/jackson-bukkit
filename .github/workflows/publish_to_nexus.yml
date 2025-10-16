@@ -20,7 +20,7 @@ jobs:
           distribution: temurin
           java-version: 21
       - name: Build with Gradle
-        run: ./gradlew --build-cache build
+        run: ./gradlew --build-cache build  -x test
       - name: Test with Gradle
         run: ./gradlew test
       - name: Publish to Maven Central
