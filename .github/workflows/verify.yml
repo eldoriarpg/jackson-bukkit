@@ -19,7 +19,7 @@ jobs:
           distribution: ${{ env.JAVA_DISTRIBUTION }}
           java-version: ${{ env.JAVA_VERSION }}
           architecture: x64
-      - name: Build with Gradle
+      - name: Compile with Gradle
         run: ./gradlew jar
 
   license:
@@ -34,7 +34,7 @@ jobs:
           distribution: ${{ env.JAVA_DISTRIBUTION }}
           java-version: ${{ env.JAVA_VERSION }}
           architecture: x64
-      - name: Build with Gradle
+      - name: Check License
         run: ./gradlew spotlessCheck
 
   test:
@@ -64,5 +64,5 @@ jobs:
           distribution: ${{ env.JAVA_DISTRIBUTION }}
           java-version: ${{ env.JAVA_VERSION }}
           architecture: x64
-      - name: Build with Gradle
+      - name: Build Javadocs with Gradle
         run: ./gradlew javadoc
