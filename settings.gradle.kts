@@ -37,6 +37,12 @@ dependencyResolutionManagement {
             library("jackson-databind", "com.fasterxml.jackson.core", "jackson-databind").versionRef("jackson")
             bundle("jackson", listOf("jackson-core", "jackson-databind"))
 
+            library("paper-v120","io.papermc.paper", "paper-api").version("1.20-R0.1-SNAPSHOT")
+            library("paper-v1194","io.papermc.paper", "paper-api").version("1.19.4-R0.1-SNAPSHOT")
+            library("spigot-v120","org.spigotmc", "spigot-api").version("1.19.4-R0.1-SNAPSHOT")
+            library("spigot-v1194","org.spigotmc", "spigot-api").version("1.19.4-R0.1-SNAPSHOT")
+            library("spigot-v1132","org.spigotmc", "spigot-api").version("1.13.2-R0.1-SNAPSHOT")
+
         }
 
         create("testlibs") {
@@ -53,6 +59,9 @@ dependencyResolutionManagement {
             library("junit-platform-launcher", "org.junit.platform", "junit-platform-launcher").version("6.0.0")
             library("junit-jupiter-api", "org.junit.jupiter", "junit-jupiter-api").versionRef("junit")
             library("junit-params", "org.junit.jupiter", "junit-jupiter-params").versionRef("junit")
+
+            library("mockbukkit-v119","com.github.seeseemelk", "MockBukkit-v1.19").version("3.1.0")
+
 
             library("mockito", "org.junit.jupiter", "junit-jupiter-params").version("6.0.0")
             library("assertj-core", "org.assertj", "assertj-core").version("3.27.6")

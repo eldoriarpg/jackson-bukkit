@@ -1,20 +1,68 @@
-name: Verify state
+name: Verify
 
 on: [push, pull_request]
 
+env:
+  JAVA_VERSION: 21
+  JAVA_DISTRIBUTION: temurin
+
 jobs:
-  build:
+  compile:
+    name: Compile
     runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@v5
-      - name: Set up JDK 21
+      - name: Set up JDK ${{ env.JAVA_VERSION }}
         uses: actions/setup-java@v5
         with:
-          distribution: temurin
-          java-version: 21
+          distribution: ${{ env.JAVA_DISTRIBUTION }}
+          java-version: ${{ env.JAVA_VERSION }}
           architecture: x64
-      - name: Build with Gradle
-        run: ./gradlew --build-cache build  -x test
+      - name: Compile with Gradle
+        run: ./gradlew jar
+
+  license:
+    name: License
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v5
+      - name: Set up JDK ${{ env.JAVA_VERSION }}
+        uses: actions/setup-java@v5
+        with:
+          distribution: ${{ env.JAVA_DISTRIBUTION }}
+          java-version: ${{ env.JAVA_VERSION }}
+          architecture: x64
+      - name: Check License
+        run: ./gradlew spotlessCheck
+
+  test:
+    name: Tests
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v5
+      - name: Set up JDK ${{ env.JAVA_VERSION }}
+        uses: actions/setup-java@v5
+        with:
+          distribution: ${{ env.JAVA_DISTRIBUTION }}
+          java-version: ${{ env.JAVA_VERSION }}
+          architecture: x64
       - name: Test with Gradle
         run: ./gradlew test
+
+  javadoc:
+    name: Javadocs
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v5
+      - name: Set up JDK ${{ env.JAVA_VERSION }}
+        uses: actions/setup-java@v5
+        with:
+          distribution: ${{ env.JAVA_DISTRIBUTION }}
+          java-version: ${{ env.JAVA_VERSION }}
+          architecture: x64
+      - name: Build Javadocs with Gradle
+        run: ./gradlew javadoc
