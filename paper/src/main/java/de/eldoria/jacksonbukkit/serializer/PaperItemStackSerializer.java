@@ -5,12 +5,12 @@
  */
 package de.eldoria.jacksonbukkit.serializer;
 
-import com.fasterxml.jackson.core.JsonGenerator;
-import com.fasterxml.jackson.databind.SerializerProvider;
 import de.eldoria.jacksonbukkit.util.PaperFeatures;
 import org.bukkit.inventory.ItemStack;
+import tools.jackson.core.JacksonException;
+import tools.jackson.core.JsonGenerator;
+import tools.jackson.databind.SerializationContext;
 
-import java.io.IOException;
 import java.util.Base64;
 
 /**
@@ -18,7 +18,7 @@ import java.util.Base64;
  */
 public class PaperItemStackSerializer extends LegacyItemStackSerializer {
     @Override
-    public void serialize(ItemStack value, JsonGenerator gen, SerializerProvider serializers) throws IOException {
+    public void serialize(ItemStack value, JsonGenerator gen, SerializationContext serializers) throws JacksonException {
         if (PaperFeatures.HAS_SERIALIZE_AS_BYTES) {
             gen.writeString(Base64.getEncoder().encodeToString(value.serializeAsBytes()));
         } else {

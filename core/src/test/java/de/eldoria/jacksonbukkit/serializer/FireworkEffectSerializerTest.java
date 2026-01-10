@@ -5,8 +5,8 @@
  */
 package de.eldoria.jacksonbukkit.serializer;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.Module;
+import tools.jackson.core.JacksonException;
+import tools.jackson.databind.JacksonModule;
 import de.eldoria.jacksonbukkit.JacksonBukkit;
 import de.eldoria.jacksonbukkit.CoreSerializationTest;
 import de.eldoria.jacksonbukkit.templates.FireworkEffectTemplate;
@@ -17,24 +17,24 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class FireworkEffectSerializerTest implements CoreSerializationTest {
     @Override
-    public Module buildModule() {
+    public JacksonModule buildModule() {
         return new JacksonBukkit(false, NamespacedKeySerializer.Format.FULL);
     }
 
     @Test
-    void serializeToJson() throws JsonProcessingException {
+    void serializeToJson() throws JacksonException {
         assertEquals(json("firework_effect"), toJson(FireworkEffectTemplate.SINGLE));
         assertEquals(json("firework_effect_list"), toJson(FireworkEffectTemplate.LIST));
     }
 
     @Test
-    void serializeToYaml() throws JsonProcessingException {
+    void serializeToYaml() throws JacksonException {
         assertEquals(yaml("firework_effect"), toYaml(FireworkEffectTemplate.SINGLE));
         assertEquals(yaml("firework_effect_list"), toYaml(FireworkEffectTemplate.LIST));
     }
 
     @Test
-    void serializeToToml() throws JsonProcessingException {
+    void serializeToToml() throws JacksonException {
         assertEquals(toml("firework_effect"), toToml(FireworkEffectTemplate.SINGLE));
     }
 }

@@ -6,19 +6,17 @@
 package de.eldoria.jacksonbukkit.deserializer;
 
 import be.seeseemelk.mockbukkit.MockBukkit;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.Module;
 import de.eldoria.jacksonbukkit.JacksonPaper;
 import de.eldoria.jacksonbukkit.PaperSerializationTest;
 import de.eldoria.jacksonbukkit.templates.ItemStackTemplate;
 import org.bukkit.inventory.ItemStack;
 import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
+import tools.jackson.core.JacksonException;
+import tools.jackson.databind.JacksonModule;
 
-import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @Disabled
@@ -35,24 +33,24 @@ class PaperItemStackDeserializerTest implements PaperSerializationTest {
     }
 
     @Override
-    public Module buildModule() {
+    public JacksonModule buildModule() {
         return new JacksonPaper();
     }
 
     @Test
-    void deserializeToJson() throws JsonProcessingException {
+    void deserializeToJson() throws JacksonException {
         assertEquals(ItemStackTemplate.SINGLE, fromJson("item_stack_paper", ItemStack.class));
         assertEquals(ItemStackTemplate.LIST, fromJsonList("item_stack_paper_list", ItemStack.class));
     }
 
     @Test
-    void deserializeToYaml() throws JsonProcessingException {
+    void deserializeToYaml() throws JacksonException {
         assertEquals(ItemStackTemplate.SINGLE, fromYaml("item_stack_paper", ItemStack.class));
         assertEquals(ItemStackTemplate.LIST, fromYamlList("item_stack_paper_list", ItemStack.class));
     }
 
     @Test
-    void deserializeToToml() throws JsonProcessingException {
+    void deserializeToToml() throws JacksonException {
         assertEquals(ItemStackTemplate.SINGLE, fromToml("item_stack_paper", ItemStack.class));
     }
 }

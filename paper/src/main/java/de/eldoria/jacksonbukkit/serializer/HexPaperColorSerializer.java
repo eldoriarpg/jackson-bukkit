@@ -5,22 +5,21 @@
  */
 package de.eldoria.jacksonbukkit.serializer;
 
-import com.fasterxml.jackson.core.JsonGenerator;
-import com.fasterxml.jackson.databind.JsonSerializer;
-import com.fasterxml.jackson.databind.SerializerProvider;
-import de.eldoria.jacksonbukkit.entities.RGBColorWrapper;
 import de.eldoria.jacksonbukkit.entities.RGBAColorWrapper;
+import de.eldoria.jacksonbukkit.entities.RGBColorWrapper;
 import de.eldoria.jacksonbukkit.util.PaperFeatures;
 import org.bukkit.Color;
-
-import java.io.IOException;
+import tools.jackson.core.JacksonException;
+import tools.jackson.core.JsonGenerator;
+import tools.jackson.databind.SerializationContext;
+import tools.jackson.databind.ValueSerializer;
 
 /**
  * Class for serialization of {@link Color}.
  */
-public class HexPaperColorSerializer extends JsonSerializer<Color> {
+public class HexPaperColorSerializer extends ValueSerializer<Color> {
     @Override
-    public void serialize(Color value, JsonGenerator gen, SerializerProvider serializers) throws IOException {
+    public void serialize(Color value, JsonGenerator gen, SerializationContext serializers) throws JacksonException {
         if (PaperFeatures.IS_RGBA) {
             gen.writeString(RGBAColorWrapper.of(value).asHex());
         } else {

@@ -5,7 +5,7 @@
  */
 package de.eldoria.jacksonbukkit.serializer;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
+import tools.jackson.core.JacksonException;
 import de.eldoria.jacksonbukkit.CoreSerializationTest;
 import de.eldoria.jacksonbukkit.templates.LocationTemplate;
 import org.bukkit.Bukkit;
@@ -52,19 +52,19 @@ class LocationSerializerTest implements CoreSerializationTest {
     }
 
     @Test
-    void serializeToJson() throws JsonProcessingException {
+    void serializeToJson() throws JacksonException {
         assertEquals(json("location"), toJson(LocationTemplate.SINGLE));
         assertEquals(json("location_list"), toJson(LocationTemplate.LIST));
     }
 
     @Test
-    void serializeToYaml() throws JsonProcessingException {
+    void serializeToYaml() throws JacksonException {
         assertEquals(yaml("location"), toYaml(LocationTemplate.SINGLE));
         assertEquals(yaml("location_list"), toYaml(LocationTemplate.LIST));
     }
 
     @Test
-    void serializeToToml() throws JsonProcessingException {
+    void serializeToToml() throws JacksonException {
         assertEquals(toml("location"), toToml(LocationTemplate.SINGLE));
     }
 }

@@ -5,8 +5,8 @@
  */
 package de.eldoria.jacksonbukkit.serializer;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.Module;
+import tools.jackson.core.JacksonException;
+import tools.jackson.databind.JacksonModule;
 import de.eldoria.jacksonbukkit.JacksonPaper;
 import de.eldoria.jacksonbukkit.PaperSerializationTest;
 import de.eldoria.jacksonbukkit.deserializer.ComponentGsonDeserializer;
@@ -18,7 +18,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 class ComponentGsonSerializerTest implements PaperSerializationTest {
 
     @Override
-    public Module buildModule() {
+    public JacksonModule buildModule() {
         return new JacksonPaper(false,
                 false,
                 new ComponentGsonDeserializer(),
@@ -27,19 +27,19 @@ class ComponentGsonSerializerTest implements PaperSerializationTest {
     }
 
     @Test
-    void serializeToJson() throws JsonProcessingException {
+    void serializeToJson() throws JacksonException {
         assertEquals(json("gson_component"), toJson(ComponentTemplate.SINGLE));
         assertEquals(json("gson_component_list"), toJson(ComponentTemplate.LIST));
     }
 
     @Test
-    void serializeToYaml() throws JsonProcessingException {
+    void serializeToYaml() throws JacksonException {
         assertEquals(yaml("gson_component"), toYaml(ComponentTemplate.SINGLE));
         assertEquals(yaml("gson_component_list"), toYaml(ComponentTemplate.LIST));
     }
 
     @Test
-    void serializeToToml() throws JsonProcessingException {
+    void serializeToToml() throws JacksonException {
         assertEquals(toml("gson_component"), toToml(ComponentTemplate.SINGLE));
         assertEquals(toml("gson_component_list"), toToml(ComponentTemplate.LIST));
     }

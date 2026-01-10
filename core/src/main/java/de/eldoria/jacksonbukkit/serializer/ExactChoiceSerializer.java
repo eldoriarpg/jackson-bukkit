@@ -5,20 +5,19 @@
  */
 package de.eldoria.jacksonbukkit.serializer;
 
-import com.fasterxml.jackson.core.JsonGenerator;
-import com.fasterxml.jackson.databind.JsonSerializer;
-import com.fasterxml.jackson.databind.SerializerProvider;
 import de.eldoria.jacksonbukkit.entities.ExactChoiceWrapper;
 import org.bukkit.inventory.RecipeChoice.ExactChoice;
-
-import java.io.IOException;
+import tools.jackson.core.JacksonException;
+import tools.jackson.core.JsonGenerator;
+import tools.jackson.databind.SerializationContext;
+import tools.jackson.databind.ValueSerializer;
 
 /**
  * Class for serialization of {@link ExactChoice}.
  */
-public class ExactChoiceSerializer extends JsonSerializer<ExactChoice> {
+public class ExactChoiceSerializer extends ValueSerializer<ExactChoice> {
     @Override
-    public void serialize(ExactChoice value, JsonGenerator gen, SerializerProvider serializers) throws IOException {
-        gen.writeObject(ExactChoiceWrapper.of(value));
+    public void serialize(ExactChoice value, JsonGenerator gen, SerializationContext serializers) throws JacksonException {
+        gen.writePOJO(ExactChoiceWrapper.of(value));
     }
 }

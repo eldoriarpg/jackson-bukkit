@@ -5,16 +5,16 @@
  */
 package de.eldoria.jacksonbukkit.serializer;
 
-import com.fasterxml.jackson.core.JsonGenerator;
-import com.fasterxml.jackson.databind.JsonSerializer;
-import com.fasterxml.jackson.databind.SerializerProvider;
+
 import de.eldoria.jacksonbukkit.util.Reflections;
 import org.bukkit.NamespacedKey;
 import org.bukkit.enchantments.Enchantment;
+import tools.jackson.core.JacksonException;
+import tools.jackson.core.JsonGenerator;
+import tools.jackson.databind.SerializationContext;
+import tools.jackson.databind.ValueSerializer;
 
-import java.io.IOException;
-
-public class EnchantmentSerializer extends JsonSerializer<Enchantment> {
+public class EnchantmentSerializer extends ValueSerializer<Enchantment> {
     public static final boolean LEGACY;
 
     static {
@@ -22,11 +22,11 @@ public class EnchantmentSerializer extends JsonSerializer<Enchantment> {
     }
 
     @Override
-    public void serialize(Enchantment value, JsonGenerator gen, SerializerProvider serializers) throws IOException {
+    public void serialize(Enchantment value, JsonGenerator gen, SerializationContext serializers) throws JacksonException {
         if (LEGACY) {
-            gen.writeObject(value.getName());
+            gen.writePOJO(value.getName());
         } else {
-            gen.writeObject(value.getKey());
+            gen.writePOJO(value.getKey());
         }
     }
 }

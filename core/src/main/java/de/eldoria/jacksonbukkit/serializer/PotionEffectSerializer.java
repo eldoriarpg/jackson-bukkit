@@ -5,20 +5,19 @@
  */
 package de.eldoria.jacksonbukkit.serializer;
 
-import com.fasterxml.jackson.core.JsonGenerator;
-import com.fasterxml.jackson.databind.JsonSerializer;
-import com.fasterxml.jackson.databind.SerializerProvider;
 import de.eldoria.jacksonbukkit.entities.PotionEffectWrapper;
 import org.bukkit.potion.PotionEffect;
-
-import java.io.IOException;
+import tools.jackson.core.JacksonException;
+import tools.jackson.core.JsonGenerator;
+import tools.jackson.databind.SerializationContext;
+import tools.jackson.databind.ValueSerializer;
 
 /**
  * Class for serialization of {@link PotionEffect}.
  */
-public class PotionEffectSerializer extends JsonSerializer<PotionEffect> {
+public class PotionEffectSerializer extends ValueSerializer<PotionEffect> {
     @Override
-    public void serialize(PotionEffect value, JsonGenerator gen, SerializerProvider serializers) throws IOException {
-        gen.writeObject(PotionEffectWrapper.of(value));
+    public void serialize(PotionEffect value, JsonGenerator gen, SerializationContext serializers) throws JacksonException {
+        gen.writePOJO(PotionEffectWrapper.of(value));
     }
 }

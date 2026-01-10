@@ -5,20 +5,19 @@
  */
 package de.eldoria.jacksonbukkit.deserializer;
 
-import com.fasterxml.jackson.core.JsonParser;
-import com.fasterxml.jackson.databind.DeserializationContext;
-import com.fasterxml.jackson.databind.JsonDeserializer;
 import de.eldoria.jacksonbukkit.entities.PotionEffectWrapper;
 import org.bukkit.potion.PotionEffect;
-
-import java.io.IOException;
+import tools.jackson.core.JacksonException;
+import tools.jackson.core.JsonParser;
+import tools.jackson.databind.DeserializationContext;
+import tools.jackson.databind.ValueDeserializer;
 
 /**
  * Class for deserialization of {@link PotionEffect}.
  */
-public class PotionEffectDeserializer extends JsonDeserializer<PotionEffect> {
+public class PotionEffectDeserializer extends ValueDeserializer<PotionEffect> {
     @Override
-    public PotionEffect deserialize(JsonParser p, DeserializationContext ctxt) throws IOException {
+    public PotionEffect deserialize(JsonParser p, DeserializationContext ctxt) throws JacksonException {
         return ctxt.readValue(p, PotionEffectWrapper.class).toBukkitPotionEffect();
     }
 }

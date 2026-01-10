@@ -5,19 +5,18 @@
  */
 package de.eldoria.jacksonbukkit.serializer;
 
-import com.fasterxml.jackson.core.JsonGenerator;
-import com.fasterxml.jackson.databind.JsonSerializer;
-import com.fasterxml.jackson.databind.SerializerProvider;
 import org.bukkit.OfflinePlayer;
-
-import java.io.IOException;
+import tools.jackson.core.JacksonException;
+import tools.jackson.core.JsonGenerator;
+import tools.jackson.databind.SerializationContext;
+import tools.jackson.databind.ValueSerializer;
 
 /**
  * Class for serialization of {@link OfflinePlayer}.
  */
-public class PlayerSerializer extends JsonSerializer<OfflinePlayer> {
+public class PlayerSerializer extends ValueSerializer<OfflinePlayer> {
     @Override
-    public void serialize(OfflinePlayer value, JsonGenerator gen, SerializerProvider serializers) throws IOException {
-        gen.writeObject(value.getUniqueId());
+    public void serialize(OfflinePlayer value, JsonGenerator gen, SerializationContext serializers) throws JacksonException {
+        gen.writePOJO(value.getUniqueId());
     }
 }

@@ -6,8 +6,8 @@
 package de.eldoria.jacksonbukkit.serializer;
 
 import be.seeseemelk.mockbukkit.MockBukkit;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.Module;
+import tools.jackson.core.JacksonException;
+import tools.jackson.databind.JacksonModule;
 import de.eldoria.jacksonbukkit.CoreSerializationTest;
 import de.eldoria.jacksonbukkit.JacksonBukkit;
 import de.eldoria.jacksonbukkit.templates.ShapelessRecipeTemplate;
@@ -19,7 +19,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class ShapelessRecipeSerializerTest implements CoreSerializationTest {
     @Override
-    public Module buildModule() {
+    public JacksonModule buildModule() {
         return new JacksonBukkit(false, NamespacedKeySerializer.Format.OBJECT);
     }
 
@@ -29,19 +29,19 @@ class ShapelessRecipeSerializerTest implements CoreSerializationTest {
     }
 
     @Test
-    void serializeToJson() throws JsonProcessingException {
+    void serializeToJson() throws JacksonException {
         assertEquals(json("shapeless_recipe"), toJson(ShapelessRecipeTemplate.SINGLE));
         assertEquals(json("shapeless_recipe_list"), toJson(ShapelessRecipeTemplate.LIST));
     }
 
     @Test
-    void serializeToYaml() throws JsonProcessingException {
+    void serializeToYaml() throws JacksonException {
         assertEquals(yaml("shapeless_recipe"), toYaml(ShapelessRecipeTemplate.SINGLE));
         assertEquals(yaml("shapeless_recipe_list"), toYaml(ShapelessRecipeTemplate.LIST));
     }
 
     @Test
-    void serializeToToml() throws JsonProcessingException {
+    void serializeToToml() throws JacksonException {
         assertEquals(toml("shapeless_recipe"), toToml(ShapelessRecipeTemplate.SINGLE));
     }
 

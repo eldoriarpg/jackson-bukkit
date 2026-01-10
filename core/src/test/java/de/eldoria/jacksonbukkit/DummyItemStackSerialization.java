@@ -5,23 +5,21 @@
  */
 package de.eldoria.jacksonbukkit;
 
-import com.fasterxml.jackson.core.JacksonException;
-import com.fasterxml.jackson.core.JsonGenerator;
-import com.fasterxml.jackson.core.JsonParser;
-import com.fasterxml.jackson.core.Version;
-import com.fasterxml.jackson.databind.DeserializationContext;
-import com.fasterxml.jackson.databind.JsonDeserializer;
-import com.fasterxml.jackson.databind.JsonSerializer;
-import com.fasterxml.jackson.databind.Module;
-import com.fasterxml.jackson.databind.SerializerProvider;
-import com.fasterxml.jackson.databind.module.SimpleDeserializers;
-import com.fasterxml.jackson.databind.module.SimpleSerializers;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
+import tools.jackson.core.JacksonException;
+import tools.jackson.core.JsonGenerator;
+import tools.jackson.core.JsonParser;
+import tools.jackson.core.Version;
+import tools.jackson.databind.DeserializationContext;
+import tools.jackson.databind.JacksonModule;
+import tools.jackson.databind.SerializationContext;
+import tools.jackson.databind.ValueDeserializer;
+import tools.jackson.databind.ValueSerializer;
+import tools.jackson.databind.module.SimpleDeserializers;
+import tools.jackson.databind.module.SimpleSerializers;
 
-import java.io.IOException;
-
-public class DummyItemStackSerialization extends Module {
+public class DummyItemStackSerialization extends JacksonModule {
     @Override
     public String getModuleName() {
         return "ItemStack";
@@ -29,7 +27,7 @@ public class DummyItemStackSerialization extends Module {
 
     @Override
     public Version version() {
-        return new Version(1,0,0,"0");
+        return new Version(1, 0, 0, "0", null, null);
     }
 
     @Override
@@ -43,18 +41,18 @@ public class DummyItemStackSerialization extends Module {
         context.addDeserializers(deserializers);
     }
 
-    private static class ItemStackSerializer extends JsonSerializer<ItemStack> {
+    private static class ItemStackSerializer extends ValueSerializer<ItemStack> {
 
         @Override
-        public void serialize(ItemStack value, JsonGenerator gen, SerializerProvider serializers) throws IOException {
-            gen.writeObject(ItemStackWrapper.from(value));
+        public void serialize(ItemStack value, JsonGenerator gen, SerializationContext serializers) throws JacksonException {
+            gen.writePOJO(ItemStackWrapper.from(value));
         }
     }
 
-    private static class ItemStackDeserializer extends JsonDeserializer<ItemStack> {
+    private static class ItemStackDeserializer extends ValueDeserializer<ItemStack> {
 
         @Override
-        public ItemStack deserialize(JsonParser p, DeserializationContext ctxt) throws IOException, JacksonException {
+        public ItemStack deserialize(JsonParser p, DeserializationContext ctxt) throws JacksonException {
             return ctxt.readValue(p, ItemStackWrapper.class).toItemStack();
         }
     }
@@ -64,7 +62,7 @@ public class DummyItemStackSerialization extends Module {
             return new ItemStackWrapper(stack.getType(), stack.getAmount());
         }
 
-        public ItemStack toItemStack(){
+        public ItemStack toItemStack() {
             return new ItemStack(material, amount);
         }
     }

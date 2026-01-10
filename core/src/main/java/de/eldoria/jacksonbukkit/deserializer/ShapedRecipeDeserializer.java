@@ -5,20 +5,19 @@
  */
 package de.eldoria.jacksonbukkit.deserializer;
 
-import com.fasterxml.jackson.core.JsonParser;
-import com.fasterxml.jackson.databind.DeserializationContext;
-import com.fasterxml.jackson.databind.JsonDeserializer;
 import de.eldoria.jacksonbukkit.entities.ShapedRecipeWrapper;
 import org.bukkit.inventory.ShapedRecipe;
-
-import java.io.IOException;
+import tools.jackson.core.JacksonException;
+import tools.jackson.core.JsonParser;
+import tools.jackson.databind.DeserializationContext;
+import tools.jackson.databind.ValueDeserializer;
 
 /**
  * Class for deserialization of {@link ShapedRecipe}.
  */
-public class ShapedRecipeDeserializer extends JsonDeserializer<ShapedRecipe> {
+public class ShapedRecipeDeserializer extends ValueDeserializer<ShapedRecipe> {
     @Override
-    public ShapedRecipe deserialize(JsonParser p, DeserializationContext ctxt) throws IOException {
+    public ShapedRecipe deserialize(JsonParser p, DeserializationContext ctxt) throws JacksonException {
         return ctxt.readValue(p, ShapedRecipeWrapper.class).toBukkitShapedRecipe();
     }
 }

@@ -8,7 +8,7 @@ package de.eldoria.jacksonbukkit.serializer;
 import be.seeseemelk.mockbukkit.MockBukkit;
 import be.seeseemelk.mockbukkit.ServerMock;
 import be.seeseemelk.mockbukkit.entity.PlayerMock;
-import com.fasterxml.jackson.core.JsonProcessingException;
+import tools.jackson.core.JacksonException;
 import de.eldoria.jacksonbukkit.CoreSerializationTest;
 import org.bukkit.OfflinePlayer;
 import org.junit.jupiter.api.AfterAll;
@@ -49,13 +49,13 @@ class PlayerSerializerTest implements CoreSerializationTest {
     }
 
     @Test
-    void serializeToJson() throws JsonProcessingException {
+    void serializeToJson() throws JacksonException {
         assertEquals(json("player"), toJson(SINGLE));
         assertEquals(json("player_list"), toJson(LIST));
     }
 
     @Test
-    void serializeToYaml() throws JsonProcessingException {
+    void serializeToYaml() throws JacksonException {
         assertEquals(yaml("player"), toYaml(SINGLE));
         assertEquals(yaml("player_list"), toYaml(LIST));
     }
@@ -63,7 +63,7 @@ class PlayerSerializerTest implements CoreSerializationTest {
     @Test
     @Disabled
         // Does not work since this is nothing toml supports
-    void serializeToToml() throws JsonProcessingException {
+    void serializeToToml() throws JacksonException {
         assertEquals(toml("player"), toToml(SINGLE));
     }
 }

@@ -5,14 +5,14 @@
  */
 package de.eldoria.jacksonbukkit.deserializer;
 
-import com.fasterxml.jackson.core.JsonParser;
-import com.fasterxml.jackson.databind.DeserializationContext;
-import com.fasterxml.jackson.databind.JsonNode;
 import de.eldoria.jacksonbukkit.util.PaperFeatures;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.minimessage.MiniMessage;
+import tools.jackson.core.JacksonException;
+import tools.jackson.core.JsonParser;
+import tools.jackson.databind.DeserializationContext;
+import tools.jackson.databind.JsonNode;
 
-import java.io.IOException;
 import java.util.function.UnaryOperator;
 
 /**
@@ -42,7 +42,7 @@ public class ComponentMiniMessageDeserializer extends ComponentGsonDeserializer 
     }
 
     @Override
-    public Component deserialize(JsonParser p, DeserializationContext ctxt) throws IOException {
+    public Component deserialize(JsonParser p, DeserializationContext ctxt) throws JacksonException {
         JsonNode tree = ctxt.readTree(p);
         if (tree.isObject()) return parseObjectTree(tree, ctxt);
         return miniMessage.deserialize(ctxt.readValue(p, String.class));

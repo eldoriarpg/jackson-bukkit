@@ -5,20 +5,19 @@
  */
 package de.eldoria.jacksonbukkit.deserializer;
 
-import com.fasterxml.jackson.core.JsonParser;
-import com.fasterxml.jackson.databind.DeserializationContext;
-import com.fasterxml.jackson.databind.JsonDeserializer;
 import de.eldoria.jacksonbukkit.entities.ExactChoiceWrapper;
 import org.bukkit.inventory.RecipeChoice.ExactChoice;
-
-import java.io.IOException;
+import tools.jackson.core.JacksonException;
+import tools.jackson.core.JsonParser;
+import tools.jackson.databind.DeserializationContext;
+import tools.jackson.databind.ValueDeserializer;
 
 /**
  * Class for deserialization of {@link ExactChoice}.
  */
-public class ExactChoiceDeserializer extends JsonDeserializer<ExactChoice> {
+public class ExactChoiceDeserializer extends ValueDeserializer<ExactChoice> {
     @Override
-    public ExactChoice deserialize(JsonParser p, DeserializationContext ctxt) throws IOException {
+    public ExactChoice deserialize(JsonParser p, DeserializationContext ctxt) throws JacksonException {
         return ctxt.readValue(p, ExactChoiceWrapper.class).toBukkitRecipeChoice();
     }
 }

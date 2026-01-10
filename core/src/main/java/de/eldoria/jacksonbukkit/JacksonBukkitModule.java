@@ -5,51 +5,9 @@
  */
 package de.eldoria.jacksonbukkit;
 
-import com.fasterxml.jackson.core.Version;
-import com.fasterxml.jackson.databind.Module;
-import com.fasterxml.jackson.databind.module.SimpleDeserializers;
-import com.fasterxml.jackson.databind.module.SimpleSerializers;
-import de.eldoria.jacksonbukkit.deserializer.AttributeModifierDeserializer;
-import de.eldoria.jacksonbukkit.deserializer.BlockDataDeserializer;
-import de.eldoria.jacksonbukkit.deserializer.BlockVectorDeserializer;
-import de.eldoria.jacksonbukkit.deserializer.BoundingBoxDeserializer;
-import de.eldoria.jacksonbukkit.deserializer.EnchantmentDeserializer;
-import de.eldoria.jacksonbukkit.deserializer.ExactChoiceDeserializer;
-import de.eldoria.jacksonbukkit.deserializer.FireworkEffectDeserializer;
-import de.eldoria.jacksonbukkit.deserializer.LocationDeserializer;
-import de.eldoria.jacksonbukkit.deserializer.MaterialChoiceDeserializer;
-import de.eldoria.jacksonbukkit.deserializer.NamespacedKeyDeserializer;
-import de.eldoria.jacksonbukkit.deserializer.PatternDeserializer;
-import de.eldoria.jacksonbukkit.deserializer.PlayerDeserializer;
-import de.eldoria.jacksonbukkit.deserializer.PotionEffectDeserializer;
-import de.eldoria.jacksonbukkit.deserializer.PotionEffectTypeDeserializer;
-import de.eldoria.jacksonbukkit.deserializer.RGBColorDeserializer;
-import de.eldoria.jacksonbukkit.deserializer.ShapedRecipeDeserializer;
-import de.eldoria.jacksonbukkit.deserializer.ShapelessRecipeDeserializer;
-import de.eldoria.jacksonbukkit.deserializer.VectorDeserializer;
-import de.eldoria.jacksonbukkit.serializer.AttributeModifierSerializer;
-import de.eldoria.jacksonbukkit.serializer.BlockDataSerializer;
-import de.eldoria.jacksonbukkit.serializer.BlockVectorSerializer;
-import de.eldoria.jacksonbukkit.serializer.BoundingBoxSerializer;
-import de.eldoria.jacksonbukkit.serializer.EnchantmentSerializer;
-import de.eldoria.jacksonbukkit.serializer.ExactChoiceSerializer;
-import de.eldoria.jacksonbukkit.serializer.FireworkEffectSerializer;
-import de.eldoria.jacksonbukkit.serializer.LocationSerializer;
-import de.eldoria.jacksonbukkit.serializer.MaterialChoiceSerializer;
-import de.eldoria.jacksonbukkit.serializer.NamespacedKeySerializer;
-import de.eldoria.jacksonbukkit.serializer.PatternSerializer;
-import de.eldoria.jacksonbukkit.serializer.PlayerSerializer;
-import de.eldoria.jacksonbukkit.serializer.PotionEffectSerializer;
-import de.eldoria.jacksonbukkit.serializer.PotionEffectTypeSerializer;
-import de.eldoria.jacksonbukkit.serializer.RGBColorSerializer;
-import de.eldoria.jacksonbukkit.serializer.ShapedRecipeSerializer;
-import de.eldoria.jacksonbukkit.serializer.ShapelessRecipeSerializer;
-import de.eldoria.jacksonbukkit.serializer.VectorSerializer;
-import org.bukkit.Color;
-import org.bukkit.FireworkEffect;
-import org.bukkit.Location;
-import org.bukkit.NamespacedKey;
-import org.bukkit.OfflinePlayer;
+import de.eldoria.jacksonbukkit.deserializer.*;
+import de.eldoria.jacksonbukkit.serializer.*;
+import org.bukkit.*;
 import org.bukkit.attribute.AttributeModifier;
 import org.bukkit.block.banner.Pattern;
 import org.bukkit.block.data.BlockData;
@@ -64,12 +22,16 @@ import org.bukkit.util.BlockVector;
 import org.bukkit.util.BoundingBox;
 import org.bukkit.util.Vector;
 import org.jetbrains.annotations.ApiStatus;
+import tools.jackson.core.Version;
+import tools.jackson.databind.JacksonModule;
+import tools.jackson.databind.module.SimpleDeserializers;
+import tools.jackson.databind.module.SimpleSerializers;
 
 /**
  * Base class to implement a bukkit jackson module.
  */
 @ApiStatus.Internal
-public abstract class JacksonBukkitModule extends Module {
+public abstract class JacksonBukkitModule extends JacksonModule {
     /**
      * True when colors should be interpreted as hex strings.
      */

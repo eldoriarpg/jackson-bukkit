@@ -15,7 +15,7 @@ plugins {
 }
 publishData {
     useEldoNexusRepos(false)
-    publishingVersion = "1.4.0"
+    publishingVersion = "2.0.0"
 }
 version = publishData.getVersion()
 
@@ -57,14 +57,14 @@ allprojects {
     dependencies {
         api("org.jetbrains", "annotations", "26.0.2-1")
 
-        api(platform("com.fasterxml.jackson:jackson-bom:2.20.0"))
-        api("com.fasterxml.jackson.core", "jackson-core")
-        api("com.fasterxml.jackson.core:jackson-databind")
+        api(platform("tools.jackson:jackson-bom:3.0.3"))
+        api("tools.jackson.core", "jackson-core")
+        api("tools.jackson.core:jackson-databind")
 
         // jackson testing
-        testImplementation("com.fasterxml.jackson.core:jackson-databind")
-        testImplementation("com.fasterxml.jackson.dataformat:jackson-dataformat-yaml")
-        testImplementation("com.fasterxml.jackson.dataformat:jackson-dataformat-toml")
+        testImplementation("tools.jackson.core:jackson-databind")
+        testImplementation("tools.jackson.dataformat:jackson-dataformat-yaml")
+        testImplementation("tools.jackson.dataformat:jackson-dataformat-toml")
 
         // junit and stuff
         testImplementation("org.junit.jupiter:junit-jupiter-api:6.0.0")

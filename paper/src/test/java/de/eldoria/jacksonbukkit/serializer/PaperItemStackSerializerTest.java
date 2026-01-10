@@ -6,8 +6,8 @@
 package de.eldoria.jacksonbukkit.serializer;
 
 import be.seeseemelk.mockbukkit.MockBukkit;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.Module;
+import tools.jackson.core.JacksonException;
+import tools.jackson.databind.JacksonModule;
 import de.eldoria.jacksonbukkit.JacksonPaper;
 import de.eldoria.jacksonbukkit.PaperSerializationTest;
 import de.eldoria.jacksonbukkit.templates.ItemStackTemplate;
@@ -32,24 +32,24 @@ class PaperItemStackSerializerTest implements PaperSerializationTest {
     }
 
     @Override
-    public Module buildModule() {
+    public JacksonModule buildModule() {
         return new JacksonPaper();
     }
 
     @Test
-    void serializeToJson() throws JsonProcessingException {
+    void serializeToJson() throws JacksonException {
         assertEquals(json("item_stack"), toJson(ItemStackTemplate.SINGLE));
         assertEquals(json("item_stack_list"), toJson(ItemStackTemplate.LIST));
     }
 
     @Test
-    void serializeToYaml() throws JsonProcessingException {
+    void serializeToYaml() throws JacksonException {
         assertEquals(yaml("item_stack"), toYaml(ItemStackTemplate.SINGLE));
         assertEquals(yaml("item_stack_list"), toYaml(ItemStackTemplate.LIST));
     }
 
     @Test
-    void serializeToToml() throws JsonProcessingException {
+    void serializeToToml() throws JacksonException {
         assertEquals(toml("item_stack"), toToml(ItemStackTemplate.SINGLE));
     }
 }

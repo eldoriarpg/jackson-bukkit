@@ -5,20 +5,19 @@
  */
 package de.eldoria.jacksonbukkit.deserializer;
 
-import com.fasterxml.jackson.core.JsonParser;
-import com.fasterxml.jackson.databind.DeserializationContext;
-import com.fasterxml.jackson.databind.JsonDeserializer;
 import de.eldoria.jacksonbukkit.entities.PatternWrapper;
 import org.bukkit.block.banner.Pattern;
-
-import java.io.IOException;
+import tools.jackson.core.JacksonException;
+import tools.jackson.core.JsonParser;
+import tools.jackson.databind.DeserializationContext;
+import tools.jackson.databind.ValueDeserializer;
 
 /**
  * Class for deserialization of {@link Pattern}.
  */
-public class PatternDeserializer extends JsonDeserializer<Pattern> {
+public class PatternDeserializer extends ValueDeserializer<Pattern> {
     @Override
-    public Pattern deserialize(JsonParser p, DeserializationContext ctxt) throws IOException {
+    public Pattern deserialize(JsonParser p, DeserializationContext ctxt) throws JacksonException {
         return ctxt.readValue(p, PatternWrapper.class).toBukkitPattern();
     }
 }

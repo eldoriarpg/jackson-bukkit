@@ -5,7 +5,7 @@
  */
 package de.eldoria.jacksonbukkit.serializer;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
+import tools.jackson.core.JacksonException;
 import de.eldoria.jacksonbukkit.CoreSerializationTest;
 import de.eldoria.jacksonbukkit.templates.AttributeModifierTemplate;
 import org.junit.jupiter.api.Assertions;
@@ -21,19 +21,19 @@ class AttributeModifierSerializerTest implements CoreSerializationTest {
 
 
     @Test
-    void serializeToJson() throws JsonProcessingException {
+    void serializeToJson() throws JacksonException {
         assertEquals(json("attribute_modifier"), toJson(AttributeModifierTemplate.SINGLE));
         assertEquals(json("attribute_modifier_list"), toJson(AttributeModifierTemplate.LIST));
     }
 
     @Test
-    void serializeToYaml() throws JsonProcessingException {
+    void serializeToYaml() throws JacksonException {
         assertEquals(yaml("attribute_modifier"), toYaml(AttributeModifierTemplate.SINGLE));
         assertEquals(yaml("attribute_modifier_list"), toYaml(AttributeModifierTemplate.LIST));
     }
 
     @Test
-    void serializeToToml() throws JsonProcessingException {
+    void serializeToToml() throws JacksonException {
         assertEquals(toml("attribute_modifier"), toToml(AttributeModifierTemplate.SINGLE));
     }
 }
