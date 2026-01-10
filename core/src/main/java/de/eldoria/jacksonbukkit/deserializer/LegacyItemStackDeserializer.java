@@ -5,7 +5,6 @@
  */
 package de.eldoria.jacksonbukkit.deserializer;
 
-import com.google.gson.JsonIOException;
 import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.inventory.ItemStack;
@@ -21,7 +20,6 @@ import tools.jackson.databind.ValueDeserializer;
 import tools.jackson.databind.type.MapType;
 
 import java.io.IOException;
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.Map;
 
