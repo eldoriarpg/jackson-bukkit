@@ -5,21 +5,20 @@
  */
 package de.eldoria.jacksonbukkit.deserializer;
 
-import com.fasterxml.jackson.core.JsonParser;
-import com.fasterxml.jackson.databind.DeserializationContext;
-import com.fasterxml.jackson.databind.JsonDeserializer;
-import com.fasterxml.jackson.databind.JsonNode;
 import de.eldoria.jacksonbukkit.entities.NamespacedKeyWrapper;
 import org.bukkit.NamespacedKey;
-
-import java.io.IOException;
+import tools.jackson.core.JacksonException;
+import tools.jackson.core.JsonParser;
+import tools.jackson.databind.DeserializationContext;
+import tools.jackson.databind.JsonNode;
+import tools.jackson.databind.ValueDeserializer;
 
 /**
  * Class for deserialization of {@link NamespacedKey}.
  */
-public class NamespacedKeyDeserializer extends JsonDeserializer<NamespacedKey> {
+public class NamespacedKeyDeserializer extends ValueDeserializer<NamespacedKey> {
     @Override
-    public NamespacedKey deserialize(JsonParser p, DeserializationContext ctxt) throws IOException {
+    public NamespacedKey deserialize(JsonParser p, DeserializationContext ctxt) throws JacksonException {
         JsonNode jsonNode = ctxt.readTree(p);
         if (jsonNode.isObject()) {
             return ctxt.readTreeAsValue(jsonNode, NamespacedKeyWrapper.class).toBukkitNamespacedKey();

@@ -5,7 +5,7 @@
  */
 package de.eldoria.jacksonbukkit.deserializer;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
+import tools.jackson.core.JacksonException;
 import de.eldoria.jacksonbukkit.CoreSerializationTest;
 import de.eldoria.jacksonbukkit.templates.LocationTemplate;
 import org.bukkit.Bukkit;
@@ -51,29 +51,29 @@ class LocationDeserializerTest implements CoreSerializationTest {
     }
 
     @Test
-    void deserializeToJson() throws JsonProcessingException {
+    void deserializeToJson() throws JacksonException {
         assertEqualsIgnoring(LocationTemplate.SINGLE, fromJson("location", Location.class));
         assertEqualsIgnoring(LocationTemplate.LIST, fromJsonList("location_list", Location.class));
     }
 
     @Test
-    void deserializeToYaml() throws JsonProcessingException {
+    void deserializeToYaml() throws JacksonException {
         assertEqualsIgnoring(LocationTemplate.SINGLE, fromYaml("location", Location.class));
         assertEqualsIgnoring(LocationTemplate.LIST, fromYamlList("location_list", Location.class));
     }
 
     @Test
-    void deserializeToToml() throws JsonProcessingException {
+    void deserializeToToml() throws JacksonException {
         assertEqualsIgnoring(LocationTemplate.SINGLE, fromToml("location", Location.class));
     }
 
     @Test
-    void deserializeUidOnly() throws JsonProcessingException {
+    void deserializeUidOnly() throws JacksonException {
         assertEqualsIgnoring(LocationTemplate.SINGLE, fromJson("location_only_uid", Location.class));
     }
 
     @Test
-    void deserializeNameOnly() throws JsonProcessingException {
+    void deserializeNameOnly() throws JacksonException {
         assertEqualsIgnoring(LocationTemplate.SINGLE, fromJson("location_only_name", Location.class));
     }
 }

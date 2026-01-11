@@ -1,5 +1,5 @@
 /**
- * Main package containing the {@link com.fasterxml.jackson.databind.Module} implementations.
+ * Main package containing the {@link tools.jackson.databind.JacksonModule} implementations.
  */
 
 package de.eldoria.jacksonbukkit;

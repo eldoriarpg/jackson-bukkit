@@ -7,14 +7,14 @@ package de.eldoria.jacksonbukkit.serializer;
 
 import be.seeseemelk.mockbukkit.MockBukkit;
 import be.seeseemelk.mockbukkit.WorldMock;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.Module;
 import de.eldoria.jacksonbukkit.JacksonPaper;
 import de.eldoria.jacksonbukkit.PaperSerializationTest;
 import de.eldoria.jacksonbukkit.templates.ComplexPojoTemplate;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+import tools.jackson.core.JacksonException;
+import tools.jackson.databind.JacksonModule;
 
 import java.util.UUID;
 
@@ -26,7 +26,7 @@ public class ComplexPojoSerializerTest implements PaperSerializationTest {
 
     static UUID worldUID = new UUID(0, 0);
     @Override
-    public Module buildModule() {
+    public JacksonModule buildModule() {
         return JacksonPaper.builder().build();
     }
 
@@ -45,17 +45,17 @@ public class ComplexPojoSerializerTest implements PaperSerializationTest {
     }
 
     @Test
-    void serializeToJson() throws JsonProcessingException {
+    void serializeToJson() throws JacksonException {
         assertEquals(json("complex_pojo"), toJson(ComplexPojoTemplate.SINGLE));
     }
 
     @Test
-    void serializeToYaml() throws JsonProcessingException {
+    void serializeToYaml() throws JacksonException {
         assertEquals(yaml("complex_pojo"), toYaml(ComplexPojoTemplate.SINGLE));
     }
 
     @Test
-    void serializeToToml() throws JsonProcessingException {
+    void serializeToToml() throws JacksonException {
         assertEquals(toml("complex_pojo"), toToml(ComplexPojoTemplate.SINGLE));
     }
 }

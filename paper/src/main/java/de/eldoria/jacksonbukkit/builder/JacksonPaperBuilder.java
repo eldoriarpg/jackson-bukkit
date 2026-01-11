@@ -5,28 +5,26 @@
  */
 package de.eldoria.jacksonbukkit.builder;
 
-import com.fasterxml.jackson.databind.JsonDeserializer;
-import com.fasterxml.jackson.databind.JsonSerializer;
 import de.eldoria.jacksonbukkit.JacksonPaper;
 import de.eldoria.jacksonbukkit.deserializer.ComponentGsonDeserializer;
 import de.eldoria.jacksonbukkit.deserializer.ComponentMiniMessageDeserializer;
 import de.eldoria.jacksonbukkit.serializer.ComponentGsonSerializer;
 import de.eldoria.jacksonbukkit.serializer.ComponentMiniMessageSerializer;
-import de.eldoria.jacksonbukkit.serializer.NamespacedKeySerializer;
-import de.eldoria.jacksonbukkit.serializer.NamespacedKeySerializer.Format;
 import de.eldoria.jacksonbukkit.util.PaperFeatures;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.minimessage.MiniMessage;
 import org.bukkit.configuration.serialization.ConfigurationSerializable;
 import org.jetbrains.annotations.Nullable;
+import tools.jackson.databind.ValueDeserializer;
+import tools.jackson.databind.ValueSerializer;
 
 /**
  * Class to build a {@link JacksonPaper} module.
  */
 public class JacksonPaperBuilder extends ModuleBuilder<JacksonPaperBuilder, JacksonPaper> {
     private boolean legacyItemStackSerialization = false;
-    private @Nullable JsonSerializer<Component> componentJsonSerializer;
-    private @Nullable JsonDeserializer<Component> componentJsonDeserializer;
+    private @Nullable ValueSerializer<Component> componentJsonSerializer;
+    private @Nullable ValueDeserializer<Component> componentJsonDeserializer;
 
     /**
      * Create a new builder instance

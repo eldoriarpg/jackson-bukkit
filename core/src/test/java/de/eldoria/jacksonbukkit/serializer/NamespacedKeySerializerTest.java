@@ -5,8 +5,8 @@
  */
 package de.eldoria.jacksonbukkit.serializer;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.Module;
+import tools.jackson.core.JacksonException;
+import tools.jackson.databind.JacksonModule;
 import de.eldoria.jacksonbukkit.CoreSerializationTest;
 import de.eldoria.jacksonbukkit.JacksonBukkit;
 import de.eldoria.jacksonbukkit.templates.NamespacedKeyTemplate;
@@ -17,65 +17,65 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 class NamespacedKeySerializerTest implements CoreSerializationTest {
     NamespacedKeySerializer.Format format = NamespacedKeySerializer.Format.OBJECT;
     @Override
-    public Module buildModule() {
+    public JacksonModule buildModule() {
         return new JacksonBukkit(false, format);
     }
 
     @Test
-    void serializeToJsonObject() throws JsonProcessingException {
+    void serializeToJsonObject() throws JacksonException {
         format = NamespacedKeySerializer.Format.OBJECT;
         assertEquals(json("namespaced_key"), toJson(NamespacedKeyTemplate.SINGLE));
         assertEquals(json("namespaced_key_list"), toJson(NamespacedKeyTemplate.LIST));
     }
 
     @Test
-    void serializeToYamlObject() throws JsonProcessingException {
+    void serializeToYamlObject() throws JacksonException {
         format = NamespacedKeySerializer.Format.OBJECT;
         assertEquals(yaml("namespaced_key"), toYaml(NamespacedKeyTemplate.SINGLE));
         assertEquals(yaml("namespaced_key_list"), toYaml(NamespacedKeyTemplate.LIST));
     }
 
     @Test
-    void serializeToTomlObject() throws JsonProcessingException {
+    void serializeToTomlObject() throws JacksonException {
         format = NamespacedKeySerializer.Format.OBJECT;
         assertEquals(toml("namespaced_key"), toToml(NamespacedKeyTemplate.SINGLE));
     }
     @Test
-    void serializeToJsonShort() throws JsonProcessingException {
+    void serializeToJsonShort() throws JacksonException {
         format = NamespacedKeySerializer.Format.SHORT;
         assertEquals("\"key:name\"", toJson(NamespacedKeyTemplate.SINGLE).strip());
         assertEquals("\"name\"", toJson(NamespacedKeyTemplate.SINGLE_MINECRAFT).strip());
     }
 
     @Test
-    void serializeToYamlShort() throws JsonProcessingException {
+    void serializeToYamlShort() throws JacksonException {
         format = NamespacedKeySerializer.Format.SHORT;
         assertEquals("--- \"key:name\"", toYaml(NamespacedKeyTemplate.SINGLE).strip());
         assertEquals("--- \"name\"", toYaml(NamespacedKeyTemplate.SINGLE_MINECRAFT).strip());
     }
 
     @Test
-    void serializeToTomlShort() throws JsonProcessingException {
+    void serializeToTomlShort() throws JacksonException {
         format = NamespacedKeySerializer.Format.SHORT;
         assertEquals("= 'key:name'", toToml(NamespacedKeyTemplate.SINGLE).strip());
         assertEquals("= 'name'", toToml(NamespacedKeyTemplate.SINGLE_MINECRAFT).strip());
     }
     @Test
-    void serializeToJsonFull() throws JsonProcessingException {
+    void serializeToJsonFull() throws JacksonException {
         format = NamespacedKeySerializer.Format.FULL;
         assertEquals("\"key:name\"", toJson(NamespacedKeyTemplate.SINGLE).strip());
         assertEquals("\"minecraft:name\"", toJson(NamespacedKeyTemplate.SINGLE_MINECRAFT).strip());
     }
 
     @Test
-    void serializeToYamlFull() throws JsonProcessingException {
+    void serializeToYamlFull() throws JacksonException {
         format = NamespacedKeySerializer.Format.FULL;
         assertEquals("--- \"key:name\"", toYaml(NamespacedKeyTemplate.SINGLE).strip());
         assertEquals("--- \"minecraft:name\"", toYaml(NamespacedKeyTemplate.SINGLE_MINECRAFT).strip());
     }
 
     @Test
-    void serializeToTomlFull() throws JsonProcessingException {
+    void serializeToTomlFull() throws JacksonException {
         format = NamespacedKeySerializer.Format.FULL;
         assertEquals("= 'key:name'", toToml(NamespacedKeyTemplate.SINGLE).strip());
         assertEquals("= 'minecraft:name'", toToml(NamespacedKeyTemplate.SINGLE_MINECRAFT).strip());

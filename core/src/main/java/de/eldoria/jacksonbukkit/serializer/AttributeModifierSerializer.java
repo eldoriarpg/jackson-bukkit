@@ -5,20 +5,20 @@
  */
 package de.eldoria.jacksonbukkit.serializer;
 
-import com.fasterxml.jackson.core.JsonGenerator;
-import com.fasterxml.jackson.databind.JsonSerializer;
-import com.fasterxml.jackson.databind.SerializerProvider;
+
 import de.eldoria.jacksonbukkit.entities.AttributeModifierWrapper;
 import org.bukkit.attribute.AttributeModifier;
-
-import java.io.IOException;
+import tools.jackson.core.JacksonException;
+import tools.jackson.core.JsonGenerator;
+import tools.jackson.databind.SerializationContext;
+import tools.jackson.databind.ValueSerializer;
 
 /**
  * Class for serialization of {@link AttributeModifier}.
  */
-public class AttributeModifierSerializer extends JsonSerializer<AttributeModifier> {
+public class AttributeModifierSerializer extends ValueSerializer<AttributeModifier> {
     @Override
-    public void serialize(AttributeModifier value, JsonGenerator gen, SerializerProvider serializers) throws IOException {
-        gen.writeObject(AttributeModifierWrapper.of(value));
+    public void serialize(AttributeModifier value, JsonGenerator gen, SerializationContext serializers) throws JacksonException {
+        gen.writePOJO(AttributeModifierWrapper.of(value));
     }
 }

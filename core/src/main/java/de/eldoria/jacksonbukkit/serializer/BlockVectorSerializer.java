@@ -5,20 +5,19 @@
  */
 package de.eldoria.jacksonbukkit.serializer;
 
-import com.fasterxml.jackson.core.JsonGenerator;
-import com.fasterxml.jackson.databind.JsonSerializer;
-import com.fasterxml.jackson.databind.SerializerProvider;
 import de.eldoria.jacksonbukkit.entities.VectorWrapper;
 import org.bukkit.util.BlockVector;
-
-import java.io.IOException;
+import tools.jackson.core.JacksonException;
+import tools.jackson.core.JsonGenerator;
+import tools.jackson.databind.SerializationContext;
+import tools.jackson.databind.ValueSerializer;
 
 /**
  * Class for serialization of {@link BlockVector}.
  */
-public class BlockVectorSerializer extends JsonSerializer<BlockVector> {
+public class BlockVectorSerializer extends ValueSerializer<BlockVector> {
     @Override
-    public void serialize(BlockVector value, JsonGenerator gen, SerializerProvider serializers) throws IOException {
-        gen.writeObject(VectorWrapper.of(value));
+    public void serialize(BlockVector value, JsonGenerator gen, SerializationContext serializers) throws JacksonException {
+        gen.writePOJO(VectorWrapper.of(value));
     }
 }

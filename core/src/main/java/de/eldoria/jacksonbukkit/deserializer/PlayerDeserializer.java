@@ -5,21 +5,21 @@
  */
 package de.eldoria.jacksonbukkit.deserializer;
 
-import com.fasterxml.jackson.core.JsonParser;
-import com.fasterxml.jackson.databind.DeserializationContext;
-import com.fasterxml.jackson.databind.JsonDeserializer;
 import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
+import tools.jackson.core.JacksonException;
+import tools.jackson.core.JsonParser;
+import tools.jackson.databind.DeserializationContext;
+import tools.jackson.databind.ValueDeserializer;
 
-import java.io.IOException;
 import java.util.UUID;
 
 /**
  * Class for deserialization of {@link OfflinePlayer}.
  */
-public class PlayerDeserializer extends JsonDeserializer<OfflinePlayer> {
+public class PlayerDeserializer extends ValueDeserializer<OfflinePlayer> {
     @Override
-    public OfflinePlayer deserialize(JsonParser p, DeserializationContext ctxt) throws IOException {
+    public OfflinePlayer deserialize(JsonParser p, DeserializationContext ctxt) throws JacksonException {
         return Bukkit.getPlayer(ctxt.readValue(p, UUID.class));
     }
 }

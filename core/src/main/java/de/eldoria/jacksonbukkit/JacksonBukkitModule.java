@@ -5,10 +5,6 @@
  */
 package de.eldoria.jacksonbukkit;
 
-import com.fasterxml.jackson.core.Version;
-import com.fasterxml.jackson.databind.Module;
-import com.fasterxml.jackson.databind.module.SimpleDeserializers;
-import com.fasterxml.jackson.databind.module.SimpleSerializers;
 import de.eldoria.jacksonbukkit.deserializer.AttributeModifierDeserializer;
 import de.eldoria.jacksonbukkit.deserializer.BlockDataDeserializer;
 import de.eldoria.jacksonbukkit.deserializer.BlockVectorDeserializer;
@@ -64,12 +60,16 @@ import org.bukkit.util.BlockVector;
 import org.bukkit.util.BoundingBox;
 import org.bukkit.util.Vector;
 import org.jetbrains.annotations.ApiStatus;
+import tools.jackson.core.Version;
+import tools.jackson.databind.JacksonModule;
+import tools.jackson.databind.module.SimpleDeserializers;
+import tools.jackson.databind.module.SimpleSerializers;
 
 /**
  * Base class to implement a bukkit jackson module.
  */
 @ApiStatus.Internal
-public abstract class JacksonBukkitModule extends Module {
+public abstract class JacksonBukkitModule extends JacksonModule {
     /**
      * True when colors should be interpreted as hex strings.
      */

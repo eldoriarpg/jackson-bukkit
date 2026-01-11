@@ -5,8 +5,8 @@
  */
 package de.eldoria.jacksonbukkit.deserializer;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.Module;
+import tools.jackson.core.JacksonException;
+import tools.jackson.databind.JacksonModule;
 import de.eldoria.jacksonbukkit.JacksonBukkit;
 import de.eldoria.jacksonbukkit.CoreSerializationTest;
 import de.eldoria.jacksonbukkit.serializer.NamespacedKeySerializer;
@@ -19,18 +19,18 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class HexRGBColorDeserializerTest implements CoreSerializationTest {
     @Override
-    public Module buildModule() {
+    public JacksonModule buildModule() {
         return new JacksonBukkit(true, NamespacedKeySerializer.Format.FULL);
     }
 
     @Test
-    void deserializeFromJson() throws JsonProcessingException {
+    void deserializeFromJson() throws JacksonException {
         assertEquals(RGBColorTemplate.SINGLE, fromJson("rgb_color_hex", Color.class));
         assertEquals(RGBColorTemplate.LIST, fromJsonList("rgb_color_hex_list", Color.class));
     }
 
     @Test
-    void deserializeFromYaml() throws JsonProcessingException {
+    void deserializeFromYaml() throws JacksonException {
         assertEquals(RGBColorTemplate.SINGLE, fromYaml("rgb_color_hex", Color.class));
         assertEquals(RGBColorTemplate.LIST, fromYamlList("rgb_color_hex_list", Color.class));
     }
@@ -38,7 +38,7 @@ class HexRGBColorDeserializerTest implements CoreSerializationTest {
     // toml can't c:
     @Test
     @Disabled
-    void deserializeFromToml() throws JsonProcessingException {
+    void deserializeFromToml() throws JacksonException {
         assertEquals(RGBColorTemplate.SINGLE, fromToml("rgb_color_hex", Color.class));
     }
 }

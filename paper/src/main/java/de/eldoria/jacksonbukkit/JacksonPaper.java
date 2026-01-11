@@ -5,10 +5,6 @@
  */
 package de.eldoria.jacksonbukkit;
 
-import com.fasterxml.jackson.databind.JsonDeserializer;
-import com.fasterxml.jackson.databind.JsonSerializer;
-import com.fasterxml.jackson.databind.module.SimpleDeserializers;
-import com.fasterxml.jackson.databind.module.SimpleSerializers;
 import de.eldoria.jacksonbukkit.builder.JacksonPaperBuilder;
 import de.eldoria.jacksonbukkit.deserializer.HexRGBAColorDeserializer;
 import de.eldoria.jacksonbukkit.deserializer.LegacyItemStackDeserializer;
@@ -16,7 +12,6 @@ import de.eldoria.jacksonbukkit.deserializer.PaperItemStackDeserializer;
 import de.eldoria.jacksonbukkit.deserializer.RGBAColorDeserializer;
 import de.eldoria.jacksonbukkit.serializer.HexPaperColorSerializer;
 import de.eldoria.jacksonbukkit.serializer.LegacyItemStackSerializer;
-import de.eldoria.jacksonbukkit.serializer.NamespacedKeySerializer;
 import de.eldoria.jacksonbukkit.serializer.NamespacedKeySerializer.Format;
 import de.eldoria.jacksonbukkit.serializer.PaperColorSerializer;
 import de.eldoria.jacksonbukkit.serializer.PaperItemStackSerializer;
@@ -36,6 +31,10 @@ import org.bukkit.util.BoundingBox;
 import org.bukkit.util.Vector;
 import org.jetbrains.annotations.ApiStatus;
 import org.jetbrains.annotations.Nullable;
+import tools.jackson.databind.ValueDeserializer;
+import tools.jackson.databind.ValueSerializer;
+import tools.jackson.databind.module.SimpleDeserializers;
+import tools.jackson.databind.module.SimpleSerializers;
 
 /**
  * Class adding support for classes implementing {@link ConfigurationSerializable}.
@@ -62,8 +61,8 @@ import org.jetbrains.annotations.Nullable;
  */
 public class JacksonPaper extends JacksonBukkitModule {
     private final boolean legacyItemStackSerialization;
-    private final @Nullable JsonDeserializer<Component> componentDeserializer;
-    private final @Nullable JsonSerializer<Component> componentSerializer;
+    private final @Nullable ValueDeserializer<Component> componentDeserializer;
+    private final @Nullable ValueSerializer<Component> componentSerializer;
 
     /**
      * Create a new JacksonPaper module.
@@ -74,8 +73,8 @@ public class JacksonPaper extends JacksonBukkitModule {
     @ApiStatus.Internal
     public JacksonPaper(boolean hexColors,
                         boolean legacyItemStackSerialization,
-                        @Nullable JsonDeserializer<Component> componentDeserializer,
-                        @Nullable JsonSerializer<Component> componentSerializer,
+                        @Nullable ValueDeserializer<Component> componentDeserializer,
+                        @Nullable ValueSerializer<Component> componentSerializer,
                         Format namespacedKeyformat) {
         super(hexColors, namespacedKeyformat);
         this.legacyItemStackSerialization = legacyItemStackSerialization;

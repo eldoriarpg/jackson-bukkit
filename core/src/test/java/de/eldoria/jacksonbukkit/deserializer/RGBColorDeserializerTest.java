@@ -5,7 +5,7 @@
  */
 package de.eldoria.jacksonbukkit.deserializer;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
+import tools.jackson.core.JacksonException;
 import de.eldoria.jacksonbukkit.CoreSerializationTest;
 import de.eldoria.jacksonbukkit.templates.RGBColorTemplate;
 import org.bukkit.Color;
@@ -16,19 +16,19 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 class RGBColorDeserializerTest implements CoreSerializationTest {
 
     @Test
-    void deserializeFromJson() throws JsonProcessingException {
+    void deserializeFromJson() throws JacksonException {
         assertEquals(RGBColorTemplate.SINGLE, fromJson("rgb_color", Color.class));
         assertEquals(RGBColorTemplate.LIST, fromJsonList("rgb_color_list", Color.class));
     }
 
     @Test
-    void deserializeFromYaml() throws JsonProcessingException {
+    void deserializeFromYaml() throws JacksonException {
         assertEquals(RGBColorTemplate.SINGLE, fromYaml("rgb_color", Color.class));
         assertEquals(RGBColorTemplate.LIST, fromYamlList("rgb_color_list", Color.class));
     }
 
     @Test
-    void deserializeFromToml() throws JsonProcessingException {
+    void deserializeFromToml() throws JacksonException {
         assertEquals(RGBColorTemplate.SINGLE, fromToml("rgb_color", Color.class));
     }
 }

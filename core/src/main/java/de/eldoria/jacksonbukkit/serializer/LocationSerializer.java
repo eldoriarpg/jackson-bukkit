@@ -5,20 +5,19 @@
  */
 package de.eldoria.jacksonbukkit.serializer;
 
-import com.fasterxml.jackson.core.JsonGenerator;
-import com.fasterxml.jackson.databind.JsonSerializer;
-import com.fasterxml.jackson.databind.SerializerProvider;
 import de.eldoria.jacksonbukkit.entities.LocationWrapper;
 import org.bukkit.Location;
-
-import java.io.IOException;
+import tools.jackson.core.JacksonException;
+import tools.jackson.core.JsonGenerator;
+import tools.jackson.databind.SerializationContext;
+import tools.jackson.databind.ValueSerializer;
 
 /**
  * Class for serialization of {@link Location}.
  */
-public class LocationSerializer extends JsonSerializer<Location> {
+public class LocationSerializer extends ValueSerializer<Location> {
     @Override
-    public void serialize(Location value, JsonGenerator gen, SerializerProvider serializers) throws IOException {
-        gen.writeObject(LocationWrapper.of(value));
+    public void serialize(Location value, JsonGenerator gen, SerializationContext serializers) throws JacksonException {
+        gen.writePOJO(LocationWrapper.of(value));
     }
 }

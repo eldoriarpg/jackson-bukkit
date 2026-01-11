@@ -6,7 +6,7 @@
 package de.eldoria.jacksonbukkit.deserializer;
 
 import be.seeseemelk.mockbukkit.MockBukkit;
-import com.fasterxml.jackson.core.JsonProcessingException;
+import tools.jackson.core.JacksonException;
 import de.eldoria.jacksonbukkit.CoreSerializationTest;
 import de.eldoria.jacksonbukkit.serializer.PotionEffectSerializer;
 import de.eldoria.jacksonbukkit.templates.PotionEffectTemplate;
@@ -31,19 +31,19 @@ class PotionEffectDeserializerTest implements CoreSerializationTest {
     }
 
     @Test
-    void deserializeToJson() throws JsonProcessingException {
+    void deserializeToJson() throws JacksonException {
         assertEquals(PotionEffectTemplate.SINGLE, fromJson("potion_effect", PotionEffect.class));
         assertEquals(PotionEffectTemplate.LIST, fromJsonList("potion_effect_list", PotionEffect.class));
     }
 
     @Test
-    void deserializeToYaml() throws JsonProcessingException {
+    void deserializeToYaml() throws JacksonException {
         assertEquals(PotionEffectTemplate.SINGLE, fromYaml("potion_effect", PotionEffect.class));
         assertEquals(PotionEffectTemplate.LIST, fromYamlList("potion_effect_list", PotionEffect.class));
     }
 
     @Test
-    void deserializeToToml() throws JsonProcessingException {
+    void deserializeToToml() throws JacksonException {
         assertEquals(PotionEffectTemplate.SINGLE, fromToml("potion_effect", PotionEffect.class));
     }
 }

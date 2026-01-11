@@ -5,20 +5,18 @@
  */
 package de.eldoria.jacksonbukkit.serializer;
 
-import com.fasterxml.jackson.core.JsonGenerator;
-import com.fasterxml.jackson.databind.JsonSerializer;
-import com.fasterxml.jackson.databind.SerializerProvider;
 import de.eldoria.jacksonbukkit.util.Reflections;
 import org.bukkit.NamespacedKey;
-import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
-
-import java.io.IOException;
+import tools.jackson.core.JacksonException;
+import tools.jackson.core.JsonGenerator;
+import tools.jackson.databind.SerializationContext;
+import tools.jackson.databind.ValueSerializer;
 
 /**
- * Class for serialization of {@link PotionEffect}.
+ * Class for serialization of {@link PotionEffectType}.
  */
-public class PotionEffectTypeSerializer extends JsonSerializer<PotionEffectType> {
+public class PotionEffectTypeSerializer extends ValueSerializer<PotionEffectType> {
 
     public static final boolean LEGACY;
 
@@ -27,11 +25,11 @@ public class PotionEffectTypeSerializer extends JsonSerializer<PotionEffectType>
     }
 
     @Override
-    public void serialize(PotionEffectType value, JsonGenerator gen, SerializerProvider serializers) throws IOException {
+    public void serialize(PotionEffectType value, JsonGenerator gen, SerializationContext serializers) throws JacksonException {
         if (LEGACY) {
-            gen.writeObject(value.getId());
+            gen.writePOJO(value.getId());
         } else {
-            gen.writeObject(value.getKey());
+            gen.writePOJO(value.getKey());
         }
     }
 }

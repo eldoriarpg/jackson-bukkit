@@ -5,23 +5,23 @@
  */
 package de.eldoria.jacksonbukkit.serializer;
 
-import com.fasterxml.jackson.core.JsonGenerator;
-import com.fasterxml.jackson.databind.JsonSerializer;
-import com.fasterxml.jackson.databind.SerializerProvider;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.minimessage.MiniMessage;
 import net.kyori.adventure.text.serializer.gson.GsonComponentSerializer;
+import tools.jackson.core.JacksonException;
+import tools.jackson.core.JsonGenerator;
+import tools.jackson.databind.SerializationContext;
+import tools.jackson.databind.ValueSerializer;
 
-import java.io.IOException;
 import java.lang.reflect.Type;
 import java.util.Map;
 
 /**
  * Class for serialization of {@link Component} using {@link MiniMessage}.
  */
-public class ComponentGsonSerializer extends JsonSerializer<Component> {
+public class ComponentGsonSerializer extends ValueSerializer<Component> {
     private static final Type MAP_TYPE = new TypeToken<Map<String, Object>>() {
     }.getType();
 
@@ -34,9 +34,9 @@ public class ComponentGsonSerializer extends JsonSerializer<Component> {
     }
 
     @Override
-    public void serialize(Component value, JsonGenerator gen, SerializerProvider serializers) throws IOException {
+    public void serialize(Component value, JsonGenerator gen, SerializationContext serializers) throws JacksonException {
         String serialize = GsonComponentSerializer.gson().serialize(value);
         Map<String, Object> component = GSON.fromJson(serialize, MAP_TYPE);
-        gen.writeObject(component);
+        gen.writePOJO(component);
     }
 }

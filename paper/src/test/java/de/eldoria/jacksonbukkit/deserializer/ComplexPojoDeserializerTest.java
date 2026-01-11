@@ -7,19 +7,18 @@ package de.eldoria.jacksonbukkit.deserializer;
 
 import be.seeseemelk.mockbukkit.MockBukkit;
 import be.seeseemelk.mockbukkit.WorldMock;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.Module;
 import de.eldoria.jacksonbukkit.JacksonPaper;
 import de.eldoria.jacksonbukkit.PaperSerializationTest;
 import de.eldoria.jacksonbukkit.templates.ComplexPojoTemplate;
 import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+import tools.jackson.core.JacksonException;
+import tools.jackson.databind.JacksonModule;
 
 import java.util.UUID;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.spy;
 import static org.mockito.Mockito.when;
 
@@ -27,7 +26,7 @@ public class ComplexPojoDeserializerTest implements PaperSerializationTest {
     static UUID worldUID = new UUID(0, 0);
 
     @Override
-    public Module buildModule() {
+    public JacksonModule buildModule() {
         return JacksonPaper.builder().build();
     }
 
@@ -46,17 +45,17 @@ public class ComplexPojoDeserializerTest implements PaperSerializationTest {
     }
 
     @Test
-    void deserializeFromJson() throws JsonProcessingException {
+    void deserializeFromJson() throws JacksonException {
         assertEquals(ComplexPojoTemplate.SINGLE, fromJson("complex_pojo", ComplexPojoTemplate.ComplexPojo.class));
     }
 
     @Test
-    void deserializeFromYaml() throws JsonProcessingException {
+    void deserializeFromYaml() throws JacksonException {
         assertEquals(ComplexPojoTemplate.SINGLE, fromYaml("complex_pojo", ComplexPojoTemplate.ComplexPojo.class));
     }
 
     @Test
-    void deserializeFromToml() throws JsonProcessingException {
+    void deserializeFromToml() throws JacksonException {
         assertEquals(ComplexPojoTemplate.SINGLE, fromToml("complex_pojo", ComplexPojoTemplate.ComplexPojo.class));
     }
 }

@@ -5,20 +5,19 @@
  */
 package de.eldoria.jacksonbukkit.serializer;
 
-import com.fasterxml.jackson.core.JsonGenerator;
-import com.fasterxml.jackson.databind.JsonSerializer;
-import com.fasterxml.jackson.databind.SerializerProvider;
 import de.eldoria.jacksonbukkit.entities.MaterialChoiceWrapper;
 import org.bukkit.inventory.RecipeChoice.MaterialChoice;
-
-import java.io.IOException;
+import tools.jackson.core.JacksonException;
+import tools.jackson.core.JsonGenerator;
+import tools.jackson.databind.SerializationContext;
+import tools.jackson.databind.ValueSerializer;
 
 /**
  * Class for serialization of {@link MaterialChoice}.
  */
-public class MaterialChoiceSerializer extends JsonSerializer<MaterialChoice> {
+public class MaterialChoiceSerializer extends ValueSerializer<MaterialChoice> {
     @Override
-    public void serialize(MaterialChoice value, JsonGenerator gen, SerializerProvider serializers) throws IOException {
-        gen.writeObject(MaterialChoiceWrapper.of(value));
+    public void serialize(MaterialChoice value, JsonGenerator gen, SerializationContext serializers) throws JacksonException {
+        gen.writePOJO(MaterialChoiceWrapper.of(value));
     }
 }

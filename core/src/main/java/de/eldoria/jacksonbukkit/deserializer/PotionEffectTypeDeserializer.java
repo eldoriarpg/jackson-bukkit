@@ -5,22 +5,24 @@
  */
 package de.eldoria.jacksonbukkit.deserializer;
 
-import com.fasterxml.jackson.core.JsonParser;
-import com.fasterxml.jackson.databind.DeserializationContext;
-import com.fasterxml.jackson.databind.JsonDeserializer;
-import com.fasterxml.jackson.databind.JsonNode;
 import org.bukkit.NamespacedKey;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
+import tools.jackson.core.JacksonException;
+import tools.jackson.core.JsonParser;
+import tools.jackson.core.exc.JacksonIOException;
+import tools.jackson.databind.DeserializationContext;
+import tools.jackson.databind.JsonNode;
+import tools.jackson.databind.ValueDeserializer;
 
 import java.io.IOException;
 
 /**
  * Class for deserialization of {@link PotionEffect}.
  */
-public class PotionEffectTypeDeserializer extends JsonDeserializer<PotionEffectType> {
+public class PotionEffectTypeDeserializer extends ValueDeserializer<PotionEffectType> {
     @Override
-    public PotionEffectType deserialize(JsonParser p, DeserializationContext ctxt) throws IOException {
+    public PotionEffectType deserialize(JsonParser p, DeserializationContext ctxt) throws JacksonException {
         JsonNode tree = ctxt.readTree(p);
         if (tree.isInt()) {
             return PotionEffectType.getById(ctxt.readValue(p, Integer.class));
@@ -29,6 +31,6 @@ public class PotionEffectTypeDeserializer extends JsonDeserializer<PotionEffectT
             return PotionEffectType.getByKey(ctxt.readTreeAsValue(tree, NamespacedKey.class));
         }
 
-        throw new IOException("Unknown type for field type" + tree.getNodeType().name());
+        throw JacksonIOException.construct(new IOException("Unknown type for field type" + tree.getNodeType().name()));
     }
 }

@@ -33,8 +33,8 @@ dependencyResolutionManagement {
             plugin("indra-sonatype", "net.kyori.indra.publishing.sonatype").versionRef("indra")
 
             version("jackson", "2.20.0")
-            library("jackson-core", "com.fasterxml.jackson.core", "jackson-core").versionRef("jackson")
-            library("jackson-databind", "com.fasterxml.jackson.core", "jackson-databind").versionRef("jackson")
+            library("jackson-core", "tools.jackson.core", "jackson-core").versionRef("jackson")
+            library("jackson-databind", "tools.jackson.core", "jackson-databind").versionRef("jackson")
             bundle("jackson", listOf("jackson-core", "jackson-databind"))
 
             library("paper-v120","io.papermc.paper", "paper-api").version("1.20-R0.1-SNAPSHOT")
@@ -48,9 +48,9 @@ dependencyResolutionManagement {
         create("testlibs") {
             version("jackson", "2.20.0")
             // jackson testing
-            library("jackson-databind", "com.fasterxml.jackson.core", "jackson-databind").versionRef("jackson")
-            library("jackson-dataformat-yaml", "com.fasterxml.jackson.dataformat", "jackson-dataformat-yaml").versionRef("jackson")
-            library("jackson-dataformat-toml", "com.fasterxml.jackson.dataformat", "jackson-dataformat-toml").versionRef("jackson")
+            library("jackson-databind", "tools.jackson.core", "jackson-databind").versionRef("jackson")
+            library("jackson-dataformat-yaml", "tools.jackson.dataformat", "jackson-dataformat-yaml").versionRef("jackson")
+            library("jackson-dataformat-toml", "tools.jackson.dataformat", "jackson-dataformat-toml").versionRef("jackson")
             bundle("jackson", listOf("jackson-databind", "jackson-dataformat-yaml", "jackson-dataformat-toml"))
 
             version("junit", "6.0.0")

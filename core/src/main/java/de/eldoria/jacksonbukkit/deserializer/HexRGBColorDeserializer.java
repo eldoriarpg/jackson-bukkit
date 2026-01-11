@@ -5,21 +5,20 @@
  */
 package de.eldoria.jacksonbukkit.deserializer;
 
-import com.fasterxml.jackson.core.JsonParser;
-import com.fasterxml.jackson.databind.DeserializationContext;
-import com.fasterxml.jackson.databind.JsonDeserializer;
 import de.eldoria.jacksonbukkit.entities.RGBColorWrapper;
 import org.bukkit.Color;
-
-import java.io.IOException;
+import tools.jackson.core.JacksonException;
+import tools.jackson.core.JsonParser;
+import tools.jackson.databind.DeserializationContext;
+import tools.jackson.databind.ValueDeserializer;
 
 /**
  * Class for deserialization of {@link Color} as hexadecimal string.
  */
-public class HexRGBColorDeserializer extends JsonDeserializer<Color> {
+public class HexRGBColorDeserializer extends ValueDeserializer<Color> {
 
     @Override
-    public Color deserialize(JsonParser p, DeserializationContext ctxt) throws IOException {
+    public Color deserialize(JsonParser p, DeserializationContext ctxt) throws JacksonException {
         return RGBColorWrapper.of(ctxt.readValue(p, String.class)).toBukkitColor();
     }
 }

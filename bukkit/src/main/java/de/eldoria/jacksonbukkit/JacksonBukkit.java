@@ -5,15 +5,12 @@
  */
 package de.eldoria.jacksonbukkit;
 
-import com.fasterxml.jackson.databind.module.SimpleDeserializers;
-import com.fasterxml.jackson.databind.module.SimpleSerializers;
 import de.eldoria.jacksonbukkit.builder.JacksonBukkitBuilder;
 import de.eldoria.jacksonbukkit.deserializer.HexRGBColorDeserializer;
 import de.eldoria.jacksonbukkit.deserializer.LegacyItemStackDeserializer;
 import de.eldoria.jacksonbukkit.deserializer.RGBColorDeserializer;
 import de.eldoria.jacksonbukkit.serializer.HexRGBColorSerializer;
 import de.eldoria.jacksonbukkit.serializer.LegacyItemStackSerializer;
-import de.eldoria.jacksonbukkit.serializer.NamespacedKeySerializer;
 import de.eldoria.jacksonbukkit.serializer.NamespacedKeySerializer.Format;
 import de.eldoria.jacksonbukkit.serializer.RGBColorSerializer;
 import org.bukkit.Color;
@@ -30,6 +27,8 @@ import org.bukkit.util.BlockVector;
 import org.bukkit.util.BoundingBox;
 import org.bukkit.util.Vector;
 import org.jetbrains.annotations.ApiStatus;
+import tools.jackson.databind.module.SimpleDeserializers;
+import tools.jackson.databind.module.SimpleSerializers;
 
 /**
  * Class adding support for classes implementing {@link ConfigurationSerializable}.

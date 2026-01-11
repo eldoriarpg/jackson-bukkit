@@ -6,7 +6,7 @@
 package de.eldoria.jacksonbukkit.deserializer;
 
 import be.seeseemelk.mockbukkit.MockBukkit;
-import com.fasterxml.jackson.core.JsonProcessingException;
+import tools.jackson.core.JacksonException;
 import de.eldoria.jacksonbukkit.CoreSerializationTest;
 import de.eldoria.jacksonbukkit.entities.ShapedRecipeWrapper;
 import de.eldoria.jacksonbukkit.entities.ShapelessRecipeWrapper;
@@ -27,19 +27,19 @@ class ShapedRecipeDeserializerTest implements CoreSerializationTest {
     }
 
  @Test
-    void deserializeFromJson() throws JsonProcessingException {
+    void deserializeFromJson() throws JacksonException {
         assertEquals(ShapedRecipeWrapper.of(ShapedRecipeTemplate.SINGLE), ShapedRecipeWrapper.of(fromJson("shaped_recipe", ShapedRecipe.class)));
         assertEquals(ShapedRecipeTemplate.LIST.stream().map(ShapedRecipeWrapper::of).toList(), fromJsonList("shaped_recipe_list", ShapedRecipe.class).stream().map(ShapedRecipeWrapper::of).toList());
     }
 
     @Test
-    void deserializeFromYaml() throws JsonProcessingException {
+    void deserializeFromYaml() throws JacksonException {
         assertEquals(ShapedRecipeWrapper.of(ShapedRecipeTemplate.SINGLE), ShapedRecipeWrapper.of(fromYaml("shaped_recipe", ShapedRecipe.class)));
         assertEquals(ShapedRecipeTemplate.LIST.stream().map(ShapedRecipeWrapper::of).toList(), fromYamlList("shaped_recipe_list", ShapedRecipe.class).stream().map(ShapedRecipeWrapper::of).toList());
     }
 
     @Test
-    void deserializeFromToml() throws JsonProcessingException {
+    void deserializeFromToml() throws JacksonException {
         assertEquals(ShapedRecipeWrapper.of(ShapedRecipeTemplate.SINGLE), ShapedRecipeWrapper.of(fromToml("shaped_recipe", ShapedRecipe.class)));
     }
     @AfterAll

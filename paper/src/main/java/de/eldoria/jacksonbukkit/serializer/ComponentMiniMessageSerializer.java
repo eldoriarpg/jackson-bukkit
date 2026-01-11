@@ -5,18 +5,17 @@
  */
 package de.eldoria.jacksonbukkit.serializer;
 
-import com.fasterxml.jackson.core.JsonGenerator;
-import com.fasterxml.jackson.databind.JsonSerializer;
-import com.fasterxml.jackson.databind.SerializerProvider;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.minimessage.MiniMessage;
-
-import java.io.IOException;
+import tools.jackson.core.JacksonException;
+import tools.jackson.core.JsonGenerator;
+import tools.jackson.databind.SerializationContext;
+import tools.jackson.databind.ValueSerializer;
 
 /**
  * Class for serialization of {@link Component} using {@link MiniMessage}.
  */
-public class ComponentMiniMessageSerializer extends JsonSerializer<Component> {
+public class ComponentMiniMessageSerializer extends ValueSerializer<Component> {
 
     private final MiniMessage miniMessage;
 
@@ -37,7 +36,7 @@ public class ComponentMiniMessageSerializer extends JsonSerializer<Component> {
     }
 
     @Override
-    public void serialize(Component value, JsonGenerator gen, SerializerProvider serializers) throws IOException {
+    public void serialize(Component value, JsonGenerator gen, SerializationContext serializers) throws JacksonException {
         gen.writeString(miniMessage.serialize(value));
     }
 }

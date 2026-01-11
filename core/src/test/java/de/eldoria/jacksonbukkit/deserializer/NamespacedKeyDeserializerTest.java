@@ -5,7 +5,7 @@
  */
 package de.eldoria.jacksonbukkit.deserializer;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
+import tools.jackson.core.JacksonException;
 import de.eldoria.jacksonbukkit.CoreSerializationTest;
 import de.eldoria.jacksonbukkit.templates.NamespacedKeyTemplate;
 import org.bukkit.NamespacedKey;
@@ -18,7 +18,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 class NamespacedKeyDeserializerTest implements CoreSerializationTest {
 
     @Test
-    void deserializeToJson() throws JsonProcessingException {
+    void deserializeToJson() throws JacksonException {
         assertEquals(NamespacedKeyTemplate.SINGLE, fromJson("namespaced_key", NamespacedKey.class));
         assertEquals(NamespacedKeyTemplate.LIST, fromJsonList("namespaced_key_list", NamespacedKey.class));
         assertEquals(NamespacedKeyTemplate.SINGLE, json().readValue("\"key:name\"", NamespacedKey.class));
@@ -27,7 +27,7 @@ class NamespacedKeyDeserializerTest implements CoreSerializationTest {
     }
 
     @Test
-    void deserializeObjectToYaml() throws JsonProcessingException {
+    void deserializeObjectToYaml() throws JacksonException {
         assertEquals(NamespacedKeyTemplate.SINGLE, fromYaml("namespaced_key", NamespacedKey.class));
         assertEquals(NamespacedKeyTemplate.LIST, fromYamlList("namespaced_key_list", NamespacedKey.class));
         assertEquals(NamespacedKeyTemplate.SINGLE_MINECRAFT, yaml().readValue("--- \"minecraft:name\"", NamespacedKey.class));
@@ -36,7 +36,7 @@ class NamespacedKeyDeserializerTest implements CoreSerializationTest {
     }
 
     @Test
-    void deserializeObjectToToml() throws JsonProcessingException {
+    void deserializeObjectToToml() throws JacksonException {
         assertEquals(NamespacedKeyTemplate.SINGLE, fromToml("namespaced_key", NamespacedKey.class));
     }
 }

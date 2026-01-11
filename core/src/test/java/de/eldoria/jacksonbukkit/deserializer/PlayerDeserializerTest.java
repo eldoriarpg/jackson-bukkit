@@ -8,7 +8,7 @@ package de.eldoria.jacksonbukkit.deserializer;
 import be.seeseemelk.mockbukkit.MockBukkit;
 import be.seeseemelk.mockbukkit.ServerMock;
 import be.seeseemelk.mockbukkit.entity.PlayerMock;
-import com.fasterxml.jackson.core.JsonProcessingException;
+import tools.jackson.core.JacksonException;
 import de.eldoria.jacksonbukkit.CoreSerializationTest;
 import org.bukkit.OfflinePlayer;
 import org.junit.jupiter.api.AfterAll;
@@ -49,20 +49,20 @@ class PlayerDeserializerTest implements CoreSerializationTest {
     }
 
     @Test
-    void deserializeToJson() throws JsonProcessingException {
+    void deserializeToJson() throws JacksonException {
         Assertions.assertEquals(SINGLE, fromJson("player", OfflinePlayer.class));
         Assertions.assertEquals(LIST, fromJsonList("player_list", OfflinePlayer.class));
     }
 
     @Test
-    void deserializeToYaml() throws JsonProcessingException {
+    void deserializeToYaml() throws JacksonException {
         Assertions.assertEquals(SINGLE, fromYaml("player", OfflinePlayer.class));
         Assertions.assertEquals(LIST, fromYamlList("player_list", OfflinePlayer.class));
     }
 
     @Test
     @Disabled
-    void deserializeToToml() throws JsonProcessingException {
+    void deserializeToToml() throws JacksonException {
         Assertions.assertEquals(SINGLE, fromToml("player", OfflinePlayer.class));
     }
 }

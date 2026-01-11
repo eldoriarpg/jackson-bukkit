@@ -6,7 +6,7 @@
 package de.eldoria.jacksonbukkit.serializer;
 
 import be.seeseemelk.mockbukkit.MockBukkit;
-import com.fasterxml.jackson.core.JsonProcessingException;
+import tools.jackson.core.JacksonException;
 import de.eldoria.jacksonbukkit.CoreSerializationTest;
 import de.eldoria.jacksonbukkit.templates.ItemStackTemplate;
 import org.junit.jupiter.api.AfterAll;
@@ -29,19 +29,19 @@ class LegacyItemStackSerializerTest implements CoreSerializationTest {
     }
 
     @Test
-    void serializeToJson() throws JsonProcessingException {
+    void serializeToJson() throws JacksonException {
         assertEquals(json("item_stack_bukkit"), toJson(ItemStackTemplate.SINGLE));
         assertEquals(json("item_stack_bukkit_list"), toJson(ItemStackTemplate.LIST));
     }
 
     @Test
-    void serializeToYaml() throws JsonProcessingException {
+    void serializeToYaml() throws JacksonException {
         assertEquals(yaml("item_stack_bukkit"), toYaml(ItemStackTemplate.SINGLE));
         assertEquals(yaml("item_stack_bukkit_list"), toYaml(ItemStackTemplate.LIST));
     }
 
     @Test
-    void serializeToToml() throws JsonProcessingException {
+    void serializeToToml() throws JacksonException {
         assertEquals(toml("item_stack_bukkit"), toToml(ItemStackTemplate.SINGLE));
     }
 }
