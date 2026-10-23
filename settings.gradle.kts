@@ -8,65 +8,11 @@ include("1.16-testing")
 
 pluginManagement {
     repositories {
-        mavenLocal()
         gradlePluginPortal()
         maven("https://eldonexus.de/repository/maven-public/")
-        maven("https://repo.papermc.io/repository/maven-public/")
     }
 }
 
 plugins {
-    id("org.gradle.toolchains.foojay-resolver-convention") version ("1.0.0")
-}
-
-
-dependencyResolutionManagement {
-    versionCatalogs {
-        create("libs") {
-            // plugins
-            plugin("spotless", "com.diffplug.spotless").version("8.0.0")
-            plugin("publishdata", "de.chojo.publishdata").version("1.2.5")
-
-            version("indra", "3.2.0")
-            plugin("indra-core", "net.kyori.indra").versionRef("indra")
-            plugin("indra-publishing", "net.kyori.indra.publishing").versionRef("indra")
-            plugin("indra-sonatype", "net.kyori.indra.publishing.sonatype").versionRef("indra")
-
-            version("jackson", "2.20.0")
-            library("jackson-core", "tools.jackson.core", "jackson-core").versionRef("jackson")
-            library("jackson-databind", "tools.jackson.core", "jackson-databind").versionRef("jackson")
-            bundle("jackson", listOf("jackson-core", "jackson-databind"))
-
-            library("paper-v120","io.papermc.paper", "paper-api").version("1.20-R0.1-SNAPSHOT")
-            library("paper-v1194","io.papermc.paper", "paper-api").version("1.19.4-R0.1-SNAPSHOT")
-            library("spigot-v120","org.spigotmc", "spigot-api").version("1.19.4-R0.1-SNAPSHOT")
-            library("spigot-v1194","org.spigotmc", "spigot-api").version("1.19.4-R0.1-SNAPSHOT")
-            library("spigot-v1132","org.spigotmc", "spigot-api").version("1.13.2-R0.1-SNAPSHOT")
-
-        }
-
-        create("testlibs") {
-            version("jackson", "2.20.0")
-            // jackson testing
-            library("jackson-databind", "tools.jackson.core", "jackson-databind").versionRef("jackson")
-            library("jackson-dataformat-yaml", "tools.jackson.dataformat", "jackson-dataformat-yaml").versionRef("jackson")
-            library("jackson-dataformat-toml", "tools.jackson.dataformat", "jackson-dataformat-toml").versionRef("jackson")
-            bundle("jackson", listOf("jackson-databind", "jackson-dataformat-yaml", "jackson-dataformat-toml"))
-
-            version("junit", "6.0.0")
-            library("junit-jupiter-core", "org.junit.jupiter", "junit-jupiter").versionRef("junit")
-            library("junit-jupiter-engine", "org.junit.jupiter", "junit-jupiter-engine").versionRef("junit")
-            library("junit-platform-launcher", "org.junit.platform", "junit-platform-launcher").version("6.0.0")
-            library("junit-jupiter-api", "org.junit.jupiter", "junit-jupiter-api").versionRef("junit")
-            library("junit-params", "org.junit.jupiter", "junit-jupiter-params").versionRef("junit")
-
-            library("mockbukkit-v119","com.github.seeseemelk", "MockBukkit-v1.19").version("3.1.0")
-
-
-            library("mockito", "org.junit.jupiter", "junit-jupiter-params").version("6.0.0")
-            library("assertj-core", "org.assertj", "assertj-core").version("3.27.6")
-
-            bundle("unittests", listOf("junit-jupiter-core", "junit-jupiter-engine", "junit-jupiter-api","junit-platform-launcher", "junit-params", "mockito", "assertj-core"))
-        }
-    }
+    id("org.gradle.toolchains.foojay-resolver-convention") version "1.0.0"
 }
