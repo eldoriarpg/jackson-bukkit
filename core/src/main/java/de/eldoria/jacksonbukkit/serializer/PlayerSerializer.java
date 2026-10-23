@@ -16,7 +16,8 @@ import tools.jackson.databind.ValueSerializer;
  */
 public class PlayerSerializer extends ValueSerializer<OfflinePlayer> {
     @Override
-    public void serialize(OfflinePlayer value, JsonGenerator gen, SerializationContext serializers) throws JacksonException {
+    public void serialize(OfflinePlayer value, JsonGenerator gen, SerializationContext serializers)
+            throws JacksonException {
         gen.writePOJO(value.getUniqueId());
     }
 }

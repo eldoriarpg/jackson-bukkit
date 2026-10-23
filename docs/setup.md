@@ -11,8 +11,12 @@ sidebar_position: 2
 |---|---|
 | Java | 21 or newer. The library is compiled for Java 21. |
 | Jackson | 3. Version 2.0.0 is built against Jackson 3.0.3 (`tools.jackson`). |
-| Server for `bukkit` | Spigot or any server based on it. Built against the Spigot API 1.13.2. |
-| Server for `paper` | Paper. Built against the Paper API 1.20. |
+| Server | One that runs on Java 21. Officially that is Minecraft 1.20.5 or newer. |
+| Server for `bukkit` | Spigot or any server based on it. |
+| Server for `paper` | Paper. |
+
+Older servers started on Java 21 may work, but they are not tested. The shared code is built against the Spigot
+API 1.19.4 and the `paper` module against the Paper API 1.20.
 
 The library only uses the public server API. Features of newer versions, like alpha in colors or item stacks as
 bytes, are detected at runtime. See [Bukkit or Paper](./modules.md) for what each module does on which version.
@@ -93,10 +97,11 @@ For a Spigot plugin, use `de.eldoria.jacksonbukkit:bukkit:2.0.0` instead.
 
 For a Spigot plugin, use the artifact `bukkit` instead of `paper`.
 
-### EldoNexus mirror
+### EldoNexus
 
-Maven Central is all you need. The artifacts can also be fetched through the EldoNexus proxy at
-`https://eldonexus.de/repository/maven-proxies/`, which mirrors Maven Central.
+Maven Central is all you need. From version 2.1.0 on, releases are also published to EldoNexus at
+`https://eldonexus.de/repository/maven-releases/`, and snapshots of the next version are on
+`https://eldonexus.de/repository/maven-snapshots/`.
 
 ## Ship it with your plugin
 

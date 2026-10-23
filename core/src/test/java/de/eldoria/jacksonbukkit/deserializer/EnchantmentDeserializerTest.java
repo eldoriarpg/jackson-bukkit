@@ -6,13 +6,13 @@
 package de.eldoria.jacksonbukkit.deserializer;
 
 import be.seeseemelk.mockbukkit.MockBukkit;
-import tools.jackson.core.JacksonException;
 import de.eldoria.jacksonbukkit.CoreSerializationTest;
 import de.eldoria.jacksonbukkit.templates.EnchantmentTemplate;
 import org.bukkit.enchantments.Enchantment;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+import tools.jackson.core.JacksonException;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 

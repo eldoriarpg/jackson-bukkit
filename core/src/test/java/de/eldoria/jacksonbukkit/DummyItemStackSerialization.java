@@ -44,7 +44,8 @@ public class DummyItemStackSerialization extends JacksonModule {
     private static class ItemStackSerializer extends ValueSerializer<ItemStack> {
 
         @Override
-        public void serialize(ItemStack value, JsonGenerator gen, SerializationContext serializers) throws JacksonException {
+        public void serialize(ItemStack value, JsonGenerator gen, SerializationContext serializers)
+                throws JacksonException {
             gen.writePOJO(ItemStackWrapper.from(value));
         }
     }

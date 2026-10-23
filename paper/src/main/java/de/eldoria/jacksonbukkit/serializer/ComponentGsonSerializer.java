@@ -22,19 +22,18 @@ import java.util.Map;
  * Class for serialization of {@link Component} using {@link MiniMessage}.
  */
 public class ComponentGsonSerializer extends ValueSerializer<Component> {
-    private static final Type MAP_TYPE = new TypeToken<Map<String, Object>>() {
-    }.getType();
+    private static final Type MAP_TYPE = new TypeToken<Map<String, Object>>() {}.getType();
 
     private static final Gson GSON = new Gson();
 
     /**
      * Creates a new serializer
      */
-    public ComponentGsonSerializer() {
-    }
+    public ComponentGsonSerializer() {}
 
     @Override
-    public void serialize(Component value, JsonGenerator gen, SerializationContext serializers) throws JacksonException {
+    public void serialize(Component value, JsonGenerator gen, SerializationContext serializers)
+            throws JacksonException {
         String serialize = GsonComponentSerializer.gson().serialize(value);
         Map<String, Object> component = GSON.fromJson(serialize, MAP_TYPE);
         gen.writePOJO(component);

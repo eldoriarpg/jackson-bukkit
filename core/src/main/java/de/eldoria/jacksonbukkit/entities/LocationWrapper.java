@@ -15,8 +15,14 @@ import java.util.UUID;
 /**
  * Class for wrapping a {@link Location}.
  */
-public record LocationWrapper(@Nullable UUID uid, @Nullable String name, double xCoord, double yCoord, double zCoord,
-                              float yaw, float pitch) {
+public record LocationWrapper(
+        @Nullable UUID uid,
+        @Nullable String name,
+        double xCoord,
+        double yCoord,
+        double zCoord,
+        float yaw,
+        float pitch) {
 
     /**
      * Create a new {@link LocationWrapper} based on a {@link Location}.
@@ -28,7 +34,14 @@ public record LocationWrapper(@Nullable UUID uid, @Nullable String name, double 
         if (loc.getWorld() == null) {
             return new LocationWrapper(null, null, loc.getX(), loc.getY(), loc.getZ(), loc.getYaw(), loc.getPitch());
         }
-        return new LocationWrapper(loc.getWorld().getUID(), loc.getWorld().getName(), loc.getX(), loc.getY(), loc.getZ(), loc.getYaw(), loc.getPitch());
+        return new LocationWrapper(
+                loc.getWorld().getUID(),
+                loc.getWorld().getName(),
+                loc.getX(),
+                loc.getY(),
+                loc.getZ(),
+                loc.getYaw(),
+                loc.getPitch());
     }
 
     /**

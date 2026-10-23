@@ -31,6 +31,7 @@ public class PotionEffectTypeDeserializer extends ValueDeserializer<PotionEffect
             return PotionEffectType.getByKey(ctxt.readTreeAsValue(tree, NamespacedKey.class));
         }
 
-        throw JacksonIOException.construct(new IOException("Unknown type for field type" + tree.getNodeType().name()));
+        throw JacksonIOException.construct(new IOException(
+                "Unknown type for field type" + tree.getNodeType().name()));
     }
 }

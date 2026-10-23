@@ -5,17 +5,18 @@
  */
 package de.eldoria.jacksonbukkit.serializer;
 
-import tools.jackson.core.JacksonException;
-import tools.jackson.databind.JacksonModule;
 import de.eldoria.jacksonbukkit.CoreSerializationTest;
 import de.eldoria.jacksonbukkit.JacksonBukkit;
 import de.eldoria.jacksonbukkit.templates.NamespacedKeyTemplate;
 import org.junit.jupiter.api.Test;
+import tools.jackson.core.JacksonException;
+import tools.jackson.databind.JacksonModule;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class NamespacedKeySerializerTest implements CoreSerializationTest {
     NamespacedKeySerializer.Format format = NamespacedKeySerializer.Format.OBJECT;
+
     @Override
     public JacksonModule buildModule() {
         return new JacksonBukkit(false, format);
@@ -40,6 +41,7 @@ class NamespacedKeySerializerTest implements CoreSerializationTest {
         format = NamespacedKeySerializer.Format.OBJECT;
         assertEquals(toml("namespaced_key"), toToml(NamespacedKeyTemplate.SINGLE));
     }
+
     @Test
     void serializeToJsonShort() throws JacksonException {
         format = NamespacedKeySerializer.Format.SHORT;
@@ -51,7 +53,8 @@ class NamespacedKeySerializerTest implements CoreSerializationTest {
     void serializeToYamlShort() throws JacksonException {
         format = NamespacedKeySerializer.Format.SHORT;
         assertEquals("--- \"key:name\"", toYaml(NamespacedKeyTemplate.SINGLE).strip());
-        assertEquals("--- \"name\"", toYaml(NamespacedKeyTemplate.SINGLE_MINECRAFT).strip());
+        assertEquals(
+                "--- \"name\"", toYaml(NamespacedKeyTemplate.SINGLE_MINECRAFT).strip());
     }
 
     @Test
@@ -60,24 +63,31 @@ class NamespacedKeySerializerTest implements CoreSerializationTest {
         assertEquals("= 'key:name'", toToml(NamespacedKeyTemplate.SINGLE).strip());
         assertEquals("= 'name'", toToml(NamespacedKeyTemplate.SINGLE_MINECRAFT).strip());
     }
+
     @Test
     void serializeToJsonFull() throws JacksonException {
         format = NamespacedKeySerializer.Format.FULL;
         assertEquals("\"key:name\"", toJson(NamespacedKeyTemplate.SINGLE).strip());
-        assertEquals("\"minecraft:name\"", toJson(NamespacedKeyTemplate.SINGLE_MINECRAFT).strip());
+        assertEquals(
+                "\"minecraft:name\"",
+                toJson(NamespacedKeyTemplate.SINGLE_MINECRAFT).strip());
     }
 
     @Test
     void serializeToYamlFull() throws JacksonException {
         format = NamespacedKeySerializer.Format.FULL;
         assertEquals("--- \"key:name\"", toYaml(NamespacedKeyTemplate.SINGLE).strip());
-        assertEquals("--- \"minecraft:name\"", toYaml(NamespacedKeyTemplate.SINGLE_MINECRAFT).strip());
+        assertEquals(
+                "--- \"minecraft:name\"",
+                toYaml(NamespacedKeyTemplate.SINGLE_MINECRAFT).strip());
     }
 
     @Test
     void serializeToTomlFull() throws JacksonException {
         format = NamespacedKeySerializer.Format.FULL;
         assertEquals("= 'key:name'", toToml(NamespacedKeyTemplate.SINGLE).strip());
-        assertEquals("= 'minecraft:name'", toToml(NamespacedKeyTemplate.SINGLE_MINECRAFT).strip());
+        assertEquals(
+                "= 'minecraft:name'",
+                toToml(NamespacedKeyTemplate.SINGLE_MINECRAFT).strip());
     }
 }

@@ -6,45 +6,56 @@
 package de.eldoria.jacksonbukkit.deserializer;
 
 import be.seeseemelk.mockbukkit.MockBukkit;
-import tools.jackson.core.JacksonException;
 import de.eldoria.jacksonbukkit.CoreSerializationTest;
 import de.eldoria.jacksonbukkit.entities.ShapedRecipeWrapper;
-import de.eldoria.jacksonbukkit.entities.ShapelessRecipeWrapper;
-import de.eldoria.jacksonbukkit.templates.RGBColorTemplate;
 import de.eldoria.jacksonbukkit.templates.ShapedRecipeTemplate;
-import org.bukkit.Color;
 import org.bukkit.inventory.ShapedRecipe;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+import tools.jackson.core.JacksonException;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class ShapedRecipeDeserializerTest implements CoreSerializationTest {
-       @BeforeAll
+    @BeforeAll
     static void beforeAll() {
         MockBukkit.mock();
     }
 
- @Test
+    @Test
     void deserializeFromJson() throws JacksonException {
-        assertEquals(ShapedRecipeWrapper.of(ShapedRecipeTemplate.SINGLE), ShapedRecipeWrapper.of(fromJson("shaped_recipe", ShapedRecipe.class)));
-        assertEquals(ShapedRecipeTemplate.LIST.stream().map(ShapedRecipeWrapper::of).toList(), fromJsonList("shaped_recipe_list", ShapedRecipe.class).stream().map(ShapedRecipeWrapper::of).toList());
+        assertEquals(
+                ShapedRecipeWrapper.of(ShapedRecipeTemplate.SINGLE),
+                ShapedRecipeWrapper.of(fromJson("shaped_recipe", ShapedRecipe.class)));
+        assertEquals(
+                ShapedRecipeTemplate.LIST.stream().map(ShapedRecipeWrapper::of).toList(),
+                fromJsonList("shaped_recipe_list", ShapedRecipe.class).stream()
+                        .map(ShapedRecipeWrapper::of)
+                        .toList());
     }
 
     @Test
     void deserializeFromYaml() throws JacksonException {
-        assertEquals(ShapedRecipeWrapper.of(ShapedRecipeTemplate.SINGLE), ShapedRecipeWrapper.of(fromYaml("shaped_recipe", ShapedRecipe.class)));
-        assertEquals(ShapedRecipeTemplate.LIST.stream().map(ShapedRecipeWrapper::of).toList(), fromYamlList("shaped_recipe_list", ShapedRecipe.class).stream().map(ShapedRecipeWrapper::of).toList());
+        assertEquals(
+                ShapedRecipeWrapper.of(ShapedRecipeTemplate.SINGLE),
+                ShapedRecipeWrapper.of(fromYaml("shaped_recipe", ShapedRecipe.class)));
+        assertEquals(
+                ShapedRecipeTemplate.LIST.stream().map(ShapedRecipeWrapper::of).toList(),
+                fromYamlList("shaped_recipe_list", ShapedRecipe.class).stream()
+                        .map(ShapedRecipeWrapper::of)
+                        .toList());
     }
 
     @Test
     void deserializeFromToml() throws JacksonException {
-        assertEquals(ShapedRecipeWrapper.of(ShapedRecipeTemplate.SINGLE), ShapedRecipeWrapper.of(fromToml("shaped_recipe", ShapedRecipe.class)));
+        assertEquals(
+                ShapedRecipeWrapper.of(ShapedRecipeTemplate.SINGLE),
+                ShapedRecipeWrapper.of(fromToml("shaped_recipe", ShapedRecipe.class)));
     }
+
     @AfterAll
     static void afterAll() {
         MockBukkit.unmock();
     }
-
 }

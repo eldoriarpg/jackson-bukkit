@@ -10,12 +10,11 @@ import org.bukkit.inventory.EquipmentSlot;
 
 import java.util.UUID;
 
-
 /**
  * Class for wrapping an {@link AttributeModifier}.
  */
-public record AttributeModifierWrapper(UUID uuid, String name, double amount, AttributeModifier.Operation operation,
-                                       EquipmentSlot equipmentSlot) {
+public record AttributeModifierWrapper(
+        UUID uuid, String name, double amount, AttributeModifier.Operation operation, EquipmentSlot equipmentSlot) {
 
     /**
      * Create a new {@link AttributeModifierWrapper} based on an {@link AttributeModifier}.
@@ -38,12 +37,6 @@ public record AttributeModifierWrapper(UUID uuid, String name, double amount, At
      * @return new {@link AttributeModifier} instance
      */
     public AttributeModifier toBukkitAttributeModifier() {
-        return new AttributeModifier(
-                uuid,
-                name,
-                amount,
-                operation,
-                equipmentSlot
-        );
+        return new AttributeModifier(uuid, name, amount, operation, equipmentSlot);
     }
 }

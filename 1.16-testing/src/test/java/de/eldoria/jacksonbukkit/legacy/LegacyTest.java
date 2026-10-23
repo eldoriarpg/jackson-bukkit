@@ -16,5 +16,4 @@ public class LegacyTest {
     public void testLegacyPotion() {
         assertTrue(PotionEffectTypeSerializer.LEGACY);
     }
-
 }

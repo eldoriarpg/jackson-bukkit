@@ -17,7 +17,8 @@ import tools.jackson.databind.ValueSerializer;
  */
 public class MaterialChoiceSerializer extends ValueSerializer<MaterialChoice> {
     @Override
-    public void serialize(MaterialChoice value, JsonGenerator gen, SerializationContext serializers) throws JacksonException {
+    public void serialize(MaterialChoice value, JsonGenerator gen, SerializationContext serializers)
+            throws JacksonException {
         gen.writePOJO(MaterialChoiceWrapper.of(value));
     }
 }

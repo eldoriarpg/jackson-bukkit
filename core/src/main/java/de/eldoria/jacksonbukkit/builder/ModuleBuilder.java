@@ -19,6 +19,7 @@ public abstract class ModuleBuilder<T, V extends JacksonBukkitModule> {
      * Whether hex colors should be serialized as hex or not.
      */
     protected boolean hexColors = false;
+
     protected NamespacedKeySerializer.Format namespacedKeyFormat = NamespacedKeySerializer.Format.OBJECT;
 
     /**

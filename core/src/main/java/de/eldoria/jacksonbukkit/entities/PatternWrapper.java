@@ -8,7 +8,6 @@ package de.eldoria.jacksonbukkit.entities;
 import org.bukkit.DyeColor;
 import org.bukkit.block.banner.Pattern;
 import org.bukkit.block.banner.PatternType;
-import org.bukkit.potion.PotionEffect;
 
 /**
  * Class for wrapping a {@link Pattern}.

@@ -24,7 +24,8 @@ public class LegacyItemStackSerializer extends ValueSerializer<ItemStack> {
     private static final Yaml YAML = new Yaml(new Constructor(new LoaderOptions()));
 
     @Override
-    public void serialize(ItemStack value, JsonGenerator gen, SerializationContext serializers) throws JacksonException {
+    public void serialize(ItemStack value, JsonGenerator gen, SerializationContext serializers)
+            throws JacksonException {
         YamlConfiguration yamlConfiguration = new YamlConfiguration();
         yamlConfiguration.set("map", value);
         Map<String, Object> items = YAML.load(yamlConfiguration.saveToString());

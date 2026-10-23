@@ -1,10 +1,6 @@
 {
-  "baseBranches": ["dev"],
-  "extends": [
-    "github>eldoriarpg/.github"
-  ],
-  "reviewers": [
-    "RainbowDashLabs",
-    "yannicklamprecht"
-  ]
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": ["github>eldoriarpg/.github"],
+  "baseBranchPatterns": ["main"],
+  "reviewers": ["RainbowDashLabs", "yannicklamprecht"]
 }

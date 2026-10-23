@@ -5,7 +5,6 @@
  */
 package de.eldoria.jacksonbukkit.deserializer;
 
-import tools.jackson.core.JacksonException;
 import de.eldoria.jacksonbukkit.CoreSerializationTest;
 import de.eldoria.jacksonbukkit.templates.LocationTemplate;
 import org.bukkit.Bukkit;
@@ -15,7 +14,7 @@ import org.bukkit.World;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mockito;
+import tools.jackson.core.JacksonException;
 
 import java.lang.reflect.Field;
 import java.util.UUID;

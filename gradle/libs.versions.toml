@@ -1,0 +1,45 @@
+[versions]
+jackson = "3.2.4"
+annotations = "26.1.0"
+junit = "6.1.3"
+mockito = "5.24.0"
+assertj = "3.27.7"
+mockbukkit = "3.1.0"
+palantir = "2.102.0"
+spotless = "8.10.4"
+publishdata = "2.1.0"
+vanniktech = "0.37.0"
+freefair = "9.8.2"
+
+[libraries]
+spigot-v1132 = "org.spigotmc:spigot-api:1.13.2-R0.1-SNAPSHOT"
+spigot-v1194 = "org.spigotmc:spigot-api:1.19.4-R0.1-SNAPSHOT"
+paper-v1165 = "com.destroystokyo.paper:paper-api:1.16.5-R0.1-SNAPSHOT"
+paper-v1194 = "io.papermc.paper:paper-api:1.19.4-R0.1-SNAPSHOT"
+paper-v120 = "io.papermc.paper:paper-api:1.20-R0.1-SNAPSHOT"
+
+jackson-bom = { module = "tools.jackson:jackson-bom", version.ref = "jackson" }
+jackson-core = { module = "tools.jackson.core:jackson-core" }
+jackson-databind = { module = "tools.jackson.core:jackson-databind" }
+jackson-yaml = { module = "tools.jackson.dataformat:jackson-dataformat-yaml" }
+jackson-toml = { module = "tools.jackson.dataformat:jackson-dataformat-toml" }
+annotations = { module = "org.jetbrains:annotations", version.ref = "annotations" }
+
+junit-bom = { module = "org.junit:junit-bom", version.ref = "junit" }
+junit-jupiter = { module = "org.junit.jupiter:junit-jupiter" }
+junit-launcher = { module = "org.junit.platform:junit-platform-launcher" }
+mockito-core = { module = "org.mockito:mockito-core", version.ref = "mockito" }
+assertj-core = { module = "org.assertj:assertj-core", version.ref = "assertj" }
+mockbukkit-v119 = { module = "com.github.seeseemelk:MockBukkit-v1.19", version.ref = "mockbukkit" }
+
+gradle-spotless = { module = "com.diffplug.spotless:spotless-plugin-gradle", version.ref = "spotless" }
+gradle-publishdata = { module = "de.chojo:publishdata", version.ref = "publishdata" }
+gradle-vanniktech = { module = "com.vanniktech:gradle-maven-publish-plugin", version.ref = "vanniktech" }
+
+[bundles]
+jackson = ["jackson-core", "jackson-databind"]
+jackson-formats = ["jackson-yaml", "jackson-toml"]
+unittests = ["junit-jupiter", "mockito-core", "assertj-core"]
+
+[plugins]
+aggregate-javadoc = { id = "io.freefair.aggregate-javadoc", version.ref = "freefair" }

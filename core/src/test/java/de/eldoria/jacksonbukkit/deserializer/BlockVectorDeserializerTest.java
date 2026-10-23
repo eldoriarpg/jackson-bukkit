@@ -5,15 +5,12 @@
  */
 package de.eldoria.jacksonbukkit.deserializer;
 
-import tools.jackson.core.JacksonException;
 import de.eldoria.jacksonbukkit.CoreSerializationTest;
 import de.eldoria.jacksonbukkit.templates.BlockVectorTemplate;
 import org.bukkit.util.BlockVector;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import tools.jackson.core.JacksonException;
 
-import static de.eldoria.jacksonbukkit.templates.BlockVectorTemplate.LIST;
-import static de.eldoria.jacksonbukkit.templates.BlockVectorTemplate.SINGLE;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -34,5 +31,4 @@ class BlockVectorDeserializerTest implements CoreSerializationTest {
     void deserializeFromToml() throws JacksonException {
         assertEquals(BlockVectorTemplate.SINGLE, fromToml("vector", BlockVector.class));
     }
-
 }

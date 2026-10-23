@@ -25,6 +25,7 @@ import static org.mockito.Mockito.when;
 public class ComplexPojoSerializerTest implements PaperSerializationTest {
 
     static UUID worldUID = new UUID(0, 0);
+
     @Override
     public JacksonModule buildModule() {
         return JacksonPaper.builder().build();

@@ -24,7 +24,8 @@ public class NamespacedKeySerializer extends ValueSerializer<NamespacedKey> {
     }
 
     @Override
-    public void serialize(NamespacedKey value, JsonGenerator gen, SerializationContext serializers) throws JacksonException {
+    public void serialize(NamespacedKey value, JsonGenerator gen, SerializationContext serializers)
+            throws JacksonException {
         switch (format) {
             case OBJECT -> gen.writePOJO(NamespacedKeyWrapper.of(value));
             case FULL -> gen.writeString(value.toString());
@@ -40,16 +41,16 @@ public class NamespacedKeySerializer extends ValueSerializer<NamespacedKey> {
 
     public enum Format {
         /*
-         Deserialize using a wrapper object {"namespace": "minecraft", "key": "stone"}.
-         */
+        Deserialize using a wrapper object {"namespace": "minecraft", "key": "stone"}.
+        */
         OBJECT,
         /*
-         Deserialize using the full key. E.g. (minecraft:stone)
-         */
+        Deserialize using the full key. E.g. (minecraft:stone)
+        */
         FULL,
         /*
-         Deserialize using the key name. E.g., stone if the namespace is minecraft. Otherwise, the full key.
-         */
+        Deserialize using the key name. E.g., stone if the namespace is minecraft. Otherwise, the full key.
+        */
         SHORT
     }
 }

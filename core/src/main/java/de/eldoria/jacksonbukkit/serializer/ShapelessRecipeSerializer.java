@@ -17,7 +17,8 @@ import tools.jackson.databind.ValueSerializer;
  */
 public class ShapelessRecipeSerializer extends ValueSerializer<ShapelessRecipe> {
     @Override
-    public void serialize(ShapelessRecipe value, JsonGenerator gen, SerializationContext serializers) throws JacksonException {
+    public void serialize(ShapelessRecipe value, JsonGenerator gen, SerializationContext serializers)
+            throws JacksonException {
         gen.writePOJO(ShapelessRecipeWrapper.of(value));
     }
 }

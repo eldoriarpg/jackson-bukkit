@@ -5,8 +5,6 @@
  */
 package de.eldoria.jacksonbukkit.deserializer;
 
-import tools.jackson.core.JacksonException;
-import tools.jackson.databind.JacksonModule;
 import de.eldoria.jacksonbukkit.JacksonPaper;
 import de.eldoria.jacksonbukkit.PaperSerializationTest;
 import de.eldoria.jacksonbukkit.serializer.ComponentGsonSerializer;
@@ -14,6 +12,8 @@ import de.eldoria.jacksonbukkit.serializer.NamespacedKeySerializer;
 import de.eldoria.jacksonbukkit.templates.ComponentTemplate;
 import net.kyori.adventure.text.Component;
 import org.junit.jupiter.api.Test;
+import tools.jackson.core.JacksonException;
+import tools.jackson.databind.JacksonModule;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -21,7 +21,8 @@ class ComponentGsonDeserializerTest implements PaperSerializationTest {
 
     @Override
     public JacksonModule buildModule() {
-        return new JacksonPaper(false,
+        return new JacksonPaper(
+                false,
                 false,
                 new ComponentGsonDeserializer(),
                 new ComponentGsonSerializer(),

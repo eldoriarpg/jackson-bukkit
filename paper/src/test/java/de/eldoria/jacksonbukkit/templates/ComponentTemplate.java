@@ -16,19 +16,14 @@ public class ComponentTemplate {
     public static final Component SINGLE = Component.text("Awesome")
             .appendSpace()
             .append(Component.text("text")
-                    .style(Style.style()
-                            .decorate(TextDecoration.BOLD)
-                            .color(NamedTextColor.AQUA)));
+                    .style(Style.style().decorate(TextDecoration.BOLD).color(NamedTextColor.AQUA)));
 
     public static final List<Component> LIST = List.of(
             Component.text("Another")
-            .appendSpace()
-            .append(Component.text("truly")
-                    .style(Style.style()
-                            .decorate(TextDecoration.BOLD)
-                            .color(NamedTextColor.AQUA)))
+                    .appendSpace()
+                    .append(Component.text("truly")
+                            .style(Style.style().decorate(TextDecoration.BOLD).color(NamedTextColor.AQUA)))
                     .append(Component.text("awesome").style(Style.style(NamedTextColor.RED)))
                     .append(Component.text("text")),
-            SINGLE
-    );
+            SINGLE);
 }

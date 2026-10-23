@@ -13,8 +13,8 @@ import java.util.List;
 /**
  * Class for wrapping a {@link FireworkEffect}.
  */
-public record FireworkEffectWrapper(FireworkEffect.Type type, List<Color> colors, List<Color> fadeColors,
-                                    boolean flicker, boolean trail) {
+public record FireworkEffectWrapper(
+        FireworkEffect.Type type, List<Color> colors, List<Color> fadeColors, boolean flicker, boolean trail) {
     /**
      * Create a new {@link FireworkEffectWrapper} based on a {@link FireworkEffect}.
      *
@@ -36,6 +36,12 @@ public record FireworkEffectWrapper(FireworkEffect.Type type, List<Color> colors
      * @return new {@link FireworkEffect} instance
      */
     public FireworkEffect toFireworkEffect() {
-        return FireworkEffect.builder().with(type).withColor(colors).withFade(fadeColors).flicker(flicker).trail(trail).build();
+        return FireworkEffect.builder()
+                .with(type)
+                .withColor(colors)
+                .withFade(fadeColors)
+                .flicker(flicker)
+                .trail(trail)
+                .build();
     }
 }

@@ -18,7 +18,8 @@ import java.util.Base64;
  */
 public class PaperItemStackSerializer extends LegacyItemStackSerializer {
     @Override
-    public void serialize(ItemStack value, JsonGenerator gen, SerializationContext serializers) throws JacksonException {
+    public void serialize(ItemStack value, JsonGenerator gen, SerializationContext serializers)
+            throws JacksonException {
         if (PaperFeatures.HAS_SERIALIZE_AS_BYTES) {
             gen.writeString(Base64.getEncoder().encodeToString(value.serializeAsBytes()));
         } else {

@@ -17,7 +17,8 @@ import tools.jackson.databind.ValueSerializer;
  */
 public class BlockVectorSerializer extends ValueSerializer<BlockVector> {
     @Override
-    public void serialize(BlockVector value, JsonGenerator gen, SerializationContext serializers) throws JacksonException {
+    public void serialize(BlockVector value, JsonGenerator gen, SerializationContext serializers)
+            throws JacksonException {
         gen.writePOJO(VectorWrapper.of(value));
     }
 }

@@ -37,7 +37,9 @@ public class ComponentMiniMessageDeserializer extends ComponentGsonDeserializer 
         if (PaperFeatures.HAS_COMPONENT_COMPACT) {
             miniMessage = MiniMessage.builder().build();
         } else {
-            miniMessage = MiniMessage.builder().postProcessor(UnaryOperator.identity()).build();
+            miniMessage = MiniMessage.builder()
+                    .postProcessor(UnaryOperator.identity())
+                    .build();
         }
     }
 

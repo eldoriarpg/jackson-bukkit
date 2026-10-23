@@ -60,5 +60,5 @@ welcome: "<gold>Welcome to the arena!"
 - [Full example](./example.md): a small plugin that loads its config with Jackson Bukkit.
 - [Migrating from 1.x](./migrating.md): moving from Jackson 2 to Jackson 3.
 
-The [Javadocs](https://eldoriarpg.github.io/jackson-bukkit/) list every class. The source code is on
+The [Javadocs](pathname:///jackson-bukkit/javadoc/) list every class. The source code is on
 [GitHub](https://github.com/eldoriarpg/jackson-bukkit).

@@ -31,9 +31,8 @@ public class RGBColorWrapper {
      * @param blue  blue value
      */
     @JsonCreator
-    public RGBColorWrapper(@JsonProperty("red") int red,
-                           @JsonProperty("green") int green,
-                           @JsonProperty("blue") int blue) {
+    public RGBColorWrapper(
+            @JsonProperty("red") int red, @JsonProperty("green") int green, @JsonProperty("blue") int blue) {
         this.red = red;
         this.green = green;
         this.blue = blue;
@@ -115,9 +114,7 @@ public class RGBColorWrapper {
         if (obj == this) return true;
         if (obj == null || obj.getClass() != this.getClass()) return false;
         var that = (RGBColorWrapper) obj;
-        return this.red == that.red &&
-               this.green == that.green &&
-               this.blue == that.blue;
+        return this.red == that.red && this.green == that.green && this.blue == that.blue;
     }
 
     @Override

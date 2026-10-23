@@ -1,9 +1,14 @@
+plugins {
+    id("jacksonbukkit.publishing-conventions")
+}
+
 description = "Core module containing shared logic"
+
 dependencies {
-    compileOnly(libs.spigot.v120)
+    compileOnly(libs.spigot.v1194)
 
     testImplementation(libs.paper.v1194)
     testImplementation(project(":bukkit"))
     testImplementation(project(":testing"))
-    testImplementation(testlibs.mockbukkit.v119)
+    testImplementation(libs.mockbukkit.v119)
 }

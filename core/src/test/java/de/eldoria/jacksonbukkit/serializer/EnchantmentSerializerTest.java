@@ -5,12 +5,12 @@
  */
 package de.eldoria.jacksonbukkit.serializer;
 
-import tools.jackson.core.JacksonException;
-import tools.jackson.databind.JacksonModule;
 import de.eldoria.jacksonbukkit.CoreSerializationTest;
 import de.eldoria.jacksonbukkit.JacksonBukkit;
 import de.eldoria.jacksonbukkit.templates.EnchantmentTemplate;
 import org.junit.jupiter.api.Test;
+import tools.jackson.core.JacksonException;
+import tools.jackson.databind.JacksonModule;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 

@@ -14,8 +14,8 @@ import org.bukkit.inventory.RecipeChoice;
  */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, property = "@clazz")
 @JsonSubTypes({
-        @JsonSubTypes.Type(value = ExactChoiceWrapper.class, name = "ExactChoice"),
-        @JsonSubTypes.Type(value = MaterialChoiceWrapper.class, name = "MaterialChoice")
+    @JsonSubTypes.Type(value = ExactChoiceWrapper.class, name = "ExactChoice"),
+    @JsonSubTypes.Type(value = MaterialChoiceWrapper.class, name = "MaterialChoice")
 })
 public interface RecipeChoiceWrapper<T extends RecipeChoice> {
 
@@ -38,6 +38,7 @@ public interface RecipeChoiceWrapper<T extends RecipeChoice> {
         if (choice instanceof RecipeChoice.MaterialChoice c) {
             return MaterialChoiceWrapper.of(c);
         }
-        throw new IllegalArgumentException("%s is not a known RecipeChoice".formatted(choice.getClass().getName()));
+        throw new IllegalArgumentException(
+                "%s is not a known RecipeChoice".formatted(choice.getClass().getName()));
     }
 }

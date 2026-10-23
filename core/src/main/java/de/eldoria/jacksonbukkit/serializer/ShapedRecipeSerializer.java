@@ -17,7 +17,8 @@ import tools.jackson.databind.ValueSerializer;
  */
 public class ShapedRecipeSerializer extends ValueSerializer<ShapedRecipe> {
     @Override
-    public void serialize(ShapedRecipe value, JsonGenerator gen, SerializationContext serializers) throws JacksonException {
+    public void serialize(ShapedRecipe value, JsonGenerator gen, SerializationContext serializers)
+            throws JacksonException {
         gen.writePOJO(ShapedRecipeWrapper.of(value));
     }
 }

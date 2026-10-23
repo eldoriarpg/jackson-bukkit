@@ -5,11 +5,11 @@
  */
 package de.eldoria.jacksonbukkit.deserializer;
 
-import tools.jackson.core.JacksonException;
 import de.eldoria.jacksonbukkit.CoreSerializationTest;
 import de.eldoria.jacksonbukkit.templates.RGBColorTemplate;
 import org.bukkit.Color;
 import org.junit.jupiter.api.Test;
+import tools.jackson.core.JacksonException;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 

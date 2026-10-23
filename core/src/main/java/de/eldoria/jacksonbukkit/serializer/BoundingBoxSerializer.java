@@ -17,7 +17,8 @@ import tools.jackson.databind.ValueSerializer;
  */
 public class BoundingBoxSerializer extends ValueSerializer<BoundingBox> {
     @Override
-    public void serialize(BoundingBox value, JsonGenerator gen, SerializationContext serializers) throws JacksonException {
+    public void serialize(BoundingBox value, JsonGenerator gen, SerializationContext serializers)
+            throws JacksonException {
         gen.writePOJO(BoundingBoxWrapper.of(value));
     }
 }

@@ -5,7 +5,6 @@
  */
 package de.eldoria.jacksonbukkit.serializer;
 
-
 import de.eldoria.jacksonbukkit.entities.AttributeModifierWrapper;
 import org.bukkit.attribute.AttributeModifier;
 import tools.jackson.core.JacksonException;
@@ -18,7 +17,8 @@ import tools.jackson.databind.ValueSerializer;
  */
 public class AttributeModifierSerializer extends ValueSerializer<AttributeModifier> {
     @Override
-    public void serialize(AttributeModifier value, JsonGenerator gen, SerializationContext serializers) throws JacksonException {
+    public void serialize(AttributeModifier value, JsonGenerator gen, SerializationContext serializers)
+            throws JacksonException {
         gen.writePOJO(AttributeModifierWrapper.of(value));
     }
 }
