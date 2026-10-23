@@ -17,7 +17,8 @@ import tools.jackson.databind.ValueSerializer;
  */
 public class FireworkEffectSerializer extends ValueSerializer<FireworkEffect> {
     @Override
-    public void serialize(FireworkEffect value, JsonGenerator gen, SerializationContext serializers) throws JacksonException {
+    public void serialize(FireworkEffect value, JsonGenerator gen, SerializationContext serializers)
+            throws JacksonException {
         gen.writePOJO(FireworkEffectWrapper.of(value));
     }
 }

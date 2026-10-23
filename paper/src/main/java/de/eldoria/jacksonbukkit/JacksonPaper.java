@@ -71,11 +71,12 @@ public class JacksonPaper extends JacksonBukkitModule {
      * @param legacyItemStackSerialization true to use spigot based serialization
      */
     @ApiStatus.Internal
-    public JacksonPaper(boolean hexColors,
-                        boolean legacyItemStackSerialization,
-                        @Nullable ValueDeserializer<Component> componentDeserializer,
-                        @Nullable ValueSerializer<Component> componentSerializer,
-                        Format namespacedKeyformat) {
+    public JacksonPaper(
+            boolean hexColors,
+            boolean legacyItemStackSerialization,
+            @Nullable ValueDeserializer<Component> componentDeserializer,
+            @Nullable ValueSerializer<Component> componentSerializer,
+            Format namespacedKeyformat) {
         super(hexColors, namespacedKeyformat);
         this.legacyItemStackSerialization = legacyItemStackSerialization;
         this.componentDeserializer = componentDeserializer;
@@ -109,15 +110,20 @@ public class JacksonPaper extends JacksonBukkitModule {
 
     @Override
     protected void registerSerializer(SimpleSerializers serializers) {
-        serializers.addSerializer(ItemStack.class, !legacyItemStackSerialization ? new PaperItemStackSerializer() : new LegacyItemStackSerializer());
+        serializers.addSerializer(
+                ItemStack.class,
+                !legacyItemStackSerialization ? new PaperItemStackSerializer() : new LegacyItemStackSerializer());
         serializers.addSerializer(Color.class, hexColors ? new HexPaperColorSerializer() : new PaperColorSerializer());
         if (componentSerializer != null) serializers.addSerializer(Component.class, componentSerializer);
     }
 
     @Override
     protected void registerDeserializer(SimpleDeserializers deserializers) {
-        deserializers.addDeserializer(ItemStack.class, !legacyItemStackSerialization ? new PaperItemStackDeserializer() : new LegacyItemStackDeserializer());
-        deserializers.addDeserializer(Color.class, hexColors ? new HexRGBAColorDeserializer() : new RGBAColorDeserializer());
+        deserializers.addDeserializer(
+                ItemStack.class,
+                !legacyItemStackSerialization ? new PaperItemStackDeserializer() : new LegacyItemStackDeserializer());
+        deserializers.addDeserializer(
+                Color.class, hexColors ? new HexRGBAColorDeserializer() : new RGBAColorDeserializer());
         if (componentDeserializer != null) deserializers.addDeserializer(Component.class, componentDeserializer);
     }
 }

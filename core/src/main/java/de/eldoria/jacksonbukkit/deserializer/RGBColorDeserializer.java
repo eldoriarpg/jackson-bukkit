@@ -5,7 +5,6 @@
  */
 package de.eldoria.jacksonbukkit.deserializer;
 
-
 import de.eldoria.jacksonbukkit.entities.RGBColorWrapper;
 import org.bukkit.Color;
 import tools.jackson.core.JacksonException;

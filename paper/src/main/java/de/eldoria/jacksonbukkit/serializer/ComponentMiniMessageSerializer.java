@@ -36,7 +36,8 @@ public class ComponentMiniMessageSerializer extends ValueSerializer<Component> {
     }
 
     @Override
-    public void serialize(Component value, JsonGenerator gen, SerializationContext serializers) throws JacksonException {
+    public void serialize(Component value, JsonGenerator gen, SerializationContext serializers)
+            throws JacksonException {
         gen.writeString(miniMessage.serialize(value));
     }
 }

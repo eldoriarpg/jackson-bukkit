@@ -28,8 +28,7 @@ public class ComplexPojoTemplate {
             NamespacedKeyTemplate.SINGLE,
             PatternTemplate.SINGLE,
             PotionEffectTemplate.SINGLE,
-            VectorTemplate.SINGLE
-    );
+            VectorTemplate.SINGLE);
 
     public record ComplexPojo(
             AttributeModifier strength,
@@ -41,7 +40,5 @@ public class ComplexPojoTemplate {
             NamespacedKey namespacedKey,
             Pattern pattern,
             PotionEffect potionEffect,
-            Vector heavyWeightedPressurePlateJump
-    ) {
-    }
+            Vector heavyWeightedPressurePlateJump) {}
 }

@@ -5,18 +5,14 @@
  */
 package de.eldoria.jacksonbukkit.deserializer;
 
-import tools.jackson.core.JacksonException;
 import de.eldoria.jacksonbukkit.CoreSerializationTest;
 import de.eldoria.jacksonbukkit.templates.BoundingBoxTemplate;
 import org.bukkit.util.BoundingBox;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import tools.jackson.core.JacksonException;
 
-import static de.eldoria.jacksonbukkit.templates.BoundingBoxTemplate.LIST;
-import static de.eldoria.jacksonbukkit.templates.BoundingBoxTemplate.SINGLE;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-
 
 class BoundingBoxDeserializerTest implements CoreSerializationTest {
 

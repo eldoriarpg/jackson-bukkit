@@ -25,7 +25,8 @@ public class PotionEffectTypeSerializer extends ValueSerializer<PotionEffectType
     }
 
     @Override
-    public void serialize(PotionEffectType value, JsonGenerator gen, SerializationContext serializers) throws JacksonException {
+    public void serialize(PotionEffectType value, JsonGenerator gen, SerializationContext serializers)
+            throws JacksonException {
         if (LEGACY) {
             gen.writePOJO(value.getId());
         } else {

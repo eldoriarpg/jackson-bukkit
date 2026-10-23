@@ -5,7 +5,6 @@
  */
 package de.eldoria.jacksonbukkit.serializer;
 
-
 import de.eldoria.jacksonbukkit.util.Reflections;
 import org.bukkit.NamespacedKey;
 import org.bukkit.enchantments.Enchantment;
@@ -22,7 +21,8 @@ public class EnchantmentSerializer extends ValueSerializer<Enchantment> {
     }
 
     @Override
-    public void serialize(Enchantment value, JsonGenerator gen, SerializationContext serializers) throws JacksonException {
+    public void serialize(Enchantment value, JsonGenerator gen, SerializationContext serializers)
+            throws JacksonException {
         if (LEGACY) {
             gen.writePOJO(value.getName());
         } else {

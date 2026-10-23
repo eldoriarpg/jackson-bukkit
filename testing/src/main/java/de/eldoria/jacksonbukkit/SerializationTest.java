@@ -50,15 +50,13 @@ public interface SerializationTest {
     }
 
     default ObjectMapper buildYaml() {
-        YAMLMapper.Builder builder = YAMLMapper.builder()
-                .addModule(buildModule());
+        YAMLMapper.Builder builder = YAMLMapper.builder().addModule(buildModule());
         for (JacksonModule module : additionalModules()) builder.addModule(module);
         return builder.build();
     }
 
     default ObjectMapper buildToml() {
-        TomlMapper.Builder builder = TomlMapper.builder()
-                .addModule(buildModule());
+        TomlMapper.Builder builder = TomlMapper.builder().addModule(buildModule());
         for (JacksonModule module : additionalModules()) builder.addModule(module);
         return builder.build();
     }
@@ -124,11 +122,9 @@ public interface SerializationTest {
     default <T> void assertEqualsIgnoring(T expected, T actual) {
         Assertions.assertThat(actual)
                 .usingRecursiveComparison()
-                .withComparatorForType(
-                        Comparator.comparing(World::getUID).thenComparing(World::getName), World.class)
+                .withComparatorForType(Comparator.comparing(World::getUID).thenComparing(World::getName), World.class)
                 .isEqualTo(expected);
     }
-
 
     private String read(String path) {
         try (var in = getClass().getResourceAsStream(path)) {

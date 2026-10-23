@@ -17,7 +17,8 @@ import tools.jackson.databind.ValueSerializer;
  */
 public class PotionEffectSerializer extends ValueSerializer<PotionEffect> {
     @Override
-    public void serialize(PotionEffect value, JsonGenerator gen, SerializationContext serializers) throws JacksonException {
+    public void serialize(PotionEffect value, JsonGenerator gen, SerializationContext serializers)
+            throws JacksonException {
         gen.writePOJO(PotionEffectWrapper.of(value));
     }
 }

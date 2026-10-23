@@ -21,8 +21,8 @@ import org.bukkit.potion.PotionEffectType;
  * @param icon      Indicates effect with icon
  */
 @JsonPropertyOrder({"amplifier", "duration", "type", "ambient", "particles", "icon"})
-public record PotionEffectWrapper(int amplifier, int duration, PotionEffectType type, boolean ambient,
-                                  boolean particles, boolean icon) {
+public record PotionEffectWrapper(
+        int amplifier, int duration, PotionEffectType type, boolean ambient, boolean particles, boolean icon) {
     /**
      * Create a new base potion wrapper.
      *
@@ -33,13 +33,13 @@ public record PotionEffectWrapper(int amplifier, int duration, PotionEffectType 
      * @param particles the particle status, see {@link PotionEffect#hasParticles()}
      * @param icon      the icon status, see {@link PotionEffect#hasIcon()}
      */
-
-    public PotionEffectWrapper(@JsonProperty("amplifier") int amplifier,
-                               @JsonProperty("duration") int duration,
-                               @JsonProperty("type") PotionEffectType type,
-                               @JsonProperty("ambient") boolean ambient,
-                               @JsonProperty("particles") boolean particles,
-                               @JsonProperty("icon") boolean icon) {
+    public PotionEffectWrapper(
+            @JsonProperty("amplifier") int amplifier,
+            @JsonProperty("duration") int duration,
+            @JsonProperty("type") PotionEffectType type,
+            @JsonProperty("ambient") boolean ambient,
+            @JsonProperty("particles") boolean particles,
+            @JsonProperty("icon") boolean icon) {
         this.amplifier = amplifier;
         this.duration = duration;
         this.type = type;
@@ -128,7 +128,6 @@ public record PotionEffectWrapper(int amplifier, int duration, PotionEffectType 
         boolean icon = effect.hasIcon();
         boolean particles = effect.hasParticles();
         return new PotionEffectWrapper(amplifier, duration, type, ambient, particles, icon);
-
     }
 
     /**

@@ -80,7 +80,8 @@ public class JacksonBukkit extends JacksonBukkitModule {
     @Override
     protected void registerDeserializer(SimpleDeserializers deserializers) {
         deserializers.addDeserializer(ItemStack.class, new LegacyItemStackDeserializer());
-        deserializers.addDeserializer(Color.class, hexColors ? new HexRGBColorDeserializer() : new RGBColorDeserializer());
+        deserializers.addDeserializer(
+                Color.class, hexColors ? new HexRGBColorDeserializer() : new RGBColorDeserializer());
     }
 
     @Override

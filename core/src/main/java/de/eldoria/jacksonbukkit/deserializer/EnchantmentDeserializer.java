@@ -27,6 +27,7 @@ public class EnchantmentDeserializer extends ValueDeserializer<Enchantment> {
         if (tree.isObject()) {
             return Enchantment.getByKey(ctxt.readTreeAsValue(tree, NamespacedKey.class));
         }
-        throw JacksonIOException.construct(new IOException("Unknown type for field type" + tree.getNodeType().name()));
+        throw JacksonIOException.construct(new IOException(
+                "Unknown type for field type" + tree.getNodeType().name()));
     }
 }

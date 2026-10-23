@@ -14,8 +14,8 @@ import java.util.List;
 /**
  * Class for wrapping a {@link ShapelessRecipe}.
  */
-public record ShapelessRecipeWrapper(NamespacedKey key, ItemStack result, String group,
-                                     List<? extends RecipeChoiceWrapper<?>> choiceList) {
+public record ShapelessRecipeWrapper(
+        NamespacedKey key, ItemStack result, String group, List<? extends RecipeChoiceWrapper<?>> choiceList) {
     /**
      * Create a new {@link ShapelessRecipeWrapper} based on a {@link ShapelessRecipe}.
      *
@@ -23,7 +23,8 @@ public record ShapelessRecipeWrapper(NamespacedKey key, ItemStack result, String
      * @return new {@link ShapelessRecipeWrapper} instance
      */
     public static ShapelessRecipeWrapper of(ShapelessRecipe recipe) {
-        List<? extends RecipeChoiceWrapper<?>> choiceList = recipe.getChoiceList().stream().map(RecipeChoiceWrapper::of).toList();
+        List<? extends RecipeChoiceWrapper<?>> choiceList =
+                recipe.getChoiceList().stream().map(RecipeChoiceWrapper::of).toList();
         String group = recipe.getGroup();
         NamespacedKey key = recipe.getKey();
         ItemStack result = recipe.getResult();

@@ -15,11 +15,13 @@ import org.bukkit.inventory.ShapelessRecipe;
 import java.util.List;
 
 public class ShapelessRecipeTemplate implements CoreSerializationTest {
-    public static final ShapelessRecipe SINGLE = new ShapelessRecipe(NamespacedKey.minecraft("test1"), new ItemStack(Material.STRING))
+    public static final ShapelessRecipe SINGLE = new ShapelessRecipe(
+                    NamespacedKey.minecraft("test1"), new ItemStack(Material.STRING))
             .addIngredient(new RecipeChoice.ExactChoice(new ItemStack(Material.CHEST, 2)))
             .addIngredient(Material.STICK);
 
-    public static final List<ShapelessRecipe> LIST = List.of(SINGLE,
+    public static final List<ShapelessRecipe> LIST = List.of(
+            SINGLE,
             new ShapelessRecipe(NamespacedKey.minecraft("test2"), new ItemStack(Material.GOLD_BLOCK))
                     .addIngredient(new RecipeChoice.ExactChoice(new ItemStack(Material.CHEST, 2)))
                     .addIngredient(Material.STICK),

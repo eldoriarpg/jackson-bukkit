@@ -74,6 +74,7 @@ public abstract class JacksonBukkitModule extends JacksonModule {
      * True when colors should be interpreted as hex strings.
      */
     protected final boolean hexColors;
+
     protected final NamespacedKeySerializer.Format namespacedKeyFormat;
 
     /**

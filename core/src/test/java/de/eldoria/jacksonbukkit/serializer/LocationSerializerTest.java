@@ -5,17 +5,16 @@
  */
 package de.eldoria.jacksonbukkit.serializer;
 
-import tools.jackson.core.JacksonException;
 import de.eldoria.jacksonbukkit.CoreSerializationTest;
 import de.eldoria.jacksonbukkit.templates.LocationTemplate;
 import org.bukkit.Bukkit;
 import org.bukkit.Server;
 import org.bukkit.World;
 import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
+import tools.jackson.core.JacksonException;
 
 import java.lang.reflect.Field;
 import java.util.UUID;
@@ -23,9 +22,7 @@ import java.util.logging.Logger;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
-
 
 class LocationSerializerTest implements CoreSerializationTest {
     static Server server;

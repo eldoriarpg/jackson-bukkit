@@ -17,7 +17,8 @@ import tools.jackson.databind.ValueSerializer;
  */
 public class ExactChoiceSerializer extends ValueSerializer<ExactChoice> {
     @Override
-    public void serialize(ExactChoice value, JsonGenerator gen, SerializationContext serializers) throws JacksonException {
+    public void serialize(ExactChoice value, JsonGenerator gen, SerializationContext serializers)
+            throws JacksonException {
         gen.writePOJO(ExactChoiceWrapper.of(value));
     }
 }

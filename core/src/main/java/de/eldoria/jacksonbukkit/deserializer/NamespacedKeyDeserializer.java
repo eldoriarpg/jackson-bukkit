@@ -31,6 +31,7 @@ public class NamespacedKeyDeserializer extends ValueDeserializer<NamespacedKey> 
                 return NamespacedKey.minecraft(text);
             }
         }
-        throw new IllegalArgumentException("Cannot deserialize " + jsonNode.getNodeType().name());
+        throw new IllegalArgumentException(
+                "Cannot deserialize " + jsonNode.getNodeType().name());
     }
 }

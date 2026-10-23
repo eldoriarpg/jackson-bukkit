@@ -16,7 +16,8 @@ import tools.jackson.databind.ValueSerializer;
  */
 public class BlockDataSerializer extends ValueSerializer<BlockData> {
     @Override
-    public void serialize(BlockData value, JsonGenerator gen, SerializationContext serializers) throws JacksonException {
+    public void serialize(BlockData value, JsonGenerator gen, SerializationContext serializers)
+            throws JacksonException {
         gen.writeString(value.getAsString());
     }
 }

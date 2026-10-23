@@ -18,31 +18,17 @@ public class AttributeModifierTemplate {
             "test",
             1337,
             AttributeModifier.Operation.ADD_NUMBER,
-            EquipmentSlot.HAND
-    );
+            EquipmentSlot.HAND);
 
     public static final List<AttributeModifier> LIST = List.of(
-
             new AttributeModifier(
-                    new UUID(10L, 20L),
-                    "test1",
-                    1337,
-                    AttributeModifier.Operation.ADD_NUMBER,
-                    EquipmentSlot.HAND
-            ),
+                    new UUID(10L, 20L), "test1", 1337, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND),
             new AttributeModifier(
-                    new UUID(20L, 40L),
-                    "test2",
-                    1337,
-                    AttributeModifier.Operation.ADD_SCALAR,
-                    EquipmentSlot.HAND
-            ),
+                    new UUID(20L, 40L), "test2", 1337, AttributeModifier.Operation.ADD_SCALAR, EquipmentSlot.HAND),
             new AttributeModifier(
                     new UUID(30L, 60L),
                     "test3",
                     1337,
                     AttributeModifier.Operation.MULTIPLY_SCALAR_1,
-                    EquipmentSlot.HAND
-            ));
-
+                    EquipmentSlot.HAND));
 }

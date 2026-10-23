@@ -5,13 +5,12 @@
  */
 package de.eldoria.jacksonbukkit.serializer;
 
+import de.eldoria.jacksonbukkit.CoreSerializationTest;
+import de.eldoria.jacksonbukkit.JacksonBukkit;
+import de.eldoria.jacksonbukkit.templates.FireworkEffectTemplate;
+import org.junit.jupiter.api.Test;
 import tools.jackson.core.JacksonException;
 import tools.jackson.databind.JacksonModule;
-import de.eldoria.jacksonbukkit.JacksonBukkit;
-import de.eldoria.jacksonbukkit.CoreSerializationTest;
-import de.eldoria.jacksonbukkit.templates.FireworkEffectTemplate;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 

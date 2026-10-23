@@ -20,10 +20,7 @@ public record BoundingBoxWrapper(Vector corner1, Vector corner2) {
      * @return new {@link BoundingBoxWrapper} instance
      */
     public static BoundingBoxWrapper of(BoundingBox boundingBox) {
-        return new BoundingBoxWrapper(
-                boundingBox.getMin(),
-                boundingBox.getMax()
-        );
+        return new BoundingBoxWrapper(boundingBox.getMin(), boundingBox.getMax());
     }
 
     /**
@@ -32,10 +29,6 @@ public record BoundingBoxWrapper(Vector corner1, Vector corner2) {
      * @return new {@link BoundingBox} instance
      */
     public BoundingBox toBukkitBoundingBox() {
-        return BoundingBox.of(
-                corner1,
-                corner2
-        );
+        return BoundingBox.of(corner1, corner2);
     }
-
 }

@@ -5,8 +5,6 @@
  */
 package de.eldoria.jacksonbukkit.deserializer;
 
-import be.seeseemelk.mockbukkit.MockBukkit;
-import tools.jackson.core.JacksonException;
 import de.eldoria.jacksonbukkit.CoreSerializationTest;
 import de.eldoria.jacksonbukkit.templates.ItemStackTemplate;
 import org.bukkit.inventory.ItemStack;
@@ -14,6 +12,7 @@ import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
+import tools.jackson.core.JacksonException;
 
 import static be.seeseemelk.mockbukkit.MockBukkit.mock;
 import static be.seeseemelk.mockbukkit.MockBukkit.unmock;

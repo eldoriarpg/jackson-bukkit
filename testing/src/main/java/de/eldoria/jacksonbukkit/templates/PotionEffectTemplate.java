@@ -16,6 +16,5 @@ public class PotionEffectTemplate {
     public static final List<PotionEffect> LIST = List.of(
             new PotionEffect(PotionEffectType.CONFUSION, 10, 1, false, true, false),
             new PotionEffect(PotionEffectType.CONFUSION, 10, 1, true, true, false),
-            SINGLE
-    );
+            SINGLE);
 }

@@ -30,6 +30,5 @@ public class FireworkEffectTemplate {
                     .trail(true)
                     .flicker(true)
                     .build(),
-            SINGLE
-    );
+            SINGLE);
 }

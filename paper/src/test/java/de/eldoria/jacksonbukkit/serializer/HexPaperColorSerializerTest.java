@@ -5,13 +5,13 @@
  */
 package de.eldoria.jacksonbukkit.serializer;
 
-import tools.jackson.core.JacksonException;
-import tools.jackson.databind.JacksonModule;
 import de.eldoria.jacksonbukkit.JacksonPaper;
 import de.eldoria.jacksonbukkit.PaperSerializationTest;
 import de.eldoria.jacksonbukkit.templates.RGBAColorTemplate;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
+import tools.jackson.core.JacksonException;
+import tools.jackson.databind.JacksonModule;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 

@@ -30,10 +30,11 @@ public final class RGBAColorWrapper extends RGBColorWrapper {
      * @param alpha alpha value
      */
     @JsonCreator
-    public RGBAColorWrapper(@JsonProperty("red") int red,
-                            @JsonProperty("green") int green,
-                            @JsonProperty("blue") int blue,
-                            @JsonProperty("alpha") int alpha) {
+    public RGBAColorWrapper(
+            @JsonProperty("red") int red,
+            @JsonProperty("green") int green,
+            @JsonProperty("blue") int blue,
+            @JsonProperty("alpha") int alpha) {
         super(red, green, blue);
         this.alpha = alpha;
     }

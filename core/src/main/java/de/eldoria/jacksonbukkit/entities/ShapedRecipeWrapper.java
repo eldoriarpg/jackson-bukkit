@@ -12,13 +12,16 @@ import org.bukkit.inventory.ShapedRecipe;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 /**
  * Class for wrapping a {@link ShapedRecipe}.
  */
-public record ShapedRecipeWrapper(NamespacedKey key, ItemStack result, List<String> shape, String group,
-                                  Map<Character, RecipeChoiceWrapper<?>> ingredients) {
+public record ShapedRecipeWrapper(
+        NamespacedKey key,
+        ItemStack result,
+        List<String> shape,
+        String group,
+        Map<Character, RecipeChoiceWrapper<?>> ingredients) {
     /**
      * Create a new {@link ShapedRecipeWrapper} based on a {@link ShapedRecipe}.
      *
@@ -47,7 +50,8 @@ public record ShapedRecipeWrapper(NamespacedKey key, ItemStack result, List<Stri
         shapedRecipe.shape(shape.toArray(new String[0]));
         shapedRecipe.setGroup(group);
         for (var entry : ingredients.entrySet()) {
-            shapedRecipe.setIngredient(entry.getKey(), entry.getValue() != null ? entry.getValue().toBukkitRecipeChoice() : null);
+            shapedRecipe.setIngredient(
+                    entry.getKey(), entry.getValue() != null ? entry.getValue().toBukkitRecipeChoice() : null);
         }
         return shapedRecipe;
     }

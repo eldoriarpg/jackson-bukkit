@@ -5,14 +5,11 @@
  */
 package de.eldoria.jacksonbukkit.serializer;
 
-import tools.jackson.core.JacksonException;
 import de.eldoria.jacksonbukkit.CoreSerializationTest;
 import de.eldoria.jacksonbukkit.templates.BlockVectorTemplate;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import tools.jackson.core.JacksonException;
 
-import static de.eldoria.jacksonbukkit.templates.BlockVectorTemplate.LIST;
-import static de.eldoria.jacksonbukkit.templates.BlockVectorTemplate.SINGLE;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 

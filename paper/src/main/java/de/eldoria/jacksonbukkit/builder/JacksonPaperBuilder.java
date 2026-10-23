@@ -76,6 +76,11 @@ public class JacksonPaperBuilder extends ModuleBuilder<JacksonPaperBuilder, Jack
 
     @Override
     public JacksonPaper build() {
-        return new JacksonPaper(hexColors, legacyItemStackSerialization, componentJsonDeserializer, componentJsonSerializer, namespacedKeyFormat);
+        return new JacksonPaper(
+                hexColors,
+                legacyItemStackSerialization,
+                componentJsonDeserializer,
+                componentJsonSerializer,
+                namespacedKeyFormat);
     }
 }
