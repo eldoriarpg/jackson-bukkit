@@ -6,10 +6,10 @@ mockito = "5.24.0"
 assertj = "3.27.7"
 mockbukkit = "3.1.0"
 palantir = "2.102.0"
-spotless = "8.10.4"
-publishdata = "2.1.0"
+spotless = "8.11.0"
+publishdata = "2.3.0"
 vanniktech = "0.37.0"
-freefair = "9.8.2"
+freefair = "9.8.3"
 
 [libraries]
 spigot-v1132 = "org.spigotmc:spigot-api:1.13.2-R0.1-SNAPSHOT"
